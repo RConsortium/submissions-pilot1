@@ -1,0 +1,62 @@
+---
+title: CDISC Pilot: Efficacy Tables
+output:
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_depth: '2'
+    toc_float: true
+---
+
+```{r setup}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(haven)
+library(r2rtf)
+library(dplyr)
+
+# Load project specific functions
+# Need to updated after the project is mature
+devtools::load_all() 
+```
+
+# Step 1: Read in data
+
+```{r}
+adsl  <- read_sas(file.path(path$adam, "adsl.sas7bdat"))
+adlbc <- read_sas(file.path(path$adam, "adlbc.sas7bdat"))
+```
+
+## Step 2: ANCOVA analysis
+
+- ToDo 
+
+```{r}
+# just a place holder
+tbl <- head(adsl) %>% select(USUBJID, AGE, RACE)
+```
+
+## Step 3: Define table format
+
+- ToDo
+
+```{r}
+tbl_output <- tbl %>% rtf_body() 
+```
+
+```{r}
+knitr::kable(tbl_output)
+```
+
+## Step 4: Output
+
+```{r}
+# Output .rtf file 
+tbl_output %>%
+  rtf_encode() %>%
+  write_rtf(file.path(path$output, "efficacy_example.rtf"))
+```
+
+
+
+
