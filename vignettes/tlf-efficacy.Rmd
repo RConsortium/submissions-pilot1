@@ -8,6 +8,11 @@ output:
     toc_float: true
 ---
 
+```{r}
+# Initiate start-up file
+source(file.path(rprojroot::find_root("DESCRIPTION"), "inst/startup.R"))
+```
+
 ```{r setup}
 knitr::opts_chunk$set(echo = TRUE)
 

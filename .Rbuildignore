@@ -3,3 +3,6 @@
 ^esubdemo\.Rcheck$
 ^esubdemo.*\.tar\.gz$
 ^esubdemo.*\.tgz$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$

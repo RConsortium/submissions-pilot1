@@ -5,3 +5,5 @@
 esubdemo.Rcheck/
 esubdemo*.tar.gz
 esubdemo*.tgz
+docs/
+docs
