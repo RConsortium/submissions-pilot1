@@ -1,5 +1,14 @@
 ## Overview
 
+To initiate the project on RStudio Cloud, you need to run the code below 
+for start-up scripts. 
+
+```
+source("inst/startup.R")
+```
+
+## Original Readme file 
+
 `esubdemo` is a demo project to illustrate how to organize analysis scripts 
 in an R package folder structure. 
 

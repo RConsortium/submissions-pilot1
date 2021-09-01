@@ -1,0 +1,7 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+esubdemo.Rcheck/
+esubdemo*.tar.gz
+esubdemo*.tgz
