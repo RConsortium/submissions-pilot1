@@ -6,3 +6,6 @@
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+^LICENSE.md$
+^output$
+^readme.md$
