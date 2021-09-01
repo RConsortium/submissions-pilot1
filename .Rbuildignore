@@ -9,3 +9,5 @@
 ^LICENSE.md$
 ^output$
 ^readme.md$
+^adam$
+^vignettes$

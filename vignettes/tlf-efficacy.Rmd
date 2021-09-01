@@ -6,10 +6,6 @@ output:
     toc: yes
     toc_depth: '2'
     toc_float: true
-vignette: >
-  %\VignetteIndexEntry{CDISC Pilot: Efficacy Tables}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r}
