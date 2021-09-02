@@ -1,12 +1,12 @@
 # Project Level Setup 
-if(! "rprojroot" %in% installed.packages()[,1]){
+if(! "rprojroot" %in% utils::installed.packages()[,1]){
   install.packages("rprojroot", verbose = FALSE)    
 }
 
 
 R_version <- "4.1.0"																                  # set up project R version
-#snapshot  <- "2021-08-06" 									                          # set up snapshot date
-#repos     <- paste0("https://mran.microsoft.com/snapshot/", snapshot)  # set up repository based on snapshot
+snapshot  <- "2021-08-31" 									                          # set up snapshot date
+repos     <- paste0("https://mran.microsoft.com/snapshot/", snapshot)  # set up repository based on snapshot
 
 home      <- dirname(rprojroot::find_package_root_file("DESCRIPTION")) # set up home directory
 
@@ -22,7 +22,7 @@ path <- list(
 path <- lapply(path, function(x) file.path(home, x))
 
 # Define repo URL for project specific package installation
-# options(repos = repos)
+options(repos = repos)
 
 # Check R Version
 if(paste(R.version$major, R.version$minor, sep = ".") != R_version & interactive()){
