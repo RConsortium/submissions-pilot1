@@ -1,12 +1,13 @@
 # Project Level Setup 
-if(! "rprojroot" %in% utils::installed.packages()[,1]){
-  install.packages("rprojroot", verbose = FALSE)    
-}
-
-
 R_version <- "4.1.0"																                  # set up project R version
 snapshot  <- "2021-08-31" 									                          # set up snapshot date
 repos     <- paste0("https://mran.microsoft.com/snapshot/", snapshot)  # set up repository based on snapshot
+
+
+if(! "rprojroot" %in% utils::installed.packages()[,1]){
+        install.packages("rprojroot", verbose = FALSE, repos = repos)    
+}
+
 
 home      <- dirname(rprojroot::find_package_root_file("DESCRIPTION")) # set up home directory
 
