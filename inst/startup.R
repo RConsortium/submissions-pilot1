@@ -21,7 +21,7 @@ path <- lapply(path, function(x) file.path(home, x))
 # options(repos = repos)
 
 # Check R Version
-if(paste(R.version$major, R.version$minor, sep = ".") != R_version){
+if(paste(R.version$major, R.version$minor, sep = ".") != R_version & interactive()){
  stop("The current R version is not the same with the current project in ", R_version)
 }
 
