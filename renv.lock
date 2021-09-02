@@ -3,12 +3,8 @@
     "Version": "4.1.0",
     "Repositories": [
       {
-        "Name": "CRAN",
-        "URL": "http://package-proxy/focal"
-      },
-      {
-        "Name": "RSPM",
-        "URL": "http://cran.rstudio.org"
+        "Name": null,
+        "URL": "https://mran.microsoft.com/snapshot/2021-08-31"
       }
     ]
   },
