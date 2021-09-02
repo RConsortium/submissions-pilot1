@@ -1,4 +1,8 @@
 # Project Level Setup 
+if(! "rprojroot" %in% installed.packages()[,1]){
+  install.packages("rprojroot", verbose = FALSE)    
+}
+
 
 R_version <- "4.1.0"																                  # set up project R version
 #snapshot  <- "2021-08-06" 									                          # set up snapshot date
