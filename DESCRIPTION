@@ -1,6 +1,6 @@
 Package: esubdemo
 Type: Package
-Title: A demo project for analysis and reporting of clinical trials
+Title: A Pilot Submission Project
 Version: 0.0.1
 Authors@R: c(
         person("Yilong Zhang", email = "elong0527@gmail.com", role = c("aut", "cre"))
