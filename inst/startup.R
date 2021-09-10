@@ -5,7 +5,7 @@ repos     <- paste0("https://mran.microsoft.com/snapshot/", snapshot)  # set up 
 
 
 if(! "rprojroot" %in% utils::installed.packages()[,1]){
-        stop("Please install rprojroot package")
+       message("Please install rprojroot package")
         #install.packages("rprojroot", verbose = FALSE, repos = repos)    
 }
 
