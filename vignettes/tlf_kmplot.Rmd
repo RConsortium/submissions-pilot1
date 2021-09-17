@@ -1,0 +1,67 @@
+---
+title: "CDISC Pilot: Kaplan-Meier Plot for Time to First Dermatologic Event"
+output:
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_depth: '2'
+    toc_float: true
+---
+
+```{r}
+# Initiate start-up file
+source(file.path(rprojroot::find_root("DESCRIPTION"), "inst/startup.R"))
+```
+
+```{r setup}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(haven) 
+library(dplyr)
+
+# Load project specific functions
+# Need to updated after the project is mature
+devtools::load_all() 
+```
+
+# Step 1: Read in data
+
+```{r}
+adtte <- read_sas(file.path(path$adam, "adtte.sas7bdat")) 
+```
+
+## Step 2: Data preparation for endpoint TTDE
+```{r}
+anl <- adtte %>%
+  dplyr::filter(PARAMCD == "TTDE") %>%
+  dplyr::mutate(
+    TRTP = factor(TRTP, levels = c("Placebo", "Xanomeline Low Dose",  "Xanomeline High Dose"))
+  )
+```
+
+## Step 3: Kaplan-Meier Plot and Save to Output
+```{r}
+surv_mod <- survival::Surv(anl$AVAL, anl$CNSR == 0)
+surv_fit <- survival::survfit(surv_mod ~ anl$TRTP)
+ngr <- table(anl$TRTP)
+col <- 1:length(ngr)
+
+# save plot
+pdf(file.path(path$output, "g_km.pdf"))
+plot(surv_fit, col = col, oma=c(2, 3, 5, 2))
+abline(h = 0.5, lty = 2)
+legend(
+  "bottomleft", legend = paste0(names(ngr), " (n=", ngr, ")"), 
+  col = col, pch = 19, cex = 0.7
+) 
+title = "KM plot for Time to First Dermatologic Event"
+footnote = "Program: tlf_kmplot.Rmd"
+mtext(side = 3, line = 3, at = -0.07, adj = 0, cex = 1, title)
+mtext(side = 1, line = 2, at = -0.07, adj = 0, cex = 0.7, footnote) 
+dev.off()
+```
+
+
+
+
+
