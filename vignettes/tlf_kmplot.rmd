@@ -27,23 +27,29 @@ devtools::load_all()
 # Step 1: Read in data
 
 ```{r}
+adsl <- read_sas(file.path(path$adam, "adsl.sas7bdat"))
 adtte <- read_sas(file.path(path$adam, "adtte.sas7bdat")) 
 ```
 
 ## Step 2: Data preparation for endpoint TTDE
 ```{r}
-anl <- adtte %>%
-  dplyr::filter(PARAMCD == "TTDE") %>%
+anl <- adsl %>% 
+  dplyr::filter(ITTFL == "Y") %>%
+  dplyr::select(STUDYID, USUBJID, ARM) %>%
+  dplyr::inner_join(
+    filter(adtte, PARAMCD == "TTDE") %>% select(STUDYID, USUBJID, AVAL, CNSR),
+    by = c("STUDYID", "USUBJID")
+  ) %>%
   dplyr::mutate(
-    TRTP = factor(TRTP, levels = c("Placebo", "Xanomeline Low Dose",  "Xanomeline High Dose"))
+    ARM = factor(ARM, levels = c("Placebo", "Xanomeline Low Dose",  "Xanomeline High Dose"))
   )
 ```
 
 ## Step 3: Kaplan-Meier Plot and Save to Output
 ```{r}
 surv_mod <- survival::Surv(anl$AVAL, anl$CNSR == 0)
-surv_fit <- survival::survfit(surv_mod ~ anl$TRTP)
-ngr <- table(anl$TRTP)
+surv_fit <- survival::survfit(surv_mod ~ anl$ARM)
+ngr <- table(anl$ARM)
 col <- 1:length(ngr)
 
 # save plot
