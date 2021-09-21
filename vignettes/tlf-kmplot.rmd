@@ -13,7 +13,7 @@ output:
 source(file.path(rprojroot::find_root("DESCRIPTION"), "inst/startup.R"))
 ```
 
-```{r setup}
+```{r setup, message=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
 library(haven) 
