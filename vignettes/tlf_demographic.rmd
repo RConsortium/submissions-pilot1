@@ -34,7 +34,10 @@ adsl  <- read_sas(file.path(path$adam, "adsl.sas7bdat"))
 ## Step 2: Data preparation
 ```{r}
 adsl <- adsl %>%
-  dplyr::filter(ITTFL == "Y") %>%
+  dplyr::filter(
+    STUDYID == "CDISCPILOT01",
+    ITTFL == "Y"
+  ) %>%
   dplyr::mutate(
     ARM = factor(ARM, levels = c("Placebo", "Xanomeline Low Dose",  "Xanomeline High Dose")),
     AGEGR1 = factor(AGEGR1, levels = c("<65", "65-80", ">80")),
@@ -78,7 +81,7 @@ tbl
 # Output .out file 
 tbl %>%
   toString() %>%
-  writeLines(con = file.path(path$output, "t_dm_ITT.out"))
+  writeLines(con = file.path(path$output, "t_dm_itt.out"))
 ```
 
 

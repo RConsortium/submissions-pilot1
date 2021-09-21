@@ -34,10 +34,15 @@ adtte <- read_sas(file.path(path$adam, "adtte.sas7bdat"))
 ## Step 2: Data preparation for endpoint TTDE
 ```{r}
 anl <- adsl %>% 
-  dplyr::filter(ITTFL == "Y") %>%
+  dplyr::filter(
+    ITTFL == "Y",
+    STUDYID == "CDISCPILOT01"
+  ) %>%
   dplyr::select(STUDYID, USUBJID, ARM) %>%
   dplyr::inner_join(
-    filter(adtte, PARAMCD == "TTDE") %>% select(STUDYID, USUBJID, AVAL, CNSR),
+    filter(
+      adtte, PARAMCD == "TTDE", STUDYID == "CDISCPILOT01"
+    ) %>% select(STUDYID, USUBJID, AVAL, CNSR),
     by = c("STUDYID", "USUBJID")
   ) %>%
   dplyr::mutate(
@@ -53,7 +58,7 @@ ngr <- table(anl$ARM)
 col <- 1:length(ngr)
 
 # save plot
-pdf(file.path(path$output, "g_km_ITT.pdf"))
+pdf(file.path(path$output, "g_km_itt.pdf"))
 plot(surv_fit, col = col, oma=c(2, 3, 5, 2))
 abline(h = 0.5, lty = 2)
 legend(
