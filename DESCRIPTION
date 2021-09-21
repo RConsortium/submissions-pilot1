@@ -11,15 +11,17 @@ License: GPL (>= 3)
 Imports: 
     r2rtf,
     fs,
-    rtables
+    rtables,
+    dplyr
+    tidyr,
+    emmeans,
+    haven
 Suggests: 
     devtools,
     testthat,
     knitr,
     rmarkdown,
-    dplyr,
-    rprojroot,
-    haven
+    rprojroot
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)  
