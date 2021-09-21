@@ -1,0 +1,89 @@
+---
+title: "CDISC Pilot: Summary of Demographic and Baseline Characteristics"
+output:
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_depth: '2'
+    toc_float: true
+---
+
+```{r}
+# Initiate start-up file
+source(file.path(rprojroot::find_root("DESCRIPTION"), "inst/startup.R"))
+```
+
+```{r setup}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(haven) 
+library(dplyr)
+library(rtables)
+
+# Load project specific functions
+# Need to updated after the project is mature
+devtools::load_all() 
+```
+
+# Step 1: Read in data
+
+```{r}
+adsl  <- read_sas(file.path(path$adam, "adsl.sas7bdat")) 
+```
+
+## Step 2: Data preparation
+```{r}
+adsl <- adsl %>%
+  dplyr::filter(
+    STUDYID == "CDISCPILOT01",
+    ITTFL == "Y"
+  ) %>%
+  dplyr::mutate(
+    ARM = factor(ARM, levels = c("Placebo", "Xanomeline Low Dose",  "Xanomeline High Dose")),
+    AGEGR1 = factor(AGEGR1, levels = c("<65", "65-80", ">80")),
+    RACE = factor(RACE, levels = c("WHITE", "BLACK OR AFRICAN AMERICAN", "AMERICAN INDIAN OR ALASKA NATIVE"))
+  )
+```
+
+## Step 3: Summary of Demographic and Baseline Characteristics 
+```{r}
+# Table layout
+lyt <- basic_table(title = "Protocol: CDISCPILOT01",
+                   subtitles = "Population: Intent-to-Treat",
+                   main_footer = "Program: tlf_demographic.Rmd" 
+) %>%
+  split_cols_by("ARM") %>%
+  add_colcounts() %>%
+  analyze(c("AGE", "AGEGR1", "RACE", "HEIGHTBL", "WEIGHTBL", "BMIBL", "MMSETOT"), function(x, ...) {
+    if (is.numeric(x)) {
+      in_rows(
+        "Mean (sd)" = c(mean(x), sd(x)),
+        "Median" = median(x),
+        "Min - Max" = range(x),
+        .formats = c("xx.xx (xx.xx)", "xx.xx", "xx.xx - xx.xx")
+      )
+    } else if (is.factor(x) || is.character(x)) {
+      in_rows(.list = list_wrap_x(table)(x))
+    } else {
+      stop("type not supproted")
+    }
+  })
+
+# Table build
+tbl <- build_table(lyt, adsl)
+
+tbl
+```
+ 
+## Step 4: Output
+
+```{r}
+# Output .out file 
+tbl %>%
+  toString() %>%
+  writeLines(con = file.path(path$output, "t-dm-itt.out"))
+```
+
+
+
+
