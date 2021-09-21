@@ -1,5 +1,11 @@
 ## Overview
 
+## Datasets
+
+The source dataset in `adam\` folder is from [the PHUSE Github Repository](https://github.com/phuse-org/phuse-scripts/blob/master/data/adam/TDF_ADaM_v1.0.zip)
+
+## Overview
+
 To initiate the project on RStudio Cloud, you need to run the code below 
 for start-up scripts. 
 
