@@ -81,7 +81,7 @@ tbl
 # Output .out file 
 tbl %>%
   toString() %>%
-  writeLines(con = file.path(path$output, "t_dm_itt.out"))
+  writeLines(con = file.path(path$output, "t-dm-itt.out"))
 ```
 
 

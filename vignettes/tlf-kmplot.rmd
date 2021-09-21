@@ -58,7 +58,7 @@ ngr <- table(anl$ARM)
 col <- 1:length(ngr)
 
 # save plot
-pdf(file.path(path$output, "g_km_itt.pdf"))
+pdf(file.path(path$output, "g-km-itt.pdf"))
 plot(surv_fit, col = col, oma=c(2, 3, 5, 2))
 abline(h = 0.5, lty = 2)
 legend(
