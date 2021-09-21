@@ -4,6 +4,9 @@ snapshot  <- "2021-08-31" 									                          # set up snapshot d
 repos     <- paste0("https://mran.microsoft.com/snapshot/", snapshot)  # set up repository based on snapshot
 
 home      <- normalizePath(".") # set up home directory
+while(! "DESCRIPTION" %in% list.files(home)){
+        home <- dirname(home)
+}
 
 # A&R folder path (Do not edit information below)
 path <- list(
