@@ -22,7 +22,7 @@ library(tidyr)
 library(haven)
 library(r2rtf)
 library(emmeans)
-
+library(esubdemo)
 ```
 
 # Step 1: Read in data
@@ -66,12 +66,12 @@ apr0ancova1 <- merge(t11, t12) %>%
   mutate(
     Trt = c("Study Drug", "Placebo"),
     N1 = N,
-    Mean1 = esubdemo::fmt_est(., c("mean_bl", "sd_bl")),
+    Mean1 = esubdemo::fmt_est(mean_bl, sd_bl),
     N2 = N,
-    Mean2 = esubdemo::fmt_est(., c("mean", "sd")),
+    Mean2 = esubdemo::fmt_est(mean, sd),
     N3 = N,
-    Mean3 = esubdemo::fmt_est(., c("mean_chg", "sd_chg")),
-    CI = paste(esubdemo::fmt_est(., "emmean"), esubdemo::fmt_ci(., c("lower.CL", "upper.CL")))
+    Mean3 = esubdemo::fmt_est(mean_chg, sd_chg),
+    CI = esubdemo::fmt_ci(emmean, lower.CL, upper.CL)
   ) %>%
   select(Trt:CI)
 
@@ -85,8 +85,8 @@ apr0ancova2 <- t2 %>%
   ) %>%
   mutate(
     comp = "Study Drug vs. Placebo",
-    mean = paste(esubdemo::fmt_est(., "estimate"), esubdemo::fmt_ci(., c("lower", "upper"))),
-    p = esubdemo::fmt_pval(., "p.value")
+    mean = esubdemo::fmt_ci(estimate, lower, upper),
+    p = esubdemo::fmt_pval(p.value)
   ) %>%
   select(comp:p)
 
