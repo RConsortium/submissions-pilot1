@@ -27,15 +27,15 @@ devtools::load_all()
 # Step 1: Read in data
 
 ```{r}
-adsl <- read_sas(file.path(path$adam, "adsl.sas7bdat"))
-adtte <- read_sas(file.path(path$adam, "adtte.sas7bdat")) 
+adsl <- read_xpt(file.path(path$adam, "adsl.xpt"))
+adtte <- read_xpt(file.path(path$adam, "adtte.xpt")) 
 ```
 
 ## Step 2: Data preparation for endpoint TTDE
 ```{r}
 anl <- adsl %>% 
   dplyr::filter(
-    ITTFL == "Y",
+    SAFFL == "Y",
     STUDYID == "CDISCPILOT01"
   ) %>%
   dplyr::select(STUDYID, USUBJID, ARM) %>%
@@ -58,14 +58,14 @@ ngr <- table(anl$ARM)
 col <- 1:length(ngr)
 
 # save plot
-pdf(file.path(path$output, "g-km-itt.pdf"))
+pdf(file.path(path$output, "g-km-saffl.pdf"))
 plot(surv_fit, col = col, oma=c(2, 3, 5, 2))
 abline(h = 0.5, lty = 2)
 legend(
   "bottomleft", legend = paste0(names(ngr), " (n=", ngr, ")"), 
   col = col, pch = 19, cex = 0.7
 ) 
-title = "KM plot for Time to First Dermatologic Event: ITT population"
+title = "KM plot for Time to First Dermatologic Event: Safety population"
 footnote = "Program: tlf_kmplot.Rmd"
 mtext(side = 3, line = 3, at = -0.07, adj = 0, cex = 1, title)
 mtext(side = 1, line = 2, at = -0.07, adj = 0, cex = 0.7, footnote) 

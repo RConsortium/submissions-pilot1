@@ -28,7 +28,7 @@ devtools::load_all()
 # Step 1: Read in data
 
 ```{r}
-adsl  <- read_sas(file.path(path$adam, "adsl.sas7bdat")) 
+adsl  <- read_xpt(file.path(path$adam, "adsl.xpt")) 
 ```
 
 ## Step 2: Data preparation
