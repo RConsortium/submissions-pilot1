@@ -19,7 +19,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(haven) 
 library(dplyr)
 library(rtables)
-
+library(sessioninfo)
 # Load project specific functions
 # Need to updated after the project is mature
 devtools::load_all() 
