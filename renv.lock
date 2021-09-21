@@ -527,6 +527,13 @@
       "Repository": "RSPM",
       "Hash": "06c85365a03fdaf699966cc1d3cf53ea"
     },
+    "rtables": {
+      "Package": "rtables",
+      "Version": "0.3.8",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "91a154d17f94652362c46a9ca634ecc2"
+    },
     "rversions": {
       "Package": "rversions",
       "Version": "2.1.1",
