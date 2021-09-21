@@ -26,5 +26,4 @@ Suggests:
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)  
-Rmarkdwon: echo = TRUE
 RoxygenNote: 7.1.1
