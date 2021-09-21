@@ -4,7 +4,7 @@
 \name{esubdemo-package}
 \alias{esubdemo}
 \alias{esubdemo-package}
-\title{esubdemo: A demo project for analysis and reporting of clinical trials}
+\title{esubdemo: A Pilot Submission Project}
 \description{
 A demo project for analysis and reporting of clinical trials.
 }
