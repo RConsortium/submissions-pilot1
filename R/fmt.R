@@ -2,6 +2,9 @@
 #' 
 #' @inheritParams base::formatC
 #' 
+#' @examples 
+#' fmt_num(1.25, digits = 1)
+#' 
 #' @export
 fmt_num <- function(x, digits, width = digits + 4) {
   formatC(x,
@@ -16,6 +19,9 @@ fmt_num <- function(x, digits, width = digits + 4) {
 #' @param .mean mean of an estimator. 
 #' @param .sd sd of an estimator.
 #' @param digits number of digits for `.mean` and `.sd`.
+#' 
+#' @examples 
+#' fmt_est(1.25, 0.5)
 #' 
 #' @export
 fmt_est <- function(.mean,
@@ -34,6 +40,8 @@ fmt_est <- function(.mean,
 #' @param digits number of digits for `.est`, `.lower`, and `.upper`.
 #' @param width the total field width. 
 #' 
+#' @examples 
+#' fmt_ci(1, -0.25, 1.32)
 #' @export
 fmt_ci <- function(.est,
                    .lower,
@@ -50,6 +58,9 @@ fmt_ci <- function(.est,
 #' 
 #' @param .p a p-value. 
 #' @param digits number of digits for `.est`, `.lower`, and `.upper`.
+#' 
+#' @examples 
+#' fmt_pval(0.2)
 #' 
 #' @export
 fmt_pval <- function(.p, digits = 3) {

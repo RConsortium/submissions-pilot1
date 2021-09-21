@@ -14,3 +14,7 @@ fmt_pval(.p, digits = 3)
 \description{
 Format p-Value
 }
+\examples{
+fmt_pval(0.2)
+
+}

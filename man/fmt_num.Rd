@@ -36,3 +36,7 @@ fmt_num(x, digits, width = digits + 4)
 \description{
 Format numeric value
 }
+\examples{
+fmt_num(1.25, digits = 1)
+
+}

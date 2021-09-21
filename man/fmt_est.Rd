@@ -16,3 +16,7 @@ fmt_est(.mean, .sd, digits = c(1, 2))
 \description{
 Format point estimator
 }
+\examples{
+fmt_est(1.25, 0.5)
+
+}

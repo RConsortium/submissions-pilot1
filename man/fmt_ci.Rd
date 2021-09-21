@@ -20,3 +20,6 @@ fmt_ci(.est, .lower, .upper, digits = 2, width = digits + 3)
 \description{
 Format confidence interval
 }
+\examples{
+fmt_ci(1, -0.25, 1.32)
+}
