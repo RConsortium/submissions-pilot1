@@ -38,7 +38,7 @@ anl <- adsl %>%
     SAFFL == "Y",
     STUDYID == "CDISCPILOT01"
   ) %>%
-  dplyr::select(STUDYID, USUBJID, ARM) %>%
+  dplyr::select(STUDYID, USUBJID, TRT01A) %>%
   dplyr::inner_join(
     filter(
       adtte, PARAMCD == "TTDE", STUDYID == "CDISCPILOT01"
@@ -46,15 +46,15 @@ anl <- adsl %>%
     by = c("STUDYID", "USUBJID")
   ) %>%
   dplyr::mutate(
-    ARM = factor(ARM, levels = c("Placebo", "Xanomeline Low Dose",  "Xanomeline High Dose"))
+    TRT01A = factor(TRT01A, levels = c("Placebo", "Xanomeline Low Dose",  "Xanomeline High Dose"))
   )
 ```
 
 ## Step 3: Kaplan-Meier Plot and Save to Output
 ```{r}
 surv_mod <- survival::Surv(anl$AVAL, anl$CNSR == 0)
-surv_fit <- survival::survfit(surv_mod ~ anl$ARM)
-ngr <- table(anl$ARM)
+surv_fit <- survival::survfit(surv_mod ~ anl$TRT01A)
+ngr <- table(anl$TRT01A)
 col <- 1:length(ngr)
 
 # save plot

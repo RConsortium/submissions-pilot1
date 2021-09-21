@@ -39,7 +39,7 @@ adsl <- adsl %>%
     ITTFL == "Y"
   ) %>%
   dplyr::mutate(
-    ARM = factor(ARM, levels = c("Placebo", "Xanomeline Low Dose",  "Xanomeline High Dose")),
+    TRT01P = factor(TRT01P, levels = c("Placebo", "Xanomeline Low Dose",  "Xanomeline High Dose")),
     AGEGR1 = factor(AGEGR1, levels = c("<65", "65-80", ">80")),
     RACE = factor(RACE, levels = c("WHITE", "BLACK OR AFRICAN AMERICAN", "AMERICAN INDIAN OR ALASKA NATIVE"))
   )
@@ -52,7 +52,7 @@ lyt <- basic_table(title = "Protocol: CDISCPILOT01",
                    subtitles = "Population: Intent-to-Treat",
                    main_footer = "Program: tlf_demographic.Rmd" 
 ) %>%
-  split_cols_by("ARM") %>%
+  split_cols_by("TRT01P") %>%
   add_colcounts() %>%
   analyze(c("AGE", "AGEGR1", "RACE", "HEIGHTBL", "WEIGHTBL", "BMIBL", "MMSETOT"), function(x, ...) {
     if (is.numeric(x)) {
