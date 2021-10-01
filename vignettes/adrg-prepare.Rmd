@@ -6,9 +6,11 @@ output:
     toc: yes
     toc_depth: '2'
     toc_float: true
+resource_files:
+   - pdf/*.pdf
 ---
 
-```{r}
+```{r, message = FALSE}
 # Initiate start-up file
 source(file.path(rprojroot::find_root("DESCRIPTION"), "inst/startup.R"))
 ```

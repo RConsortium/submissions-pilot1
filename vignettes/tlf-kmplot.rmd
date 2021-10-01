@@ -8,7 +8,7 @@ output:
     toc_float: true
 ---
 
-```{r}
+```{r, message = FALSE}
 # Initiate start-up file
 source(file.path(rprojroot::find_root("DESCRIPTION"), "inst/startup.R"))
 ```
@@ -58,7 +58,7 @@ ngr <- table(anl$TRT01A)
 col <- 1:length(ngr)
 
 # save plot
-pdf(file.path(path$output, "g-km-saffl.pdf"))
+pdf(file.path(path$output, "tlf-kmplot.pdf"))
 plot(surv_fit, col = col, oma=c(2, 3, 5, 2))
 abline(h = 0.5, lty = 2)
 legend(
