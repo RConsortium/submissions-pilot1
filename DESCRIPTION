@@ -1,11 +1,16 @@
-Package: esubdemo
+Package: pilot1wrappers
 Type: Package
-Title: A Pilot Submission Project
+Title: R Consortium R Submission Pilot 1
 Version: 0.0.1
 Authors@R: c(
-        person("Yilong Zhang", email = "elong0527@gmail.com", role = c("aut", "cre"))
+        person("Yilong", "Zhang", email = "elong0527@gmail.com", role = c("aut", "cre")),
+        person("Ning", "Leng", role = c("aut")),
+        person("Mike", "Stackhouse", role = c("aut")),
+        person("Peikun", "Wu", role = c("aut")),
+        person("Heng", "Wang", role = c("aut")),
+        person("Eli", "Miller", role = c("aut")),
        )
-Description: A demo project for analysis and reporting of clinical trials. 
+Description: R Consortium R Submission Pilot 1. 
 Depends: R (>= 3.6.0)
 License: GPL (>= 3)
 Imports: 
