@@ -10,7 +10,7 @@ while(! "DESCRIPTION" %in% list.files(home)){
 
 # A&R folder path (Do not edit information below)
 path <- list(
- home      = home,                   # Project home
+ home      = "",                   # Project home
  adam      = "adam",                 # ADaM data
  output    = "output"                # Output
 

@@ -415,6 +415,13 @@
       "Repository": "RSPM",
       "Hash": "8896076540d9e9b556a2ec658c81f916"
     },
+    "pkglite": {
+      "Package": "pkglite",
+      "Version": "0.2.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "10103029c41084775f6f0a839302cdd4"
+    },
     "pkgload": {
       "Package": "pkgload",
       "Version": "1.2.1",
