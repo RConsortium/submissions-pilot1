@@ -1,28 +1,26 @@
-#' Format numeric value 
-#' 
+#' Format numeric value
+#'
 #' @inheritParams base::formatC
-#' 
-#' @examples 
+#'
+#' @examples
 #' fmt_num(1.25, digits = 1)
-#' 
 #' @export
 fmt_num <- function(x, digits, width = digits + 4) {
   formatC(x,
-          digits = digits,
-          format = "f",
-          width = width
+    digits = digits,
+    format = "f",
+    width = width
   )
 }
 
 #' Format point estimator
-#' 
-#' @param .mean mean of an estimator. 
+#'
+#' @param .mean mean of an estimator.
 #' @param .sd sd of an estimator.
 #' @param digits number of digits for `.mean` and `.sd`.
-#' 
-#' @examples 
+#'
+#' @examples
 #' fmt_est(1.25, 0.5)
-#' 
 #' @export
 fmt_est <- function(.mean,
                     .sd,
@@ -33,14 +31,14 @@ fmt_est <- function(.mean,
 }
 
 #' Format confidence interval
-#' 
-#' @param .est an estimator. 
+#'
+#' @param .est an estimator.
 #' @param .lower lower confidence interval bound of an estimator.
 #' @param .upper upper confidence interval bound of an estimator.
 #' @param digits number of digits for `.est`, `.lower`, and `.upper`.
-#' @param width the total field width. 
-#' 
-#' @examples 
+#' @param width the total field width.
+#'
+#' @examples
 #' fmt_ci(1, -0.25, 1.32)
 #' @export
 fmt_ci <- function(.est,
@@ -55,13 +53,12 @@ fmt_ci <- function(.est,
 }
 
 #' Format p-Value
-#' 
-#' @param .p a p-value. 
+#'
+#' @param .p a p-value.
 #' @param digits number of digits for `.est`, `.lower`, and `.upper`.
-#' 
-#' @examples 
+#'
+#' @examples
 #' fmt_pval(0.2)
-#' 
 #' @export
 fmt_pval <- function(.p, digits = 3) {
   scale <- 10^(-1 * digits)
