@@ -38,5 +38,4 @@ Format numeric value
 }
 \examples{
 fmt_num(1.25, digits = 1)
-
 }

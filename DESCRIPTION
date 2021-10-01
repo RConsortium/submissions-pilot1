@@ -8,7 +8,7 @@ Authors@R: c(
         person("Mike", "Stackhouse", role = c("aut")),
         person("Peikun", "Wu", role = c("aut")),
         person("Heng", "Wang", role = c("aut")),
-        person("Eli", "Miller", role = c("aut")),
+        person("Eli", "Miller", role = c("aut"))
        )
 Description: R Consortium R Submission Pilot 1. 
 Depends: R (>= 3.6.0)

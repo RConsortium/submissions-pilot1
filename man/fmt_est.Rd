@@ -18,5 +18,4 @@ Format point estimator
 }
 \examples{
 fmt_est(1.25, 0.5)
-
 }

@@ -16,5 +16,4 @@ Format p-Value
 }
 \examples{
 fmt_pval(0.2)
-
 }
