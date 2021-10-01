@@ -69,6 +69,9 @@ mtext(side = 1, line = 2, at = -0.07, adj = 0, cex = 0.7, footnote)
 dev.off()
 ```
 
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/tlf-kmplot.pdf")
+```
 
 
 
