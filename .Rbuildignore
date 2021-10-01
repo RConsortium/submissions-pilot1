@@ -2,9 +2,9 @@
 ^renv\.lock$
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^esubdemo\.Rcheck$
-^esubdemo.*\.tar\.gz$
-^esubdemo.*\.tgz$
+^pilot1wrappers\.Rcheck$
+^pilot1wrappers.*\.tar\.gz$
+^pilot1wrappers.*\.tgz$
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
