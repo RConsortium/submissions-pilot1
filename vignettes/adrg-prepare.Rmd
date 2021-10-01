@@ -18,6 +18,7 @@ source(file.path(rprojroot::find_root("DESCRIPTION"), "inst/startup.R"))
 ```{r setup, message=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
+library(dplyr)
 library(pkglite)
 ```
 
@@ -27,7 +28,7 @@ Using `pkglite` to pack proprietary R package and saved into `ectd/r0pkg.txt`.
 
 ```{r}
 path$home %>%
-  collate(file_ectd()) %>%
+  collate(file_ectd(), file_auto("inst")) %>%
   pack(output = "ectd/r0pkg.txt")
 ```
 # Prepare Submission Analysis Progam
@@ -52,16 +53,45 @@ knitr::include_graphics("pdf/tlf-efficacy.pdf")
 # path$outtable = path$outgraph = "."                           # Output saved in current folder
 ```
 
-```{r}
+```{r, eval = FALSE}
 knitr::purl("tlf-demographic.Rmd", output = "ectd/tlf-demographic.txt")
 knitr::purl("tlf-efficacy.Rmd",    output = "ectd/tlf-efficacy.txt")
 knitr::purl("tlf-kmplot.Rmd", output = "ectd/tlf-kmplot.txt")
 ```
 
+## List R package for analysis 
+
+CRAN package 
+
+```{r}
+pkg <- c("haven", "dplyr", "emmeans", "r2rtf","rtables")
+
+available.packages(contriburl = contrib.url(repos)) %>% 
+  data.frame() %>% 
+  subset(Package %in% pkg) %>% 
+  select(Package, Version, Repository)
+```
+
+Proprietary Package 
+
+```{r}
+tribble(~ Package, ~ Version, 
+        "pilot1wrappers", "0.1.0")
+```
+
 # Dry run 
 
+- Install `pilot1wrappers` from `ectd/r0pkg.txt`. 
 
 ```{r, eval = FALSE}
 pkglite::unpack(input = "ectd/r0pkg.txt", output = tempdir(), install = TRUE)
 ```
+
+- Rerun other analysis scripts in `ectd`. 
+
+```{r}
+list.files("ectd")
+```
+
+
 

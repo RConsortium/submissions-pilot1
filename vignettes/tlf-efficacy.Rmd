@@ -17,8 +17,6 @@ source(file.path(rprojroot::find_root("DESCRIPTION"), "inst/startup.R"))
 knitr::opts_chunk$set(echo = TRUE)
 
 library(dplyr)
-library(tibble)
-library(tidyr)
 library(haven)
 library(r2rtf)
 library(emmeans)
