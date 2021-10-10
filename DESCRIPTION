@@ -20,7 +20,9 @@ Imports:
     dplyr,
     tidyr,
     emmeans,
-    haven
+    haven,
+    glue,
+    stringr
 Suggests: 
     devtools,
     testthat,
