@@ -30,12 +30,26 @@
       "Repository": "RSPM",
       "Hash": "dab19adae4440ae55aa8a9d238b246bb"
     },
+    "Tplyr": {
+      "Package": "Tplyr",
+      "Version": "0.4.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "12b86567af64b879b4d4f4f6ca64d7a1"
+    },
     "askpass": {
       "Package": "askpass",
       "Version": "1.1",
       "Source": "Repository",
       "Repository": "RSPM",
       "Hash": "e8a22846fff485f0be3770c2da758713"
+    },
+    "assertthat": {
+      "Package": "assertthat",
+      "Version": "0.2.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "50c838a310445e954bc13f26f26a6ecf"
     },
     "base64enc": {
       "Package": "base64enc",
@@ -303,6 +317,13 @@
       "Repository": "RSPM",
       "Hash": "a525aba14184fec243f9eaec62fbed43"
     },
+    "huxtable": {
+      "Package": "huxtable",
+      "Version": "5.4.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "633926f3332d7a937ff16a8a98aa2192"
+    },
     "ini": {
       "Package": "ini",
       "Version": "0.3.1",
@@ -386,6 +407,13 @@
       "Source": "Repository",
       "Repository": "RSPM",
       "Hash": "f4dbc5a47fd93d3415249884d31d6791"
+    },
+    "pharmaRTF": {
+      "Package": "pharmaRTF",
+      "Version": "0.1.3",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "5ed1130d1e521ba82df92d16f9fbacbb"
     },
     "pillar": {
       "Package": "pillar",
