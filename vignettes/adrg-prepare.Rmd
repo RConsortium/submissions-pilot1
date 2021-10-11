@@ -65,7 +65,8 @@ knitr::purl("tlf-primary.Rmd", output = "ectd/tlf-primary.txt")
 CRAN package 
 
 ```{r}
-pkg <- c("haven", "dplyr", "emmeans", "r2rtf","rtables", "Tplyr", "pharmaRTF")
+pkg <- c("haven", "dplyr", "emmeans", "r2rtf","rtables", 
+         "Tplyr", "pharmaRTF", "huxtable")
 
 available.packages(contriburl = contrib.url(repos)) %>% 
   data.frame() %>% 
