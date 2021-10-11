@@ -98,7 +98,7 @@ tbl_1 <- apr0ancova1 %>%
   rtf_title(
     title = "ANCOVA of Change from Baseline at Week 20",
     subtitle = c(
-      "Missing Data Approach",
+      "LOCF",
       "ITT Population"
     )
   ) %>%
