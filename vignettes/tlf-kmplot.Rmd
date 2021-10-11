@@ -21,7 +21,7 @@ library(dplyr)
 library(pilot1wrappers)
 ```
 
-# Step 1: Read in data
+## Step 1: Read in data
 
 ```{r}
 adsl <- read_xpt(file.path(path$adam, "adsl.xpt"))
