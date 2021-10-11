@@ -57,6 +57,7 @@ knitr::include_graphics("pdf/tlf-efficacy.pdf")
 knitr::purl("tlf-demographic.Rmd", output = "ectd/tlf-demographic.txt")
 knitr::purl("tlf-efficacy.Rmd",    output = "ectd/tlf-efficacy.txt")
 knitr::purl("tlf-kmplot.Rmd", output = "ectd/tlf-kmplot.txt")
+knitr::purl("tlf-primary.Rmd", output = "ectd/tlf-primary.txt")
 ```
 
 ## List R package for analysis 
@@ -64,7 +65,7 @@ knitr::purl("tlf-kmplot.Rmd", output = "ectd/tlf-kmplot.txt")
 CRAN package 
 
 ```{r}
-pkg <- c("haven", "dplyr", "emmeans", "r2rtf","rtables")
+pkg <- c("haven", "dplyr", "emmeans", "r2rtf","rtables", "Tplyr", "pharmaRTF")
 
 available.packages(contriburl = contrib.url(repos)) %>% 
   data.frame() %>% 
