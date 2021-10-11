@@ -22,7 +22,7 @@ repo demonstrate the eCTD submission package based on the [RConsortium/submissio
 
 ## Folder Structure 
 
-The work in this repo is organized following the concepts discussed in:
+The work in this repo is organized as an R package following the concepts discussed in:
 
 - [Marwick, B., Boettiger, C., & Mullen, L. (2018). Packaging data analytical work reproducibly using R (and friends). The American Statistician, 72(1), 80-88.](https://peerj.com/preprints/3192/)
 - [Wu, P., Palukuru, U. P., Luo, Y., Nepal, S., & Zhang, Y. (2021) Analysis and reporting in regulated clinical trial environment using R. PharmaSUG 2021](https://www.pharmasug.org/proceedings/2021/AD/PharmaSUG-2021-AD-079.pdf)
@@ -51,12 +51,12 @@ The source dataset is in `adam\` folder. The original data is from [the PHUSE Gi
 
 ### Reproducibility
 
-The original code is prepared and executed on Ubuntu 20.04.3 LTS
+The original code is prepared and executed on Ubuntu 20.04.3 LTS.
 We use `renv` to ensure reproducibility for R version and R package version. 
 
 - `renv.lock` and `renv\` folder: R package management using `renv` package. ([Introduction](https://rstudio.github.io/renv/articles/renv.html))
 
 ### Utilities
 
-- `_pkgdown.yml`: [pkgdown](https://pkgdown.r-lib.org/articles/pkgdown.html) configuration file
+- `_pkgdown.yml`: [pkgdown](https://pkgdown.r-lib.org/articles/pkgdown.html) configuration file.
 
