@@ -23,7 +23,8 @@ Imports:
     haven,
     glue,
     stringr,
-    Tplyr
+    Tplyr,
+    pharmaRTF
 Suggests: 
     devtools,
     testthat,
