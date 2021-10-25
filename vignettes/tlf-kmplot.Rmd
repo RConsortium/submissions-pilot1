@@ -19,6 +19,9 @@ knitr::opts_chunk$set(echo = TRUE)
 library(haven) 
 library(dplyr)
 library(pilot1wrappers)
+library(ggplot2)
+library(cowplot)
+library(visR)
 ```
 
 ## Step 1: Read in data
@@ -39,7 +42,7 @@ anl <- adsl %>%
   dplyr::inner_join(
     filter(
       adtte, PARAMCD == "TTDE", STUDYID == "CDISCPILOT01"
-    ) %>% select(STUDYID, USUBJID, AVAL, CNSR),
+    ) %>% select(STUDYID, USUBJID, AVAL, CNSR, PARAM, PARAMCD),
     by = c("STUDYID", "USUBJID")
   ) %>%
   dplyr::mutate(
@@ -49,23 +52,50 @@ anl <- adsl %>%
 
 ## Step 3: Kaplan-Meier Plot and Save to Output
 ```{r}
-surv_mod <- survival::Surv(anl$AVAL, anl$CNSR == 0)
-surv_fit <- survival::survfit(surv_mod ~ anl$TRT01A)
-ngr <- table(anl$TRT01A)
-col <- 1:length(ngr)
+# estimate survival
+surv_mod <- visR::estimate_KM(data = anl, strata = "TRT01A")
 
 # save plot
+ggplot2::theme_set(theme_bw())
+
+pdf.options(reset = TRUE, onefile = FALSE)
+
 pdf(file.path(path$output, "tlf-kmplot.pdf"))
-plot(surv_fit, col = col, oma=c(2, 3, 5, 2))
-abline(h = 0.5, lty = 2)
-legend(
-  "bottomleft", legend = paste0(names(ngr), " (n=", ngr, ")"), 
-  col = col, pch = 19, cex = 0.7
-) 
-title = "KM plot for Time to First Dermatologic Event: Safety population"
-footnote = "Program: tlf_kmplot.Rmd"
-mtext(side = 3, line = 3, at = -0.07, adj = 0, cex = 1, title)
-mtext(side = 1, line = 2, at = -0.07, adj = 0, cex = 0.7, footnote) 
+
+KM <- visR::visr(surv_mod,
+           y_label = "Probability of event\n",
+           y_ticks = seq(0,1,0.10)) %>%
+    add_CNSR() %>%
+    add_CI()
+
+KM <- KM + 
+    ggplot2::geom_hline(yintercept=0.5, linetype = "dashed")
+
+KM <- KM %>%
+    visR::add_risktable(group = "statlist")
+
+title <- cowplot::ggdraw() + 
+  cowplot::draw_label(
+    "KM plot for Time to First Dermatologic Event: Safety population\n",
+    fontfamily = "sans",
+    fontface = "bold",
+    size=10
+  ) 
+
+caption <- cowplot::ggdraw() + 
+  cowplot::draw_label(
+    paste0("\nProgram: tlf_kmplot.Rmd [", Sys.time(), "]"),
+    fontfamily = "sans",
+    size=10
+  ) 
+
+KM <- cowplot::plot_grid(
+  title, KM, caption,
+  ncol = 1,
+  rel_heights = c(0.1,0.8,0.1)
+)
+
+print(KM)
 dev.off()
 ```
 
