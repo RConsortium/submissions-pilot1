@@ -28,7 +28,7 @@ if(paste(R.version$major, R.version$minor, sep = ".") != R_version & interactive
 }
 
 # Repository
-message("Current oroject R package repository:")
+message("Current project R package repository:")
 message(paste0("    ", getOption("repos")))
 message(" ")
 
