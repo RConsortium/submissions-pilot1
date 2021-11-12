@@ -5,19 +5,19 @@
 
 ## Overview
 
-The objective of the R Cconsortium R submission Pilot 1 Project is to 
+The objective of the R Consortium R submission Pilot 1 Project is to 
 test the concept that a R-language based submission package can meet 
 the needs and the expectations of the FDA reviewers, 
 including assessing code review and analyses reproducibility. 
-All submission materials and communications from this pilot is publicly available, 
+All submission materials and communications from this pilot are publicly available, 
 with the aim of providing a working example for future R language based FDA submissions.
 This is a FDA-industry collaboration through the non-profit organization R consortium.
 
-The [RConsortium/submissions-pilot1](https://github.com/RConsortium/submissions-pilot1) repo demonstrate an approach to organize internal developed R function and 
+The [RConsortium/submissions-pilot1](https://github.com/RConsortium/submissions-pilot1) repo demonstrates an approach to organize internal developed R function and 
 table, listing, figure generation program using an R package. 
 
 The [RConsortium/submissions-pilot1-to-fda](https://github.com/RConsortium/submissions-pilot1-to-fda)
-repo demonstrate the eCTD submission package based on the [RConsortium/submissions-pilot1](https://github.com/RConsortium/submissions-pilot1) repo.  
+repo demonstrates the eCTD submission package based on the [RConsortium/submissions-pilot1](https://github.com/RConsortium/submissions-pilot1) repo.  
 
 ## Running Environment 
 
