@@ -63,7 +63,7 @@ knitr::purl("tlf-primary.Rmd", output = "ectd/tlf-primary.r")
 ## List R package for analysis 
 
 ```{r}
-pkg <- c("haven", "dplyr", "emmeans", "r2rtf","rtables", 
+pkg <- c("pkglite","haven", "dplyr", "emmeans", "r2rtf","rtables", 
          "ggplot2", "cowplot", "visR",
          "Tplyr", "pharmaRTF", "huxtable")
 
