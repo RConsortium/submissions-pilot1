@@ -1,0 +1,11 @@
+pandoc: 2.7.3
+pkgdown: 1.6.1
+pkgdown_sha: ~
+articles:
+  adrg-prepare: adrg-prepare.html
+  tlf-demographic: tlf-demographic.html
+  tlf-efficacy: tlf-efficacy.html
+  tlf-kmplot: tlf-kmplot.html
+  tlf-primary: tlf-primary.html
+last_built: 2021-11-14T18:13Z
+
