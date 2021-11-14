@@ -54,24 +54,24 @@ knitr::include_graphics("pdf/tlf-efficacy.pdf")
 ```
 
 ```{r, eval = FALSE}
-knitr::purl("tlf-demographic.Rmd", output = "ectd/tlf-demographic.txt")
-knitr::purl("tlf-efficacy.Rmd",    output = "ectd/tlf-efficacy.txt")
-knitr::purl("tlf-kmplot.Rmd", output = "ectd/tlf-kmplot.txt")
-knitr::purl("tlf-primary.Rmd", output = "ectd/tlf-primary.txt")
+knitr::purl("tlf-demographic.Rmd", output = "ectd/tlf-demographic.r")
+knitr::purl("tlf-efficacy.Rmd",    output = "ectd/tlf-efficacy.r")
+knitr::purl("tlf-kmplot.Rmd", output = "ectd/tlf-kmplot.r")
+knitr::purl("tlf-primary.Rmd", output = "ectd/tlf-primary.r")
 ```
 
 ## List R package for analysis 
 
-CRAN package 
-
 ```{r}
 pkg <- c("haven", "dplyr", "emmeans", "r2rtf","rtables", 
+         "ggplot2", "cowplot", "visR",
          "Tplyr", "pharmaRTF", "huxtable")
 
 available.packages(contriburl = contrib.url(repos)) %>% 
   data.frame() %>% 
   subset(Package %in% pkg) %>% 
-  select(Package, Version, Repository)
+  select(Package, Version, Repository) %>%
+  arrange(Package)
 ```
 
 Proprietary Package 
