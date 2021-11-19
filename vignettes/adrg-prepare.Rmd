@@ -29,6 +29,7 @@ Using `pkglite` to pack proprietary R package and saved into `ectd/r0pkg.txt`.
 ```{r}
 path$home %>%
   collate(file_ectd(), file_auto("inst")) %>%
+  prune("R/zzz.R") %>%
   pack(output = "ectd/r0pkg.txt")
 ```
 # Prepare Submission Analysis Progam
