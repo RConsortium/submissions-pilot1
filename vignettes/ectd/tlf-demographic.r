@@ -8,10 +8,11 @@
 
 ## --------------------------------------------------------------------------------------------------------------------------------------
 # Working directory requires write permission
-if(file.access(".", 2) == -1){
-  warning("The working folder", 
-          normalizePath("."), 
-          "is not writable. Please change working directory to a location with write permission")
+if(file.access(".", 2) != 0){
+  warning(
+    "The working directory '", normalizePath("."), "' is not writable.\n",
+    "Please change it to a location with write permission."
+  )
 }
 
 
