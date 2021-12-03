@@ -6,19 +6,31 @@
 # path = list(adam = "path/to/esub/analysis/adam/datasets")    	# Modify path to the actual location
 # path$outtable = path$outgraph = "."                           # Output saved in current folder
 
+## --------------------------------------------------------------------------------------------------------------------------------------
+# Working directory requires write permission
+if(file.access(".", 2) == -1){
+  warning("The working folder", 
+          normalizePath("."), 
+          "is not writable. Please change working directory to a location with write permission")
+}
 
+
+## ----setup, message=FALSE--------------------------------------------------------------------------------------------------------------
+# CRAN package, please using install.packages() to install
 library(haven) 
 library(dplyr)
 library(rtables)
+
+# Propitiatory Package, please refer appendix of ADRG to install 
 library(pilot1wrappers)
 
 
-## -----------------------------------------------------------------------------------------------------------------------------------
+## --------------------------------------------------------------------------------------------------------------------------------------
 adsl  <- read_xpt(file.path(path$adam, "adsl.xpt")) 
 adsl_labels <- var_labels(adsl)
 
 
-## -----------------------------------------------------------------------------------------------------------------------------------
+## --------------------------------------------------------------------------------------------------------------------------------------
 adsl <- adsl %>%
   dplyr::filter(
     STUDYID == "CDISCPILOT01",
@@ -31,7 +43,7 @@ adsl <- adsl %>%
   ) 
 
 
-## -----------------------------------------------------------------------------------------------------------------------------------
+## --------------------------------------------------------------------------------------------------------------------------------------
 # Table layout
 vars <- c("AGE", "AGEGR1", "RACE", "HEIGHTBL", "WEIGHTBL", "BMIBL", "MMSETOT")
 lyt <- basic_table(title = "Protocol: CDISCPILOT01",
@@ -62,7 +74,7 @@ tbl <- build_table(lyt, adsl)
 tbl
 
 
-## -----------------------------------------------------------------------------------------------------------------------------------
+## --------------------------------------------------------------------------------------------------------------------------------------
 # Output .out file 
 tbl %>%
   toString() %>%

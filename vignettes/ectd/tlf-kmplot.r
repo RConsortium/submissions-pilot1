@@ -6,20 +6,40 @@
 # path = list(adam = "path/to/esub/analysis/adam/datasets")    	# Modify path to the actual location
 # path$outtable = path$outgraph = "."                           # Output saved in current folder
 
+## ---- message = FALSE------------------------------------------------------------------------------------------------------------------
+# Initiate start-up file
+source(file.path(rprojroot::find_root("DESCRIPTION"), "inst/startup.R"))
+
+
+## --------------------------------------------------------------------------------------------------------------------------------------
+# Working directory requires write permission
+if(file.access(".", 2) == -1){
+  warning("The working folder", 
+          normalizePath("."), 
+          "is not writable. Please change working directory to a location with write permission")
+}
+
+
+## ----setup, message=FALSE--------------------------------------------------------------------------------------------------------------
+knitr::opts_chunk$set(echo = TRUE)
+
+# CRAN package, please using install.packages() to install
 library(haven) 
 library(dplyr)
-library(pilot1wrappers)
 library(ggplot2)
 library(cowplot)
 library(visR)
 
+# Propitiatory Package, please refer appendix of ADRG to install 
+library(pilot1wrappers)
 
-## -----------------------------------------------------------------------------------------------------------------------------------
+
+## --------------------------------------------------------------------------------------------------------------------------------------
 adsl <- read_xpt(file.path(path$adam, "adsl.xpt"))
 adtte <- read_xpt(file.path(path$adam, "adtte.xpt")) 
 
 
-## -----------------------------------------------------------------------------------------------------------------------------------
+## --------------------------------------------------------------------------------------------------------------------------------------
 anl <- adsl %>% 
   dplyr::filter(
     SAFFL == "Y",
@@ -37,7 +57,7 @@ anl <- adsl %>%
   )
 
 
-## -----------------------------------------------------------------------------------------------------------------------------------
+## --------------------------------------------------------------------------------------------------------------------------------------
 # estimate survival
 surv_mod <- visR::estimate_KM(data = anl, strata = "TRT01A")
 
@@ -86,6 +106,6 @@ print(KM)
 dev.off()
 
 
-## ---- out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"--------------------------------------------------
+## ---- out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"-----------------------------------------------------
 knitr::include_graphics("pdf/tlf-kmplot.pdf")
 
