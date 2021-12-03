@@ -13,6 +13,8 @@ All submission materials and communications from this pilot are publicly availab
 with the aim of providing a working example for future R language based FDA submissions.
 This is a FDA-industry collaboration through the non-profit organization R consortium.
 
+The [working group website](https://rconsortium.github.io/submissions-wg/).
+
 The [RConsortium/submissions-pilot1](https://github.com/RConsortium/submissions-pilot1) repo demonstrates an approach to organize internal developed R function and 
 table, listing, figure generation program using an R package. 
 
