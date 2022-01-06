@@ -98,22 +98,36 @@
 <code class="sourceCode R"><span class="co"># Initiate start-up file</span>
 <span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="fu">rprojroot</span><span class="fu">::</span><span class="fu"><a href="https://rprojroot.r-lib.org//reference/find_root.html">find_root</a></span><span class="op">(</span><span class="st">"DESCRIPTION"</span><span class="op">)</span>, <span class="st">"inst/startup.R"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="co"># Working directory requires write permission</span>
+<span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.access.html">file.access</a></span><span class="op">(</span><span class="st">"."</span>, <span class="fl">2</span><span class="op">)</span> <span class="op">!=</span> <span class="fl">0</span><span class="op">)</span><span class="op">{</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/warning.html">warning</a></span><span class="op">(</span>
+    <span class="st">"The working directory '"</span>, <span class="fu"><a href="https://rdrr.io/r/base/normalizePath.html">normalizePath</a></span><span class="op">(</span><span class="st">"."</span><span class="op">)</span>, <span class="st">"' is not writable.\n"</span>,
+    <span class="st">"Please change it to a location with write permission."</span>
+  <span class="op">)</span>
+<span class="op">}</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># CRAN package, please using install.packages() to install</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/atorus-research/Tplyr">Tplyr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://hughjonesd.github.io/huxtable/">huxtable</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">pharmaRTF</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">pilot1wrappers</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>huxtable.add_colnames <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+
+<span class="co"># Propitiatory Package, please refer appendix of ADRG to install </span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">pilot1wrappers</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>huxtable.add_colnames <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <div id="step-1-read-in-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#step-1-read-in-data" class="anchor"></a>Step 1: Read in data</h2>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">adas</span>  <span class="op">&lt;-</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_xpt.html">read_xpt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="va">path</span><span class="op">$</span><span class="va">adam</span>, <span class="st">"adadas.xpt"</span><span class="op">)</span><span class="op">)</span> 
 <span class="va">adsl</span>  <span class="op">&lt;-</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_xpt.html">read_xpt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="va">path</span><span class="op">$</span><span class="va">adam</span>, <span class="st">"adsl.xpt"</span><span class="op">)</span><span class="op">)</span> </code></pre></div>
 </div>
 <div id="step-2-data-preparation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#step-2-data-preparation" class="anchor"></a>Step 2: Data preparation</h2>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">adas</span> <span class="op">&lt;-</span> <span class="va">adas</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>
     <span class="va">EFFFL</span> <span class="op">==</span> <span class="st">"Y"</span>,
@@ -125,7 +139,7 @@
 <div id="step-3-descriptive-statistics-of-endpoint-variable" class="section level2">
 <h2 class="hasAnchor">
 <a href="#step-3-descriptive-statistics-of-endpoint-variable" class="anchor"></a>Step 3: Descriptive Statistics of Endpoint Variable</h2>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Tplyr/man/tplyr_table.html">tplyr_table</a></span><span class="op">(</span><span class="va">adas</span>, <span class="va">TRTP</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://rdrr.io/pkg/Tplyr/man/pop_data.html">set_pop_data</a></span><span class="op">(</span><span class="va">adsl</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://rdrr.io/pkg/Tplyr/man/pop_treat_var.html">set_pop_treat_var</a></span><span class="op">(</span><span class="va">TRT01P</span><span class="op">)</span> <span class="op">%&gt;%</span> 
@@ -151,21 +165,21 @@
   <span class="fu"><a href="../reference/nest_rowlabels.html">nest_rowlabels</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">'ord'</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://rdrr.io/pkg/Tplyr/man/add_column_headers.html">add_column_headers</a></span><span class="op">(</span>
-     <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"|Placebo\\line(N=**Placebo**)| Xanomeline Low Dose\\line(N=**Xanomeline Low Dose**) "</span>, 
-           <span class="st">"| Xanomeline High Dose\\line(N=**Xanomeline High Dose**)"</span><span class="op">)</span>,
+     <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"|Placebo\\line(N=**Placebo**)| Xanomeline High Dose\\line(N=**Xanomeline High Dose**) "</span>, 
+           <span class="st">"| Xanomeline Low\\line Dose\\line(N=**Xanomeline Low Dose**)"</span><span class="op">)</span>,
      <span class="fu"><a href="https://rdrr.io/pkg/Tplyr/man/header_n.html">header_n</a></span><span class="op">(</span><span class="va">t</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
 </div>
 <div id="step-4-statistical-summaries" class="section level2">
 <h2 class="hasAnchor">
 <a href="#step-4-statistical-summaries" class="anchor"></a>Step 4: Statistical Summaries</h2>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">model_portion</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/efficacy_models.html">efficacy_models</a></span><span class="op">(</span><span class="va">adas</span>, <span class="st">'CHG'</span>, <span class="fl">24</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="step-5-style-the-table" class="section level2">
 <h2 class="hasAnchor">
 <a href="#step-5-style-the-table" class="anchor"></a>Step 5: Style the table</h2>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">final</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">sum_data</span>, <span class="va">model_portion</span><span class="op">)</span>
 
 <span class="va">ht</span> <span class="op">&lt;-</span> <span class="fu">huxtable</span><span class="fu">::</span><span class="fu"><a href="https://hughjonesd.github.io/huxtable/reference/as_huxtable.html">as_hux</a></span><span class="op">(</span><span class="va">final</span>, add_colnames <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -173,20 +187,20 @@
   <span class="fu">huxtable</span><span class="fu">::</span><span class="fu"><a href="https://hughjonesd.github.io/huxtable/reference/align.html">set_align</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">final</span><span class="op">)</span>, <span class="st">'center'</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">huxtable</span><span class="fu">::</span><span class="fu"><a href="https://hughjonesd.github.io/huxtable/reference/valign.html">set_valign</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">final</span><span class="op">)</span>, <span class="st">'bottom'</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">huxtable</span><span class="fu">::</span><span class="fu"><a href="https://hughjonesd.github.io/huxtable/reference/borders.html">set_bottom_border</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">final</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">huxtable</span><span class="fu">::</span><span class="fu"><a href="https://hughjonesd.github.io/huxtable/reference/width.html">set_width</a></span><span class="op">(</span><span class="fl">1.2</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">huxtable</span><span class="fu">::</span><span class="fu"><a href="https://hughjonesd.github.io/huxtable/reference/width.html">set_width</a></span><span class="op">(</span><span class="fl">1.3</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">huxtable</span><span class="fu">::</span><span class="fu"><a href="https://hughjonesd.github.io/huxtable/reference/escape_contents.html">set_escape_contents</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">huxtable</span><span class="fu">::</span><span class="fu"><a href="https://hughjonesd.github.io/huxtable/reference/col_width.html">set_col_width</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.5</span>, <span class="fl">1</span><span class="op">/</span><span class="fl">6</span>, <span class="fl">1</span><span class="op">/</span><span class="fl">6</span>, <span class="fl">1</span><span class="op">/</span><span class="fl">6</span><span class="op">)</span><span class="op">)</span>
+  <span class="fu">huxtable</span><span class="fu">::</span><span class="fu"><a href="https://hughjonesd.github.io/huxtable/reference/col_width.html">set_col_width</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.4</span>, <span class="fl">.2</span>, <span class="fl">.2</span>, <span class="fl">.2</span><span class="op">)</span><span class="op">)</span>
 <span class="va">ht</span></code></pre></div>
 <table class="table huxtable">
-<col style="width: 50%">
-<col style="width: 16.6666666666667%">
-<col style="width: 16.6666666666667%">
-<col style="width: 16.6666666666667%">
+<col style="width: 40%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
 <tr>
 <td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 1pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;"></td>
 <td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 1pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Placebo\line(N=79)</td>
-<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 1pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Xanomeline Low Dose\line(N=81)</td>
 <td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 1pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Xanomeline High Dose\line(N=74)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 1pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Xanomeline Low\line Dose\line(N=81)</td>
 </tr>
 <tr>
 <td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Baseline</td>
@@ -319,9 +333,9 @@
 <div id="step-6-write-out-the-report" class="section level2">
 <h2 class="hasAnchor">
 <a href="#step-6-write-out-the-report" class="anchor"></a>Step 6: Write out the report</h2>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">doc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/pharmaRTF/man/rtf_doc.html">rtf_doc</a></span><span class="op">(</span><span class="va">ht</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/pharmaRTF/man/font_size.html">set_font_size</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://hughjonesd.github.io/huxtable/reference/font_size.html">set_font_size</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/pharmaRTF/man/ignore_cell_padding.html">set_ignore_cell_padding</a></span><span class="op">(</span><span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/pharmaRTF/man/column_header_buffer.html">set_column_header_buffer</a></span><span class="op">(</span>top<span class="op">=</span><span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://rdrr.io/pkg/pharmaRTF/man/add_titles_footnotes.html">add_titles</a></span><span class="op">(</span>
