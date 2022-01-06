@@ -66,8 +66,8 @@ sum_data <- t %>%
   nest_rowlabels() %>% 
   select(-starts_with('ord')) %>% 
   add_column_headers(
-     paste0("|Placebo\\line(N=**Placebo**)| Xanomeline Low Dose\\line(N=**Xanomeline Low Dose**) ", 
-           "| Xanomeline High Dose\\line(N=**Xanomeline High Dose**)"),
+     paste0("|Placebo\\line(N=**Placebo**)| Xanomeline High Dose\\line(N=**Xanomeline High Dose**) ", 
+           "| Xanomeline Low Dose\\line(N=**Xanomeline Low Dose**)"),
      header_n(t)
   )
 ```
