@@ -54,13 +54,20 @@ gluc_lmfit <- adlb1 %>%
   lm(CHG ~ BASE + TRTPN, data = .)
 
 ## Raw summary statistics
+t10 <- adlb1 %>% 
+  filter(AVISITN == 0) %>% 
+  group_by(TRTPN,TRTP) %>% 
+  summarise(
+    N = n(),
+    mean_bl = mean(BASE),
+    sd_bl = sd(BASE)
+  )
+
 t11 <- adlb1 %>%
   filter(AVISITN == 20) %>%
   group_by(TRTPN, TRTP) %>%
   summarise(
-    N = n(),
-    mean_bl = mean(BASE),
-    sd_bl = sd(BASE),
+    N_20 = n(),
     mean_chg = mean(CHG),
     sd_chg = sd(CHG),
     mean = mean(AVAL),
@@ -71,15 +78,16 @@ t11 <- adlb1 %>%
 t12 <- emmeans(gluc_lmfit, "TRTPN")
 
 ## Merge and format data for reporting
-apr0ancova1 <- merge(t11, t12) %>%
+apr0ancova1 <- merge(t10, t11)  %>% 
+  merge(t12) %>% 
   mutate(emmean_sd = SE * sqrt(df)) %>%
   mutate(
     Trt = c("Study Drug", "Placebo"),
     N1 = N,
     Mean1 = pilot1wrappers::fmt_est(mean_bl, sd_bl),
-    N2 = N,
+    N2 = N_20,
     Mean2 = pilot1wrappers::fmt_est(mean, sd),
-    N3 = N,
+    N3 = N_20,
     Mean3 = pilot1wrappers::fmt_est(mean_chg, sd_chg),
     CI = pilot1wrappers::fmt_ci(emmean, lower.CL, upper.CL)
   ) %>%
@@ -121,11 +129,7 @@ apr0ancova3
 ```{r}
 tbl_1 <- apr0ancova1 %>%
   rtf_title(
-    title = "ANCOVA of Change from Baseline at Week 20",
-    subtitle = c(
-      "LOCF",
-      "ITT Population"
-    )
+    title = "ANCOVA of Change from Baseline at Week 20"
   ) %>%
   rtf_colheader(
     colheader = " | Baseline | Week 20 | Change from Baseline",
