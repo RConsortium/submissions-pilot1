@@ -1,12 +1,9 @@
-# Note to Reviewer 
-# To rerun the code below, please refer ADRG appendix.
-# After required package are installed. 
-# The path variable needs to be defined by using example code below
-#
-# path = list(adam = "path/to/esub/analysis/adam/datasets")    	# Modify path to the actual location
-# path$outtable = path$outgraph = "."                           # Output saved in current folder
+## ---- message = FALSE----------------------------------------------------------------------
+# Initiate start-up file
+source(file.path(rprojroot::find_root("DESCRIPTION"), "inst/startup.R"))
 
-## --------------------------------------------------------------------------------------------------------------------------------------
+
+## ------------------------------------------------------------------------------------------
 # Working directory requires write permission
 if(file.access(".", 2) != 0){
   warning(
@@ -16,7 +13,7 @@ if(file.access(".", 2) != 0){
 }
 
 
-## ----setup, message=FALSE--------------------------------------------------------------------------------------------------------------
+## ----setup, message=FALSE------------------------------------------------------------------
 # CRAN package, please using install.packages() to install
 library(haven) 
 library(dplyr)
@@ -26,12 +23,12 @@ library(rtables)
 library(pilot1wrappers)
 
 
-## --------------------------------------------------------------------------------------------------------------------------------------
+## ------------------------------------------------------------------------------------------
 adsl  <- read_xpt(file.path(path$adam, "adsl.xpt")) 
 adsl_labels <- var_labels(adsl)
 
 
-## --------------------------------------------------------------------------------------------------------------------------------------
+## ------------------------------------------------------------------------------------------
 adsl <- adsl %>%
   dplyr::filter(
     STUDYID == "CDISCPILOT01",
@@ -44,7 +41,7 @@ adsl <- adsl %>%
   ) 
 
 
-## --------------------------------------------------------------------------------------------------------------------------------------
+## ------------------------------------------------------------------------------------------
 # Table layout
 vars <- c("AGE", "AGEGR1", "RACE", "HEIGHTBL", "WEIGHTBL", "BMIBL", "MMSETOT")
 lyt <- basic_table(title = "Protocol: CDISCPILOT01",
@@ -75,7 +72,7 @@ tbl <- build_table(lyt, adsl)
 tbl
 
 
-## --------------------------------------------------------------------------------------------------------------------------------------
+## ------------------------------------------------------------------------------------------
 # Output .out file 
 tbl %>%
   toString() %>%

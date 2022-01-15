@@ -1,17 +1,9 @@
-# Note to Reviewer 
-# To rerun the code below, please refer ADRG appendix.
-# After required package are installed. 
-# The path variable needs to be defined by using example code below
-#
-# path = list(adam = "path/to/esub/analysis/adam/datasets")    	# Modify path to the actual location
-# path$outtable = path$outgraph = "."                           # Output saved in current folder
-
-## ---- message = FALSE------------------------------------------------------------------------------------------------------------------
+## ---- message = FALSE----------------------------------------------------------------------
 # Initiate start-up file
 source(file.path(rprojroot::find_root("DESCRIPTION"), "inst/startup.R"))
 
 
-## --------------------------------------------------------------------------------------------------------------------------------------
+## ------------------------------------------------------------------------------------------
 # Working directory requires write permission
 if(file.access(".", 2) != 0){
   warning(
@@ -21,7 +13,7 @@ if(file.access(".", 2) != 0){
 }
 
 
-## ----setup, message=FALSE--------------------------------------------------------------------------------------------------------------
+## ----setup, message=FALSE------------------------------------------------------------------
 knitr::opts_chunk$set(echo = TRUE)
 
 # CRAN package, please using install.packages() to install
@@ -35,12 +27,12 @@ library(visR)
 library(pilot1wrappers)
 
 
-## --------------------------------------------------------------------------------------------------------------------------------------
+## ------------------------------------------------------------------------------------------
 adsl <- read_xpt(file.path(path$adam, "adsl.xpt"))
 adtte <- read_xpt(file.path(path$adam, "adtte.xpt")) 
 
 
-## --------------------------------------------------------------------------------------------------------------------------------------
+## ------------------------------------------------------------------------------------------
 anl <- adsl %>% 
   dplyr::filter(
     SAFFL == "Y",
@@ -58,7 +50,7 @@ anl <- adsl %>%
   )
 
 
-## --------------------------------------------------------------------------------------------------------------------------------------
+## ------------------------------------------------------------------------------------------
 # estimate survival
 surv_mod <- visR::estimate_KM(data = anl, strata = "TRT01A")
 
@@ -107,6 +99,6 @@ print(KM)
 dev.off()
 
 
-## ---- out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"-----------------------------------------------------
+## ---- out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"---------
 knitr::include_graphics("pdf/tlf-kmplot.pdf")
 

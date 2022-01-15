@@ -21,12 +21,16 @@ table, listing, figure generation program using an R package.
 The [RConsortium/submissions-pilot1-to-fda](https://github.com/RConsortium/submissions-pilot1-to-fda)
 repo demonstrates the eCTD submission package based on the [RConsortium/submissions-pilot1](https://github.com/RConsortium/submissions-pilot1) repo.  
 
+## FDA Response 
+
+- Response to initial submission
+  + response letter <
 ## Running Environment 
 
 The project is developed and tested in the environment below:
 
 - OS: Ubuntu 20.04
-- R version: R4.1.0
+- R version: R4.1.2
 - Snapshot date: 2021-08-31
 - Snapshot repository: https://mran.microsoft.com/snapshot/2021-08-31
 
