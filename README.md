@@ -23,8 +23,10 @@ repo demonstrates the eCTD submission package based on the [RConsortium/submissi
 
 ## FDA Response 
 
-- Response to initial submission
-  + response letter <
+- Initial submission
+  + version: [v0.1.0](https://github.com/RConsortium/submissions-pilot1/releases/tag/v0.1.0) 
+  + [FDA statistical review and evaluation](https://github.com/RConsortium/submissions-pilot1/blob/main/vignettes/fda/fda-response-2021-11-22.pdf)
+  
 ## Running Environment 
 
 The project is developed and tested in the environment below:
