@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pilot1wrappers</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
 
@@ -69,6 +69,9 @@
       <a href="../articles/tlf-primary.html">CDISC Pilot: Primary Endpoint Analysis: ADAS Cog (11) - Change from Baseline to Week 24 - LOCF</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right"></ul>
@@ -117,6 +120,7 @@
 <pre><code>## Reading .Rbuildignore</code></pre>
 <pre><code>## Reading DESCRIPTION</code></pre>
 <pre><code>## Reading NAMESPACE</code></pre>
+<pre><code>## Reading NEWS.md</code></pre>
 <pre><code>## Reading README.md</code></pre>
 <pre><code>## Reading R/eff_models.R</code></pre>
 <pre><code>## Reading R/fmt.R</code></pre>
@@ -155,7 +159,7 @@
 #
 # path = list(adam = "path/to/esub/analysis/adam/datasets")     # Modify path to the actual location
 # path$outtable = path$outgraph = "."                           # Output saved in current folder</code></pre>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit.html">purl</a></span><span class="op">(</span><span class="st">"tlf-demographic.Rmd"</span>, output <span class="op">=</span> <span class="st">"ectd/tlf-demographic.r"</span><span class="op">)</span>
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit.html">purl</a></span><span class="op">(</span><span class="st">"tlf-efficacy.Rmd"</span>,    output <span class="op">=</span> <span class="st">"ectd/tlf-efficacy.r"</span><span class="op">)</span>
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit.html">purl</a></span><span class="op">(</span><span class="st">"tlf-kmplot.Rmd"</span>, output <span class="op">=</span> <span class="st">"ectd/tlf-kmplot.r"</span><span class="op">)</span>
@@ -163,7 +167,7 @@
 <div id="list-r-package-for-analysis" class="section level2">
 <h2 class="hasAnchor">
 <a href="#list-r-package-for-analysis" class="anchor"></a>List R package for analysis</h2>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pkg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"pkglite"</span>,<span class="st">"haven"</span>, <span class="st">"dplyr"</span>, <span class="st">"tidyr"</span>, <span class="st">"emmeans"</span>, <span class="st">"r2rtf"</span>,<span class="st">"rtables"</span>, 
          <span class="st">"ggplot2"</span>, <span class="st">"cowplot"</span>, <span class="st">"visR"</span>,
          <span class="st">"Tplyr"</span>, <span class="st">"pharmaRTF"</span>, <span class="st">"huxtable"</span>, <span class="st">"stringr"</span><span class="op">)</span>
@@ -204,7 +208,7 @@
 ## Tplyr     https://mran.microsoft.com/snapshot/2021-08-31/src/contrib
 ## visR      https://mran.microsoft.com/snapshot/2021-08-31/src/contrib</code></pre>
 <p>Proprietary Package</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span><span class="op">~</span> <span class="va">Package</span>, <span class="op">~</span> <span class="va">Version</span>, 
         <span class="st">"pilot1wrappers"</span>, <span class="st">"0.1.0"</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 2
@@ -219,12 +223,12 @@
 <ul>
 <li>Install <code>pilot1wrappers</code> from <code>ectd/r0pkg.txt</code>.</li>
 </ul>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">pkglite</span><span class="fu">::</span><span class="fu"><a href="https://merck.github.io/pkglite/reference/unpack.html">unpack</a></span><span class="op">(</span>input <span class="op">=</span> <span class="st">"ectd/r0pkg.txt"</span>, output <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span><span class="op">(</span><span class="op">)</span>, install <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <ul>
 <li>Rerun other analysis scripts in <code>ectd</code>.</li>
 </ul>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op">(</span><span class="st">"ectd"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "r0pkg.txt"         "tlf-demographic.r" "tlf-efficacy.r"   
 ## [4] "tlf-kmplot.r"      "tlf-primary.r"</code></pre>
