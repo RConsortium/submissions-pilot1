@@ -1,5 +1,5 @@
 # Project Level Setup 
-R_version <- "4.1.0"																                  # set up project R version
+R_version <- "4.1.2"																                  # set up project R version
 snapshot  <- "2021-08-31" 									                          # set up snapshot date
 repos     <- paste0("https://mran.microsoft.com/snapshot/", snapshot)  # set up repository based on snapshot
 
