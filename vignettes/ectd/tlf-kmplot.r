@@ -1,6 +1,10 @@
-## ---- message = FALSE----------------------------------------------------------------------
-# Initiate start-up file
-source(file.path(rprojroot::find_root("DESCRIPTION"), "inst/startup.R"))
+# Note to Reviewer 
+# To rerun the code below, please refer ADRG appendix.
+# After required package are installed. 
+# The path variable needs to be defined by using example code below
+#
+# path = list(adam = "path/to/esub/analysis/adam/datasets")    	# Modify path to the actual location
+# path$outtable = path$outgraph = "."                           # Output saved in current folder
 
 
 ## ------------------------------------------------------------------------------------------

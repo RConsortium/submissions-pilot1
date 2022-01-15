@@ -79,7 +79,7 @@ Proprietary Package
 
 ```{r}
 tribble(~ Package, ~ Version, 
-        "pilot1wrappers", "0.1.0")
+        "pilot1wrappers", "0.1.1")
 ```
 
 # Dry run 
