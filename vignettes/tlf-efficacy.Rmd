@@ -26,13 +26,19 @@ library(pilot1wrappers)
 ## Step 1: Read in data
 
 ```{r}
+adsl <- read_xpt(file.path(path$adam, "adsl.xpt"))
 adlb <- read_xpt(file.path(path$adam, "adlbc.xpt"))
 ```
 
 ## Step 2: ANCOVA analysis
 
 ```{r}
-adlb1 <- subset(adlb, TRTPN %in% c(0, 81) & PARAMCD == "GLUC" & !is.na(AVISITN)) %>%
+
+itt <- adsl[adsl[["ITTFL"]] == "Y", c("STUDYID", "USUBJID")]
+
+adlb1 <- adlb %>%
+  dplyr::right_join(itt, by = c("STUDYID", "USUBJID")) %>%
+  subset(TRTPN %in% c(0, 81) & PARAMCD == "GLUC" & !is.na(AVISITN)) %>%
   mutate(TRTPN = ifelse(TRTPN == 0, 99, TRTPN)) # change treatment order for pairwise comparison
 
 ## Fit data for linear model
@@ -42,7 +48,7 @@ gluc_lmfit <- adlb1 %>%
 
 ## Raw summary statistics
 t11 <- adlb1 %>%
-  filter(AVISITN == 20) %>%
+  filter(AVISITN == 20, !is.na(CHG), !is.na(BASE)) %>%
   group_by(TRTPN, TRTP) %>%
   summarise(
     N = n(),
@@ -98,7 +104,7 @@ apr0ancova2
 ### Calculate root mean square and save data in output folder
 apr0ancova3 <- data.frame(rmse = paste0(
   "Root Mean Squared Error of Change = ",
-  formatC(sd(gluc_lmfit$residuals), digits = 2, format = "f", flag = "0")
+  formatC(sqrt(mean((gluc_lmfit$residuals)^2)), digits = 2, format = "f", flag = "0")
 ))
 
 apr0ancova3
@@ -115,7 +121,7 @@ tbl_1 <- apr0ancova1 %>%
     )
   ) %>%
   rtf_colheader(
-    colheader = " | Baseline | Week 20 | Change from Baseline",
+    colheader = " | Baseline{^a} | Week 20 | Change from Baseline",
     col_rel_width = c(3, 4, 4, 9)
   ) %>%
   rtf_colheader(
@@ -129,7 +135,8 @@ tbl_1 <- apr0ancova1 %>%
   ) %>%
   rtf_footnote(
     footnote = c(
-      "{^a} Based on an ANCOVA model.",
+      "{^a} Table is based on participants who have observable data at Baseline and Week 20.",
+      "{^b} Based on an ANCOVA model: CHG ~ BASE + TRTPN.",
       "ANCOVA = Analysis of Covariance, CI = Confidence Interval, LS = Least Squares, SD = Standard Deviation"
     )
   ) %>%
@@ -142,7 +149,7 @@ tbl_1 <- apr0ancova1 %>%
 ```{r}
 tbl_2 <- apr0ancova2 %>%
   rtf_colheader(
-    colheader = "Pairwise Comparison | Difference in LS Mean (95% CI){^a} | p-Value",
+    colheader = "Pairwise Comparison | Difference in LS Mean (95% CI){^b} | p-Value",
     text_justification = c("l", "c", "c"),
     col_rel_width = c(8, 7, 5)
   ) %>%
