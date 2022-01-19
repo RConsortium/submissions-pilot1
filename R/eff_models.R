@@ -2,7 +2,7 @@
 #'
 #' This function handles the necessary data processing to handle the CDISC pilot
 #' primary endpoint analysis. The original source can be found
-#' \link[here]{https://github.com/atorus-research/CDISC_pilot_replication/blob/3c8e9e3798c02be8d93bd8e8944d1e0d3f6519e2/programs/funcs.R#L401}
+#' [here](https://github.com/atorus-research/CDISC_pilot_replication/blob/3c8e9e3798c02be8d93bd8e8944d1e0d3f6519e2/programs/funcs.R#L401)
 #'
 #' @importFrom tidyr pivot_longer
 #' @importFrom glue glue

@@ -20,5 +20,10 @@ Authors:
   \item Eli Miller
 }
 
+Other contributors:
+\itemize{
+  \item Steven Haesendonckx [contributor]
+}
+
 }
 \keyword{internal}

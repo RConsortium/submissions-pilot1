@@ -5,20 +5,36 @@
 
 ## Overview
 
-The objective of the R Cconsortium R submission Pilot 1 Project is to 
+The objective of the R Consortium R submission Pilot 1 Project is to 
 test the concept that a R-language based submission package can meet 
 the needs and the expectations of the FDA reviewers, 
 including assessing code review and analyses reproducibility. 
-All submission materials and communications from this pilot is publicly available, 
+All submission materials and communications from this pilot are publicly available, 
 with the aim of providing a working example for future R language based FDA submissions.
 This is a FDA-industry collaboration through the non-profit organization R consortium.
 
-The [RConsortium/submissions-pilot1](https://github.com/RConsortium/submissions-pilot1) repo demonstrate an approach to organize internal developed R function and 
+The [working group website](https://rconsortium.github.io/submissions-wg/).
+
+The [RConsortium/submissions-pilot1](https://github.com/RConsortium/submissions-pilot1) repo demonstrates an approach to organize internal developed R function and 
 table, listing, figure generation program using an R package. 
 
 The [RConsortium/submissions-pilot1-to-fda](https://github.com/RConsortium/submissions-pilot1-to-fda)
-repo demonstrate the eCTD submission package based on the [RConsortium/submissions-pilot1](https://github.com/RConsortium/submissions-pilot1) repo.  
+repo demonstrates the eCTD submission package based on the [RConsortium/submissions-pilot1](https://github.com/RConsortium/submissions-pilot1) repo.  
 
+## FDA Response 
+
+- Initial submission
+  + version: [v0.1.0](https://github.com/RConsortium/submissions-pilot1/releases/tag/v0.1.0) 
+  + [FDA statistical review and evaluation](https://github.com/RConsortium/submissions-pilot1/blob/main/vignettes/fda/fda-response-2021-11-22.pdf)
+  
+## Running Environment 
+
+The project is developed and tested in the environment below:
+
+- OS: Ubuntu 20.04
+- R version: R4.1.2
+- Snapshot date: 2021-08-31
+- Snapshot repository: https://mran.microsoft.com/snapshot/2021-08-31
 
 ## Folder Structure 
 
@@ -26,6 +42,9 @@ The work in this repo is organized as an R package following the concepts discus
 
 - [Marwick, B., Boettiger, C., & Mullen, L. (2018). Packaging data analytical work reproducibly using R (and friends). The American Statistician, 72(1), 80-88.](https://peerj.com/preprints/3192/)
 - [Wu, P., Palukuru, U. P., Luo, Y., Nepal, S., & Zhang, Y. (2021) Analysis and reporting in regulated clinical trial environment using R. PharmaSUG 2021](https://www.pharmasug.org/proceedings/2021/AD/PharmaSUG-2021-AD-079.pdf)
+
+More details related to organize a clinical project and submission package can be found in Chapter 9-14
+of the  [R for Clinical Study Reports and Submission](https://r4csr.org/index.html) book.
 
 ### R function and Analysis Scripts 
 

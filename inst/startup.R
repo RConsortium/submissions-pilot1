@@ -1,5 +1,5 @@
 # Project Level Setup 
-R_version <- "4.1.0"																                  # set up project R version
+R_version <- "4.1.2"																                  # set up project R version
 snapshot  <- "2021-08-31" 									                          # set up snapshot date
 repos     <- paste0("https://mran.microsoft.com/snapshot/", snapshot)  # set up repository based on snapshot
 
@@ -28,7 +28,7 @@ if(paste(R.version$major, R.version$minor, sep = ".") != R_version & interactive
 }
 
 # Repository
-message("Current oroject R package repository:")
+message("Current project R package repository:")
 message(paste0("    ", getOption("repos")))
 message(" ")
 
