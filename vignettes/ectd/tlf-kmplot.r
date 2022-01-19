@@ -1,19 +1,13 @@
----
-title: "CDISC Pilot: Kaplan-Meier Plot for Time to First Dermatologic Event"
-output:
-  html_document:
-    df_print: paged
-    toc: yes
-    toc_depth: '2'
-    toc_float: true
----
+# Note to Reviewer 
+# To rerun the code below, please refer ADRG appendix.
+# After required package are installed. 
+# The path variable needs to be defined by using example code below
+#
+# path = list(adam = "path/to/esub/analysis/adam/datasets")    	# Modify path to the actual location
+# path$outtable = path$outgraph = "."                           # Output saved in current folder
 
-```{r, message = FALSE}
-# Initiate start-up file
-source(file.path(rprojroot::find_root("DESCRIPTION"), "inst/startup.R"))
-```
 
-```{r}
+## ------------------------------------------------------------------------------------------
 # Working directory requires write permission
 if(file.access(".", 2) != 0){
   warning(
@@ -21,10 +15,9 @@ if(file.access(".", 2) != 0){
     "Please change it to a location with write permission."
   )
 }
-```
 
 
-```{r setup, message=FALSE}
+## ----setup, message=FALSE------------------------------------------------------------------
 knitr::opts_chunk$set(echo = TRUE)
 
 # CRAN package, please using install.packages() to install
@@ -36,17 +29,14 @@ library(visR)
 
 # Propitiatory Package, please refer appendix of ADRG to install 
 library(pilot1wrappers)
-```
 
-## Step 1: Read in data
 
-```{r}
+## ------------------------------------------------------------------------------------------
 adsl <- read_xpt(file.path(path$adam, "adsl.xpt"))
 adtte <- read_xpt(file.path(path$adam, "adtte.xpt")) 
-```
 
-## Step 2: Data preparation for endpoint TTDE
-```{r}
+
+## ------------------------------------------------------------------------------------------
 anl <- adsl %>% 
   dplyr::filter(
     SAFFL == "Y",
@@ -62,10 +52,9 @@ anl <- adsl %>%
   dplyr::mutate(
     TRT01A = factor(TRT01A, levels = c("Placebo", "Xanomeline Low Dose",  "Xanomeline High Dose"))
   )
-```
 
-## Step 3: Kaplan-Meier Plot and Save to Output
-```{r}
+
+## ------------------------------------------------------------------------------------------
 # estimate survival
 surv_mod <- visR::estimate_KM(data = anl, strata = "TRT01A")
 
@@ -112,12 +101,8 @@ KM <- cowplot::plot_grid(
 
 print(KM)
 dev.off()
-```
 
-```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+
+## ---- out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"---------
 knitr::include_graphics("pdf/tlf-kmplot.pdf")
-```
-
-
-
 
