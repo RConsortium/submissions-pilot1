@@ -39,13 +39,19 @@ library(pilot1wrappers)
 ## Step 1: Read in data
 
 ```{r}
+adsl <- read_xpt(file.path(path$adam, "adsl.xpt"))
 adlb <- read_xpt(file.path(path$adam, "adlbc.xpt"))
 ```
 
 ## Step 2: ANCOVA analysis
 
 ```{r}
-adlb1 <- subset(adlb, TRTPN %in% c(0, 81) & PARAMCD == "GLUC" & !is.na(AVISITN)) %>%
+
+itt <- adsl[adsl[["ITTFL"]] == "Y", c("STUDYID", "USUBJID")]
+
+adlb1 <- adlb %>%
+  dplyr::right_join(itt, by = c("STUDYID", "USUBJID")) %>%
+  subset(TRTPN %in% c(0, 81) & PARAMCD == "GLUC" & !is.na(AVISITN)) %>%
   mutate(TRTPN = ifelse(TRTPN == 0, 99, TRTPN)) # change treatment order for pairwise comparison
 
 ## Fit data for linear model
@@ -64,7 +70,7 @@ t10 <- adlb1 %>%
   )
 
 t11 <- adlb1 %>%
-  filter(AVISITN == 20) %>%
+  filter(AVISITN == 20, !is.na(CHG), !is.na(BASE)) %>%
   group_by(TRTPN, TRTP) %>%
   summarise(
     N_20 = n(),
@@ -119,7 +125,7 @@ apr0ancova2
 ### Calculate root mean square and save data in output folder
 apr0ancova3 <- data.frame(rmse = paste0(
   "Root Mean Squared Error of Change = ",
-  formatC(sd(gluc_lmfit$residuals), digits = 2, format = "f", flag = "0")
+  formatC(sqrt(mean((gluc_lmfit$residuals)^2)), digits = 2, format = "f", flag = "0")
 ))
 
 apr0ancova3
