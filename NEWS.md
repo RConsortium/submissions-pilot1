@@ -1,4 +1,4 @@
-# pilot1wrappers 0.1.0
+# pilot1wrappers 0.1.1
 
 * Address reviewer comments for `tlf-efficacy.Rmd` and `tlf-primary`.
 * Change running R version to R4.1.2

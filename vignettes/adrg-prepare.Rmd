@@ -51,7 +51,7 @@ knitr::include_graphics("pdf/tlf-efficacy.pdf")
 # The path variable needs to be defined by using example code below
 #
 # path = list(adam = "path/to/esub/analysis/adam/datasets")    	# Modify path to the actual location
-# path$outtable = path$outgraph = "."                           # Output saved in current folder
+# path$output = "."                                             # Output saved in current folder
 ```
 
 ```{r, eval = FALSE}
