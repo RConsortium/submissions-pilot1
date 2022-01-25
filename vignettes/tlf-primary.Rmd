@@ -27,7 +27,6 @@ if(file.access(".", 2) != 0){
 library(tidyr)
 library(dplyr)
 library(Tplyr)
-library(huxtable)
 library(pharmaRTF)
 
 # Propitiatory Package, please refer appendix of ADRG to install 
@@ -81,11 +80,13 @@ t <- tplyr_table(adas, TRTP) %>%
 hdr <- unique(adas$TRTP)
 hdr_ext <- sapply(hdr, FUN = function(x) paste0("|", x, "\\line(N=**", x, "**)"), USE.NAMES = FALSE)
 hdr_fin <- paste(hdr_ext, collapse = "")
+# Want the header to wrap properly in the RTF file
+hdr_fin <- stringr::str_replace_all(hdr_fin, "\\|Xanomeline ", "|Xanomeline\\\\line ")
 
 sum_data <- t %>% 
   build() %>% 
   nest_rowlabels() %>% 
-  select(-starts_with('ord')) %>% 
+  select(row_label, var1_Placebo, `var1_Xanomeline Low Dose`, `var1_Xanomeline High Dose`) %>% 
   add_column_headers(
 
      hdr_fin,
