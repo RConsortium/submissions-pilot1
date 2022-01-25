@@ -78,13 +78,18 @@ t <- tplyr_table(adas, TRTP) %>%
     group_desc(CHG,  where= AVISITN == 24, by = "Change from Baseline")
   )
   
+hdr <- unique(adas$TRTP)
+hdr_ext <- sapply(hdr, FUN = function(x) paste0("|", x, "\\line(N=**", x, "**)"), USE.NAMES = FALSE)
+hdr_fin <- paste(hdr_ext, collapse = "")
+
 sum_data <- t %>% 
   build() %>% 
   nest_rowlabels() %>% 
   select(-starts_with('ord')) %>% 
   add_column_headers(
-     paste0("|Placebo\\line(N=**Placebo**)| Xanomeline High Dose\\line(N=**Xanomeline High Dose**) ", 
-           "| Xanomeline Low\\line Dose\\line(N=**Xanomeline Low Dose**)"),
+
+     hdr_fin,
+
      header_n(t)
   )
 ```
