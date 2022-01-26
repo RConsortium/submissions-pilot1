@@ -15,8 +15,7 @@
 #' @export
 #'
 efficacy_models <- function(data, var=NULL, wk=NULL) {
-  
-  
+
   # Need to set contrasts to work for Type III SS. See analysis results metadata for
   # table 14-3.01. Reference for R here: https://www.r-bloggers.com/anova-%E2%80%93-type-iiiiii-ss-explained/
   op <- options(contrasts = c("contr.sum","contr.poly"))
