@@ -62,8 +62,13 @@ adsl <- adsl %>%
 
 censor <- adsl %>%
   dplyr::filter(SAFFL == "Y") %>%
+  # Analysis uses DEATH date rather than discontinuation when subject dies even if discontinuation occurs before death
+  # Observed through QC - However not described in specs
+  dplyr::mutate(EOS2DT = case_when(DCDECOD == "DEATH" ~ as.Date(RFENDTC),
+                                   DCDECOD != "DEATH" ~ EOSDT)
+                )%>%
   dplyr::select(STUDYID, SITEID, USUBJID, AGE, AGEGR1, AGEGR1N, RACE, RACEN,
-                SEX, TRTSDT, TRTEDT, TRTDURD, EOSDT, EOSSTT, SAFFL,
+                SEX, TRTSDT, TRTEDT, TRTDURD, EOSDT, EOS2DT, EOSSTT, SAFFL,
                 TRT01P, TRT01PN, TRT01A, TRT01AN) %>%
   dplyr::rename(TRTDUR = TRTDURD, # total duration is same as in days
                 TRTPN = TRT01PN,
@@ -79,7 +84,7 @@ adtte_pre <- event %>%
                 PARAMCD = "TTDE",
                 STARTDT = TRTSDT,
                 #pmin = vectorized solution required as min took the minimum across both vectors
-                ADT = pmin(EOSDT, ASTDT, na.rm = TRUE), 
+                ADT = pmin(EOS2DT, ASTDT, na.rm = TRUE), 
                 AVAL = ADT-STARTDT+1,
                 CNSR = ifelse(!is.na(ASTDT) & ADT == ASTDT, 0, 1),
                 # NA were causing issues hence the long date comparison expressions
@@ -97,10 +102,10 @@ adtte_pre <- event %>%
                 ) %>%
   dplyr::select(STUDYID, SITEID, USUBJID, AGE, AGEGR1, AGEGR1N, RACE, RACEN, SEX, TRTSDT,
                 TRTEDT, TRTDUR, TRTP, TRTA, TRTAN, PARAM, PARAMCD, AVAL, STARTDT, ADT,
-                CNSR, EVNTDESC, SRCDOM, SRCVAR, SRCSEQ, SAFFL, EOSDT, ASTDT)
+                CNSR, EVNTDESC, SRCDOM, SRCVAR, SRCSEQ, SAFFL, EOSDT, EOS2DT, ASTDT)
 
 adtte <- adtte_pre %>%
-  dplyr::select(-EOSDT, -ASTDT)
+  dplyr::select(-EOSDT, -EOS2DT, -ASTDT)
 
 # Add Labels --------------------------------------------------------------
 
@@ -141,7 +146,7 @@ discr_labels <- unlist(labsprod)[which(unlist(labsprod) %in% difflabels)]
 
 ## Content check using in-house package
 
- # dfcompare( 
+ # dfcompare(
  #      file = "tlcompare"
  #     ,left = prod
  #     ,right = adtte
