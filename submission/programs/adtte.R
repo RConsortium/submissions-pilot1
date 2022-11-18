@@ -8,7 +8,7 @@
 # Set up ------------------------------------------------------------------
 
 fcts <- c("eff_models.R", "fmt.R", "helpers.R", "Tplyr_helpers.R")
-sapply(fcts, FUN = function(x) source(file.path("R/", x)))
+invisible(sapply(fcts, FUN = function(x) source(file.path("R/", x), )))
 
 library(haven)
 library(admiral)
@@ -19,6 +19,7 @@ library(dplyr)
 adsl <- haven::read_xpt(file.path("adam", "adsl.xpt"))
 adae <- haven::read_xpt(file.path("adam", "adae.xpt"))
 ds <- haven::read_xpt(file.path("sdtm", "ds.xpt"))
+
 # First dermatological event (ADAE.AOCC01FL = 'Y' and ADAE.CQ01NAM != '') 
 
 # TRTEMFL
@@ -134,15 +135,15 @@ labsupdated[unlist(lapply(labsupdated,is.null))]
 
 # read original ADTTE -----------------------------------------------------
 
-prod <- haven::read_xpt(file.path("adam", "adtte.xpt"))
-labsprod <- sapply(colnames(prod), FUN = function(x) attr(prod[[x]], "label"))
+# prod <- haven::read_xpt(file.path("adam", "adtte.xpt"))
+# labsprod <- sapply(colnames(prod), FUN = function(x) attr(prod[[x]], "label"))
 
 # QC dev vs prod ----------------------------------------------------------
 
 ## Metadata compare (labels)
 
-difflabels <- dplyr::setdiff(labsprod, labsupdated)
-discr_labels <- unlist(labsprod)[which(unlist(labsprod) %in% difflabels)]
+# difflabels <- dplyr::setdiff(labsprod, labsupdated)
+# discr_labels <- unlist(labsprod)[which(unlist(labsprod) %in% difflabels)]
 
 ## Content check using in-house package
 
@@ -157,5 +158,6 @@ discr_labels <- unlist(labsprod)[which(unlist(labsprod) %in% difflabels)]
 
 # Output ------------------------------------------------------------------
 
+haven::write_xpt(adtte, file.path("submission/datasets/adtte.xpt"))
 
 # END of Code -------------------------------------------------------------
