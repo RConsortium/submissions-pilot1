@@ -5,7 +5,7 @@
 
 ## Overview
 
-The objective of the R Consortium R submission Pilot 1 Project is to 
+The objective of the R Consortium R submission Pilot 3 Project is to 
 test the concept that a R-language based submission package can meet 
 the needs and the expectations of the FDA reviewers, 
 including assessing code review and analyses reproducibility. 
