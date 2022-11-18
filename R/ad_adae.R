@@ -8,19 +8,27 @@ library(admiral.test) # Contains example datasets from the CDISC pilot project
 library(dplyr)
 library(lubridate)
 
+
 # Load source datasets ----
 
 # Use e.g. haven::read_sas to read in .sas7bdat, or other suitable functions
 # as needed and assign to the variables below.
 # For illustration purposes read in admiral test data
 
-data("admiral_ae")
-data("admiral_adsl")
-data("ex_single")
+# data("admiral_ae")
+# data("admiral_adsl")
+# data("ex_single")
 
-adsl <- admiral_adsl
-ae <- admiral_ae
-suppae <- admiral_suppae
+# adsl <- admiral_adsl
+# ae <- admiral_ae
+# suppae <- admiral_suppae
+
+adsl <- haven::read_xpt("./adam/adsl.xpt")
+ae <- haven::read_xpt("./sdtm/ae.xpt")
+suppae <- haven::read_xpt("./sdtm/suppae.xpt")
+ex <- haven::read_xpt("./sdtm/ex.xpt")
+
+
 
 # When SAS datasets are imported into R using haven::read_sas(), missing
 # character values from SAS appear as "" characters in R, instead of appearing
