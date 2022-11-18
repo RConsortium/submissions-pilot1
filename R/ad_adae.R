@@ -36,8 +36,8 @@ ex <- haven::read_xpt("./sdtm/ex.xpt")
 # https://pharmaverse.github.io/admiral/articles/admiral.html#handling-of-missing-values
 
 ae <- convert_blanks_to_na(ae)
-ex <- convert_blanks_to_na(ex_single)
-
+# ex <- convert_blanks_to_na(ex_single)
+ex <- convert_blanks_to_na(ex)
 
 # Derivations ----
 
