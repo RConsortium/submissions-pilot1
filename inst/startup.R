@@ -8,15 +8,6 @@ while (!"DESCRIPTION" %in% list.files(home)) {
   home <- dirname(home)
 }
 
-# A&R folder path (Do not edit information below)
-path <- list(
-  home      = "", # Project home
-  adam      = "adam", # ADaM data
-  output    = "output" # Output
-)
-
-path <- lapply(path, function(x) file.path(home, x))
-
 # Define repo URL for project specific package installation
 options(repos = repos)
 

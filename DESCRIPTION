@@ -1,6 +1,6 @@
-Package: pilot1wrappers
+Package: pilot3
 Type: Package
-Title: R Consortium R Submission Pilot 1
+Title: R Consortium R Submission Pilot 3
 Version: 0.1.1
 Authors@R: c(
         person("Yilong", "Zhang", email = "elong0527@gmail.com", role = c("aut", "cre")),
@@ -11,7 +11,7 @@ Authors@R: c(
         person("Eli", "Miller", role = c("aut")),
         person("Steven", "Haesendonckx", role = c("ctb"))
        )
-Description: R Consortium R Submission Pilot 1. 
+Description: R Consortium R Submission Pilot 3. 
 Depends: R (>= 3.6.0)
 License: GPL (>= 3)
 Imports:
@@ -22,6 +22,8 @@ Imports:
     tibble,
     tidyr
 Suggests:
+    envsetup,
+    config,
     cowplot,
     devtools,
     fs,

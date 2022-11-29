@@ -82,7 +82,7 @@ jobs:
         with:
           run-system-dependencies: true
           enable-check: false
-          renv-restore: false
+          renv-restore: true
           cran-repos: "CRAN=${{ matrix.config.repos }}"
         env:
           GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
