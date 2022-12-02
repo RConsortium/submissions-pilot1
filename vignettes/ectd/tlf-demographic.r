@@ -1,14 +1,16 @@
-# Note to Reviewer 
+# Note to Reviewer
 # To rerun the code below, please refer ADRG appendix.
-# After required package are installed. 
+# After required package are installed.
 # The path variable needs to be defined by using example code below
 #
+# nolint start
 # path = list(adam = "path/to/esub/analysis/adam/datasets")    	# Modify path to the actual location
 # path$output = "."                                             # Output saved in current folder
+# nolint end
 
 ## ------------------------------------------------------------------------------------------------------------------------------
 # Working directory requires write permission
-if(file.access(".", 2) != 0){
+if (file.access(".", 2) != 0) {
   warning(
     "The working directory '", normalizePath("."), "' is not writable.\n",
     "Please change it to a location with write permission."
@@ -18,16 +20,16 @@ if(file.access(".", 2) != 0){
 
 ## ----setup, message=FALSE------------------------------------------------------------------------------------------------------
 # CRAN package, please using install.packages() to install
-library(haven) 
+library(haven)
 library(dplyr)
 library(rtables)
 
-# Propitiatory Package, please refer appendix of ADRG to install 
+# Propitiatory Package, please refer appendix of ADRG to install
 library(pilot1wrappers)
 
 
 ## ------------------------------------------------------------------------------------------------------------------------------
-adsl  <- read_xpt(file.path(path$adam, "adsl.xpt")) 
+adsl <- read_xpt(file.path(path$adam, "adsl.xpt"))
 adsl_labels <- var_labels(adsl)
 
 
@@ -38,18 +40,19 @@ adsl <- adsl %>%
     ITTFL == "Y"
   ) %>%
   dplyr::mutate(
-    TRT01P = factor(TRT01P, levels = c("Placebo", "Xanomeline Low Dose",  "Xanomeline High Dose")),
+    TRT01P = factor(TRT01P, levels = c("Placebo", "Xanomeline Low Dose", "Xanomeline High Dose")),
     AGEGR1 = factor(AGEGR1, levels = c("<65", "65-80", ">80")),
     RACE = factor(RACE, levels = c("WHITE", "BLACK OR AFRICAN AMERICAN", "AMERICAN INDIAN OR ALASKA NATIVE"))
-  ) 
+  )
 
 
 ## ------------------------------------------------------------------------------------------------------------------------------
 # Table layout
 vars <- c("AGE", "AGEGR1", "RACE", "HEIGHTBL", "WEIGHTBL", "BMIBL", "MMSETOT")
-lyt <- basic_table(title = "Protocol: CDISCPILOT01",
-                   subtitles = "Population: Intent-to-Treat",
-                   main_footer = paste0("Program: tlf_demographic.Rmd \n" , Sys.time())
+lyt <- basic_table(
+  title = "Protocol: CDISCPILOT01",
+  subtitles = "Population: Intent-to-Treat",
+  main_footer = paste0("Program: tlf_demographic.Rmd \n", Sys.time())
 ) %>%
   split_cols_by("TRT01P") %>%
   add_colcounts() %>%
@@ -67,7 +70,8 @@ lyt <- basic_table(title = "Protocol: CDISCPILOT01",
       stop("type not supproted")
     }
   },
-  var_labels = adsl_labels[vars])
+  var_labels = adsl_labels[vars]
+  )
 
 # Table build
 tbl <- build_table(lyt, adsl)
@@ -76,8 +80,7 @@ tbl
 
 
 ## ------------------------------------------------------------------------------------------------------------------------------
-# Output .out file 
+# Output .out file
 tbl %>%
   toString() %>%
   writeLines(con = file.path(path$output, "tlf-demographic.out"))
-

@@ -32,11 +32,11 @@ path$home %>%
   prune("R/zzz.R") %>%
   pack(output = "ectd/r0pkg.txt")
 ```
-# Prepare Submission Analysis Progam
+# Prepare Submission Analysis Program
 
-Transfer Rmarkdown file to `txt` files and saved in `ectd` folder. 
+Transfer RMarkdown file to `txt` files and saved in `ectd` folder. 
 
-- (optional) Review and remove unecessary information. For example:
+- (optional) Review and remove unnecessary information. For example:
 
 ```
 knitr::include_graphics("pdf/tlf-efficacy.pdf")
@@ -56,7 +56,7 @@ knitr::include_graphics("pdf/tlf-efficacy.pdf")
 
 ```{r, eval = FALSE}
 knitr::purl("tlf-demographic.Rmd", output = "ectd/tlf-demographic.r")
-knitr::purl("tlf-efficacy.Rmd",    output = "ectd/tlf-efficacy.r")
+knitr::purl("tlf-efficacy.Rmd", output = "ectd/tlf-efficacy.r")
 knitr::purl("tlf-kmplot.Rmd", output = "ectd/tlf-kmplot.r")
 knitr::purl("tlf-primary.Rmd", output = "ectd/tlf-primary.r")
 ```
@@ -64,13 +64,15 @@ knitr::purl("tlf-primary.Rmd", output = "ectd/tlf-primary.r")
 ## List R package for analysis 
 
 ```{r}
-pkg <- c("pkglite","haven", "dplyr", "tidyr", "emmeans", "r2rtf","rtables", 
-         "ggplot2", "cowplot", "visR",
-         "Tplyr", "pharmaRTF", "huxtable", "stringr")
+pkg <- c(
+  "pkglite", "haven", "dplyr", "tidyr", "emmeans", "r2rtf", "rtables",
+  "ggplot2", "cowplot", "visR",
+  "Tplyr", "pharmaRTF", "huxtable", "stringr"
+)
 
-available.packages(contriburl = contrib.url(repos)) %>% 
-  data.frame() %>% 
-  subset(Package %in% pkg) %>% 
+available.packages(contriburl = contrib.url(repos)) %>%
+  data.frame() %>%
+  subset(Package %in% pkg) %>%
   select(Package, Version, Repository) %>%
   arrange(Package)
 ```
@@ -78,8 +80,10 @@ available.packages(contriburl = contrib.url(repos)) %>%
 Proprietary Package 
 
 ```{r}
-tribble(~ Package, ~ Version, 
-        "pilot1wrappers", "0.1.1")
+tribble(
+  ~Package, ~Version,
+  "pilot1wrappers", "0.1.1"
+)
 ```
 
 # Dry run 

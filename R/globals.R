@@ -1,0 +1,18 @@
+globalVariables(c(
+  "54",
+  "81",
+  "AVISITN",
+  "contrast",
+  "ci",
+  "diff_se",
+  "ord",
+  "ord_layer_index",
+  "ord_layer_1",
+  "ord_layer_2",
+  "p",
+  "p.value",
+  "row_label",
+  "row_label1",
+  "row_label2",
+  "value"
+))
