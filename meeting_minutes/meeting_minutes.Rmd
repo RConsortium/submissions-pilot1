@@ -1,0 +1,91 @@
+---
+title: "R Submission Pilot 3 Meeting Minutes"
+author: "Pilot 3 Team"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Pilot 3 team should be able to see updated meeting minutes here on a weekly basis.
+
+## 02Dec2022
+Just as a quick update to today's catch-up meeting (apologies, I forgot to record this meeting as well).
+
+1. Our current focus (the meat of the project) is just to continue working on ADaM programming.  The organization and final areas where all of our documents, programs, directory packages will go can be decided at a later time.  To help set priorities, my suggestion would be :
+    a. Posit Cloud and github setup. Make sure we're all working in the same environment.
+    b. First line programming of ADaMs (e.g. define updates, checks against the CDISC pilot ADaMs using {diffdf} )
+    c. Once we {diffdf}  checks pass, then run these source datasets into Pilot 1 programs.
+        i. Please study and reference this doc : https://github.com/RConsortium/submissions-pilot1-to-fda/blob/main/m1/us/report-tlf.pdf
+        ii. Since we forked the Pilot 1 repo, we should be able to get Pilot 1 programs from here : https://github.com/RConsortium/submissions-pilot3-adam/tree/main/vignettes
+        iii. Update Pilot 1 programs to make sure they work in our current environment (e.g. R v4.2.1, any package updates needed due to different R version we are using), per https://github.com/RConsortium/submissions-pilot3-adam/issues/6
+2. Will need to work with 
+@Phani Tata
+ github set-up off-line to save versions of his development.  Thanks, Phani for continuing with the ADAE program development.
+3. We need define udpates per 
+@Kangjie Zhang
+ request.  A proposal has been made here if anyone can help with this : https://github.com/RConsortium/submissions-pilot3-adam/issues/10#issuecomment-1335565702
+4. @Bingjun Wang
+ working on ADRG. You may use content in this proposal for ADRG. See : https://github.com/RConsortium/submissions-pilot3-adam/issues/28#issuecomment-1335528257
+5. @Nicole Jones
+ has updated Pilot 3 main repo info.  Thank you! Now continuing on with ADLBC with 
+@Dadong Zhang
+.
+6. ADSL updates are underway as I see communication here : https://github.com/RConsortium/submissions-pilot3-adam/pull/27
+7. ADTTE also upon finalization : https://github.com/RConsortium/submissions-pilot3-adam/pull/21 .
+
+For all working on the datasets, recall the approach is to use the the Pharmaverse packages, i.e., {admiral} package.
+
+Announcement : Proposal for Pilot 3 FDA execution will be delivered to the rest of the R Consortium team soon. If you'd like to take a read updated proposal is here, for now, and will soon be in the RConsortium submissionswg repo .
+
+Let 
+@Thomas Neitmann
+ or I know if you have any further questions.
+
+## 28Nov2022
+Unfortunately we didn’t record last week’s stand up. But given the holidays in the US it was a very short meeting anyways with only 4 attendees. I think the most important decision we made was to write all ADaM scripts as plain .R files and not .Rmd files. Please use admiral/pharmaverse function if available and only rely on dplyr/tidyverse as a fallback option. Also, please open a pull request as soon as you have a draft program available. That way the progress on your programs is transparent for all team members. Just follow what 
+@Kangjie Zhang
+ did.
+ 
+## 14Nov2022
+Thanks, @channel for those able to join today's Pilot 3 weekly catch-up meeting.  Just to bullet :
+
+1. Welcome @Declan Hodges to the team! Great to have more participation in this pilot.  Currently, Declan is working to get his environment set-up on his end to begin work.  Any current issues open in the repo, please feel free to assign yourself, Declan. 
+
+2. Overall, it seems all others have been able to set up an instance of the working environment on R Studio Cloud just fine and all ADaMs seem to be in good progress.
+
+3. An issue came up regarding the define.xml , which doesn't seem to correspond very well with the define.pdf for.  We've scoured the CDISC Pilot repo to see if there were any newer updates of the .xml file, but have not found one.  Action to 
+@Lei Zhao
+ :
+    a.    We could reach out to someone from the CDISC pilot team (maybe add an issue in their repo)         to find out if we can get an updated define.xml.
+    b.    Alternatively, if there is an .xls out there matching the define.pdf , we could use that
+        .xls to read into to P21, then re-export a define.xml that way.
+            -@Dadong Zhang @Kangjie Zhang, please feel free to chime in further on this topic to                elaborate on the issues that you are seeing.
+            -Re : https://github.com/RConsortium/submissions-pilot3-adam/issues/10
+
+4. Discussion about workflow.  For those new to github, it may help to have a small video tutorial on how to collaborate through git.  Two approaches discussed :
+    a.    For each dataset a branch has been created. If there are 2+ contributors to a branch, they       can continue working in the same branch, but just requires clear communication on when             updated are pushed and when other contributors can pull to get those updates to continue           working further until completion until final script is ready to merge back to main.
+    b.    For each dataset a branch has been created. Additionally, for each contributor, they should       also make their own branch for their own development/updates to the script, then PR to             dataset branch to get the updates, resolve conflicts, and merge to completion, until final         script is ready to merge back to main.
+
+
+## 02Nov2022 : R Submission Pilot 3 - ADaM Kick-off
+- Team Roster: https://docs.google.com/spreadsheets/d/1BW9Jojo4bAgxbfM96nXooh2QAlU6CKwk19pInxmI2VA/edit?usp=sharing
+- GitHub repo: https://github.com/RConsortium/submissions-pilot3-adam
+
+- We added SDTM from from CDISC Pilot Project to the Pilot 3 repo so that our R ADaM programs can source these domains.
+- We also added ADaMs from the CDISC Pilot Project for ADaM developers can {diffdf} on.
+- {admiral} set-up demos : 
+https://www.youtube.com/channel/UCxQFEv8HNqM01DXzdQLCy6Q/videos 
+https://pharmaverse.slack.com/files/U028SDSVAR0/F0461A8E4CC/hello__admiral________2022-10-07_14_04_gmt_2_.mp4
+- Work environment is here : https://login.rstudio.cloud/invite?code=nwG-pLCv8EP2fR7j2p9ZuEJ17P0mOBgmqhOyANhL&space_name=R+Submission+Pilot+3+-+ADaM
+- If you already created a branch for a dataset to work on then you can get current updates by running the following commands in the RStudio terminal:
+```
+git checkout main
+git pull
+git checkout <your_branch>
+git merge --no-edit main
+```
+- SAP : https://pharmaverse.slack.com/files/U028SDSVAR0/F04A5FFSGA3/cdiscpilot01.pdf
+- Define : https://github.com/RConsortium/submissions-pilot3-adam/issues/19 
