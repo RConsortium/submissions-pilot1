@@ -15,7 +15,7 @@ source(file.path(rprojroot::find_root("DESCRIPTION"), "inst/startup.R"))
 
 ```{r}
 # Working directory requires write permission
-if(file.access(".", 2) != 0){
+if (file.access(".", 2) != 0) {
   warning(
     "The working directory '", normalizePath("."), "' is not writable.\n",
     "Please change it to a location with write permission."
@@ -28,13 +28,13 @@ if(file.access(".", 2) != 0){
 knitr::opts_chunk$set(echo = TRUE)
 
 # CRAN package, please using install.packages() to install
-library(haven) 
+library(haven)
 library(dplyr)
 library(ggplot2)
 library(cowplot)
 library(visR)
 
-# Propitiatory Package, please refer appendix of ADRG to install 
+# Propitiatory Package, please refer appendix of ADRG to install
 library(pilot1wrappers)
 ```
 
@@ -42,12 +42,12 @@ library(pilot1wrappers)
 
 ```{r}
 adsl <- read_xpt(file.path(path$adam, "adsl.xpt"))
-adtte <- read_xpt(file.path(path$adam, "adtte.xpt")) 
+adtte <- read_xpt(file.path(path$adam, "adtte.xpt"))
 ```
 
 ## Step 2: Data preparation for endpoint TTDE
 ```{r}
-anl <- adsl %>% 
+anl <- adsl %>%
   dplyr::filter(
     SAFFL == "Y",
     STUDYID == "CDISCPILOT01"
@@ -60,7 +60,7 @@ anl <- adsl %>%
     by = c("STUDYID", "USUBJID")
   ) %>%
   dplyr::mutate(
-    TRT01A = factor(TRT01A, levels = c("Placebo", "Xanomeline Low Dose",  "Xanomeline High Dose"))
+    TRT01A = factor(TRT01A, levels = c("Placebo", "Xanomeline Low Dose", "Xanomeline High Dose"))
   )
 ```
 
@@ -76,41 +76,42 @@ pdf.options(reset = TRUE, onefile = FALSE)
 
 pdf(file.path(path$output, "tlf-kmplot.pdf"))
 
-KM <- visR::visr(surv_mod,
-           y_label = "Probability of event\n",
-           x_label = "Time to First Dermatologic Event (Days)",
-           y_ticks = seq(0,1,0.10)) %>%
-    add_CNSR() %>%
-    add_CI()
+km <- visR::visr(surv_mod,
+  y_label = "Probability of event\n",
+  x_label = "Time to First Dermatologic Event (Days)",
+  y_ticks = seq(0, 1, 0.10)
+) %>%
+  add_CNSR() %>%
+  add_CI()
 
-KM <- KM + 
-    ggplot2::geom_hline(yintercept=0.5, linetype = "dashed")
+km <- km +
+  ggplot2::geom_hline(yintercept = 0.5, linetype = "dashed")
 
-KM <- KM %>%
-    visR::add_risktable(group = "statlist")
+km <- km %>%
+  visR::add_risktable(group = "statlist")
 
-title <- cowplot::ggdraw() + 
+title <- cowplot::ggdraw() +
   cowplot::draw_label(
     "KM plot for Time to First Dermatologic Event: Safety population\n",
     fontfamily = "sans",
     fontface = "bold",
-    size=10
-  ) 
+    size = 10
+  )
 
-caption <- cowplot::ggdraw() + 
+caption <- cowplot::ggdraw() +
   cowplot::draw_label(
     paste0("\nProgram: tlf_kmplot.Rmd [", Sys.time(), "]"),
     fontfamily = "sans",
-    size=10
-  ) 
+    size = 10
+  )
 
-KM <- cowplot::plot_grid(
-  title, KM, caption,
+km <- cowplot::plot_grid(
+  title, km, caption,
   ncol = 1,
-  rel_heights = c(0.1,0.8,0.1)
+  rel_heights = c(0.1, 0.8, 0.1)
 )
 
-print(KM)
+print(km)
 dev.off()
 ```
 
