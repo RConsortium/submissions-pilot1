@@ -34,7 +34,7 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: windows-latest, r: '4.2', repos: 'https://cran.microsoft.com/snapshot/2022-11-01/'}
+          - {os: windows-latest, r: 'release'}
           - {os: ubuntu-20.04, r: '4.2', repos: 'https://cran.microsoft.com/snapshot/2022-11-01/'}
 
     env:
