@@ -10,7 +10,7 @@ on:
       - main
       - dev
 
-name: R-CMD-check
+name: R CMD Check
 
 jobs:
   R-CMD-check:
