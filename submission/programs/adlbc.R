@@ -144,14 +144,17 @@ adlb06 <- adlb05 %>%
                                           TRUE ~ VISIT),
                 AVISITN = dplyr::case_when(ABLFL == "Y" ~ 0,
                                           TRUE ~ as.numeric(gsub(".*?([0-9]+).*", "\\1", VISIT)) )) %>%
-  dplyr::bind_rows(eot)
+  dplyr::bind_rows(eot) %>%
+  dplyr::mutate(ANL01FL = ifelse(grepl('UN', VISIT), "", "Y"))
 
 
 # Limits ------------------------------------------------------------------
 
 adlb07 <- adlb06 %>%
-  dplyr::mutate(ANRIND = dplyr::case_when(AVAL < 0.5*LBSTNRLO ~ "L",
-                                          AVAL > 1.5* LBSTNRHI ~ "H",
+  dplyr::arrange(STUDYID, USUBJID, PARAMCD, ANL01FL, ADT, ADTM, LBSEQ) %>%
+  dplyr::mutate(DIFF = ifelse(ANL01FL == "Y" & dplyr::lag(ANL01FL) == "Y", abs(AVAL-dplyr::lag(AVAL)), NA)) %>%
+  dplyr::mutate(ANRIND = dplyr::case_when(AVAL < 0.5*LBSTNRLO | abs(DIFF) < ((LBSTNRHI-LBSTNRLO) * 0.50) ~ "L",
+                                          AVAL > 1.5* LBSTNRHI | abs(DIFF) > ((LBSTNRHI-LBSTNRLO) * 0.50) ~ "H",
                                           TRUE ~ 'N'),
                 BNRIND = dplyr::case_when(BASE < 0.5*LBSTNRLO ~ "L",
                                           BASE > 1.5* LBSTNRHI ~ "H",
@@ -164,14 +167,14 @@ adlb07 <- adlb06 %>%
                 BR2A1LO = AVAL / B1HI,
                 BR2A1HI = AVAL / B1LO,
                 ALBTRVAL = max((LBSTRESN-(1.5*LBSTNRHI)), ((.5*LBSTNRLO) - LBSTRESN))
-              )
+              ) %>%
+  dplyr::arrange(STUDYID, USUBJID, PARAMCD, ADT, ADTM) %>%
+  dplyr::group_by(STUDYID, USUBJID, PARAMCD) %>%
+  dplyr::mutate(AENTMTFL = ifelse(VISITNUM == 12, "Y", ifelse((row_number() == n()-1 | row_number() == n()) & VISITNUM < 12, "Y", ""))) %>% #n-1 to avoid avisitn = 99
+  dplyr::ungroup()
 
 
-"ANL01FL"  "AENTMTFL"
 
-ANL01FL Analysis Record Flag 1
 
-AENTMTFL Last value in treatment visit text 1 Y_BLANK  Last observed value for this lab parameter during
-  treatment phase: 'Y' if VISITNUM=12, if subject discontinues prior to VISIT 12, then this variable is set to
-  'Y' if this is the last assessment of this analyte for the subject 
+ 
 
