@@ -1,14 +1,22 @@
 {
   "R": {
-    "Version": "4.2.1",
+    "Version": "4.2.2",
     "Repositories": [
       {
         "Name": "CRAN",
-        "URL": "https://cran.microsoft.com/snapshot/2022-11-01"
+        "URL": "https://cran.microsoft.com/snapshot/2022-12-14"
       }
     ]
   },
   "Packages": {
+    "BH": {
+      "Package": "BH",
+      "Version": "1.78.0-0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "4e348572ffcaa2fb1e610e7a941f6f3a",
+      "Requirements": []
+    },
     "MASS": {
       "Package": "MASS",
       "Version": "7.3-58.1",
@@ -26,6 +34,14 @@
       "Requirements": [
         "lattice"
       ]
+    },
+    "NLP": {
+      "Package": "NLP",
+      "Version": "0.2-1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "94b0a21c13933f61cf6272a192964624",
+      "Requirements": []
     },
     "R.cache": {
       "Package": "R.cache",
@@ -115,13 +131,12 @@
     },
     "admiral": {
       "Package": "admiral",
-      "Version": "0.8.4",
+      "Version": "0.9.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "55dd2bfe5c77fa02f80a014c88f6598b",
+      "Hash": "f85e589349fd8985c1d1f58230eebb72",
       "Requirements": [
         "admiraldev",
-        "assertthat",
         "dplyr",
         "hms",
         "lifecycle",
@@ -136,12 +151,11 @@
     },
     "admiraldev": {
       "Package": "admiraldev",
-      "Version": "0.1.0",
+      "Version": "0.2.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "d4ea0e3868e03819b2d3f8aef44729c0",
+      "Hash": "8041d84462e148e6779e6c4019dcdf11",
       "Requirements": [
-        "assertthat",
         "dplyr",
         "hms",
         "lifecycle",
@@ -331,6 +345,16 @@
       "Hash": "b6e3e947d1d7ebf3d2bdcea1bde63fe7",
       "Requirements": []
     },
+    "config": {
+      "Package": "config",
+      "Version": "0.3.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "31d77b09f63550cee9ecb5a08bf76e8f",
+      "Requirements": [
+        "yaml"
+      ]
+    },
     "cowplot": {
       "Package": "cowplot",
       "Version": "1.1.1",
@@ -438,6 +462,16 @@
         "withr"
       ]
     },
+    "diffdf": {
+      "Package": "diffdf",
+      "Version": "1.0.4",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "9ddedef46959baad2080047a1b0117fe",
+      "Requirements": [
+        "tibble"
+      ]
+    },
     "diffobj": {
       "Package": "diffobj",
       "Version": "0.3.5",
@@ -515,6 +549,22 @@
         "mvtnorm",
         "numDeriv",
         "xtable"
+      ]
+    },
+    "envsetup": {
+      "Package": "envsetup",
+      "Version": "0.0.1",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "pharmaverse",
+      "RemoteRepo": "envsetup",
+      "RemoteRef": "main",
+      "RemoteSha": "539514d89cbff4f61635052ba865d05a1d3fb181",
+      "Hash": "c194b17837fb23766fa208f96adfccbc",
+      "Requirements": [
+        "assertthat",
+        "purrr"
       ]
     },
     "estimability": {
@@ -837,6 +887,26 @@
       "Hash": "cfdea9dea85c1a973991c8cbe299f4da",
       "Requirements": []
     },
+    "janitor": {
+      "Package": "janitor",
+      "Version": "2.1.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "6de84a8c67fb247e721166049c84695f",
+      "Requirements": [
+        "dplyr",
+        "lifecycle",
+        "lubridate",
+        "magrittr",
+        "purrr",
+        "rlang",
+        "snakecase",
+        "stringi",
+        "stringr",
+        "tidyr",
+        "tidyselect"
+      ]
+    },
     "jquerylib": {
       "Package": "jquerylib",
       "Version": "0.1.4",
@@ -961,13 +1031,13 @@
     },
     "lubridate": {
       "Package": "lubridate",
-      "Version": "1.8.0",
+      "Version": "1.9.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "2ff5eedb6ee38fb1b81205c73be1be5a",
+      "Hash": "2af4550c2f0f7fbe7cbbf3dbf4ea3902",
       "Requirements": [
-        "cpp11",
-        "generics"
+        "generics",
+        "timechange"
       ]
     },
     "magrittr": {
@@ -991,10 +1061,15 @@
     },
     "metacore": {
       "Package": "metacore",
-      "Version": "0.1.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "ad98e34f58f9df64f0c6bbd634583929",
+      "Version": "0.1.1",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "metacore",
+      "RemoteUsername": "atorus-research",
+      "RemoteRef": "main",
+      "RemoteSha": "b2c484078511522c7a569c7179e23b012397e5d9",
+      "Hash": "5b5a72e48a850994492f66363184edaa",
       "Requirements": [
         "R6",
         "dplyr",
@@ -1613,6 +1688,25 @@
         "xtable"
       ]
     },
+    "slam": {
+      "Package": "slam",
+      "Version": "0.1-50",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "e25793551cbdb843154152e5ee88cbd6",
+      "Requirements": []
+    },
+    "snakecase": {
+      "Package": "snakecase",
+      "Version": "0.11.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "4079070fc210c7901c0832a3aeab894f",
+      "Requirements": [
+        "stringi",
+        "stringr"
+      ]
+    },
     "sourcetools": {
       "Package": "sourcetools",
       "Version": "0.1.7",
@@ -1644,14 +1738,18 @@
     },
     "stringr": {
       "Package": "stringr",
-      "Version": "1.4.1",
+      "Version": "1.5.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "a66ad12140cd34d4f9dfcc19e84fc2a5",
+      "Hash": "671a4d384ae9d32fc47a14e98bfa3dc8",
       "Requirements": [
+        "cli",
         "glue",
+        "lifecycle",
         "magrittr",
-        "stringi"
+        "rlang",
+        "stringi",
+        "vctrs"
       ]
     },
     "styler": {
@@ -1799,6 +1897,16 @@
         "withr"
       ]
     },
+    "timechange": {
+      "Package": "timechange",
+      "Version": "0.1.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "4657195cc632097bb8d140d626b519fb",
+      "Requirements": [
+        "cpp11"
+      ]
+    },
     "tinytex": {
       "Package": "tinytex",
       "Version": "0.42",
@@ -1807,6 +1915,20 @@
       "Hash": "7629c6c1540835d5248e6e7df265fa74",
       "Requirements": [
         "xfun"
+      ]
+    },
+    "tm": {
+      "Package": "tm",
+      "Version": "0.7-9",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "dd46a0e6a025e95794b97671bdcb8ead",
+      "Requirements": [
+        "BH",
+        "NLP",
+        "Rcpp",
+        "slam",
+        "xml2"
       ]
     },
     "tzdb": {
@@ -1869,10 +1991,10 @@
     },
     "vctrs": {
       "Package": "vctrs",
-      "Version": "0.5.0",
+      "Version": "0.5.1",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "001fd6a5ebfff8316baf9fb2b5516dc9",
+      "Hash": "970324f6572b4fd81db507b5d4062cb0",
       "Requirements": [
         "cli",
         "glue",
@@ -2008,6 +2130,27 @@
         "processx"
       ]
     },
+    "xportr": {
+      "Package": "xportr",
+      "Version": "0.1.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "3b3a8b29c22180542471afd8d3c05986",
+      "Requirements": [
+        "cli",
+        "dplyr",
+        "glue",
+        "haven",
+        "janitor",
+        "magrittr",
+        "purrr",
+        "readr",
+        "rlang",
+        "stringr",
+        "tidyselect",
+        "tm"
+      ]
+    },
     "xtable": {
       "Package": "xtable",
       "Version": "1.8-4",
@@ -2028,29 +2171,6 @@
       "Package": "zip",
       "Version": "2.2.2",
       "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "c42bfcec3fa6a0cce17ce1f8bc684f88",
-      "Requirements": []
-    },
-    "envsetup": {
-      "Package": "envsetup",
-      "Version": "0.0.1",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteUsername": "pharmaverse",
-      "RemoteRepo": "envsetup",
-      "RemoteRef": "main",
-      "RemoteSha": "539514d89cbff4f61635052ba865d05a1d3fb181",
-      "Hash": "c194b17837fb23766fa208f96adfccbc",
-      "Requirements": []
-    },
-    "config": {
-      "Package": "config",
-      "Version": "0.3.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "31d77b09f63550cee9ecb5a08bf76e8f",
       "Repository": "CRAN",
       "Hash": "c42bfcec3fa6a0cce17ce1f8bc684f88",
       "Requirements": []
