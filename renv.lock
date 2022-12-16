@@ -1069,7 +1069,7 @@
       "RemoteUsername": "atorus-research",
       "RemoteRef": "main",
       "RemoteSha": "b2c484078511522c7a569c7179e23b012397e5d9",
-      "Hash": "5b5a72e48a850994492f66363184edaa",
+      "Hash": "3ef5b10de86c1160933b596e782fc176",
       "Requirements": [
         "R6",
         "dplyr",
@@ -2133,9 +2133,14 @@
     "xportr": {
       "Package": "xportr",
       "Version": "0.1.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "3b3a8b29c22180542471afd8d3c05986",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "atorus-research",
+      "RemoteRepo": "xportr",
+      "RemoteRef": "main",
+      "RemoteSha": "e5987358e4573276dd09d8652a22c614109e69bb",
+      "Hash": "2a4569e38e9fec0aca3f9811e8c10557",
       "Requirements": [
         "cli",
         "dplyr",
