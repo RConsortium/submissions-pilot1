@@ -2,14 +2,15 @@
 #' developers : Steven Haesendonckx/
 #' date: 28NOV2022
 #' modification History:
-#' 
+#' Dadong Zhang, 17DEC2022
 ###########################################################################
 
 # Set up ------------------------------------------------------------------
-
+rm(list = ls())
 library(haven)
 library(admiral)
 library(dplyr)
+library(labelled) # for variable labelling
 
 # read source -------------------------------------------------------------
 # When SAS datasets are imported into R using haven::read_sas(), missing
@@ -17,19 +18,25 @@ library(dplyr)
 # as NA values. Further details can be obtained via the following link:
 # https://pharmaverse.github.io/admiral/articles/admiral.html#handling-of-missing-values
 
-
+# Read and convert NA for SDTM DATASET
+## Laboratory Tests Results (LB)
 lb <- admiral::convert_blanks_to_na(haven::read_xpt(file.path("sdtm", "lb.xpt")))
+## Supplemental Qualifiers for LB (SUPPLB)
 supplb <- admiral::convert_blanks_to_na(haven::read_xpt(file.path("sdtm", "supplb.xpt")))
+## Subject Visits (SV)
 sv <- admiral::convert_blanks_to_na(haven::read_xpt(file.path("sdtm", "sv.xpt")))
 
-adsl <- admiral::convert_blanks_to_na(haven::read_xpt(envsetup::read_path(adam, "adsl.xpt")))
+# Read and convert NA for ADaM DATASET
+## Subject-Level Analysis
+adsl <- admiral::convert_blanks_to_na(haven::read_xpt(file.path("adam", "adsl.xpt")))
+## Analysis Dataset Lab Blood Chemistry
+prodc <- admiral::convert_blanks_to_na(haven::read_xpt(file.path("adam", "adlbc.xpt")))
 
-prodc <- admiral::convert_blanks_to_na(haven::read_xpt(file.path(adam[2], "adlbc.xpt")))
-
+#Variables for programming
 toprogram <- setdiff(colnames(prodc), c(colnames(lb), unique(supplb[["QNAM"]])))
 
 # Formats -----------------------------------------------------------------
-
+## map parameter code and parameter
 format_paramn <- function(x){
   dplyr::case_when(
     x == "SODIUM" ~ 18,
@@ -53,13 +60,13 @@ format_paramn <- function(x){
   )
 }
 # Add supplemental information --------------------------------------------
-
 sup <- supplb %>%
   dplyr::select(STUDYID, USUBJID, IDVAR, IDVARVAL, QNAM, QLABEL, QVAL) %>%
   tidyr::pivot_wider(id_cols  = c(STUDYID, USUBJID, IDVARVAL),
                      names_from = QNAM,
                      values_from = QVAL) %>%
   dplyr::mutate(LBSEQ = as.numeric(IDVARVAL)) %>%
+  labelled::set_variable_labels(LBSEQ = "Sequence Number") %>%
   dplyr::select(-IDVARVAL)
 
 adlb00 <- lb %>%
@@ -93,7 +100,11 @@ adlb02 <- adlb01 %>%
     dtc = LBDTC,
     highest_imputation = "n"
   ) %>%
-  admiral::derive_vars_dy(reference_date = TRTSDT, source_vars = vars(ADT))
+  admiral::derive_vars_dy(reference_date = TRTSDT, source_vars = vars(ADT)) %>%
+  labelled::set_variable_labels(ADTM = "Derived datatime object from LBDTC", 
+                                ATMF = "ADTC Imputation flag (at second)",
+                                ADT = "Derived date from LBDTC",
+                                ADY = "Derived relative day ADT from TRTSDT")
 
 
 # adlb02[which(nchar(adlb02$LBDTC) == 16), c("LBDTC", "ADTM")]
@@ -106,7 +117,8 @@ adlb02 <- adlb01 %>%
 
 adlb03 <- adlb02 %>%
   dplyr::mutate(AVAL = LBSTRESN,
-                AVALC = ifelse(is.na(AVAL), LBSTRESC, NA))
+                AVALC = ifelse(is.na(AVAL), LBSTRESC, NA)) %>%
+  labelled::set_variable_labels(AVALC = "Impute AVAL with LBSTRESC")
 
 # Parameter ---------------------------------------------------------------
 
@@ -115,7 +127,9 @@ adlb04 <- adlb03 %>%
                 PARAMCD = LBTESTCD,
                 PARAMN = format_paramn(LBTESTCD),
                 PARCAT1 = "Chemistry"
-  )
+  ) %>%
+  labelled::set_variable_labels(PARAM = "Chemistry (unit)",
+                                PARAMN = "Chemistry Sequence Number")
 
 # Baseline ----------------------------------------------------------------
 
@@ -125,7 +139,8 @@ bsl <- adlb04 %>%
   dplyr::group_by(STUDYID, USUBJID, PARAMCD) %>%
   dplyr::slice(n()) %>%
   dplyr::mutate(BASE = AVAL, ABLFL = "Y", B1LO = LBSTNRLO, B1HI = LBSTNRHI) %>%
-  dplyr::select(STUDYID, USUBJID, PARAMCD, LBSEQ, BASE, ABLFL, B1LO, B1HI)
+  dplyr::select(STUDYID, USUBJID, PARAMCD, LBSEQ, BASE, ABLFL, B1LO, B1HI) %>%
+  labelled::set_variable_labels(ABLFL = "Baseline Flag")
 
 adlb05 <- adlb04 %>%
   dplyr::left_join(bsl, by = c("STUDYID", "USUBJID", "PARAMCD", "LBSEQ")) %>%
