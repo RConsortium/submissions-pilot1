@@ -11,6 +11,92 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Pilot 3 team should be able to see updated meeting minutes here on a weekly basis.
 
+## 23Dec2022
+Meeting cancelled, because it's time to take a break and hang out with our Families and Friends. Have a well-deserved and relaxing break everyone.  We'll pick it up again next year!
+~Thomas and Joel
+
+![](images/eoy_meme.jpg)
+
+
+## 19Dec2022
+1. Ben S. - brought up package down sites for Pilot 3. Easy to do from Posit.
+
+### ACTION to Ben S. - work on Pilot 3 package down site. Update to show our progress on Pilot 3 ADaM. https://pkgdown.r-lib.org/
+### https://github.com/RConsortium/submissions-pilot3-adam/issues/11 
+
+2. Kanjie - ADAS almost done. Working on one more parameter discrepancy. Working using new functionality in `admiral{} 0.9.0` per updated `renv.lock`.
+
+### ACTION to Kanjie - work on table : https://github.com/RConsortium/submissions-pilot3-adam/issues/30 compare against Pilot 1.
+### googlespreadsheet define working well so far.  Updating the descriptions correctly so that the `metacore{}` package can import well.  Able to import excel directly.  At some point we'll need to update the Value Level metadata.
+
+3. Joel - still working on ADAE. Phani has worked on half of ADAE and still needs to derive 13 more variables.  I took time to meet with Phani set up his Posit Cloud and github connection, so he was able to push his script up to git, where then I can pull his work to continue updates.  Delivered Pilot 3 proposal to R Consortium for review : https://github.com/RConsortium/submissions-pilot3-adam/issues/37 
+
+4. Some notes for everyone on Pilot 3.  As we are all trying to work in the same environment on Posit or on your local computer, before making any pushes or PRs, please make sure you're not changing any of our environment files (e.g. `renv.lock`) in your branch, then pushing up and accidentally merging to main (though we do have the `main` branch protected, we're only human and something could get through). As users pull from main and merge to their dev branches to get the udpates, any change in the environment when doing a restore could show errors in their program due to different package versions. Pay attention to detail and mindful of the changes being made in your PRs.  Thanks everyone for your cooperation!
+
+### SEE YOU ALL NEXT YEAR.
+
+### VIDEO RECORDNG: https://drive.google.com/file/d/1oMtFbZQFuwptsWcf1fYGqo2lurtiIdL-/view 
+
+### ACTION to Joel - Create deadlines on `main` Read.me file so that everyone has transparency on work that needs to be done at a certain time. Maybe create a Kanban board on the issues.
+
+## 09Dec2022
+1. Joel 
+  - getting updated define.xml and converting to google spreadsheet, editable by everyone. Notes on the versioning, since Pilot 3 is based off of Pilot 1 it makes sense to use the define from Pilot 1 to continue using in Pilot 3. The CDISCPILOT define seems to have had a lot of issues in P21, but the Pilot 1 define only had 8 issues per P21 v5.2.
+    a. Current define spreadsheet here for team members to edit as needed : https://github.com/RConsortium/submissions-pilot3-adam/issues/10#issuecomment-1342005671 
+  - New issues created for Tables and Graphs.  Please assign yourself to work on these and test the Pilot 3 ADaMs as source data in these output programs to see if they match the Pilot 1 outputs.
+    
+2. Kanjie 
+  - `metacore{}` issue, not able to read in define.xml if there is a metadata label empty in the specs, but the `metacore{}` author/developers have worked on a fix for this to allow empty labels.  With this update, there could be a new version of `metacore{}`. 
+  - Continuing updates to ADAS specs in the new spreadsheet as needed.
+
+### ACTION to Kanjie : update `renv.lock` in `main` branch to the `metacore{}` version we need to have aformentioned udpate. Then all Pilot 3 users can run these steps https://pharmaverse.slack.com/archives/C04968ES7T4/p1671196678615089 to update their branches, including `renv::restore()` to get the udpated metacore package.
+
+3. Dadong 
+  - working on ADLB with Nicole. Current environment is on his working computer, but will plan to transition to Posit Cloud so that he will be using the same environment as the rest of the team.
+
+### ACTION to Thomas : Current Posit Cloud is now using R 4.2.2, where there is a check in `startup` that notes we should be using 4.2.1.  But this should not be the case.  Thomas will create an issue to remove the R version check so that we all just use the most current version in Posit Cloud. Current issue :
+```
+R version change [4.2.1 -> 4.2.2] detected when restoring session; search path not restored
+Connected to your session in progress, last started 2022-Dec-23 20:09:44 UTC (14 minutes ago)
+```
+4. Thomas 
+  - Final comments on ADSL pull request.  Declan will be taking on these updates and will be the first progam and dataset to be merged to main branch. 
+  - ADAS may soon be merged before the holiday by Kanjie.
+5. Ben S. 
+  - released a new version of Admiral 0.9.0 and should update `renv.lock` file.  
+      -Thomas mentioned we already proposed a CRAN snapshot from the 1st of November, but with the udpate needed for both `metacore{}` and `admiral{}`, we need to be clear in our final documents what CRAN snapshot we will be using.
+
+### ACTION/Request to Ben S. : Can we get `renv.lock` updated to also read in new Admiral version?
+
+6. Declan 
+  - working on ADSL PR. Working with Steven and Thomas, ADSL should be in merged to main soon.
+7. Robert 
+  - working on ADTTE. Has derived ADTTE with the ADAE dependency from the CDISCPilot/Pilot 1 ADaM datasets, not purely deriving from SDTM. May have a draft of this ADTTE in a week or so. Once ADAE is ready in Pilot 3, then ADTTE should source the Pilot 3 ADAE in the final run.  
+  - Note about testing. Working in 'Windows' vs 'Posit Cloud'. Once FDA receives Pilot 3 package, they may be running in Windows and not using Posit Cloud, like us. 
+  - Confirms that he uses `.R` suffix vs `.r` 
+  - has also removed the `ad_` prefix in program filename as readable code would normally not have this prefix. 
+  - Found a Merck document that describes the udpates to the define. Could be helpful for traceability.
+
+### ACTION/Request to Robert : Can you share the Merck document describing the updates to the define and post it here : https://github.com/RConsortium/submissions-pilot3-adam/issues/10 ?  Maybe even get the define.xml for to push to our Pilot 3 repo.
+### ACTION/Request to Ben S. : At the end of our pilot 3, we need to test that our package runs fine on a regular Windows environment, not Posit.  As most likely our stakeholders will just be running on their local computers.
+
+8. Phani 
+  - Progress on ADAE, date variables updated, still working on 13 more variables. Still working on his local machine and will need help with setting up Posit and Git.
+9. Lei 
+  - Will help with issue #10.
+10. Bingjun (Ben) 
+  - Working on ADTTE, using `admiral{}`, not `dplyr{}`.
+11. AOB :
+  - FOLLOW-UP question from Steven H. : 
+  ```The derivation of all highlighted variables can not be ADLB.XXX = LB.VISITNUM, especially not variables that are taken from demographics like AGE.```
+    - Joel Response : It seems the erroneoulsy documented derivations for these variables are not the datasets we are working with in Pilot 3.  For now, we can ignore these if they do not impact the datasets we are working on.  I tried to create an issue in the TDF repo, but 'issues' weren't accessible to me. Feel free to add an issue if you have access : https://github.com/phuse-org/TestDataFactory 
+    
+![](images/TDF_define_LB.VISITNUM_incorrect.PNG)
+
+### HAPPY HOLIDAYS TO ALL TAKING EARLY BREAK FOR THE EOY! WILL SEE YOU NEXT YEAR.
+
+### VIDEO RECORDING : https://drive.google.com/file/d/1-IVypxR7Mnco7mUV6Qmh-r37f2KK3JYM/view 
+
 ## 02Dec2022
 Just as a quick update to today's catch-up meeting (apologies, I forgot to record this meeting as well).
 
