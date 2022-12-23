@@ -20,3 +20,6 @@
 ^.lintr$
 ^sdtm$
 ^_envsetup.yml$
+^qc$
+^submission$
+^meeting_minutes$
