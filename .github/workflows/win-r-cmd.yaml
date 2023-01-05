@@ -22,6 +22,7 @@ jobs:
         config:
           - {os: windows-latest, r: '4.2', repos: 'https://cran.microsoft.com/snapshot/2022-12-14/'}
           - {os: macOS-latest, r: '4.2', repos: 'https://cran.microsoft.com/snapshot/2022-12-14/'}
+          - {os: ubuntu-20.04, r: '4.2', repos: 'https://cran.microsoft.com/snapshot/2022-12-14/'}
 
     env:
       REPOS: ${{ matrix.config.repos }}
