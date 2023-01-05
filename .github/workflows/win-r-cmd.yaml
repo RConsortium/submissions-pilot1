@@ -20,8 +20,8 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: windows-latest, r: '4.2', repos: 'https://cran.microsoft.com/snapshot/2022-11-01/'}
-          - {os: macOS-latest, r: '4.2', repos: 'https://cran.microsoft.com/snapshot/2022-11-01/'}
+          - {os: windows-latest, r: '4.2', repos: 'https://cran.microsoft.com/snapshot/2022-12-14/'}
+          - {os: macOS-latest, r: '4.2', repos: 'https://cran.microsoft.com/snapshot/2022-12-14/'}
 
     env:
       REPOS: ${{ matrix.config.repos }}
