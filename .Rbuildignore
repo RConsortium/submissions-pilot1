@@ -14,3 +14,14 @@
 ^adam$
 ^vignettes$
 ^\.github$
+^pilot3\.Rcheck$
+^pilot3.*\.tar\.gz$
+^pilot3.*\.tgz$
+^.lintr$
+^sdtm$
+^_envsetup.yml$
+^meeting_minutes$
+^.lycheeignore
+^qc$
+^submission$
+^meeting_minutes$

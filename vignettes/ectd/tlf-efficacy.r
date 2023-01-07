@@ -1,14 +1,16 @@
-# Note to Reviewer 
+# Note to Reviewer
 # To rerun the code below, please refer ADRG appendix.
-# After required package are installed. 
+# After required package are installed.
 # The path variable needs to be defined by using example code below
 #
+# nolint start
 # path = list(adam = "path/to/esub/analysis/adam/datasets")    	# Modify path to the actual location
 # path$output = "."                                             # Output saved in current folder
+# nolint end
 
 ## ------------------------------------------------------------------------------------------------------------------------------
 # Working directory requires write permission
-if(file.access(".", 2) != 0){
+if (file.access(".", 2) != 0) {
   warning(
     "The working directory '", normalizePath("."), "' is not writable.\n",
     "Please change it to a location with write permission."
@@ -25,7 +27,7 @@ library(haven)
 library(r2rtf)
 library(emmeans)
 
-# Propitiatory Package, please refer appendix of ADRG to install 
+# Propitiatory Package, please refer appendix of ADRG to install
 library(pilot1wrappers)
 
 
@@ -49,9 +51,9 @@ gluc_lmfit <- adlb1 %>%
   lm(CHG ~ BASE + TRTPN, data = .)
 
 ## Raw summary statistics
-t10 <- adlb1 %>% 
-  filter(AVISITN == 0) %>% 
-  group_by(TRTPN,TRTP) %>% 
+t10 <- adlb1 %>%
+  filter(AVISITN == 0) %>%
+  group_by(TRTPN, TRTP) %>%
   summarise(
     N = n(),
     mean_bl = mean(BASE),
@@ -73,8 +75,8 @@ t11 <- adlb1 %>%
 t12 <- emmeans(gluc_lmfit, "TRTPN")
 
 ## Merge and format data for reporting
-apr0ancova1 <- merge(t10, t11)  %>% 
-  merge(t12) %>% 
+apr0ancova1 <- merge(t10, t11) %>%
+  merge(t12) %>%
   mutate(emmean_sd = SE * sqrt(df)) %>%
   mutate(
     Trt = c("Xanomeline High Dose", "Placebo"),
@@ -178,5 +180,3 @@ tbl <- list(tbl_1, tbl_2, tbl_3)
 tbl %>%
   rtf_encode() %>%
   write_rtf(file.path(path$output, "tlf-efficacy.rtf"))
-
-
