@@ -41,6 +41,8 @@ jobs:
           if (repos != "") options(repos = repos)
           remotes::install_deps(dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
+          remotes::install_cran("devtools")
+          remotes::install_cran("pkgdown")
           devtools::install_github("pharmaverse/envsetup")
         shell: Rscript {0}
         
