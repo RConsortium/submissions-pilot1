@@ -12,6 +12,8 @@ library(haven)
 library(admiral)
 library(dplyr)
 library(labelled) # for variable labelling
+library(sjmisc)
+library(diffdf)
 
 # read source -------------------------------------------------------------
 # When SAS datasets are imported into R using haven::read_sas(), missing
@@ -77,9 +79,9 @@ adlb00 <- lb %>%
 # ADSL information --------------------------------------------------------
 
 adsl <- adsl %>%
-  dplyr::select(STUDYID, USUBJID, TRT01PN, TRT01P, TRT01AN, TRT01A, TRTSDT, TRTEDT, AGE, AGEGR1, AGEGR1N, RACE, RACEN, SEX,
-                COMP24FL, DSRAEFL, SAFFL) %>%
-  dplyr::mutate(SUBJID = sub(".*-", "", USUBJID))
+  dplyr::select(STUDYID, SUBJID, USUBJID, TRT01PN, TRT01P, TRT01AN, TRT01A, TRTSDT, TRTEDT, AGE, AGEGR1, AGEGR1N, RACE, RACEN, SEX,
+                COMP24FL, DSRAEFL, SAFFL) 
+  #dplyr::mutate(SUBJID = sub(".*-", "", USUBJID)) # SUBJID is already present in ADSL
 
 
 adlb01 <- adlb00 %>%
@@ -134,23 +136,17 @@ adlb04 <- adlb03 %>%
                                 PARCAT1 = "Parameter Category 1") #added label
 
 # Baseline ----------------------------------------------------------------
+##updating to use admiral programming
 
-bsl <- adlb04 %>%
-  dplyr::filter(LBBLFL=='Y') %>% #updated to use LBBLFL to get baseline
-  dplyr::arrange(STUDYID, USUBJID, PARAMCD, ADT, ADTM, LBSEQ) %>%
-  dplyr::group_by(STUDYID, USUBJID, PARAMCD) %>%
-  dplyr::slice(n()) %>%
-  dplyr::mutate(BASE = AVAL, B1LO = LBSTNRLO, B1HI = LBSTNRHI) %>% #moved ABLFL code below
-  dplyr::select(STUDYID, USUBJID, PARAMCD, BASE, B1LO, B1HI) #LBSEQ isn't needed for merging
+
+adlb05 <- adlb04 %>% dplyr::mutate(ABLFL = LBBLFL) %>%  
+  admiral::derive_var_base(
+    by_vars = vars(STUDYID, USUBJID, PARAMCD),
+    source_var = AVAL,
+    new_var = BASE
+  ) %>%0
+  admiral::derive_var_chg() 
   
-
-adlb05 <- adlb04 %>%
-  dplyr::left_join(bsl, by = c("STUDYID", "USUBJID", "PARAMCD")) %>%
-  dplyr::mutate(CHG = ifelse(is.na(LBBLFL),  AVAL - BASE, NA),
-                ABLFL = LBBLFL) %>% #CHG should be NA for baseline values
-  labelled::set_variable_labels(ABLFL = "Baseline Flag",
-                                CHG = "Change from Baseline")
-
 
 # VISITS ------------------------------------------------------------------
 
@@ -167,10 +163,9 @@ adlb06 <- adlb05 %>%
                                           grepl("UNSCHEDULED", VISIT) ==TRUE ~ "",
                                           TRUE ~ stringr::str_to_sentence(VISIT)),
                 AVISITN = dplyr::case_when(AVISIT == "Baseline"~ 0,
-                                           AVISIT =="" ~ -1,
                                           TRUE ~ as.numeric(gsub("[^0-9]","",AVISIT)) 
                                           )) %>%
-  sjmisc::add_rows(eot) %>% #keeps labelling
+  sjmisc::add_rows(eot) %>% #keeps labeling
   #dplyr::bind_rows(eot) %>%
   dplyr::mutate(ANL01FL = ifelse(grepl('UN', VISIT), "", "Y"), #how should ANL01FL be defined? doesn't seem to match up with prod dataset
                 AVISITN = ifelse(AVISITN == -1, "", AVISITN))
@@ -178,25 +173,25 @@ adlb06 <- adlb05 %>%
 
 # Limits ------------------------------------------------------------------
 
-adlb07 <- adlb06 %>%
-  dplyr::arrange(STUDYID, USUBJID, PARAMCD, ANL01FL, ADT, ADTM, LBSEQ) %>%
-  dplyr::mutate(DIFF = ifelse(ANL01FL == "Y" & dplyr::lag(ANL01FL) == "Y", abs(AVAL-dplyr::lag(AVAL)), NA)) %>%
-  dplyr::mutate(ANRIND = dplyr::case_when(AVAL < 0.5*LBSTNRLO | abs(DIFF) < ((LBSTNRHI-LBSTNRLO) * 0.50) ~ "L",
-                                          AVAL > 1.5* LBSTNRHI | abs(DIFF) > ((LBSTNRHI-LBSTNRLO) * 0.50) ~ "H",
-                                          TRUE ~ 'N'),
-                BNRIND = dplyr::case_when(BASE < 0.5*LBSTNRLO ~ "L",
-                                          BASE > 1.5* LBSTNRHI ~ "H",
-                                          TRUE ~ 'N'),
-                
-                A1LO = LBSTNRLO,
-                A1HI = LBSTNRHI,
-                R2A1LO = AVAL / A1HI,
-                R2A1HI = AVAL / A1LO,
-                BR2A1LO = AVAL / B1HI,
-                BR2A1HI = AVAL / B1LO,
-                ALBTRVAL = max((LBSTRESN-(1.5*LBSTNRHI)), ((.5*LBSTNRLO) - LBSTRESN))
-              ) %>%
-  dplyr::arrange(STUDYID, USUBJID, PARAMCD, ADT, ADTM) %>%
+#updating to use admiral dataset
+adlb07 <- adlb06 %>% 
+  dplyr::mutate(
+    ANRLO = LBSTNRLO, 
+    ANRHI = LBSTNRHI, 
+    A1LO = LBSTNRLO,
+    A1HI = LBSTNRHI, 
+    R2A1LO = AVAL / A1LO,
+    R2A1HI = AVAL / A1HI,
+    BR2A1LO = BASE / A1LO,
+    BR2A1HI = BASE / A1HI,
+    ALBTRVAL = max((LBSTRESN-(1.5*LBSTNRHI)), ((.5*LBSTNRLO) - LBSTRESN))
+  ) %>% 
+  admiral::derive_var_anrind() %>% 
+  admiral::derive_var_base(
+    by_vars = vars(STUDYID, USUBJID, PARAMCD),
+    source_var = ANRIND,
+    new_var = BNRIND
+  ) %>%  #Low and High values are repeating 
   dplyr::group_by(STUDYID, USUBJID, PARAMCD) %>%
   dplyr::mutate(AENTMTFL = ifelse(VISITNUM == 12, "Y", ifelse((row_number() == n()-1 | row_number() == n()) & VISITNUM < 12, "Y", ""))) %>% #n-1 to avoid avisitn = 99
   dplyr::ungroup()
@@ -209,7 +204,7 @@ adlb08 <-adlb07 %>%
                 TRTPN = TRT01PN,
                 TRTA = TRT01A,
                 TRTAN = TRT01AN) %>% 
-  select(STUDYID, SUBJID, USUBJID, TRTP,
+  dplyr::select(STUDYID, SUBJID, USUBJID, TRTP,
          TRTPN, TRTA, TRTAN, TRTSDT,
          TRTEDT, AGE, AGEGR1, AGEGR1N,
          RACE, RACEN, SEX, COMP24FL,
@@ -221,6 +216,13 @@ adlb08 <-adlb07 %>%
          ALBTRVAL, ANRIND, BNRIND, ABLFL,
          AENTMTFL, LBSEQ, LBNRIND, LBSTRESN
   )
+
+adlbc <- dplyr::arrange(adlb08,  USUBJID,PARAMCD, AVISIT, LBSEQ )
+
+prod_sort <- dplyr::arrange(prodc,  USUBJID,PARAMCD, AVISIT, LBSEQ )
+
+diffdf::diffdf(adlbc, prod_sort)
+
 
  
 
