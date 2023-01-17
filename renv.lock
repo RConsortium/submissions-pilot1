@@ -35,8 +35,6 @@
         "lattice"
       ]
     },
-<<<<<<< HEAD
-=======
     "NLP": {
       "Package": "NLP",
       "Version": "0.2-1",
@@ -45,7 +43,6 @@
       "Hash": "94b0a21c13933f61cf6272a192964624",
       "Requirements": []
     },
->>>>>>> 0f82fe579de05fc84903c37b9fdaf9d630d47cb8
     "R.cache": {
       "Package": "R.cache",
       "Version": "0.16.0",
