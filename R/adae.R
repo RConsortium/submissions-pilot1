@@ -22,14 +22,29 @@ library(xportr)
 rm(list = ls())  # Code removes all the Objects in the envirnoment 
 
 
+# ---------- #
+# read in AE #
+# ---------- #
+# data("admiral_ae")
+ae <- haven::read_xpt("https://github.com/RConsortium/submissions-pilot3-adam/blob/main/sdtm/ae.xpt?raw=true")
+suppae <- haven::read_xpt("https://github.com/RConsortium/submissions-pilot3-adam/blob/main/sdtm/suppae.xpt?raw=true")
 
-data("admiral_ae")
-data("admiral_adsl")
-data("ex_single")
+# ------------ #
+# read in ADSL #
+# ------------ #
+# data("admiral_adsl")
+adsl <- haven::read_xpt("https://github.com/RConsortium/submissions-pilot3-adam/blob/main/adam/adsl.xpt?raw=true")
 
-adsl <- admiral_adsl
-ae <- admiral_ae
-suppae <- admiral_suppae
+# ---------- #
+# read in EX #
+# ---------- #
+# data("ex_single")
+
+
+# adsl <- admiral_adsl
+# ae <- admiral_ae
+# suppae <- admiral_suppae
+
 
 # When SAS datasets are imported into R using haven::read_sas(), missing
 # character values from SAS appear as "" characters in R, instead of appearing
@@ -43,7 +58,22 @@ ex <- convert_blanks_to_na(ex_single)
 # Derivations ----
 
 # Get list of ADSL vars required for derivations
-adsl_vars <- vars(TRTSDT, TRTEDT, DTHDT, EOSDT)
+adsl_vars <- vars(TRTSDT
+                  ,TRTEDT
+                  ,STUDYID 
+                  ,SITEID
+                  ,TRT01A
+                  ,TRT01AN
+                  ,AGE
+                  ,AGEGR1
+                  ,AGEGR1N
+                  ,RACE
+                  ,RACEN
+                  ,SEX
+                  ,SAFFL
+                  ,TRTSDT
+                  ,TRTEDT
+               ) #, DTHDT, EOSDT)
 
 adae <- ae %>%
   # join adsl to ae
@@ -52,6 +82,13 @@ adae <- ae %>%
     new_vars = adsl_vars,
     by = vars(STUDYID, USUBJID) 
   ) %>%
+  
+  #------------------------------#
+  # Set TRTA and TRTAN from ADSL #
+  #------------------------------#
+  rename(TRTA = TRT01A,
+         TRTAN = TRT01AN) %>% 
+  
   ## Derive analysis start time ----
 derive_vars_dtm(
   dtc = AESTDTC,
@@ -66,7 +103,8 @@ derive_vars_dtm(
   highest_imputation = "M",
   date_imputation = "last",
   time_imputation = "last",
-  max_dates = vars(DTHDT, EOSDT)
+  # max_dates = vars(DTHDT, EOSDT)
+  max_dates = NULL
 )%>%
   
   
@@ -240,11 +278,20 @@ derive_vars_dtm_to_dt(vars(ASTDTM , AENDTM )) %>%
           , AEDECOD , AESER , AOCC02FL , AOCC03FL , AOCC04FL , CQ01NAM , AOCC01FL , 
           AETERM , AELLT , AELLTCD , AEDECOD , AEPTCD , AEHLT , AEHLTCD , 
           AEHLGT , AEHLGT , AEHLGTCD , AEBODSYS , AESOC , AESOCCD , AESEV ,AESER , AESCAN , AESCONG , AESDISAB , 
-          AESDTH , AESHOSP , AESLIFE , AESOD , AEREL , AEACN , AEOUT , AESEQ )
-
-
-
-
+          AESDTH , AESHOSP , AESLIFE , AESOD , AEREL , AEACN , AEOUT , AESEQ 
+          , STUDYID                  
+          ,SITEID
+          ,TRTA
+          ,TRTAN
+          ,AGE
+          ,AGEGR1
+          ,AGEGR1N
+          ,RACE
+          ,RACEN
+          ,SEX
+          ,SAFFL
+          ,TRTSDT
+          ,TRTEDT)
 
 adae2 <- adae %>% 
   arrange(USUBJID , AESEQ , ASTDT ,AEBODSYS , AEDECOD  ) %>% 
@@ -258,7 +305,20 @@ adae1 <- adae %>%
           AESER , AOCC02FL  , AOCC03FL  , AOCC04FL ,CQ01NAM , AOCC01FL , 
           AETERM , AELLT , AELLTCD , AEDECOD , AEPTCD , AEHLT , AEHLTCD , 
           AEHLGT , AEHLGT , AEHLGTCD , AEBODSYS , AESOC , AESOCCD , AESEV ,AESER , AESCAN , AESCONG , AESDISAB , 
-          AESDTH , AESHOSP , AESLIFE , AESOD , AEREL , AEACN , AEOUT , AESEQ )   
+          AESDTH , AESHOSP , AESLIFE , AESOD , AEREL , AEACN , AEOUT , AESEQ 
+          , STUDYID
+          ,SITEID
+          ,TRTA
+          ,TRTAN
+          ,AGE
+          ,AGEGR1
+          ,AGEGR1N
+          ,RACE
+          ,RACEN
+          ,SEX
+          ,SAFFL
+          ,TRTSDT
+          ,TRTEDT)   
 
 
 
@@ -324,21 +384,23 @@ label <- str(adae)
 summary(adae_or)
 
 adae_CHK <- adae_or %>% 
-            arrange(USUBJID,ASTDT  , AENDT ) %>% 
-            select (USUBJID , AESEQ ,  ASTDT , AOCCFL,AOCCSFL,ASTDTF , ASTDY , AENDT, AEBODSYS  , 
-                    AOCCSFL , AENDY, ADURN , ADURU , TRTEMFL , TRTSDT , AOCCPFL , 
-                    AEDECOD , AESER , AOCC02FL , AOCC03FL , AOCC04FL ,CQ01NAM , AOCC01FL, 
-                    AETERM , AELLT , AELLTCD , AEDECOD , AEPTCD , AEHLT , AEHLTCD , 
-                    AEHLGT , AEHLGT , AEHLGTCD , AEBODSYS , AESOC , AESOCCD , AESEV ,AESER , AESCAN , AESCONG , AESDISAB , 
-                    AESDTH , AESHOSP , AESLIFE , AESOD , AEREL , AEACN , AEOUT , AESEQ )
+            arrange(USUBJID,ASTDT  , AENDT ) 
+# %>% 
+#             select (USUBJID , AESEQ ,  ASTDT , AOCCFL,AOCCSFL,ASTDTF , ASTDY , AENDT, AEBODSYS  , 
+#                     AOCCSFL, AENDY, ADURN , ADURU , TRTEMFL , TRTSDT , AOCCPFL , 
+#                     AEDECOD , AESER , AOCC02FL , AOCC03FL , AOCC04FL ,CQ01NAM , AOCC01FL, 
+#                     AETERM , AELLT , AELLTCD , AEDECOD , AEPTCD , AEHLT , AEHLTCD , 
+#                     AEHLGT , AEHLGT , AEHLGTCD , AEBODSYS , AESOC , AESOCCD , AESEV ,AESER , AESCAN , AESCONG , AESDISAB , 
+#                     AESDTH , AESHOSP , AESLIFE , AESOD , AEREL , AEACN , AEOUT , AESEQ )
 
 adae_CHK <- adae_CHK%>% 
-  arrange(USUBJID , AESEQ , ASTDT ,AEBODSYS ) %>% 
-  select (USUBJID , AESEQ , ASTDT ,AEBODSYS, TRTEMFL,   AOCCPFL ,
-          AEDECOD , AESER , AOCC02FL  , AOCC03FL , AOCC04FL,CQ01NAM  , AOCC01FL, 
-          AETERM , AELLT , AELLTCD , AEDECOD , AEPTCD , AEHLT , AEHLTCD , 
-          AEHLGT , AEHLGT , AEHLGTCD , AEBODSYS , AESOC , AESOCCD , AESEV ,AESER , AESCAN , AESCONG , AESDISAB , 
-          AESDTH , AESHOSP , AESLIFE , AESOD , AEREL , AEACN , AEOUT , AESEQ)  
+  arrange(USUBJID , AESEQ , ASTDT ,AEBODSYS ) 
+# %>% 
+#   select (USUBJID , AESEQ , ASTDT ,AEBODSYS, TRTEMFL,   AOCCPFL ,
+#           AEDECOD , AESER , AOCC02FL  , AOCC03FL , AOCC04FL,CQ01NAM  , AOCC01FL, 
+#           AETERM , AELLT , AELLTCD , AEDECOD , AEPTCD , AEHLT , AEHLTCD , 
+#           AEHLGT , AEHLGT , AEHLGTCD , AEBODSYS , AESOC , AESOCCD , AESEV ,AESER , AESCAN , AESCONG , AESDISAB , 
+#           AESDTH , AESHOSP , AESLIFE , AESOD , AEREL , AEACN , AEOUT , AESEQ)  
 
 adae_CHK <- convert_blanks_to_na(adae_CHK)
 
