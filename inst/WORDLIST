@@ -1,10 +1,26 @@
+<<<<<<< HEAD
 adam
 ADaM
 ANCOVA
+=======
+ADADAS
+ADSL
+adam
+ADaM
+ANCOVA
+ANL
+AWHI
+AWLO
+AWRANGE
+AWTARGET
+AWTDIFF
+AWU
+>>>>>>> 0f82fe579de05fc84903c37b9fdaf9d630d47cb8
 Boettiger
 CDISC
 CMD
 Dermatologic
+<<<<<<< HEAD
 eCTD              
 fda         
 formatter
@@ -30,3 +46,34 @@ TTDE
 TLFs  
 Tplyr
 ungeneralized
+=======
+Kaplan
+LOCF
+LTS
+Luo
+Marwick
+PARAM
+PARAMN
+PHUSE
+Palukuru
+PharmaSUG
+QS
+RConsortium
+RMarkdown
+RStudio
+Reproducibility
+SDTM
+TLFs
+TTDE
+Tplyr
+eCTD
+fda
+formatter
+pkgdown
+repo
+reproducibility
+reproducibly
+sd
+ungeneralized
+BMI
+>>>>>>> 0f82fe579de05fc84903c37b9fdaf9d630d47cb8

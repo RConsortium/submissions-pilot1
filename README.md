@@ -72,5 +72,5 @@ We use `renv` to ensure reproducibility for R version and R package version.
 
 ### Utilities
 
-- `_pkgdown.yml`: [pkgdown](https://pkgdown.r-lib.org/articles/pkgdown.html) configuration file.
+- `_pkgdown.yml`: [pkgdown](https://pkgdown.r-lib.org/articles/pkgdown.html) configuration file. test
 

@@ -2,7 +2,11 @@
 # Source: https://github.com/pharmaverse/admiralci
 # Common workflows designed for Admiral
 # but can be easily used by any other R package
+<<<<<<< HEAD
 name: Admiral Workflows
+=======
+name: CI Workflows
+>>>>>>> 0f82fe579de05fc84903c37b9fdaf9d630d47cb8
 
 on:
   # 'workflow_dispatch' gives you the ability
@@ -13,17 +17,23 @@ on:
   push:
     branches:
       - main
+<<<<<<< HEAD
       - devel
       - pre-release
       - test
+=======
+>>>>>>> 0f82fe579de05fc84903c37b9fdaf9d630d47cb8
   # 'pull_request' events are triggered when PRs are
   # created against one of these target branches.
   pull_request:
     branches:
       - main
+<<<<<<< HEAD
       - devel
       - pre-release
       - test
+=======
+>>>>>>> 0f82fe579de05fc84903c37b9fdaf9d630d47cb8
   # 'release' events are triggered when...
   # you guessed it - when releases are made.
   release:

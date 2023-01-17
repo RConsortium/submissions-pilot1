@@ -1,0 +1,177 @@
+---
+title: "R Submission Pilot 3 Meeting Minutes"
+author: "Pilot 3 Team"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Pilot 3 team should be able to see updated meeting minutes here on a weekly basis.
+
+## 23Dec2022
+Meeting cancelled, because it's time to take a break and hang out with our Families and Friends. Have a well-deserved and relaxing break everyone.  We'll pick it up again next year!
+~Thomas and Joel
+
+![](images/eoy_meme.jpg)
+
+
+## 19Dec2022
+1. Ben S. - brought up package down sites for Pilot 3. Easy to do from Posit.
+
+### ACTION to Ben S. - work on Pilot 3 package down site. Update to show our progress on Pilot 3 ADaM. https://pkgdown.r-lib.org/
+### https://github.com/RConsortium/submissions-pilot3-adam/issues/11 
+
+2. Kanjie - ADAS almost done. Working on one more parameter discrepancy. Working using new functionality in `admiral{} 0.9.0` per updated `renv.lock`.
+
+### ACTION to Kanjie - work on table : https://github.com/RConsortium/submissions-pilot3-adam/issues/30 compare against Pilot 1.
+### googlespreadsheet define working well so far.  Updating the descriptions correctly so that the `metacore{}` package can import well.  Able to import excel directly.  At some point we'll need to update the Value Level metadata.
+
+3. Joel - still working on ADAE. Phani has worked on half of ADAE and still needs to derive 13 more variables.  I took time to meet with Phani set up his Posit Cloud and github connection, so he was able to push his script up to git, where then I can pull his work to continue updates.  Delivered Pilot 3 proposal to R Consortium for review : https://github.com/RConsortium/submissions-pilot3-adam/issues/37 
+
+4. Some notes for everyone on Pilot 3.  As we are all trying to work in the same environment on Posit or on your local computer, before making any pushes or PRs, please make sure you're not changing any of our environment files (e.g. `renv.lock`) in your branch, then pushing up and accidentally merging to main (though we do have the `main` branch protected, we're only human and something could get through). As users pull from main and merge to their dev branches to get the udpates, any change in the environment when doing a restore could show errors in their program due to different package versions. Pay attention to detail and mindful of the changes being made in your PRs.  Thanks everyone for your cooperation!
+
+### SEE YOU ALL NEXT YEAR.
+
+### VIDEO RECORDNG: https://drive.google.com/file/d/1oMtFbZQFuwptsWcf1fYGqo2lurtiIdL-/view 
+
+### ACTION to Joel - Create deadlines on `main` Read.me file so that everyone has transparency on work that needs to be done at a certain time. Maybe create a Kanban board on the issues.
+
+## 09Dec2022
+1. Joel 
+  - getting updated define.xml and converting to google spreadsheet, editable by everyone. Notes on the versioning, since Pilot 3 is based off of Pilot 1 it makes sense to use the define from Pilot 1 to continue using in Pilot 3. The CDISCPILOT define seems to have had a lot of issues in P21, but the Pilot 1 define only had 8 issues per P21 v5.2.
+    a. Current define spreadsheet here for team members to edit as needed : https://github.com/RConsortium/submissions-pilot3-adam/issues/10#issuecomment-1342005671 
+  - New issues created for Tables and Graphs.  Please assign yourself to work on these and test the Pilot 3 ADaMs as source data in these output programs to see if they match the Pilot 1 outputs.
+    
+2. Kanjie 
+  - `metacore{}` issue, not able to read in define.xml if there is a metadata label empty in the specs, but the `metacore{}` author/developers have worked on a fix for this to allow empty labels.  With this update, there could be a new version of `metacore{}`. 
+  - Continuing updates to ADAS specs in the new spreadsheet as needed.
+
+### ACTION to Kanjie : update `renv.lock` in `main` branch to the `metacore{}` version we need to have aformentioned udpate. Then all Pilot 3 users can run these steps https://pharmaverse.slack.com/archives/C04968ES7T4/p1671196678615089 to update their branches, including `renv::restore()` to get the udpated metacore package.
+
+3. Dadong 
+  - working on ADLB with Nicole. Current environment is on his working computer, but will plan to transition to Posit Cloud so that he will be using the same environment as the rest of the team.
+
+### ACTION to Thomas : Current Posit Cloud is now using R 4.2.2, where there is a check in `startup` that notes we should be using 4.2.1.  But this should not be the case.  Thomas will create an issue to remove the R version check so that we all just use the most current version in Posit Cloud. Current issue :
+```
+R version change [4.2.1 -> 4.2.2] detected when restoring session; search path not restored
+Connected to your session in progress, last started 2022-Dec-23 20:09:44 UTC (14 minutes ago)
+```
+4. Thomas 
+  - Final comments on ADSL pull request.  Declan will be taking on these updates and will be the first progam and dataset to be merged to main branch. 
+  - ADAS may soon be merged before the holiday by Kanjie.
+5. Ben S. 
+  - released a new version of Admiral 0.9.0 and should update `renv.lock` file.  
+      -Thomas mentioned we already proposed a CRAN snapshot from the 1st of November, but with the udpate needed for both `metacore{}` and `admiral{}`, we need to be clear in our final documents what CRAN snapshot we will be using.
+
+### ACTION/Request to Ben S. : Can we get `renv.lock` updated to also read in new Admiral version?
+
+6. Declan 
+  - working on ADSL PR. Working with Steven and Thomas, ADSL should be in merged to main soon.
+7. Robert 
+  - working on ADTTE. Has derived ADTTE with the ADAE dependency from the CDISCPilot/Pilot 1 ADaM datasets, not purely deriving from SDTM. May have a draft of this ADTTE in a week or so. Once ADAE is ready in Pilot 3, then ADTTE should source the Pilot 3 ADAE in the final run.  
+  - Note about testing. Working in 'Windows' vs 'Posit Cloud'. Once FDA receives Pilot 3 package, they may be running in Windows and not using Posit Cloud, like us. 
+  - Confirms that he uses `.R` suffix vs `.r` 
+  - has also removed the `ad_` prefix in program filename as readable code would normally not have this prefix. 
+  - Found a Merck document that describes the udpates to the define. Could be helpful for traceability.
+
+### ACTION/Request to Robert : Can you share the Merck document describing the updates to the define and post it here : https://github.com/RConsortium/submissions-pilot3-adam/issues/10 ?  Maybe even get the define.xml for to push to our Pilot 3 repo.
+### ACTION/Request to Ben S. : At the end of our pilot 3, we need to test that our package runs fine on a regular Windows environment, not Posit.  As most likely our stakeholders will just be running on their local computers.
+
+8. Phani 
+  - Progress on ADAE, date variables updated, still working on 13 more variables. Still working on his local machine and will need help with setting up Posit and Git.
+9. Lei 
+  - Will help with issue #10.
+10. Bingjun (Ben) 
+  - Working on ADTTE, using `admiral{}`, not `dplyr{}`.
+11. AOB :
+  - FOLLOW-UP question from Steven H. : 
+  ```The derivation of all highlighted variables can not be ADLB.XXX = LB.VISITNUM, especially not variables that are taken from demographics like AGE.```
+    - Joel Response : It seems the erroneoulsy documented derivations for these variables are not the datasets we are working with in Pilot 3.  For now, we can ignore these if they do not impact the datasets we are working on.  I tried to create an issue in the TDF repo, but 'issues' weren't accessible to me. Feel free to add an issue if you have access : https://github.com/phuse-org/TestDataFactory 
+    
+![](images/TDF_define_LB.VISITNUM_incorrect.PNG)
+
+### HAPPY HOLIDAYS TO ALL TAKING EARLY BREAK FOR THE EOY! WILL SEE YOU NEXT YEAR.
+
+### VIDEO RECORDING : https://drive.google.com/file/d/1-IVypxR7Mnco7mUV6Qmh-r37f2KK3JYM/view 
+
+## 02Dec2022
+Just as a quick update to today's catch-up meeting (apologies, I forgot to record this meeting as well).
+
+1. Our current focus (the meat of the project) is just to continue working on ADaM programming.  The organization and final areas where all of our documents, programs, directory packages will go can be decided at a later time.  To help set priorities, my suggestion would be :
+    a. Posit Cloud and github setup. Make sure we're all working in the same environment.
+    b. First line programming of ADaMs (e.g. define updates, checks against the CDISC pilot ADaMs using {diffdf} )
+    c. Once we {diffdf}  checks pass, then run these source datasets into Pilot 1 programs.
+        i. Please study and reference this doc : https://github.com/RConsortium/submissions-pilot1-to-fda/blob/main/m1/us/report-tlf.pdf
+        ii. Since we forked the Pilot 1 repo, we should be able to get Pilot 1 programs from here : https://github.com/RConsortium/submissions-pilot3-adam/tree/main/vignettes
+        iii. Update Pilot 1 programs to make sure they work in our current environment (e.g. R v4.2.1, any package updates needed due to different R version we are using), per https://github.com/RConsortium/submissions-pilot3-adam/issues/6
+2. Will need to work with 
+@Phani Tata
+ github set-up off-line to save versions of his development.  Thanks, Phani for continuing with the ADAE program development.
+3. We need define udpates per 
+@Kangjie Zhang
+ request.  A proposal has been made here if anyone can help with this : https://github.com/RConsortium/submissions-pilot3-adam/issues/10#issuecomment-1335565702
+4. @Bingjun Wang
+ working on ADRG. You may use content in this proposal for ADRG. See : https://github.com/RConsortium/submissions-pilot3-adam/issues/28#issuecomment-1335528257
+5. @Nicole Jones
+ has updated Pilot 3 main repo info.  Thank you! Now continuing on with ADLBC with 
+@Dadong Zhang
+.
+6. ADSL updates are underway as I see communication here : https://github.com/RConsortium/submissions-pilot3-adam/pull/27
+7. ADTTE also upon finalization : https://github.com/RConsortium/submissions-pilot3-adam/pull/21 .
+
+For all working on the datasets, recall the approach is to use the the Pharmaverse packages, i.e., {admiral} package.
+
+Announcement : Proposal for Pilot 3 FDA execution will be delivered to the rest of the R Consortium team soon. If you'd like to take a read updated proposal is here, for now, and will soon be in the RConsortium submissionswg repo .
+
+Let 
+@Thomas Neitmann
+ or I know if you have any further questions.
+
+## 28Nov2022
+Unfortunately we didn’t record last week’s stand up. But given the holidays in the US it was a very short meeting anyways with only 4 attendees. I think the most important decision we made was to write all ADaM scripts as plain .R files and not .Rmd files. Please use admiral/pharmaverse function if available and only rely on dplyr/tidyverse as a fallback option. Also, please open a pull request as soon as you have a draft program available. That way the progress on your programs is transparent for all team members. Just follow what 
+@Kangjie Zhang
+ did.
+ 
+## 14Nov2022
+Thanks, @channel for those able to join today's Pilot 3 weekly catch-up meeting.  Just to bullet :
+
+1. Welcome @Declan Hodges to the team! Great to have more participation in this pilot.  Currently, Declan is working to get his environment set-up on his end to begin work.  Any current issues open in the repo, please feel free to assign yourself, Declan. 
+
+2. Overall, it seems all others have been able to set up an instance of the working environment on R Studio Cloud just fine and all ADaMs seem to be in good progress.
+
+3. An issue came up regarding the define.xml , which doesn't seem to correspond very well with the define.pdf for.  We've scoured the CDISC Pilot repo to see if there were any newer updates of the .xml file, but have not found one.  Action to 
+@Lei Zhao
+ :
+    a.    We could reach out to someone from the CDISC pilot team (maybe add an issue in their repo)         to find out if we can get an updated define.xml.
+    b.    Alternatively, if there is an .xls out there matching the define.pdf , we could use that
+        .xls to read into to P21, then re-export a define.xml that way.
+            -@Dadong Zhang @Kangjie Zhang, please feel free to chime in further on this topic to                elaborate on the issues that you are seeing.
+            -Re : https://github.com/RConsortium/submissions-pilot3-adam/issues/10
+
+4. Discussion about workflow.  For those new to github, it may help to have a small video tutorial on how to collaborate through git.  Two approaches discussed :
+    a.    For each dataset a branch has been created. If there are 2+ contributors to a branch, they       can continue working in the same branch, but just requires clear communication on when             updated are pushed and when other contributors can pull to get those updates to continue           working further until completion until final script is ready to merge back to main.
+    b.    For each dataset a branch has been created. Additionally, for each contributor, they should       also make their own branch for their own development/updates to the script, then PR to             dataset branch to get the updates, resolve conflicts, and merge to completion, until final         script is ready to merge back to main.
+
+
+## 02Nov2022 : R Submission Pilot 3 - ADaM Kick-off
+- Team Roster: https://docs.google.com/spreadsheets/d/1BW9Jojo4bAgxbfM96nXooh2QAlU6CKwk19pInxmI2VA/edit?usp=sharing
+- GitHub repo: https://github.com/RConsortium/submissions-pilot3-adam
+
+- We added SDTM from from CDISC Pilot Project to the Pilot 3 repo so that our R ADaM programs can source these domains.
+- We also added ADaMs from the CDISC Pilot Project for ADaM developers can {diffdf} on.
+- {admiral} set-up demos : 
+https://www.youtube.com/channel/UCxQFEv8HNqM01DXzdQLCy6Q/videos 
+https://pharmaverse.slack.com/files/U028SDSVAR0/F0461A8E4CC/hello__admiral________2022-10-07_14_04_gmt_2_.mp4
+- Work environment is here : https://login.rstudio.cloud/invite?code=nwG-pLCv8EP2fR7j2p9ZuEJ17P0mOBgmqhOyANhL&space_name=R+Submission+Pilot+3+-+ADaM
+- If you already created a branch for a dataset to work on then you can get current updates by running the following commands in the RStudio terminal:
+```
+git checkout main
+git pull
+git checkout <your_branch>
+git merge --no-edit main
+```
+- SAP : https://pharmaverse.slack.com/files/U028SDSVAR0/F04A5FFSGA3/cdiscpilot01.pdf
+- Define : https://github.com/RConsortium/submissions-pilot3-adam/issues/19 
