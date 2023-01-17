@@ -33,7 +33,8 @@ suppae <- haven::read_xpt("https://github.com/RConsortium/submissions-pilot3-ada
 # read in ADSL #
 # ------------ #
 # data("admiral_adsl")
-adsl <- haven::read_xpt("https://github.com/RConsortium/submissions-pilot3-adam/blob/main/adam/adsl.xpt?raw=true")
+# adsl <- haven::read_xpt("https://github.com/RConsortium/submissions-pilot3-adam/blob/main/adam/adsl.xpt?raw=true")
+adsl <- haven::read_xpt("https://github.com/RConsortium/submissions-pilot3-adam/blob/main/submission/datasets/adsl.xpt?raw=true")
 
 # ---------- #
 # read in EX #
