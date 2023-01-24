@@ -13,6 +13,7 @@ library(metacore)
 library(metatools)
 library(stringr)
 library(xportr)
+library(pilot3)
 
 dm <- haven::read_xpt(file.path("sdtm", "dm.xpt"))
 qs <- haven::read_xpt(file.path("sdtm", "qs.xpt"))
@@ -75,14 +76,17 @@ actot_expected_obsv <- tibble::tribble(
   "ACTOT", 24, "Week 24"
 )
 
-adas_locf <- derive_locf_records(
+adas_locf <- derive_locf_records_(
   data = adas2,
   dataset_expected_obs = actot_expected_obsv,
-  by_vars = vars(STUDYID, USUBJID, PARAMCD),
-  # by_vars = vars(STUDYID, SITEID, SITEGR1, USUBJID, TRTSDT, TRTEDT,
-  #               TRTP, TRTPN, AGE, AGEGR1, AGEGR1N, RACE, RACEN, SEX,
-  #               ITTFL, EFFFL, COMP24FL, PARAMCD),
-  order = vars(AVISITN, AVISIT)
+  # by_vars = vars(STUDYID, USUBJID, PARAMCD),
+  by_vars = vars(
+    STUDYID, SITEID, SITEGR1, USUBJID, TRTSDT, TRTEDT,
+    TRTP, TRTPN, AGE, AGEGR1, AGEGR1N, RACE, RACEN, SEX,
+    ITTFL, EFFFL, COMP24FL, PARAMCD
+  ),
+  order = vars(AVISITN, AVISIT),
+  keep_vars = vars(VISIT, VISITNUM, ADY, ADT, PARAM, PARAMN, QSSEQ)
 )
 # ADT/ADY/.. to be populated for LOCF records
 # issue raised for admiral::derive_locf_records
