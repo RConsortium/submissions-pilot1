@@ -2,7 +2,7 @@
 #
 # Label: Adverse Event Analysis Dataset
 #
-# Input: ae, adsl, ex_single
+# Input: ae, adsl
 
 library(admiral)
 library(admiral.test) # Contains example datasets from the CDISC pilot project
@@ -11,7 +11,6 @@ library(lubridate)
 library(stringr)
 library(arsenal)  
 library(diffdf)
-#install.packages("xportr")
 library(xportr)
 
 # Load source datasets ----
@@ -25,27 +24,13 @@ rm(list = ls())  # Code removes all the Objects in the envirnoment
 # ---------- #
 # read in AE #
 # ---------- #
-# data("admiral_ae")
 ae <- haven::read_xpt("https://github.com/RConsortium/submissions-pilot3-adam/blob/main/sdtm/ae.xpt?raw=true")
 suppae <- haven::read_xpt("https://github.com/RConsortium/submissions-pilot3-adam/blob/main/sdtm/suppae.xpt?raw=true")
 
 # ------------ #
 # read in ADSL #
 # ------------ #
-# data("admiral_adsl")
-# adsl <- haven::read_xpt("https://github.com/RConsortium/submissions-pilot3-adam/blob/main/adam/adsl.xpt?raw=true")
 adsl <- haven::read_xpt("https://github.com/RConsortium/submissions-pilot3-adam/blob/main/submission/datasets/adsl.xpt?raw=true")
-
-# ---------- #
-# read in EX #
-# ---------- #
-# data("ex_single")
-
-
-# adsl <- admiral_adsl
-# ae <- admiral_ae
-# suppae <- admiral_suppae
-
 
 # When SAS datasets are imported into R using haven::read_sas(), missing
 # character values from SAS appear as "" characters in R, instead of appearing
@@ -53,8 +38,6 @@ adsl <- haven::read_xpt("https://github.com/RConsortium/submissions-pilot3-adam/
 # https://pharmaverse.github.io/admiral/articles/admiral.html#handling-of-missing-values
 
 ae <- convert_blanks_to_na(ae)
-ex <- convert_blanks_to_na(ex_single)
-
 
 # Derivations ----
 
@@ -74,7 +57,7 @@ adsl_vars <- vars(TRTSDT
                   ,SAFFL
                   ,TRTSDT
                   ,TRTEDT
-               ) #, DTHDT, EOSDT)
+               )
 
 adae <- ae %>%
   # join adsl to ae
@@ -292,7 +275,15 @@ derive_vars_dtm_to_dt(vars(ASTDTM , AENDTM )) %>%
           ,SEX
           ,SAFFL
           ,TRTSDT
-          ,TRTEDT)
+          ,TRTEDT
+          ,ASTDTF
+          ,ASTDY
+          ,AENDT
+          ,AENDY
+          ,ADURN
+          ,ADURU
+          ,AOCCFL
+          ,AOCCSFL)
 
 adae2 <- adae %>% 
   arrange(USUBJID , AESEQ , ASTDT ,AEBODSYS , AEDECOD  ) %>% 
@@ -319,7 +310,15 @@ adae1 <- adae %>%
           ,SEX
           ,SAFFL
           ,TRTSDT
-          ,TRTEDT)   
+          ,TRTEDT
+          ,ASTDTF
+          ,ASTDY
+          ,AENDT
+          ,AENDY
+          ,ADURN
+          ,ADURU
+          ,AOCCFL
+          ,AOCCSFL)
 
 
 
@@ -363,9 +362,72 @@ metacore <- data.frame(
 
 
 adae2 <- xportr_label(adae, metacore)
+labels(adae2)
+
+
+adae1 <-  adae1 %>%   
+          arrange(USUBJID , AESEQ , ASTDT ,AEBODSYS ) %>% 
+          set_labels(c(STUDYID = "Study Identifier",
+                       SITEID = "Study Site Identifier",
+                       USUBJID = "Unique Subject Identifier",
+                       TRTA = "Actual Treatment",
+                       TRTAN = "Actual Treatment (N)",
+                       AGE = "Age",
+                       AGEGR1 = "Pooled Age Group 1",
+                       AGEGR1N = "Pooled Age Group 1 (N)",
+                       RACE = "Race",
+                       RACEN = "Race (N)",
+                       SEX = "Sex",
+                       SAFFL = "Safety Population Flag",
+                       TRTSDT = "Date of First Exposure to Treatment",
+                       TRTEDT = "Date of Last Exposure to Treatment",
+                       ASTDT = "Analysis Start Date",
+                       ASTDTF = "Analysis Start Date Imputation Flag",
+                       ASTDY = "Analysis Start Relative Day",
+                       AENDT = "Analysis End Date",
+                       AENDY = "Analysis End Relative Day",
+                       ADURN = "AE Duration (N)",
+                       ADURU = "AE Duration Units",
+                       AETERM = "Reported Term for the Adverse Event",
+                       AELLT = "Lowest Level Term",
+                       AELLTCD = "Lowest Level Term Code",
+                       AEDECOD = "Dictionary-Derived Term",
+                       AEPTCD = "Preferred Term Code",
+                       AEHLT = "High Level Term",
+                       AEHLTCD = "High Level Term Code",
+                       AEHLGT = "High Level Group Term",
+                       AEHLGTCD = "High Level Group Term Code",
+                       AEBODSYS = "Body System or Organ Class",
+                       AESOC = "Primary System Organ Class",
+                       AESOCCD = "Primary System Organ Class Code",
+                       AESEV = "Severity/Intensity",
+                       AESER = "Serious Event",
+                       AESCAN = "Involves Cancer",
+                       AESCONG = "Congenital Anomaly or Birth Defect",
+                       AESDISAB = "Persist or Signif Disability/Incapacity",
+                       AESDTH = "Results in Death",
+                       AESHOSP = "Requires or Prolongs Hospitalization",
+                       AESLIFE = "Is Life Threatening",
+                       AESOD = "Occurred with Overdose",
+                       AEREL = "Causality",
+                       AEACN = "Action Taken with Study Treatment",
+                       AEOUT = "Outcome of Adverse Event",
+                       AESEQ = "Sequence Number",
+                       TRTEMFL = "Treatment Emergent Analysis Flag",
+                       AOCCFL = "1st Occurrence of Any AE Flag",
+                       AOCCSFL = "1st Occurrence of SOC Flag",
+                       AOCCPFL = "1st Occurrence of Preferred Term Flag",
+                       AOCC02FL = "1st Occurrence 02 Flag for Serious",
+                       AOCC03FL = "1st Occurrence 03 Flag for Serious SOC",
+                       AOCC04FL = "1st Occurrence 04 Flag for Serious PT",
+                       CQ01NAM = "Customized Query 01 Name",
+                       AOCC01FL = "1st Occurrence 01 Flag for CQ01"
+                       
+                       ))
 
 adae1 <- convert_blanks_to_na(adae1)
  
+labels(adae1)
 
 str(adae)
 
@@ -386,96 +448,12 @@ summary(adae_or)
 
 adae_CHK <- adae_or %>% 
             arrange(USUBJID,ASTDT  , AENDT ) 
-# %>% 
-#             select (USUBJID , AESEQ ,  ASTDT , AOCCFL,AOCCSFL,ASTDTF , ASTDY , AENDT, AEBODSYS  , 
-#                     AOCCSFL, AENDY, ADURN , ADURU , TRTEMFL , TRTSDT , AOCCPFL , 
-#                     AEDECOD , AESER , AOCC02FL , AOCC03FL , AOCC04FL ,CQ01NAM , AOCC01FL, 
-#                     AETERM , AELLT , AELLTCD , AEDECOD , AEPTCD , AEHLT , AEHLTCD , 
-#                     AEHLGT , AEHLGT , AEHLGTCD , AEBODSYS , AESOC , AESOCCD , AESEV ,AESER , AESCAN , AESCONG , AESDISAB , 
-#                     AESDTH , AESHOSP , AESLIFE , AESOD , AEREL , AEACN , AEOUT , AESEQ )
 
 adae_CHK <- adae_CHK%>% 
   arrange(USUBJID , AESEQ , ASTDT ,AEBODSYS ) 
-# %>% 
-#   select (USUBJID , AESEQ , ASTDT ,AEBODSYS, TRTEMFL,   AOCCPFL ,
-#           AEDECOD , AESER , AOCC02FL  , AOCC03FL , AOCC04FL,CQ01NAM  , AOCC01FL, 
-#           AETERM , AELLT , AELLTCD , AEDECOD , AEPTCD , AEHLT , AEHLTCD , 
-#           AEHLGT , AEHLGT , AEHLGTCD , AEBODSYS , AESOC , AESOCCD , AESEV ,AESER , AESCAN , AESCONG , AESDISAB , 
-#           AESDTH , AESHOSP , AESLIFE , AESOD , AEREL , AEACN , AEOUT , AESEQ)  
 
 adae_CHK <- convert_blanks_to_na(adae_CHK)
 
 
 summary(comparedf(adae1  , adae_CHK , by = "row.names"   ) ) 
 
-
-
-
-
-
-
- 
-
-
-# 
-# adae1  <- adae  %>% filter(is.na(adae$ASTDTF) > 0 )
-# 
-# adae_CHK1  <- adae_CHK %>% filter(is.na(adae$ASTDTF) > 0 )
-# 
-# adae_or <- read_xpt("https://github.com/RConsortium/submissions-pilot3-adam/blob/main/adam/adae.xpt?raw=true")
-# 
-# adae1  <- adae  %>% filter(USUBJID =="01-701-1363" | USUBJID =="01-703-1076" 
-#                               |USUBJID =="01-703-1258"  | USUBJID =="01-710-1077" | 
-#                              USUBJID == "01-701-1118"  )%>% 
-# 
-#   select (USUBJID ,  ASTDT   , AENDT  , TRTSDT, TRTEMFL   )
-# 
-# 
-# adae_CHK1  <- adae_CHK  %>% filter(USUBJID =="01-701-1363" | USUBJID =="01-703-1076" 
-#                                     |USUBJID =="01-703-1258"  | USUBJID =="01-710-1077" | 
-#                                       USUBJID == "01-701-1118"   )  %>% 
-#   select (USUBJID ,  ASTDT   , AENDT  , TRTSDT, TRTEMFL   )
-# 
-# 
-# summary(comparedf(adae1 , adae_CHK1 ,  by = "row.names"  ) ) 
-# 
-#  
-
-
-# 
-# 
-# astdtc   <- ae %>%  
-#   mutate (
-#     AESTDTCD =  as.Date(AESTDTC)   
-#   ) %>% 
-#   mutate( ASTDTF = case_when( str_length (AESTDTC) == 7 ~ "D")  , 
-#           
-#           AESTDX = case_when (str_length (AESTDTC) == 7 ~ paste0(AESTDTC, "-01"    , sep ="") ,
-#                               str_length(AESTDTC) == 10 ~ AESTDTC ) , 
-#           ASTDT = ymd(AESTDX)  
-#   ) %>% 
-#   
-#   arrange(USUBJID,ASTDT  ) %>% 
-#   select (USUBJID ,  ASTDT   ,ASTDTF )
-
-
-# 
-# 
-# adae_durn <- adae %>%   
-#   mutate (  ADURN_C =  ifelse (ASTDTF == "D"| ADURN >0     , NA_integer_  , ADURN )  )   %>% 
-#   arrange(USUBJID,ASTDT  , AENDT ) %>% 
-#   select (USUBJID , ADURN_C , ASTDTF ,  ADURN )
-# 
-# 
-# adae_durn <-   mutate ( adae , ADURN_C =  ifelse (ASTDTF == "D"| ADURN >0     , NA_integer_  , ADURN )  ) 
-# 
-# 
-# starwars %>%
-#   select(name:mass, gender, species) %>%
-#   mutate(
-#     type = case_when(
-#       height > 200 | mass > 200 ~ "large",
-#       species == "Droid"        ~ "robot",
-#       TRUE                      ~ "other"
-#     )
-#   )
