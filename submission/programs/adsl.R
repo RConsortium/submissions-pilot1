@@ -136,11 +136,10 @@ adsl00 <- dm %>%
 # distinct(adsl_prod[which(adsl_prod$SITEGR1 == "900"), c("SITEID", "SITEGR1")])
 
 adsl01 <- adsl00 %>%
+  create_cat_var(adsl_spec, AGE, AGEGR1, AGEGR1N) %>%
+  create_var_from_codelist(adsl_spec, RACE, RACEN) %>%
   mutate(
-    SITEGR1 = format_sitegr1(SITEID),
-    AGEGR1 = format_agegr1(AGE),
-    AGEGR1N = format_agegr1n(AGE),
-    RACEN = format_racen(RACE)
+    SITEGR1 = format_sitegr1(SITEID)
   )
 
 # Population flag ---------------------------------------------------------
@@ -227,9 +226,9 @@ vs00 <- vs %>%
   select(STUDYID, USUBJID, VSTESTCD, AVAL) %>%
   pivot_wider(names_from = VSTESTCD, values_from = AVAL, names_glue = "{VSTESTCD}BL") %>%
   mutate(
-    BMIBL = round(WEIGHTBL / (HEIGHTBL / 100)^2, digits = 1),
-    BMIBLGR1 = format_bmiblgr1(BMIBL)
-  )
+    BMIBL = round(WEIGHTBL / (HEIGHTBL / 100)^2, digits = 1)
+  ) %>%
+  create_cat_var(adsl_spec, BMIBL, BMIBLGR1)
 
 sc00 <- sc %>%
   filter(SCTESTCD == "EDLEVEL") %>%
@@ -279,9 +278,9 @@ adsl06 <- adsl05 %>%
     add_one = TRUE
   ) %>%
   mutate(
-    DURDIS = round(DURDIS, digits = 1),
-    DURDSGR1 = format_durdsgr1(DURDIS)
+    DURDIS = round(DURDIS, digits = 1)
   ) %>%
+  create_cat_var(adsl_spec, DURDIS, DURDSGR1) %>%
   derive_vars_dt(
     dtc = RFENDTC,
     new_vars_prefix = "RFEN",
