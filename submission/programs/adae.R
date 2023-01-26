@@ -461,13 +461,19 @@ summary(comparedf(adae1  , adae_CHK , by = "row.names"   ) )
 
 
 # Export to xpt -----------------------------------------------------
+## placeholder for origin=predecessor, use metatool::build_from_derived()
+metacore <- spec_to_metacore("adam/TDF_ADaM - Pilot 3 Team updated.xlsx", where_sep_sheet = FALSE)
+# Get the specifications for the dataset we are currently building
+adae_spec <- metacore %>%
+  select_dataset("ADAE")
+
 adae1 %>%
-  drop_unspec_vars(adsl_spec) %>% # Check all variables specified are present and no more
-  check_ct_data(adsl_spec, na_acceptable = TRUE) %>% # Checks all variables with CT only contain values within the CT
-  order_cols(adsl_spec) %>% # Orders the columns according to the spec
-  sort_by_key(adsl_spec) %>% # Sorts the rows by the sort keys
-  xportr_length(adsl_spec) %>% # Assigns SAS length from a variable level metadata
-  xportr_label(adsl_spec) %>% # Assigns variable label from metacore specifications
-  xportr_df_label(adsl_spec) %>% # Assigns dataset label from metacore specifications
-  xportr_write("submission/datasets/adae1.xpt")
+  drop_unspec_vars(adae_spec) %>% # Check all variables specified are present and no more
+  check_ct_data(adae_spec, na_acceptable = TRUE) %>% # Checks all variables with CT only contain values within the CT
+  order_cols(adae_spec) %>% # Orders the columns according to the spec
+  sort_by_key(adae_spec) %>% # Sorts the rows by the sort keys
+  xportr_length(adae_spec) %>% # Assigns SAS length from a variable level metadata
+  xportr_label(adae_spec) %>% # Assigns variable label from metacore specifications
+  xportr_df_label(adae_spec) %>% # Assigns dataset label from metacore specifications
+  xportr_write("submission/datasets/adae.xpt")
 
