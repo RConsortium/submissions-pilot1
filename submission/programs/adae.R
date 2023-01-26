@@ -14,6 +14,8 @@ library(stringr)
 library(arsenal)  
 library(diffdf)
 library(xportr)
+library(metacore)
+library(metatools)
 
 # Load source datasets ----
 
