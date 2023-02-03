@@ -8,34 +8,22 @@
 # path$output = "."                                             # Output saved in current folder
 # nolint end
 
-## ------------------------------------------------------------------------------------------------------------------------------
-# Working directory requires write permission
-if (file.access(".", 2) != 0) {
-  warning(
-    "The working directory '", normalizePath("."), "' is not writable.\n",
-    "Please change it to a location with write permission."
-  )
-}
-
-
 ## ----setup, message=FALSE------------------------------------------------------------------------------------------------------
 # CRAN package, please using install.packages() to install
 library(tidyr)
 library(dplyr)
 library(Tplyr)
 library(pharmaRTF)
-
-# Propitiatory Package, please refer appendix of ADRG to install
-library(pilot1wrappers)
-
+devtools::load_all()
+library(pilot3)
 
 ## ------------------------------------------------------------------------------------------------------------------------------
 options(huxtable.add_colnames = FALSE)
 
 
 ## ------------------------------------------------------------------------------------------------------------------------------
-adas <- haven::read_xpt(file.path(path$adam, "adadas.xpt"))
-adsl <- haven::read_xpt(file.path(path$adam, "adsl.xpt"))
+adas <- haven::read_xpt(file.path("submission/datasets/", "adadas.xpt"))
+adsl <- haven::read_xpt(file.path("submission/datasets/", "adsl.xpt"))
 
 
 ## ------------------------------------------------------------------------------------------------------------------------------
@@ -161,4 +149,4 @@ doc <- rtf_doc(ht) %>%
   )
 
 # Write out the RTF
-write_rtf(doc, file = file.path(path$output, "tlf-primary.rtf"))
+write_rtf(doc, file = file.path("output/", "tlf-primary-pilot3.rtf"))

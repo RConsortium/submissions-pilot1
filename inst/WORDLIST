@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 ADADAS
 adam
+=======
+>>>>>>> 33fe81b7507c3ed66838b35b16cb7d8a9073e8d0
 ADaM
 ADSL
 ANCOVA
+<<<<<<< HEAD
 ANL
 AWHI
 AWLO
@@ -10,20 +14,27 @@ AWRANGE
 AWTARGET
 AWTDIFF
 AWU
+=======
+>>>>>>> 33fe81b7507c3ed66838b35b16cb7d8a9073e8d0
 BMI
 Boettiger
 CDISC
 CMD
 Dermatologic
+<<<<<<< HEAD
 eCTD
 fda
 formatter
 GitHub   
+=======
+Gayatri
+>>>>>>> 33fe81b7507c3ed66838b35b16cb7d8a9073e8d0
 Kaplan
 LOCF
 LTS
 Luo
 Marwick
+<<<<<<< HEAD
 Palukuru
 PARAM
 PARAMN
@@ -31,6 +42,11 @@ PharmaSUG
 PHUSE
 pkgdown
 QS
+=======
+PHUSE
+Palukuru
+PharmaSUG
+>>>>>>> 33fe81b7507c3ed66838b35b16cb7d8a9073e8d0
 RConsortium
 repo
 Reproducibility
@@ -38,9 +54,28 @@ reproducibility
 reproducibly
 RMarkdown
 RStudio
+<<<<<<< HEAD
 sd
 SDTM
+=======
+Reproducibility
+>>>>>>> 33fe81b7507c3ed66838b35b16cb7d8a9073e8d0
 TLFs
 Tplyr
+<<<<<<< HEAD
 TTDE
 ungeneralized
+=======
+adam
+bds
+der
+eg
+formatter
+pkgdown
+prm
+repo
+reproducibility
+reproducibly
+sd
+ungeneralized
+>>>>>>> 33fe81b7507c3ed66838b35b16cb7d8a9073e8d0
