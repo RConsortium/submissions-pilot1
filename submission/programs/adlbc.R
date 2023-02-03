@@ -14,6 +14,7 @@ library(dplyr)
 library(tidyr)
 library(metacore)
 library(metatools)
+library(xportr)
 library(stringr)
 
 # read source -------------------------------------------------------------
@@ -196,8 +197,15 @@ adlbc <-adlb07 %>%
                 TRTAN = TRT01AN) %>% 
   drop_unspec_vars(adlbc_spec) %>% 
   order_cols(adlbc_spec) %>% 
-  set_variable_labels(adlbc_spec)
+  set_variable_labels(adlbc_spec) %>% 
+  xportr_format(adlbc_spec$var_spec %>%
+                  mutate_at(c("format"), ~ replace_na(., "")), "ADLBC") %>%
+  xportr_write("submission/datasets/adlbc.xpt",
+               label = "Analysis Dataset Lab Blood Chemistry"
+  )
 
+
+#Output final dataset to submissions
 
 
 
