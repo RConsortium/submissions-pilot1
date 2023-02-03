@@ -27,27 +27,27 @@ library(stringr)
 ## Laboratory Tests Results (LB)
 lb <- convert_blanks_to_na(read_xpt(file.path("sdtm", "lb.xpt")))
 ## Supplemental Qualifiers for LB (SUPPLB)
-supplb <-  convert_blanks_to_na(read_xpt(file.path("sdtm", "supplb.xpt")))
+supplb <- convert_blanks_to_na(read_xpt(file.path("sdtm", "supplb.xpt")))
 
 
 # Read and convert NA for ADaM DATASET
 ## Subject-Level Analysis
-adsl <-  convert_blanks_to_na(read_xpt(file.path("adam", "adsl.xpt")))
+adsl <- convert_blanks_to_na(read_xpt(file.path("adam", "adsl.xpt")))
 ## Analysis Dataset Lab Blood Chemistry
-prodc <-  convert_blanks_to_na( read_xpt(file.path("adam", "adlbc.xpt")))
+prodc <- convert_blanks_to_na(read_xpt(file.path("adam", "adlbc.xpt")))
 
-#Variables for programming
+# Variables for programming
 toprogram <- setdiff(colnames(prodc), c(colnames(lb), unique(supplb[["QNAM"]])))
 
-#create labels
+# create labels
 metacore <- spec_to_metacore("adam/TDF_ADaM - Pilot 3 Team updated.xlsx", where_sep_sheet = FALSE)
 
-adlbc_spec <- metacore %>% 
+adlbc_spec <- metacore %>%
   select_dataset("ADLBC")
 
 # Formats -----------------------------------------------------------------
 ## map parameter code and parameter
-format_paramn <- function(x){
+format_paramn <- function(x) {
   case_when(
     x == "SODIUM" ~ 18,
     x == "K" ~ 19,
@@ -72,9 +72,11 @@ format_paramn <- function(x){
 # Add supplemental information --------------------------------------------
 sup <- supplb %>%
   select(STUDYID, USUBJID, IDVAR, IDVARVAL, QNAM, QLABEL, QVAL) %>%
-  pivot_wider(id_cols  = c(STUDYID, USUBJID, IDVARVAL),
-                     names_from = QNAM,
-                     values_from = QVAL) %>%
+  pivot_wider(
+    id_cols = c(STUDYID, USUBJID, IDVARVAL),
+    names_from = QNAM,
+    values_from = QVAL
+  ) %>%
   mutate(LBSEQ = as.numeric(IDVARVAL)) %>%
   select(-IDVARVAL)
 
@@ -85,9 +87,11 @@ adlb00 <- lb %>%
 # ADSL information --------------------------------------------------------
 
 adsl <- adsl %>%
-  select(STUDYID, SUBJID, USUBJID, TRT01PN, TRT01P, TRT01AN, TRT01A, TRTSDT, TRTEDT, AGE, AGEGR1, AGEGR1N, RACE, RACEN, SEX,
-                COMP24FL, DSRAEFL, SAFFL) 
-  
+  select(
+    STUDYID, SUBJID, USUBJID, TRT01PN, TRT01P, TRT01AN, TRT01A, TRTSDT, TRTEDT, AGE, AGEGR1, AGEGR1N, RACE, RACEN, SEX,
+    COMP24FL, DSRAEFL, SAFFL
+  )
+
 
 
 adlb01 <- adlb00 %>%
@@ -96,18 +100,18 @@ adlb01 <- adlb00 %>%
 # Dates -------------------------------------------------------------------
 
 adlb02 <- adlb01 %>%
-   derive_vars_dtm(
+  derive_vars_dtm(
     new_vars_prefix = "A",
     dtc = LBDTC,
-    highest_imputation = "s", 
+    highest_imputation = "s",
     ignore_seconds_flag = T
   ) %>%
-   derive_vars_dt(
+  derive_vars_dt(
     new_vars_prefix = "A",
     dtc = LBDTC,
     highest_imputation = "n"
   ) %>%
-   derive_vars_dy(reference_date = TRTSDT, source_vars = vars(ADT)) 
+  derive_vars_dy(reference_date = TRTSDT, source_vars = vars(ADT))
 
 
 
@@ -115,100 +119,109 @@ adlb02 <- adlb01 %>%
 # No imputations are done for values below LL or above UL
 
 adlb03 <- adlb02 %>%
-  mutate(AVAL = LBSTRESN,
-                AVALC = ifelse(!is.na(AVAL), LBSTRESC, NA))
+  mutate(
+    AVAL = LBSTRESN,
+    AVALC = ifelse(!is.na(AVAL), LBSTRESC, NA)
+  )
 
 # Parameter ---------------------------------------------------------------
 
 adlb04 <- adlb03 %>%
-  mutate(PARAM = paste0(LBTEST, " (", LBSTRESU,")"),
-                PARAMCD = LBTESTCD,
-                PARAMN = format_paramn(LBTESTCD),
-                PARCAT1 = "CHEM" #changed to match prod dataset
-  ) 
+  mutate(
+    PARAM = paste0(LBTEST, " (", LBSTRESU, ")"),
+    PARAMCD = LBTESTCD,
+    PARAMN = format_paramn(LBTESTCD),
+    PARCAT1 = "CHEM" # changed to match prod dataset
+  )
 
 # Baseline ----------------------------------------------------------------
-##updating to use admiral programming
+## updating to use admiral programming
 
 
-adlb05 <- adlb04 %>% mutate(ABLFL = LBBLFL) %>%  
-   derive_var_base(
+adlb05 <- adlb04 %>%
+  mutate(ABLFL = LBBLFL) %>%
+  derive_var_base(
     by_vars = vars(STUDYID, USUBJID, PARAMCD),
     source_var = AVAL,
     new_var = BASE
   ) %>%
-   derive_var_chg() 
-  
+  derive_var_chg()
+
 
 # VISITS ------------------------------------------------------------------
 
 eot <- adlb05 %>%
   filter(ENDPOINT == "Y") %>%
-  mutate(AVISIT = "End of Treatment",
-                AVISITN = 99)
+  mutate(
+    AVISIT = "End of Treatment",
+    AVISITN = 99
+  )
 
 adlb06 <- adlb05 %>%
-  filter(grepl("WEEK", VISIT, fixed = TRUE) | 
-                  grepl("UNSCHEDULED", VISIT, fixed = TRUE) |
-                  grepl("SCREENING", VISIT, fixed = TRUE)) %>% #added conditions to include screening and unscheduled visits
-  mutate(AVISIT = case_when(ABLFL == "Y" ~ "Baseline",
-                                          grepl("UNSCHEDULED", VISIT) ==TRUE ~ "",
-                                          TRUE ~ str_to_sentence(VISIT)),
-                AVISITN = case_when(AVISIT == "Baseline"~ 0,
-                                          TRUE ~ as.numeric(gsub("[^0-9]","",AVISIT)) 
-                                          )) %>%
-  rbind(eot) %>% 
-  mutate(ANL01FL = ifelse(grepl('UN', VISIT), "", "Y"), #how should ANL01FL be defined? doesn't seem to match up with prod dataset
-                AVISITN = ifelse(AVISITN == -1, "", AVISITN))
+  filter(grepl("WEEK", VISIT, fixed = TRUE) |
+    grepl("UNSCHEDULED", VISIT, fixed = TRUE) |
+    grepl("SCREENING", VISIT, fixed = TRUE)) %>% # added conditions to include screening and unscheduled visits
+  mutate(
+    AVISIT = case_when(
+      ABLFL == "Y" ~ "Baseline",
+      grepl("UNSCHEDULED", VISIT) == TRUE ~ "",
+      TRUE ~ str_to_sentence(VISIT)
+    ),
+    AVISITN = case_when(
+      AVISIT == "Baseline" ~ 0,
+      TRUE ~ as.numeric(gsub("[^0-9]", "", AVISIT))
+    )
+  ) %>%
+  rbind(eot) %>%
+  mutate(
+    ANL01FL = ifelse(grepl("UN", VISIT), "", "Y"), # how should ANL01FL be defined? doesn't seem to match up with prod dataset
+    AVISITN = ifelse(AVISITN == -1, "", AVISITN)
+  )
 
 
 # Limits ------------------------------------------------------------------
 
-#updating to use admiral dataset
-adlb07 <- adlb06 %>% 
+# updating to use admiral dataset
+adlb07 <- adlb06 %>%
   mutate(
-    ANRLO = LBSTNRLO, 
-    ANRHI = LBSTNRHI, 
+    ANRLO = LBSTNRLO,
+    ANRHI = LBSTNRHI,
     A1LO = LBSTNRLO,
-    A1HI = LBSTNRHI, 
+    A1HI = LBSTNRHI,
     R2A1LO = AVAL / A1LO,
     R2A1HI = AVAL / A1HI,
     BR2A1LO = BASE / A1LO,
     BR2A1HI = BASE / A1HI,
-    ALBTRVAL = max((LBSTRESN-(1.5*LBSTNRHI)), ((.5*LBSTNRLO) - LBSTRESN))
-  ) %>% 
-   derive_var_anrind() %>% 
-   derive_var_base(
+    ALBTRVAL = max((LBSTRESN - (1.5 * LBSTNRHI)), ((.5 * LBSTNRLO) - LBSTRESN))
+  ) %>%
+  derive_var_anrind() %>%
+  derive_var_base(
     by_vars = vars(STUDYID, USUBJID, PARAMCD),
     source_var = ANRIND,
     new_var = BNRIND
-  ) %>%  #Low and High values are repeating 
+  ) %>% # Low and High values are repeating
   group_by(STUDYID, USUBJID, PARAMCD) %>%
-  mutate(AENTMTFL = ifelse(VISITNUM == 12, "Y", ifelse((row_number() == n()-1 | row_number() == n()) & VISITNUM < 12, "Y", ""))) %>% #n-1 to avoid avisitn = 99
+  mutate(AENTMTFL = ifelse(VISITNUM == 12, "Y", ifelse((row_number() == n() - 1 | row_number() == n()) & VISITNUM < 12, "Y", ""))) %>% # n-1 to avoid avisitn = 99
   ungroup()
 
 
 # Treatment Vars ------------------------------------------------------------
 
-adlbc <-adlb07 %>% 
-  mutate(TRTP = TRT01P,
-                TRTPN = TRT01PN,
-                TRTA = TRT01A,
-                TRTAN = TRT01AN) %>% 
-  drop_unspec_vars(adlbc_spec) %>% 
-  order_cols(adlbc_spec) %>% 
-  set_variable_labels(adlbc_spec) %>% 
+adlbc <- adlb07 %>%
+  mutate(
+    TRTP = TRT01P,
+    TRTPN = TRT01PN,
+    TRTA = TRT01A,
+    TRTAN = TRT01AN
+  ) %>%
+  drop_unspec_vars(adlbc_spec) %>%
+  order_cols(adlbc_spec) %>%
+  set_variable_labels(adlbc_spec) %>%
   xportr_format(adlbc_spec$var_spec %>%
-                  mutate_at(c("format"), ~ replace_na(., "")), "ADLBC") %>%
+    mutate_at(c("format"), ~ replace_na(., "")), "ADLBC") %>%
   xportr_write("submission/datasets/adlbc.xpt",
-               label = "Analysis Dataset Lab Blood Chemistry"
+    label = "Analysis Dataset Lab Blood Chemistry"
   )
 
 
-#Output final dataset to submissions
-
-
-
-
- 
-
+# Output final dataset to submissions
