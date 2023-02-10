@@ -1206,6 +1206,18 @@
         "vctrs"
       ]
     },
+    "pilot1wrappers": {
+      "Package": "pilot1wrappers",
+      "Version": "0.1.1",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "RConsortium",
+      "RemoteRepo": "submissions-pilot1",
+      "RemoteRef": "main",
+      "RemoteSha": "694a207aca7e419513ffe16f6f5873526da1bdcb",
+      "Requirements": []
+    },
     "pkgbuild": {
       "Package": "pkgbuild",
       "Version": "1.3.1",
