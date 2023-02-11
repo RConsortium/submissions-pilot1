@@ -15,7 +15,45 @@ knitr::opts_chunk$set(echo = TRUE)
 Pilot 3 team should be able to see updated meeting minutes here on a
 weekly basis.
 
-## 03Feb2023
+## 10Feb2023 - Minutes by Robert Devine
+
+-********************************************************************************************-
+
+- Submission Pilot3 - ADaM Check In
+- Meeting Organizer: Joel Laxamana
+- Participants: Joel Laxamana, Kangjie Zhang, Ben Straub, Steven Haesendonckx, Benjamin Wang, Robert Devine
+- Summary: The meeting was conducted with each participant providing an update about their project activities.
+- Project Board: https://github.com/orgs/RConsortium/projects/7/views/1
+- Resolution: Continue Development (Backlog:14, In Progress:4, In Review: 3, Done: 6)
+- Meeting Recorded: Yes
+
+-********************************************************************************************-
+
+- Joel Laxamana - Greetings and Meeting Setup
+
+- Robert Devine - Discussion of recent progress around Issue #5 (ADTTE) and requested to advance the issue from 'In Progress' to 'In Review'. Next Check In follow up with Issue Assignees. Noted participation in the CDISC {admiral} Hackathon (In Progress) with work on ADTTE and other ADaM datasets. Work concurrently on Issue #32.
+
+- Ben Straub - Discussion of focus around PR (Pull Request) => main in reference to the Pilot3 repository
+  - Issue #59: Create vignettes for Datasets like Pilot1 did for Tables
+  - Issue #58: List out team in Description File
+  - Issue #57: Common Issues facing Datasets
+  - Issue #55: Establish Rotating Minute Takers Going forward
+
+- Kangjie Zhang - Discussion of the define updates, common issue across datasets, the CDISC {admiral} Hackathon, code quality team awareness, alignment of specs to {admiral} Hackathon. {Thomas Neitmann} has posted the updated spec file in the {admiral} Hackathon Slack channel which was linked during the Check In to Pilot3. The updated spec was posted February 8, 2023 in Slack #admiral_hackathon.
+
+- Joel Laxamana - Discussion of recent progress around ADAE dataset which is now 'In Review'. Requested {Steve Haesendonckx} to review the ADAE dataset which was linked in GitHub by {Ben Straub}.
+
+- Steve Haesendonckx - Discussion of the alternative submission proposal and the R Consortium / R Infrastructure
+  - requests to continue alignment with previous R Submission Pilots. The Pilot3 Team indicated interest to possibly revisit the proposal as a Pilot[3.5] at a later date. Noted possible data format differences in ADTTE across the pilots. Accepted request to review the ADAE dataset. Worked with {Nicole Jones} on ADLBC dataset that is 'In Review'.
+  
+- Benjamin Wang -  Discussion about Issue#5 ADTTE contribution and PR with a request for Comment and Review.
+  - Initiated availability to further contribute with additional task assignments. Responded to {Ben Straub} that Issue #29 (Table - Demographics and Baseline Characteristics) would be of interest for assignment in the Project3 GitHub.
+
+- Joel Laxamana - Farewell and Meeting Adjourns
+
+Meeting Recording : https://drive.google.com/file/d/1YyQOTIpoLNA0IJCQ34-9aTEA9Pn62X-Q/view
+
+## 03Feb2023 - Minutes by Joel Laxamana
 
 R Consortium meeting conflict with Pilot 3 catch-up today
 
@@ -64,7 +102,7 @@ R Consortium meeting conflict with Pilot 3 catch-up today
 Meeting Recording :
 <https://drive.google.com/file/d/1D2sUlnpLaGV8BGb2GeS5tJePinOMRaEd/view>
 
-## 27Jan2023
+## 27Jan2023 - Minutes by Joel Laxamana
 
 1.  Joel
 
@@ -111,7 +149,7 @@ Meeting Recording :
 Meeting Recording :
 <https://drive.google.com/file/d/1_qA3ct8YtTLvronKCsviVBiRuD7LmEcx/view>
 
-## 20Jan2023
+## 20Jan2023 - Minutes by Joel Laxamana
 
 1.  Joel
 
@@ -180,7 +218,7 @@ Meeting Recording :
 Meeting recording :
 <https://drive.google.com/file/d/1ZuGjY4vZBuBg3_-qKwnCAeLhBhXuKy_Y/view>
 
-## 13Jan2023
+## 13Jan2023 - Minutes by Joel Laxamana
 
 1.  Declan
 
@@ -262,7 +300,7 @@ Meeting adjourned.
 Meeting recording :
 <https://drive.google.com/file/d/1OH12R8zkuGEz39AQ4DkhNUq9DIZmG3WD/view>
 
-## 06Jan2023
+## 06Jan2023 - Minutes by Joel Laxamana
 
 Happy New Year and Welcome back!
 
@@ -336,7 +374,7 @@ Meeting adjourned.
 Meeting Recording :
 <https://drive.google.com/file/d/1b4MG98ljC4Yf4CFzpT40qEeSi6nQKbLL/view>
 
-## 23Dec2022
+## 23Dec2022 - Minutes by Joel Laxamana
 
 Meeting cancelled, because it's time to take a break and hang out with
 our Families and Friends. Have a well-deserved and relaxing break
@@ -344,7 +382,7 @@ everyone. We'll pick it up again next year! \~Thomas and Joel
 
 ![](images/eoy_meme.jpg)
 
-## 19Dec2022
+## 19Dec2022 - Minutes by Joel Laxamana
 
 1.  Ben S. - brought up package down sites for Pilot 3. Easy to do from
     Posit.
@@ -387,7 +425,7 @@ everyone. We'll pick it up again next year! \~Thomas and Joel
 
 ### ACTION to Joel - Create deadlines on `main` Read.me file so that everyone has transparency on work that needs to be done at a certain time. Maybe create a Kanban board on the issues.
 
-## 09Dec2022
+## 09Dec2022 - Minutes by Joel Laxamana
 
 1.  Joel
 
@@ -501,7 +539,7 @@ everyone. We'll pick it up again next year! \~Thomas and Joel
 
 ### VIDEO RECORDING : <https://drive.google.com/file/d/1-IVypxR7Mnco7mUV6Qmh-r37f2KK3JYM/view>
 
-## 02Dec2022
+## 02Dec2022 - Minutes by Joel Laxamana
 
 Just as a quick update to today's catch-up meeting (apologies, I forgot
 to record this meeting as well).
@@ -552,7 +590,7 @@ submissionswg repo .
 
 Let @Thomas Neitmann or I know if you have any further questions.
 
-## 28Nov2022
+## 28Nov2022 - Minutes by Joel Laxamana
 
 Unfortunately we didn't record last week's stand up. But given the
 holidays in the US it was a very short meeting anyways with only 4
@@ -564,7 +602,7 @@ as soon as you have a draft program available. That way the progress on
 your programs is transparent for all team members. Just follow what
 @Kangjie Zhang did.
 
-## 14Nov2022
+## 14Nov2022 - Minutes by Joel Laxamana
 
 Thanks, @channel for those able to join today's Pilot 3 weekly catch-up
 meeting. Just to bullet :
@@ -609,7 +647,7 @@ meeting. Just to bullet :
         branch to get the updates, resolve conflicts, and merge to
         completion, until final script is ready to merge back to main.
 
-## 02Nov2022 : R Submission Pilot 3 - ADaM Kick-off
+## 02Nov2022 : R Submission Pilot 3 - ADaM Kick-off - Minutes by Joel Laxamana
 
 -   Team Roster:
     <https://docs.google.com/spreadsheets/d/1BW9Jojo4bAgxbfM96nXooh2QAlU6CKwk19pInxmI2VA/edit?usp=sharing>
