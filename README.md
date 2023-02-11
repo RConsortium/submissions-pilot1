@@ -74,3 +74,21 @@ We use `renv` to ensure reproducibility for R version and R package version.
 
 - `_pkgdown.yml`: [pkgdown](https://pkgdown.r-lib.org/articles/pkgdown.html) configuration file. test
 
+## Pilot 3 Team
+#### ['STAND-UP' MINUTES](https://github.com/RConsortium/submissions-pilot3-adam/blob/main/meeting_minutes/meeting_minutes.pdf)
+
+#### Leads
+- Thomas Neitmann
+- Joel Laxamana
+
+#### Contributors/Authors
+- Phanikumar Tata
+- Robert Devine
+- Steven Haesendonckx
+- Yutong Liu
+- Nicole Jones
+- Benjamin Wang
+- Kangjie Zhang
+- Dadong Zhang
+- Benjamin Straub
+- Declan Hodges
