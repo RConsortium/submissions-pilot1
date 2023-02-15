@@ -5,9 +5,7 @@
 
 ## Overview
 
-The objective of the R Consortium R submission Pilot 3 Project is to 
-expand on the work done in submission Pilot 1 by utilizing R to generate 
-ADaM datasets.
+The objective of the R Consortium R submission Pilot 3 Project is to expand on the work done in submission Pilot 1 by utilizing R to generate ADaM datasets.
 
 All submission materials and communications from this pilot are publicly available, 
 with the aim of providing a working example for future R language based FDA submissions.
