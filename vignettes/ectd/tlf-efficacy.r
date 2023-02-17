@@ -26,14 +26,13 @@ library(dplyr)
 library(haven)
 library(r2rtf)
 library(emmeans)
-
-# Propitiatory Package, please refer appendix of ADRG to install
-library(pilot1wrappers)
+devtools::load_all()
+library(pilot3)
 
 
 ## ------------------------------------------------------------------------------------------------------------------------------
-adsl <- read_xpt(file.path(path$adam, "adsl.xpt"))
-adlb <- read_xpt(file.path(path$adam, "adlbc.xpt"))
+adsl <- read_xpt(file.path("submission/datasets/", "adsl.xpt"))
+adlb <- read_xpt(file.path("adam/", "adlbc.xpt"))
 
 
 ## ------------------------------------------------------------------------------------------------------------------------------
@@ -81,12 +80,12 @@ apr0ancova1 <- merge(t10, t11) %>%
   mutate(
     Trt = c("Xanomeline High Dose", "Placebo"),
     N1 = N,
-    Mean1 = pilot1wrappers::fmt_est(mean_bl, sd_bl),
+    Mean1 = pilot3::fmt_est(mean_bl, sd_bl),
     N2 = N_20,
-    Mean2 = pilot1wrappers::fmt_est(mean, sd),
+    Mean2 = pilot3::fmt_est(mean, sd),
     N3 = N_20,
-    Mean3 = pilot1wrappers::fmt_est(mean_chg, sd_chg),
-    CI = pilot1wrappers::fmt_ci(emmean, lower.CL, upper.CL)
+    Mean3 = pilot3::fmt_est(mean_chg, sd_chg),
+    CI = pilot3::fmt_ci(emmean, lower.CL, upper.CL)
   ) %>%
   select(Trt:CI)
 
@@ -104,8 +103,8 @@ apr0ancova2 <- t2 %>%
   ) %>%
   mutate(
     comp = "Xanomeline High Dose vs. Placebo",
-    mean = pilot1wrappers::fmt_ci(estimate, lower, upper),
-    p = pilot1wrappers::fmt_pval(p.value)
+    mean = pilot3::fmt_ci(estimate, lower, upper),
+    p = pilot3::fmt_pval(p.value)
   ) %>%
   select(comp:p)
 
@@ -148,7 +147,7 @@ tbl_1 <- apr0ancova1 %>%
     )
   ) %>%
   rtf_source(
-    source = "Source: [pilot1wrappers: adam-adsl; adlbc]",
+    source = "Source: [pilot3: adam-adsl; adlbc]",
     text_justification = "c"
   )
 
@@ -179,4 +178,4 @@ tbl_3 <- apr0ancova3 %>%
 tbl <- list(tbl_1, tbl_2, tbl_3)
 tbl %>%
   rtf_encode() %>%
-  write_rtf(file.path(path$output, "tlf-efficacy.rtf"))
+  write_rtf(file.path("output/",  "tlf-efficacy-pilot3.rtf"))
