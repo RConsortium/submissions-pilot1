@@ -176,7 +176,6 @@ adlb06 <- adlb05 %>%
   ) %>%
   rbind(eot) %>%
   mutate(
-    ANL01FL = ifelse(grepl("UN", VISIT), "", "Y"), # how should ANL01FL be defined? doesn't seem to match up with prod dataset
     AVISITN = ifelse(AVISITN == -1, "", AVISITN)
   )
 
@@ -222,10 +221,20 @@ adlb08 <- adlb07 %>%
   mutate(AENTMTFL = ifelse(VISITNUM == 12, "Y", ifelse((row_number() == n() - 1 | row_number() == n()) & VISITNUM < 12, "Y", ""))) %>% # n-1 to avoid avisitn = 99
   ungroup() %>% select(-ONE, -TWO)
 
+# Derive ANL01FL
+adlb09 <- adlb08 %>% 
+  filter((AVISITN >=4 & AVISITN <=12) | AVISITN == 99) %>% 
+  group_by(USUBJID, PARAMCD) %>% 
+  mutate(maxALBTRVAL = max(ALBTRVAL, na.rm = T),
+         ANL01FL = ifelse(maxALBTRVAL == ALBTRVAL, "Y", "")) %>%
+  arrange(desc(ANL01FL)) %>% 
+  select(USUBJID, PARAMCD, LBSEQ, ANL01FL) %>% 
+  slice(1) %>% 
+  full_join(adlb08, by = c("USUBJID", "PARAMCD","LBSEQ"))
 
 # Treatment Vars ------------------------------------------------------------
 
-adlbc <- adlb08 %>%
+adlbc <- adlb09 %>%
   mutate(
     TRTP = TRT01P,
     TRTPN = TRT01PN,
