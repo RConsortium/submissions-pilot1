@@ -23,7 +23,7 @@ weekly basis.
 - Meeting Organizer: Joel Laxamana
 - Participants: Joel Laxamana, Kangjie Zhang, Ben Straub, Steven Haesendonckx, Benjamin Wang, Robert Devine
 - Summary: The meeting was conducted with each participant providing an update about their project activities.
-- Project Board: <https://github.com/orgs/RConsortium/projects/7>
+- Project Board: https://github.com/orgs/RConsortium/projects/7
 - Resolution: Continue Development (Backlog:14, In Progress:4, In Review: 3, Done: 6)
 - Meeting Recorded: Yes
 
