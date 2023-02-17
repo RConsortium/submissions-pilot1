@@ -223,7 +223,7 @@ adlb08 <- adlb07 %>%
 
 # Derive ANL01FL
 adlb09 <- adlb08 %>% 
-  filter((AVISITN >=4 & AVISITN <=12) | AVISITN == 99) %>% 
+  filter((VISITNUM>=4 & VISITNUM <=12) & !grepl("UN", VISIT)) %>% 
   group_by(USUBJID, PARAMCD) %>% 
   mutate(maxALBTRVAL = max(ALBTRVAL, na.rm = T),
          ANL01FL = ifelse(maxALBTRVAL == ALBTRVAL, "Y", "")) %>%
