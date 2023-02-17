@@ -1,5 +1,5 @@
 ###########################################################################
-#' developers : Steven Haesendonckx/
+#' developers : Steven Haesendonckx/Dadong Zhang/Nicole Jones
 #' date: 28NOV2022
 #' modification History:
 #' Dadong Zhang, 17DEC2022
@@ -157,6 +157,7 @@ eot <- adlb05 %>%
     AVISITN = 99
   )
 
+
 adlb06 <- adlb05 %>%
   filter(grepl("WEEK", VISIT, fixed = TRUE) |
     grepl("UNSCHEDULED", VISIT, fixed = TRUE) |
@@ -224,4 +225,15 @@ adlbc <- adlb07 %>%
   )
 
 
-# Output final dataset to submissions
+# Dataset of missing observations
+missing <- anti_join(qc_adlbc, adlbc, by = c("USUBJID",  "LBSEQ", "AVISIT"))
+
+
+#Steven suggested EOT code
+eot2 <- adlb05 %>%
+  arrange(STUDYID, USUBJID, PARAMCD, VISITNUM) %>%
+  filter(VISITNUM <= 12) %>%
+  slice(n()) %>%
+  mutate( AVISIT = "End of Treatment",
+          AVISITN = 99
+  )
