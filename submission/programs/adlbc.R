@@ -225,9 +225,6 @@ adlbc <- adlb07 %>%
   )
 
 
-# Dataset of missing observations
-missing <- anti_join(qc_adlbc, adlbc, by = c("USUBJID",  "LBSEQ", "AVISIT"))
-
 
 #Steven suggested EOT code
 eot2 <- adlb05 %>%
