@@ -145,13 +145,14 @@ adlb05 <- adlb04 %>%
     source_var = AVAL,
     new_var = BASE
   ) %>%
-  derive_var_chg()
+  derive_var_chg() %>% 
+  mutate(CHG = ifelse(VISITNUM == 1, NA, CHG))
 
 
 # VISITS ------------------------------------------------------------------
 
 eot <- adlb05 %>%
-  filter(ENDPOINT == "Y") %>%
+  filter(ENDPOINT == "Y" | VISITNUM == 12) %>%
   mutate(
     AVISIT = "End of Treatment",
     AVISITN = 99
@@ -179,11 +180,23 @@ adlb06 <- adlb05 %>%
     AVISITN = ifelse(AVISITN == -1, "", AVISITN)
   )
 
+# get EOT for those that did not make it to week 24
 
+eot2 <- adlb06 %>%
+  arrange(STUDYID, USUBJID, PARAMCD, desc(AVISITN)) %>%
+  group_by(STUDYID, USUBJID, PARAMCD) %>% 
+  filter(VISITNUM !=13) %>% 
+  slice(1) %>% 
+  filter(!is.na(AVISITN), AVISITN !=0, AVISITN !=99) %>% 
+  mutate(AVISITN = 99,
+         AVISIT = "End of Treatment")
+
+adlb07 <- adlb06 %>% 
+  rbind(eot2)
 # Limits ------------------------------------------------------------------
 
 # updating to use admiral dataset
-adlb07 <- adlb06 %>%
+adlb08 <- adlb07 %>%
   mutate(
     ANRLO = LBSTNRLO,
     ANRHI = LBSTNRHI,
@@ -208,7 +221,7 @@ adlb07 <- adlb06 %>%
 
 # Treatment Vars ------------------------------------------------------------
 
-adlbc <- adlb07 %>%
+adlbc <- adlb08 %>%
   mutate(
     TRTP = TRT01P,
     TRTPN = TRT01PN,
@@ -226,11 +239,3 @@ adlbc <- adlb07 %>%
 
 
 
-#Steven suggested EOT code
-eot2 <- adlb05 %>%
-  arrange(STUDYID, USUBJID, PARAMCD, VISITNUM) %>%
-  filter(VISITNUM <= 12) %>%
-  slice(n()) %>%
-  mutate( AVISIT = "End of Treatment",
-          AVISITN = 99
-  )
