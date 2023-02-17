@@ -206,9 +206,13 @@ adlb08 <- adlb07 %>%
     R2A1HI = AVAL / A1HI,
     BR2A1LO = BASE / A1LO,
     BR2A1HI = BASE / A1HI,
-    ALBTRVAL = max((LBSTRESN - (1.5 * LBSTNRHI)), ((.5 * LBSTNRLO) - LBSTRESN))
+    ONE = abs((LBSTRESN - (1.5 * LBSTNRHI))),
+    TWO =  abs(((.5 * LBSTNRLO) - LBSTRESN)),
+    ALBTRVAL = ifelse(ONE > TWO, ONE, TWO),
+    ANRIND = ifelse(AVAL< (0.5*LBSTNRLO), "L", ifelse(AVAL > (1.5*LBSTNRHI), "H","N")),
+    ANRIND= ifelse(is.na(AVAL), "N", ANRIND)
   ) %>%
-  derive_var_anrind() %>%
+  #derive_var_anrind() %>%
   derive_var_base(
     by_vars = vars(STUDYID, USUBJID, PARAMCD),
     source_var = ANRIND,
@@ -216,7 +220,7 @@ adlb08 <- adlb07 %>%
   ) %>% # Low and High values are repeating
   group_by(STUDYID, USUBJID, PARAMCD) %>%
   mutate(AENTMTFL = ifelse(VISITNUM == 12, "Y", ifelse((row_number() == n() - 1 | row_number() == n()) & VISITNUM < 12, "Y", ""))) %>% # n-1 to avoid avisitn = 99
-  ungroup()
+  ungroup() %>% select(-ONE, -TWO)
 
 
 # Treatment Vars ------------------------------------------------------------
