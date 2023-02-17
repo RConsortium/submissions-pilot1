@@ -145,7 +145,7 @@ adlb05 <- adlb04 %>%
     source_var = AVAL,
     new_var = BASE
   ) %>%
-  derive_var_chg() %>% 
+  derive_var_chg() %>%
   mutate(CHG = ifelse(VISITNUM == 1, NA, CHG))
 
 
@@ -155,7 +155,8 @@ eot <- adlb05 %>%
   filter(ENDPOINT == "Y" | VISITNUM == 12) %>%
   mutate(
     AVISIT = "End of Treatment",
-    AVISITN = 99
+    AVISITN = 99,
+    AENTMTFL = "Y"
   )
 
 
@@ -172,7 +173,8 @@ adlb06 <- adlb05 %>%
     AVISITN = case_when(
       AVISIT == "Baseline" ~ 0,
       TRUE ~ as.numeric(gsub("[^0-9]", "", AVISIT))
-    )
+    ),
+    AENTMTFL = ""
   ) %>%
   rbind(eot) %>%
   mutate(
@@ -183,15 +185,28 @@ adlb06 <- adlb05 %>%
 
 eot2 <- adlb06 %>%
   arrange(STUDYID, USUBJID, PARAMCD, desc(AVISITN)) %>%
-  group_by(STUDYID, USUBJID, PARAMCD) %>% 
-  filter(VISITNUM !=13) %>% 
-  slice(1) %>% 
-  filter(!is.na(AVISITN), AVISITN !=0, AVISITN !=99) %>% 
-  mutate(AVISITN = 99,
-         AVISIT = "End of Treatment")
+  group_by(STUDYID, USUBJID, PARAMCD) %>%
+  filter(VISITNUM != 13) %>%
+  slice(1) %>%
+  filter(!is.na(AVISITN), AVISITN != 0, AVISITN != 99) %>%
+  mutate(
+    AVISITN = 99,
+    AVISIT = "End of Treatment",
+    AENTMTFL = "Y"
+  )
 
-adlb07 <- adlb06 %>% 
-  rbind(eot2)
+
+adlb07 <- adlb06 %>%
+  filter(VISITNUM <= 12 & AVISITN > 0 & AVISITN != 99 & !grepl("UN", VISIT)) %>%
+  group_by(USUBJID, PARAMCD) %>%
+  mutate(AENTMTFL_1 = ifelse(max(AVISITN, na.rm = T) == AVISITN, "Y", "")) %>%
+  select(USUBJID, PARAMCD, AENTMTFL_1, LBSEQ) %>%
+  full_join(adlb06, by = c("USUBJID", "PARAMCD", "LBSEQ")) %>%
+  mutate(AENTMTFL = ifelse(AENTMTFL == "Y", AENTMTFL, AENTMTFL_1)) %>%
+  select(-AENTMTFL_1) %>%
+  rbind(eot2) %>%
+  ungroup()
+
 # Limits ------------------------------------------------------------------
 
 # updating to use admiral dataset
@@ -206,31 +221,33 @@ adlb08 <- adlb07 %>%
     BR2A1LO = BASE / A1LO,
     BR2A1HI = BASE / A1HI,
     ONE = abs((LBSTRESN - (1.5 * LBSTNRHI))),
-    TWO =  abs(((.5 * LBSTNRLO) - LBSTRESN)),
+    TWO = abs(((.5 * LBSTNRLO) - LBSTRESN)),
     ALBTRVAL = ifelse(ONE > TWO, ONE, TWO),
-    ANRIND = ifelse(AVAL< (0.5*LBSTNRLO), "L", ifelse(AVAL > (1.5*LBSTNRHI), "H","N")),
-    ANRIND= ifelse(is.na(AVAL), "N", ANRIND)
+    ANRIND = ifelse(AVAL < (0.5 * LBSTNRLO), "L", ifelse(AVAL > (1.5 * LBSTNRHI), "H", "N")),
+    ANRIND = ifelse(is.na(AVAL), "N", ANRIND)
   ) %>%
-  #derive_var_anrind() %>%
+  # derive_var_anrind() %>%
   derive_var_base(
     by_vars = vars(STUDYID, USUBJID, PARAMCD),
     source_var = ANRIND,
     new_var = BNRIND
   ) %>% # Low and High values are repeating
   group_by(STUDYID, USUBJID, PARAMCD) %>%
-  mutate(AENTMTFL = ifelse(VISITNUM == 12, "Y", ifelse((row_number() == n() - 1 | row_number() == n()) & VISITNUM < 12, "Y", ""))) %>% # n-1 to avoid avisitn = 99
-  ungroup() %>% select(-ONE, -TWO)
+  ungroup() %>%
+  select(-ONE, -TWO)
 
 # Derive ANL01FL
-adlb09 <- adlb08 %>% 
-  filter((VISITNUM>=4 & VISITNUM <=12) & !grepl("UN", VISIT)) %>% 
-  group_by(USUBJID, PARAMCD) %>% 
-  mutate(maxALBTRVAL = max(ALBTRVAL, na.rm = T),
-         ANL01FL = ifelse(maxALBTRVAL == ALBTRVAL, "Y", "")) %>%
-  arrange(desc(ANL01FL)) %>% 
-  select(USUBJID, PARAMCD, LBSEQ, ANL01FL) %>% 
-  slice(1) %>% 
-  full_join(adlb08, by = c("USUBJID", "PARAMCD","LBSEQ"))
+adlb09 <- adlb08 %>%
+  filter((VISITNUM >= 4 & VISITNUM <= 12) & !grepl("UN", VISIT)) %>%
+  group_by(USUBJID, PARAMCD) %>%
+  mutate(
+    maxALBTRVAL = max(ALBTRVAL, na.rm = T),
+    ANL01FL = ifelse(maxALBTRVAL == ALBTRVAL, "Y", "")
+  ) %>%
+  arrange(desc(ANL01FL)) %>%
+  select(USUBJID, PARAMCD, LBSEQ, ANL01FL) %>%
+  slice(1) %>%
+  full_join(adlb08, by = c("USUBJID", "PARAMCD", "LBSEQ"))
 
 # Treatment Vars ------------------------------------------------------------
 
@@ -249,6 +266,3 @@ adlbc <- adlb09 %>%
   xportr_write("submission/datasets/adlbc.xpt",
     label = "Analysis Dataset Lab Blood Chemistry"
   )
-
-
-
