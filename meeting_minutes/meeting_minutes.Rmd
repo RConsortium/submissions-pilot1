@@ -15,6 +15,54 @@ knitr::opts_chunk$set(echo = TRUE)
 Pilot 3 team should be able to see updated meeting minutes here on a
 weekly basis.
 
+## 17Feb2023 - Minutes by Joel Laxamana
+-********************************************************************************************-
+
+- Submission Pilot3 - ADaM Check In
+- Meeting Organizer: Thomas Neitman, Joel Laxamana
+- Participants: Thomas Neitman, Joel Laxamana, Kangjie Zhang, Nicole Jones, Ben Straub, Robert Devine, Phani Tata, Declan Hodges
+- Summary: The meeting was conducted with each participant providing an update about their project activities and overall discussion about next steps to submission process
+- Project Board: https://github.com/orgs/RConsortium/projects/7
+- Resolution: Continue Development (Backlog:8, In Progress:6, In Review: 3, Done: 12) 
+- Meeting Recorded: Yes 
+
+-********************************************************************************************-
+
+Joel - Started meeting.
+
+Ben Straub - Pilot 3 website now up and running.  Need updates to authors in DESCRIPTION file to those in Pilot 3.  Follow Pilot 1 and do Vignettes for datasets, in Pilot 3, still on the table and could be valuable to public viewers of the Pilot 3 repo for convenient viewing of our work. Can help advocate R use.
+
+Kanjie - Summarized the common issue amongst datasets. Further noted the newer specs found in the TDF repo that should be used to bring over derivations to the Pilot 3 specs/define.
+
+### ACTION : @all to review Issue #57.
+
+Declan - updated TLF, issue #31 now in draft PR once ADLBC is merged.
+
+Nicole - ADLBC EOT obs are now in! YES!!! Now matching with original dataset. 
+
+### ACTION : Nicole will update PR with new ADBLC updates.  THANKS for sticking with it, Nicole!
+
+Robert - working on PR #21 [ADTTE]. Close to matching with original.  Thanks to Bingjun and Steven developing ADTTE. Labels are now added. XPT seems to not be up-to-date.
+
+### ACTION : Need ADTTE script to swith to xportr{} instead of haven{} when generating .xpt.
+
+Phani - ADAE now in main.  Great work, setting up the foundation. Will take new work to help with tables.
+
+### ACTION : Assigned to Demog table program, reading Pilot 3 ADSL. https://github.com/RConsortium/submissions-pilot3-adam/issues/29#issuecomment-1436393205 
+
+Joel - Found more up-to-date specs, where correct derivations should be brought over to the Pilot 3 specs. Created an ADAE vignette.
+
+### ACTION : @all please review new specs in Issue #10 to make sure we capture the correct derivations and bring them over to our current Pilot 3 specs.  Need to bring these specs into the `main/adam` branch.
+
+### ACTION : Lei to begin submission process and check P21 issues with our current Pilot 3 specs.
+
+### ACTION : We need to begin setting up the adam-to-fda repo with our Pilot 3 info : https://github.com/RConsortium/submissions-pilot3-adam/issues/53#issuecomment-1435035929 Due end of Feb.
+
+Thomas Neitman - Closed meeting.
+
+Meeting Recording : https://drive.google.com/file/d/1aV7NoGPE_k58ufTGUq8NYwDOdyqGPAep/view?usp=sharing
+
+
 ## 10Feb2023 - Minutes by Robert Devine
 
 -********************************************************************************************-
@@ -29,7 +77,7 @@ weekly basis.
 
 -********************************************************************************************-
 
-- Joel Laxamana - Greetings and Meeting Setup
+- Joel Laxamana - Greetings and Meeting Setup. 
 
 - Robert Devine - Discussion of recent progress around Issue #5 (ADTTE) and requested to advance the issue from 'In Progress' to 'In Review'. Next Check In follow up with Issue Assignees. Noted participation in the CDISC {admiral} Hackathon (In Progress) with work on ADTTE and other ADaM datasets. Work concurrently on Issue #32.
 
