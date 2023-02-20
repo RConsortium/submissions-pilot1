@@ -24,8 +24,8 @@ The [RConsortium/submissions-pilot3-adam](https://github.com/RConsortium/submiss
 The project is developed and tested in the environment below:
 
 - OS: Ubuntu 20.04
-- R version: R4.2.1
-- Snapshot date: 2022-11-01
+- R version: R4.2.2
+- Snapshot date: 2022-12-14
 - Snapshot repository: https://cran.microsoft.com/snapshot/2022-11-01
 
 ## Folder Structure 
