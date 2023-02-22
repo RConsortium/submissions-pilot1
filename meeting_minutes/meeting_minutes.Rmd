@@ -233,7 +233,7 @@ Meeting Recording :
 5.  Ben S.
 
 -   Project board set-up :
-    <https://github.com/orgs/RConsortium/projects/7>
+    https://github.com/orgs/RConsortium/projects/7
 
 ### ACTION : ALL REVIEW meeting recording below to see Ben's demo on project board (10:22)
 
