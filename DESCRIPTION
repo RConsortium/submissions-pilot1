@@ -3,7 +3,7 @@ Type: Package
 Title: R Consortium R Submission Pilot 3
 Version: 0.1.1
 Authors@R: c(
-       person("Joel", "Laxmana-Roche", , email = "laxamana.joel@gene.com", role = c("aut", "cre")),
+       person("Joel", "Laxamana-Roche", , email = "laxamana.joel@gene.com", role = c("aut", "cre")),
        person("Thomas", "Neitmann-Roche", role = c("aut")),
        person("Phanikumar", "Tata-Syneos", role = c("aut")),
        person("Robert", "Devine-J&J", role = c("aut")),
