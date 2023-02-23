@@ -9,7 +9,7 @@
 R Consortium R Submission Pilot 3.
 }
 \author{
-\strong{Maintainer}: Joel Laxmana-Roche \email{laxamana.joel@gene.com}
+\strong{Maintainer}: Joel Laxamana-Roche \email{laxamana.joel@gene.com}
 
 Authors:
 \itemize{
