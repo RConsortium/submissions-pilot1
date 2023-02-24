@@ -9,20 +9,24 @@
 R Consortium R Submission Pilot 3.
 }
 \author{
-\strong{Maintainer}: Yilong Zhang \email{elong0527@gmail.com}
+\strong{Maintainer}: Joel Laxamana-Roche \email{laxamana.joel@gene.com}
 
 Authors:
 \itemize{
-  \item Ning Leng
-  \item Mike Stackhouse
-  \item Peikun Wu
-  \item Heng Wang
-  \item Eli Miller
-}
-
-Other contributors:
-\itemize{
-  \item Steven Haesendonckx [contributor]
+  \item Thomas Neitmann-Roche
+  \item Phanikumar Tata-Syneos
+  \item Robert Devine-J&J
+  \item Steven Haesendonckx-J&J
+  \item Rikimaru Nishimura-J&J
+  \item Yutong Liu-Moderna
+  \item Lei Zhao-Roche
+  \item Nicole Jones-Merck
+  \item Benjamin Wang-Merck
+  \item Ryan Johnson-Posit
+  \item Kangjie Zhang-Bayer
+  \item Dadong Zhang-Illumina
+  \item Benjamin Straub-GSK
+  \item Declan Hodges-GSK
 }
 
 }
