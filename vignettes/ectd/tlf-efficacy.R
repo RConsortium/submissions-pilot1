@@ -146,6 +146,13 @@ tbl_1 <- apr0ancova1 %>%
       "CI = Confidence Interval, LS = Least Squares, SD = Standard Deviation"
     )
   ) %>%
+  rtf_footnote(
+    footnote = c(
+      paste("Table generated on:", Sys.time())
+    ),
+    as_table = FALSE,
+    text_justification = "c"
+  ) %>%
   rtf_source(
     source = "Source: [pilot3: adam-adsl; adlbc]",
     text_justification = "c"
