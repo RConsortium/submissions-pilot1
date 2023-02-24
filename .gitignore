@@ -2,9 +2,9 @@
 .Rhistory
 .RData
 .Ruserdata
-pilot1wrappers.Rcheck/
-pilot1wrappers*.tar.gz
-pilot1wrappers*.tgz
 docs
 
 inst/doc
+pilot3.Rcheck/
+pilot3*.tar.gz
+pilot3*.tgz
