@@ -168,7 +168,7 @@ discr_labels <- unlist(labsprod)[which(unlist(labsprod) %in% difflabels)]
 
 # Output ------------------------------------------------------------------
 
-haven::write_xpt(adtte, file.path("submission/datasets/adtte.xpt"))
+xportr::xportr_write(adtte, file.path("submission/datasets/adtte.xpt"), label = "AE Time To 1st Derm. Event Analysis")
 
 # END of Code -------------------------------------------------------------
 
