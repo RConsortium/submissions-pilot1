@@ -38,23 +38,23 @@ ds <- haven::read_xpt(file.path("sdtm", "ds.xpt"))
 
 
 event <- adae %>%
-  dplyr::filter(AOCC01FL == "Y", CQ01NAM == "DERMATOLOGIC EVENTS", SAFFL =="Y") %>%
-  dplyr::select(STUDYID, USUBJID, AESEQ, AOCC01FL, CQ01NAM, ASTDT)
+  filter(AOCC01FL == "Y", CQ01NAM == "DERMATOLOGIC EVENTS", SAFFL =="Y") %>%
+  select(STUDYID, USUBJID, AESEQ, AOCC01FL, CQ01NAM, ASTDT)
 
 
 # Censor events --------------------------------------------------------- 
 
 ## discontinuation, completed, death
 ds00 <- ds %>%
-  dplyr::select(STUDYID, USUBJID, DSCAT, DSDECOD, DSSTDTC) %>%
-  admiral::derive_vars_dt(
+  select(STUDYID, USUBJID, DSCAT, DSDECOD, DSSTDTC) %>%
+  derive_vars_dt(
     .,
     dtc = DSSTDTC,
     new_vars_prefix = "DSST"
   )
 
 adsl <- adsl %>%
-  admiral::derive_vars_merged(
+  derive_vars_merged(
     dataset_add = ds00,
     by_vars = vars(STUDYID, USUBJID),
     new_vars = vars(EOSDT = DSSTDT),
@@ -62,16 +62,16 @@ adsl <- adsl %>%
   )
 
 censor <- adsl %>%
-  dplyr::filter(SAFFL == "Y") %>%
+  filter(SAFFL == "Y") %>%
   # Analysis uses DEATH date rather than discontinuation when subject dies even if discontinuation occurs before death
   # Observed through QC - However not described in specs
-  dplyr::mutate(EOS2DT = case_when(DCDECOD == "DEATH" ~ as.Date(RFENDTC),
+  mutate(EOS2DT = case_when(DCDECOD == "DEATH" ~ as.Date(RFENDTC),
                                    DCDECOD != "DEATH" ~ EOSDT)
                 )%>%
-  dplyr::select(STUDYID, SITEID, USUBJID, AGE, AGEGR1, AGEGR1N, RACE, RACEN,
+  select(STUDYID, SITEID, USUBJID, AGE, AGEGR1, AGEGR1N, RACE, RACEN,
                 SEX, TRTSDT, TRTEDT, TRTDURD, EOSDT, EOS2DT, EOSSTT, SAFFL,
                 TRT01P, TRT01PN, TRT01A, TRT01AN) %>%
-  dplyr::rename(TRTDUR = TRTDURD, # total duration is same as in days
+  rename(TRTDUR = TRTDURD, # total duration is same as in days
                 TRTPN = TRT01PN,
                 TRTP = TRT01P,
                 TRTAN = TRT01AN,
@@ -80,8 +80,8 @@ censor <- adsl %>%
 # Combine event and censor ---------------------------------------------- 
 
 adtte_pre <- event %>%
-  dplyr::right_join(censor, by = c("STUDYID", "USUBJID")) %>%
-  dplyr::mutate(PARAM = "Time to First Dermatologic Event",
+  right_join(censor, by = c("STUDYID", "USUBJID")) %>%
+  mutate(PARAM = "Time to First Dermatologic Event",
                 PARAMCD = "TTDE",
                 STARTDT = TRTSDT,
                 #pmin = vectorized solution required as min took the minimum across both vectors
@@ -101,12 +101,12 @@ adtte_pre <- event %>%
                                    EVNTDESC ==  "Dematologic Event Occured" ~ "ASTDT"),
                 SRCSEQ = case_when(!is.na(ASTDT) & (ADT == ASTDT) ~ as.numeric(AESEQ))
                 ) %>%
-  dplyr::select(STUDYID, SITEID, USUBJID, AGE, AGEGR1, AGEGR1N, RACE, RACEN, SEX, TRTSDT,
+  select(STUDYID, SITEID, USUBJID, AGE, AGEGR1, AGEGR1N, RACE, RACEN, SEX, TRTSDT,
                 TRTEDT, TRTDUR, TRTP, TRTA, TRTAN, PARAM, PARAMCD, AVAL, STARTDT, ADT,
                 CNSR, EVNTDESC, SRCDOM, SRCVAR, SRCSEQ, SAFFL, EOSDT, EOS2DT, ASTDT)
 
 adtte <- adtte_pre %>%
-  dplyr::select(-EOSDT, -EOS2DT, -ASTDT)
+  select(-EOSDT, -EOS2DT, -ASTDT)
 
 # Add Labels --------------------------------------------------------------
 
@@ -142,7 +142,7 @@ labsupdated[unlist(lapply(labsupdated,is.null))]
 
 ## Metadata compare (labels)
 
-# difflabels <- dplyr::setdiff(labsprod, labsupdated)
+# difflabels <- setdiff(labsprod, labsupdated)
 # discr_labels <- unlist(labsprod)[which(unlist(labsprod) %in% difflabels)]
 
 ## Content check using in-house package
