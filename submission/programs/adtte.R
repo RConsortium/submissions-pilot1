@@ -1,5 +1,5 @@
 ###########################################################################
-#' developers : Steven Haesendonckx/Bingjuam Wing/Ben Straub
+#' developers : Steven Haesendonckx/Bingjun Wang/Ben Straub
 #' date: 13NOV2022
 #' modification History:
 #' 
@@ -17,7 +17,6 @@ library(xportr)
 library(metacore)
 library(metatools)
 library(tidyr)
-library(diffdf)
 
 # read source -------------------------------------------------------------
 
