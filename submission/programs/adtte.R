@@ -1,5 +1,5 @@
 ###########################################################################
-#' developpers : Steven Haesendonckx/
+#' developers : Steven Haesendonckx/Bingjuam Wing/Ben Straub
 #' date: 13NOV2022
 #' modification History:
 #' 
@@ -13,12 +13,17 @@ invisible(sapply(fcts, FUN = function(x) source(file.path("R/", x), )))
 library(haven)
 library(admiral)
 library(dplyr)
+library(xportr)
+library(metacore)
+library(metatools)
+library(tidyr)
+library(diffdf)
 
 # read source -------------------------------------------------------------
 
-adsl <- haven::read_xpt(file.path("adam", "adsl.xpt"))
-adae <- haven::read_xpt(file.path("adam", "adae.xpt"))
-ds <- haven::read_xpt(file.path("sdtm", "ds.xpt"))
+adsl <- read_xpt(file.path("adam", "adsl.xpt"))
+adae <- read_xpt(file.path("adam", "adae.xpt"))
+ds <- read_xpt(file.path("sdtm", "ds.xpt"))
 
 # First dermatological event (ADAE.AOCC01FL = 'Y' and ADAE.CQ01NAM != '') 
 
@@ -36,6 +41,12 @@ ds <- haven::read_xpt(file.path("sdtm", "ds.xpt"))
 #' sort by Subject (USUBJID), Start Date (ASTDT), and Sequence Number (AESEQ)
 #' flag the first record (set AOCC01FL='Y') within each Subject
 
+## placeholder for origin=predecessor, use metatool::build_from_derived()
+metacore <- spec_to_metacore("adam/TDF_ADaM - Pilot 3 Team updated.xlsx", where_sep_sheet = FALSE)
+# Get the specifications for the dataset we are currently building
+adtte_spec <- metacore %>%
+  select_dataset("ADTTE")
+
 
 event <- adae %>%
   filter(AOCC01FL == "Y", CQ01NAM == "DERMATOLOGIC EVENTS", SAFFL =="Y") %>%
@@ -43,7 +54,6 @@ event <- adae %>%
 
 
 # Censor events --------------------------------------------------------- 
-
 ## discontinuation, completed, death
 ds00 <- ds %>%
   select(STUDYID, USUBJID, DSCAT, DSDECOD, DSSTDTC) %>%
@@ -86,7 +96,7 @@ adtte_pre <- event %>%
                 STARTDT = TRTSDT,
                 #pmin = vectorized solution required as min took the minimum across both vectors
                 ADT = pmin(EOS2DT, ASTDT, na.rm = TRUE), 
-                AVAL = ADT-STARTDT+1,
+                AVAL = as.numeric(ADT-STARTDT+1),
                 CNSR = ifelse(!is.na(ASTDT) & ADT == ASTDT, 0, 1),
                 # NA were causing issues hence the long date comparison expressions
                 # Study discontinuation is also seen as study completion
@@ -100,64 +110,22 @@ adtte_pre <- event %>%
                                    EVNTDESC == "Study Completion Date" ~ "RFENDT",
                                    EVNTDESC ==  "Dematologic Event Occured" ~ "ASTDT"),
                 SRCSEQ = case_when(!is.na(ASTDT) & (ADT == ASTDT) ~ as.numeric(AESEQ))
-                ) %>%
-  select(STUDYID, SITEID, USUBJID, AGE, AGEGR1, AGEGR1N, RACE, RACEN, SEX, TRTSDT,
-                TRTEDT, TRTDUR, TRTP, TRTA, TRTAN, PARAM, PARAMCD, AVAL, STARTDT, ADT,
-                CNSR, EVNTDESC, SRCDOM, SRCVAR, SRCSEQ, SAFFL, EOSDT, EOS2DT, ASTDT)
+                ) 
 
-adtte <- adtte_pre %>%
-  select(-EOSDT, -EOS2DT, -ASTDT)
 
-# Add Labels --------------------------------------------------------------
-
-labs <- sapply(colnames(adtte), FUN = function(x) attr(adtte[[x]], "label"))
-labs[unlist(lapply(labs,is.null))]
-
-adtte[["AVAL"]] <- as.numeric(adtte[["AVAL"]])
-
-attr(adtte[["TRTP"]], "label") <- "Planned Treatment"
-attr(adtte[["TRTA"]], "label") <- "Actual Treatment"
-attr(adtte[["TRTAN"]], "label") <- "Actual Treatment (N)"
-attr(adtte[["PARAM"]], "label") <- "Parameter"
-attr(adtte[["PARAMCD"]], "label") <- "Parameter Code"
-attr(adtte[["STARTDT"]], "label") <- "Time to Event Origin Date for Subject"
-attr(adtte[["ADT"]], "label") <- "Analysis Date"
-attr(adtte[["AVAL"]], "label") <- "Analysis Value"
-attr(adtte[["CNSR"]], "label") <- "Censor"
-attr(adtte[["EVNTDESC"]], "label") <- "Event or Censoring Description"
-attr(adtte[["SRCDOM"]], "label") <- "Source Domain"
-attr(adtte[["SRCVAR"]], "label") <- "Source Variable"
-attr(adtte[["SRCSEQ"]], "label") <- "Source Sequence Number"
-attr(adtte[["TRTDUR"]], "label") <- "Duration of treatment (days)"
-
-labsupdated <- sapply(colnames(adtte), FUN = function(x) attr(adtte[[x]], "label"))
-labsupdated[unlist(lapply(labsupdated,is.null))]
-
-# read original ADTTE -----------------------------------------------------
-
-# prod <- haven::read_xpt(file.path("adam", "adtte.xpt"))
-# labsprod <- sapply(colnames(prod), FUN = function(x) attr(prod[[x]], "label"))
-
-# QC dev vs prod ----------------------------------------------------------
-
-## Metadata compare (labels)
-
-# difflabels <- setdiff(labsprod, labsupdated)
-# discr_labels <- unlist(labsprod)[which(unlist(labsprod) %in% difflabels)]
-
-## Content check using in-house package
-
- # dfcompare(
- #      file = "tlcompare"
- #     ,left = prod
- #     ,right = adtte
- #     ,keys = c("STUDYID", "USUBJID")
- #     ,showdiffs = 1000
- #     ,debug = FALSE
- # )
-
-# Output ------------------------------------------------------------------
-
-haven::write_xpt(adtte, file.path("submission/datasets/adtte.xpt"))
+adtte <- adtte_pre %>% 
+  drop_unspec_vars(adtte_spec) %>% # only keep vars from define
+  order_cols(adtte_spec) %>% # order columns based on define
+  set_variable_labels(adtte_spec) %>% # apply variable labels based on define
+  # xportr_type(adtte_spec, "ADTTE") %>%
+  #xportr_length(adtte_spec, "ADTTE") %>%
+  # unresolved issue in xportr_length due to:
+  # https://github.com/tidyverse/haven/issues/699
+  # no difference found by diffdf after commenting out xportr_length()
+  xportr_format(adtte_spec$var_spec %>%
+                  mutate_at(c("format"), ~ replace_na(., "")), "ADTTE") %>%
+  xportr_write("submission/datasets/adadas.xpt",
+               label = "AE Time To 1st Derm. Event Analysis"
+  )
 
 # END of Code -------------------------------------------------------------
