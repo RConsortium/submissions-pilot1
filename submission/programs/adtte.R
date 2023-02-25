@@ -20,8 +20,8 @@ library(tidyr)
 
 # read source -------------------------------------------------------------
 
-adsl <- read_xpt(file.path("adam", "adsl.xpt"))
-adae <- read_xpt(file.path("adam", "adae.xpt"))
+adsl <- read_xpt(file.path("submission", "datasets", "adsl.xpt"))
+adae <- read_xpt(file.path("submission", "datasets", "adae.xpt"))
 ds <- read_xpt(file.path("sdtm", "ds.xpt"))
 
 # First dermatological event (ADAE.AOCC01FL = 'Y' and ADAE.CQ01NAM != '')
@@ -135,14 +135,7 @@ adtte <- adtte_pre %>%
   # no difference found by diffdf after commenting out xportr_length()
   xportr_format(adtte_spec$var_spec %>%
     mutate_at(c("format"), ~ replace_na(., "")), "ADTTE") %>%
-  xportr_write("submission/datasets/adadas.xpt",
+  xportr_write("submission/datasets/adtte.xpt",
     label = "AE Time To 1st Derm. Event Analysis"
   )
 
-prod <- read_xpt("adam/adtte.xpt")
-
-a <- diffdf(prod, adtte, keys = c("STUDYID", "USUBJID"))
-
-a$VarClassDiffs
-a$AttribDiffs
-# END of Code -------------------------------------------------------------
