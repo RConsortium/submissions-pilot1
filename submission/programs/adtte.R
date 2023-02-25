@@ -1,0 +1,140 @@
+###########################################################################
+#' developers : Steven Haesendonckx/Bingjun Wang/Ben Straub
+#' date: 13NOV2022
+#' modification History:
+#'
+###########################################################################
+
+# Set up ------------------------------------------------------------------
+
+fcts <- c("eff_models.R", "fmt.R", "helpers.R", "Tplyr_helpers.R")
+invisible(sapply(fcts, FUN = function(x) source(file.path("R/", x), )))
+
+library(haven)
+library(admiral)
+library(dplyr)
+library(xportr)
+library(metacore)
+library(metatools)
+library(tidyr)
+
+# read source -------------------------------------------------------------
+
+adsl <- read_xpt(file.path("submission", "datasets", "adsl.xpt"))
+adae <- read_xpt(file.path("submission", "datasets", "adae.xpt"))
+ds <- read_xpt(file.path("sdtm", "ds.xpt"))
+
+# First dermatological event (ADAE.AOCC01FL = 'Y' and ADAE.CQ01NAM != '')
+
+# TRTEMFL
+#' If ASTDT >= TRTSDT > . then TRTEMFL='Y'. Otherwise TRTEMFL='N'
+
+# CQ01NAM
+#' If AEDECOD contains ('APPLICATION', 'DERMATITIS', 'ERYTHEMA', 'BLISTER') OR
+#' if AEBODSYS='SKIN AND SUBC UTANEOUS TISSUE DISORDERS'
+#' but AEDECOD is not in ('COLD SWEAT', 'HYPERHIDROSIS', 'ALOPECIA')
+#' then CQ01NAM='DERMATOLOGIC EVENTS' Otherwise CQ01NAM=NULL
+
+# AOCC01FL
+#' Subset to CQ01NAM=''and TRTEMFL='Y' <- error in define, this should be CQ01NAM != ""
+#' sort by Subject (USUBJID), Start Date (ASTDT), and Sequence Number (AESEQ)
+#' flag the first record (set AOCC01FL='Y') within each Subject
+
+## placeholder for origin=predecessor, use metatool::build_from_derived()
+metacore <- spec_to_metacore("adam/TDF_ADaM - Pilot 3 Team updated.xlsx", where_sep_sheet = FALSE)
+# Get the specifications for the dataset we are currently building
+adtte_spec <- metacore %>%
+  select_dataset("ADTTE")
+
+
+event <- event_source(
+  dataset_name = "adae",
+  filter = AOCC01FL == "Y" & CQ01NAM == "DERMATOLOGIC EVENTS" & SAFFL == "Y",
+  date = ASTDT,
+  set_values_to = vars(
+    EVNTDESC = "Dematologic Event Occured",
+    SRCDOM = "ADAE",
+    SRCVAR = "ASTDT",
+    SRCSEQ = AESEQ
+  )
+)
+
+
+# Censor events ---------------------------------------------------------
+
+## discontinuation, completed, death
+ds00 <- ds %>%
+  select(STUDYID, USUBJID, DSCAT, DSDECOD, DSSTDTC) %>%
+  derive_vars_dt(
+    .,
+    dtc = DSSTDTC,
+    new_vars_prefix = "DSST"
+  )
+
+adsl <- adsl %>%
+  derive_vars_merged(
+    dataset_add = ds00,
+    by_vars = vars(STUDYID, USUBJID),
+    new_vars = vars(EOSDT = DSSTDT),
+    filter_add = DSCAT == "DISPOSITION EVENT" & DSDECOD != "SCREEN FAILURE" & DSDECOD != "FINAL LAB VISIT"
+  ) %>%
+  # Analysis uses DEATH date rather than discontinuation when subject dies even if discontinuation occurs before death
+  # Observed through QC - However not described in specs
+  mutate(EOS2DT = case_when(
+    DCDECOD == "DEATH" ~ as.Date(RFENDTC),
+    DCDECOD != "DEATH" ~ EOSDT
+  ))
+
+censor <- censor_source(
+  dataset_name = "adsl",
+  date = EOS2DT,
+  set_values_to = vars(
+    EVNTDESC = "Study Completion Date",
+    SRCDOM = "ADSL",
+    SRCVAR = "RFENDT"
+  )
+)
+
+
+adtte_pre <- derive_param_tte(
+  dataset_adsl = adsl,
+  start_date = TRTSDT,
+  event_conditions = list(event),
+  censor_conditions = list(censor),
+  source_datasets = list(adsl = adsl, adae = adae),
+  set_values_to = vars(PARAMCD = "TTDE", PARAM = "Time to First Dermatologic Event")
+) %>%
+  derive_vars_duration(
+    new_var = AVAL,
+    start_date = STARTDT,
+    end_date = ADT
+  ) %>%
+  derive_vars_merged(
+    dataset_add = adsl,
+    new_vars = vars(
+      AGE, AGEGR1, AGEGR1N, RACE, RACEN, SAFFL, SEX, SITEID, TRT01A,
+      TRT01AN, TRTDURD, TRTEDT, TRT01P, TRTSDT
+    ),
+    by_vars = vars(STUDYID, USUBJID)
+  ) %>%
+  rename(
+    TRTA = TRT01A,
+    TRTAN = TRT01AN,
+    TRTDUR = TRTDURD,
+    TRTP = TRT01P
+  )
+
+adtte <- adtte_pre %>%
+  drop_unspec_vars(adtte_spec) %>% # only keep vars from define
+  order_cols(adtte_spec) %>% # order columns based on define
+  set_variable_labels(adtte_spec) %>% # apply variable labels based on define
+  # xportr_type(adtte_spec, "ADTTE") %>%
+  # xportr_length(adtte_spec, "ADTTE") %>%
+  # unresolved issue in xportr_length due to:
+  # https://github.com/tidyverse/haven/issues/699
+  # no difference found by diffdf after commenting out xportr_length()
+  xportr_format(adtte_spec$var_spec %>%
+    mutate_at(c("format"), ~ replace_na(., "")), "ADTTE") %>%
+  xportr_write("submission/datasets/adtte.xpt",
+    label = "AE Time To 1st Derm. Event Analysis"
+  )
