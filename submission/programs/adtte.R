@@ -138,4 +138,3 @@ adtte <- adtte_pre %>%
   xportr_write("submission/datasets/adtte.xpt",
     label = "AE Time To 1st Derm. Event Analysis"
   )
-
