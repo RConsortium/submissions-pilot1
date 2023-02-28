@@ -185,4 +185,4 @@ tbl_3 <- apr0ancova3 %>%
 tbl <- list(tbl_1, tbl_2, tbl_3)
 tbl %>%
   rtf_encode() %>%
-  write_rtf(file.path("output/",  "tlf-efficacy-pilot3.rtf"))
+  write_rtf(file.path("output/", "tlf-efficacy-pilot3.rtf"))
