@@ -1,5 +1,5 @@
 ###########################################################################
-#' developers : Thomas Neitmann/
+#' developers : Thomas Neitmann
 #' date: 16DEC2022
 #' modification History:
 #' QC ADSL

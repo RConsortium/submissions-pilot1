@@ -2,7 +2,7 @@
 #' developers : Phani Tata/Joel Laxamana
 #' date: 07FEB2023
 #' modification History:
-#' program: ADAE.R
+#' program: adae.R
 ###########################################################################
 
 library(admiral)
