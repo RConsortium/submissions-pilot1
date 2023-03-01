@@ -1,5 +1,5 @@
 ###########################################################################
-#' developers : Kangjie Zhang/
+#' developers : Kangjie Zhang
 #' date: 29NOV2022
 #' modification History:
 #' QC ADADAS

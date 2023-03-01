@@ -1,5 +1,5 @@
 ###########################################################################
-#' developers : Thomas Neitmann/
+#' developers : Thomas Neitmann
 #' date: 08FEB2023
 #' modification History:
 #' QC ADLBC
