@@ -15,6 +15,84 @@ knitr::opts_chunk$set(echo = TRUE)
 Pilot 3 team should be able to see updated meeting minutes here on a
 weekly basis.
 
+## 02Mar2023 - Minutes by Joel Laxamana
+-********************************************************************************************-
+
+- Submission Pilot3 - ADaM Check In
+- Meeting Organizer: Thomas Neitman, Joel Laxamana
+- Participants: Joel Laxamana, Kangjie Zhang, Ben Straub, Robert Devine, Phani Tata, Steven Haesendonckx
+- Summary: Discussed tasks still in progress and went through slides here : https://docs.google.com/presentation/d/1-aZEZw8HAUm_T3ywXWKGNIxQP7Ez0DHgN2BaRNQZJ3k/edit?usp=sharing 
+- Project Board: https://github.com/orgs/RConsortium/projects/7
+- Meeting Recorded: Yes 
+
+-********************************************************************************************-
+
+- Joel has made updates to labels in specs to help resolve our P21 issues. Upon individual runs of each datasets and checking the attirbutes specific to the P21 issues, these should now be resolved.
+  - all data now in main and ready for refresh of P21 run
+  - explanation for VISNUMEN should be added to P21
+  - issue with ADSL.RACEN, will share updated specs on RACEN codelist which should resolve this issue
+  - Joel sent Declan the updated specs through slack as .xlsx.
+- Joel demoed quick run in `main` using current renv and all works ok.
+
+### ACTION : To Steven, hopefully a pull of main and renv_restore() should resolve. Keep us posted.
+
+- e-Submission packaging
+  - Cleaning up & finalizing ADaM R scripts
+  - Sourcing Pilot 3 data into the TLF programs
+  - Make sure timestamps are in place 
+  - Then bring scripts over to Pilot3 FDA repo : https://github.com/RConsortium/submissions-pilot3-adam-to-fda  
+
+
+### ACTION : ADRG - Lei/Joel to generate from P21
+  - Joel will try to run P21. Lei to pack up .xpt and define.
+
+### ACTION : Updating specs, for those who worked on the datasets to be responsible for updating specs.  Will create issues.
+
+- Create a batch run pipeline to run our ADaMs in order then the TLFs. See targets{} package - Ben/Thomas
+
+### ACTION : Ben Straub - Remove extra comments in adtte.R
+
+To note : admiral{} 1.0 release Mar 6 - rerun all programs and check for issues.
+
+
+
+## 24Feb2023 - Minutes by Joel Laxamana
+-********************************************************************************************-
+
+- Submission Pilot3 - ADaM Check In
+- Meeting Organizer: Thomas Neitman, Joel Laxamana
+- Participants: Joel Laxamana, Kangjie Zhang, Nicole Jones, Ben Straub, Robert Devine, Phani Tata, Declan Hodges, Bingjun Wang
+- Summary: Discussed tasks still in progress and went over P21 issues.
+- Project Board: https://github.com/orgs/RConsortium/projects/7
+- Meeting Recorded: Yes 
+
+-********************************************************************************************-
+
+- ADLBC now in `main`.
+
+### ACTION : Nicole to add discrepancies in QC Findings with 3 date variables date vs numeric. 
+
+- ADTTE first draft to main ready for merge - Thanks Bingjun, Robert and Ben
+
+### ACTION : Bingjun - add data format differences in QC findings
+### ACTION : Robert - KM plot should run soon after adtte is in `main`
+### ACTION : To all assigned tables or plot, please update all TLF programs to use capital .R extension instead of lowercase .r
+### ACTION : include timestamps in TLF outputs.
+
+Thomas/Ben/Joel 
+- Run ADaMs and TLFs in correct order so that timestamps make sense, especially due to data dependencies. Suggest
+ADSL, ADAE, ADADAS, ADLBC, ADTTE
+
+### ACTION : For all assigned to working on datasets, please update specs with new TDF define found.  See issue #10 and look out for new issues for these actions for each dataset spec.
+
+- Vignettes to be added down the road post-submission
+- Next meeting go through a process flow of data, TLFs in a project area going into eSUB.
+- P21 issues shared by Lei and now listed for all to review and resolve in issue #61
+
+### ACTION : All please confirm the P21 issues are now resolved in #61.
+
+
+
 ## 17Feb2023 - Minutes by Joel Laxamana
 -********************************************************************************************-
 
