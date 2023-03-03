@@ -23,7 +23,7 @@ weekly basis.
 - Participants: Joel Laxamana, Kangjie Zhang, Ben Straub, Robert Devine, Phani Tata, Steven Haesendonckx
 - Summary: Discussed tasks still in progress and went through slides here : https://docs.google.com/presentation/d/1-aZEZw8HAUm_T3ywXWKGNIxQP7Ez0DHgN2BaRNQZJ3k/edit?usp=sharing 
 - Project Board: https://github.com/orgs/RConsortium/projects/7
-- Meeting Recorded: Yes 
+- Meeting Recorded: Yes https://drive.google.com/file/d/1LfZoTR08p7DtY71UUkr6S43LDQEPlUkf/view?usp=sharing
 
 -********************************************************************************************-
 
@@ -64,7 +64,7 @@ To note : admiral{} 1.0 release Mar 6 - rerun all programs and check for issues.
 - Participants: Joel Laxamana, Kangjie Zhang, Nicole Jones, Ben Straub, Robert Devine, Phani Tata, Declan Hodges, Bingjun Wang
 - Summary: Discussed tasks still in progress and went over P21 issues.
 - Project Board: https://github.com/orgs/RConsortium/projects/7
-- Meeting Recorded: Yes 
+- Meeting Recorded: Yes https://drive.google.com/file/d/1jh9z9ivfBph7v-yBEiTMvBuglbEm_uI9/view?usp=sharing
 
 -********************************************************************************************-
 
