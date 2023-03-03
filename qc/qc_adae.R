@@ -9,13 +9,13 @@ library(haven)
 library(diffdf)
 
 
-# QC/Check against original TDF ADAE dataset 
+# QC/Check against original TDF ADAE dataset
 # -------------------------------------------#
 adae <- read_xpt(file.path("submission", "datasets", "adae.xpt")) %>%
   convert_blanks_to_na()
 adae_orig <- read_xpt(file.path("adam", "adae.xpt")) %>%
   convert_blanks_to_na()
 
-# Compare 
+# Compare
 #---------#
-diffdf(adae, adae_orig, keys = c("STUDYID", "USUBJID", "AESEQ")) 
+diffdf(adae, adae_orig, keys = c("STUDYID", "USUBJID", "AESEQ"))
