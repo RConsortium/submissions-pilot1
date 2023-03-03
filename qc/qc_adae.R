@@ -7,18 +7,15 @@
 ###########################################################################
 library(haven)
 library(diffdf)
-library(arsenal)
 
-# -------------------------------------------#
-# QC/Check against original TDF ADAE dataset #
+
+# QC/Check against original TDF ADAE dataset 
 # -------------------------------------------#
 adae <- read_xpt(file.path("submission", "datasets", "adae.xpt")) %>%
   convert_blanks_to_na()
 adae_orig <- read_xpt(file.path("adam", "adae.xpt")) %>%
   convert_blanks_to_na()
 
+# Compare 
 #---------#
-# Compare #
-#---------#
-diffdf(adae, adae_orig, keys = c("STUDYID", "USUBJID", "AESEQ")) # using diffdf{}
-summary(comparedf(adae, adae_orig, by = c("STUDYID", "USUBJID", "AESEQ"))) # using arsenal{}
+diffdf(adae, adae_orig, keys = c("STUDYID", "USUBJID", "AESEQ")) 
