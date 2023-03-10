@@ -28,13 +28,13 @@ library(ggplot2)
 library(cowplot)
 library(visR)
 
-# Propitiatory Package, please refer appendix of ADRG to install
-library(pilot1wrappers)
+# Proprietary Package, please refer to the appendix of the ADRG to install
+library(pilot3)
 
 
 ## ------------------------------------------------------------------------------------------------------------------------------
-adsl <- read_xpt(file.path(path$adam, "adsl.xpt"))
-adtte <- read_xpt(file.path(path$adam, "adtte.xpt"))
+adsl <- read_xpt(file.path("submission/datasets/", "adsl.xpt"))
+adtte <- read_xpt(file.path("submission/datasets/", "adtte.xpt"))
 
 
 ## ------------------------------------------------------------------------------------------------------------------------------
@@ -64,7 +64,7 @@ ggplot2::theme_set(theme_bw())
 
 pdf.options(reset = TRUE, onefile = FALSE)
 
-pdf(file.path(path$output, "tlf-kmplot.pdf"))
+pdf(file.path(path$output, "tlf-kmplot-pilot3.pdf"))
 
 km <- visR::visr(surv_mod,
   y_label = "Probability of event\n",
