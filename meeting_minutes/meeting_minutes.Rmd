@@ -43,6 +43,9 @@ weekly basis.
 
 
 -   Robert working on KM plot to PR today.
+
+#### ACTION to Robert : call on {Pilot3} package for utility functions, path to the ADaMs generated in our Pilot, output filename with `-pilot3` extension.
+
 -   Bingun updated demog table and is in PR already.
 
 ### ACTION to Joel : Review PRs and merge accordingly.
