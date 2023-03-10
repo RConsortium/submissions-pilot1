@@ -35,6 +35,8 @@ weekly basis.
     should be resolvable as we remove all reference to datasets, codelists,
     variables from datasets that we are not generating in Pilot 3.
 
+![](images/pilot3_meeting_minutes_define.PNG)
+
 ### ACTION to Lei Zhao : Thanks to the discussion within the team, we should be able to resolve the issues directly in P21. Then Lei will : https://github.com/RConsortium/submissions-pilot3-adam/issues/61 
 
 ##### 1)Update define directly in P21 to resolve issues with the specs. 
