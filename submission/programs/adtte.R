@@ -7,45 +7,32 @@
 
 # Set up ------------------------------------------------------------------
 
-fcts <- c("eff_models.R", "fmt.R", "helpers.R", "Tplyr_helpers.R")
-invisible(sapply(fcts, FUN = function(x) source(file.path("R/", x), )))
-
 library(haven)
 library(admiral)
 library(dplyr)
-library(xportr)
+library(tidyr)
 library(metacore)
 library(metatools)
-library(tidyr)
+library(pilot3)
+library(xportr)
 
 # read source -------------------------------------------------------------
 
 adsl <- read_xpt(file.path("submission", "datasets", "adsl.xpt"))
 adae <- read_xpt(file.path("submission", "datasets", "adae.xpt"))
-ds <- read_xpt(file.path("sdtm", "ds.xpt"))
+ds <- convert_blanks_to_na(read_xpt(file.path("sdtm", "ds.xpt")))
 
-# First dermatological event (ADAE.AOCC01FL = 'Y' and ADAE.CQ01NAM != '')
-
-# TRTEMFL
-#' If ASTDT >= TRTSDT > . then TRTEMFL='Y'. Otherwise TRTEMFL='N'
-
-# CQ01NAM
-#' If AEDECOD contains ('APPLICATION', 'DERMATITIS', 'ERYTHEMA', 'BLISTER') OR
-#' if AEBODSYS='SKIN AND SUBC UTANEOUS TISSUE DISORDERS'
-#' but AEDECOD is not in ('COLD SWEAT', 'HYPERHIDROSIS', 'ALOPECIA')
-#' then CQ01NAM='DERMATOLOGIC EVENTS' Otherwise CQ01NAM=NULL
-
-# AOCC01FL
-#' Subset to CQ01NAM=''and TRTEMFL='Y' <- error in define, this should be CQ01NAM != ""
-#' sort by Subject (USUBJID), Start Date (ASTDT), and Sequence Number (AESEQ)
-#' flag the first record (set AOCC01FL='Y') within each Subject
 
 ## placeholder for origin=predecessor, use metatool::build_from_derived()
+
 metacore <- spec_to_metacore("adam/TDF_ADaM - Pilot 3 Team updated.xlsx", where_sep_sheet = FALSE)
+
 # Get the specifications for the dataset we are currently building
+
 adtte_spec <- metacore %>%
   select_dataset("ADTTE")
 
+# First dermatological event (ADAE.AOCC01FL = 'Y' and ADAE.CQ01NAM != '')
 
 event <- event_source(
   dataset_name = "adae",
