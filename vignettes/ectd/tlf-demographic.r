@@ -24,12 +24,10 @@ library(haven)
 library(dplyr)
 library(rtables)
 
-# Propitiatory Package, please refer appendix of ADRG to install
-library(pilot1wrappers)
 
 
 ## ------------------------------------------------------------------------------------------------------------------------------
-adsl <- read_xpt(file.path(path$adam, "adsl.xpt"))
+adsl <- read_xpt(file.path("submission/datasets/", "adsl.xpt"))
 adsl_labels <- var_labels(adsl)
 
 
@@ -52,7 +50,7 @@ vars <- c("AGE", "AGEGR1", "RACE", "HEIGHTBL", "WEIGHTBL", "BMIBL", "MMSETOT")
 lyt <- basic_table(
   title = "Protocol: CDISCPILOT01",
   subtitles = "Population: Intent-to-Treat",
-  main_footer = paste0("Program: tlf_demographic.Rmd \n", Sys.time())
+  main_footer = paste0("Program: tlf_demographic.R \n", Sys.time())
 ) %>%
   split_cols_by("TRT01P") %>%
   add_colcounts() %>%
@@ -83,4 +81,4 @@ tbl
 # Output .out file
 tbl %>%
   toString() %>%
-  writeLines(con = file.path(path$output, "tlf-demographic.out"))
+  writeLines(con = file.path("output/", "tlf-demographic-pilot3.out"))
