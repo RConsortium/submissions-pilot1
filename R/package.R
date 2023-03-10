@@ -1,4 +1,5 @@
 #' @keywords internal
+#' @import admiraldev
 #' @importFrom dplyr %>% case_when filter rowwise
 #' @importFrom stats confint drop1 lm
 #' @importFrom tibble as_tibble tibble

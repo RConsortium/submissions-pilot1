@@ -32,7 +32,7 @@ supplb <- convert_blanks_to_na(read_xpt(file.path("sdtm", "supplb.xpt")))
 
 # Read and convert NA for ADaM DATASET
 ## Subject-Level Analysis
-adsl <- convert_blanks_to_na(read_xpt(file.path("adam", "adsl.xpt")))
+adsl <- convert_blanks_to_na(read_xpt(file.path("submission", "datasets", "adsl.xpt")))
 ## Analysis Dataset Lab Blood Chemistry
 prodc <- convert_blanks_to_na(read_xpt(file.path("adam", "adlbc.xpt")))
 

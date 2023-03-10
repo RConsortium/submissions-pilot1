@@ -1,5 +1,5 @@
 ###########################################################################
-#' developers : Kangjie Zhang/
+#' developers : Kangjie Zhang
 #' date: 29NOV2022
 #' modification History:
 #' program ADADAS
@@ -17,7 +17,7 @@ library(pilot3)
 
 dm <- haven::read_xpt(file.path("sdtm", "dm.xpt"))
 qs <- haven::read_xpt(file.path("sdtm", "qs.xpt"))
-adsl <- haven::read_xpt(file.path("adam", "adsl.xpt"))
+adsl <- haven::read_xpt(file.path("submission", "datasets", "adsl.xpt"))
 
 qs <- convert_blanks_to_na(qs)
 
