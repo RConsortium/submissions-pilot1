@@ -38,7 +38,7 @@ event <- event_source(
   dataset_name = "adae",
   filter = AOCC01FL == "Y" & CQ01NAM == "DERMATOLOGIC EVENTS" & SAFFL == "Y",
   date = ASTDT,
-  set_values_to = vars(
+  set_values_to = exprs(
     EVNTDESC = "Dematologic Event Occured",
     SRCDOM = "ADAE",
     SRCVAR = "ASTDT",
@@ -61,8 +61,8 @@ ds00 <- ds %>%
 adsl <- adsl %>%
   derive_vars_merged(
     dataset_add = ds00,
-    by_vars = vars(STUDYID, USUBJID),
-    new_vars = vars(EOSDT = DSSTDT),
+    by_vars = exprs(STUDYID, USUBJID),
+    new_vars = exprs(EOSDT = DSSTDT),
     filter_add = DSCAT == "DISPOSITION EVENT" & DSDECOD != "SCREEN FAILURE" & DSDECOD != "FINAL LAB VISIT"
   ) %>%
   # Analysis uses DEATH date rather than discontinuation when subject dies even if discontinuation occurs before death
@@ -75,7 +75,7 @@ adsl <- adsl %>%
 censor <- censor_source(
   dataset_name = "adsl",
   date = EOS2DT,
-  set_values_to = vars(
+  set_values_to = exprs(
     EVNTDESC = "Study Completion Date",
     SRCDOM = "ADSL",
     SRCVAR = "RFENDT"
@@ -89,7 +89,7 @@ adtte_pre <- derive_param_tte(
   event_conditions = list(event),
   censor_conditions = list(censor),
   source_datasets = list(adsl = adsl, adae = adae),
-  set_values_to = vars(PARAMCD = "TTDE", PARAM = "Time to First Dermatologic Event")
+  set_values_to = exprs(PARAMCD = "TTDE", PARAM = "Time to First Dermatologic Event")
 ) %>%
   derive_vars_duration(
     new_var = AVAL,
@@ -98,11 +98,11 @@ adtte_pre <- derive_param_tte(
   ) %>%
   derive_vars_merged(
     dataset_add = adsl,
-    new_vars = vars(
+    new_vars = exprs(
       AGE, AGEGR1, AGEGR1N, RACE, RACEN, SAFFL, SEX, SITEID, TRT01A,
       TRT01AN, TRTDURD, TRTEDT, TRT01P, TRTSDT
     ),
-    by_vars = vars(STUDYID, USUBJID)
+    by_vars = exprs(STUDYID, USUBJID)
   ) %>%
   rename(
     TRTA = TRT01A,

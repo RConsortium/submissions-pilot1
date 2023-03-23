@@ -36,8 +36,8 @@ adadas_pred <- build_from_derived(adadas_spec,
 adas1 <- adadas_pred %>%
   derive_vars_merged(
     dataset_add = qs,
-    new_vars = vars(QSDTC, QSSTRESN, QSTEST), # Get QS vars required for derivations
-    by_vars = vars(STUDYID, USUBJID, QSSEQ)
+    new_vars = exprs(QSDTC, QSSTRESN, QSTEST), # Get QS vars required for derivations
+    by_vars = exprs(STUDYID, USUBJID, QSSEQ)
   ) %>%
   # subset to interested PARAMCD(QSTESTCD)
   filter(PARAMCD %in%
@@ -48,7 +48,7 @@ adas1 <- adadas_pred %>%
     dtc = QSDTC
   ) %>%
   # ADY
-  derive_vars_dy(reference_date = TRTSDT, source_vars = vars(ADT))
+  derive_vars_dy(reference_date = TRTSDT, source_vars = exprs(ADT))
 
 ## mutate AVISIT/AVAL/PARAM, assign AVISITN/PARAMN based on codelist from define
 adas2 <- adas1 %>%
@@ -79,14 +79,14 @@ actot_expected_obsv <- tibble::tribble(
 adas_locf <- derive_locf_records_(
   data = adas2,
   dataset_expected_obs = actot_expected_obsv,
-  # by_vars = vars(STUDYID, USUBJID, PARAMCD),
-  by_vars = vars(
+  # by_vars = exprs(STUDYID, USUBJID, PARAMCD),
+  by_vars = exprs(
     STUDYID, SITEID, SITEGR1, USUBJID, TRTSDT, TRTEDT,
     TRTP, TRTPN, AGE, AGEGR1, AGEGR1N, RACE, RACEN, SEX,
     ITTFL, EFFFL, COMP24FL, PARAMCD
   ),
-  order = vars(AVISITN, AVISIT),
-  keep_vars = vars(VISIT, VISITNUM, ADY, ADT, PARAM, PARAMN, QSSEQ)
+  order = exprs(AVISITN, AVISIT),
+  keep_vars = exprs(VISIT, VISITNUM, ADY, ADT, PARAM, PARAMN, QSSEQ)
 )
 # ADT/ADY/.. to be populated for LOCF records
 # issue raised for admiral::derive_locf_records
@@ -103,7 +103,7 @@ aw_lookup <- tribble(
 adas3 <- derive_vars_merged(
   adas_locf,
   dataset_add = aw_lookup,
-  by_vars = vars(AVISIT)
+  by_vars = exprs(AVISIT)
 ) %>%
   mutate(
     AWTDIFF = abs(AWTARGET - ADY),
@@ -115,7 +115,7 @@ adas3 <- derive_vars_merged(
 adas4 <- adas3 %>%
   # Calculate BASE
   derive_var_base(
-    by_vars = vars(STUDYID, USUBJID, PARAMCD),
+    by_vars = exprs(STUDYID, USUBJID, PARAMCD),
     source_var = AVAL,
     new_var = BASE
   ) %>%
@@ -136,8 +136,8 @@ adas5 <- adas4 %>%
   restrict_derivation(
     derivation = derive_var_extreme_flag,
     args = params(
-      by_vars = vars(USUBJID, PARAMCD, AVISIT),
-      order = vars(AWTDIFF, diff),
+      by_vars = exprs(USUBJID, PARAMCD, AVISIT),
+      order = exprs(AWTDIFF, diff),
       new_var = ANL01FL,
       mode = "first"
     ),

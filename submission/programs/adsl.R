@@ -63,16 +63,16 @@ ex_dt <- ex %>%
   # treatment end is imputed by discontinuation if subject discontinued after visit 3 = randomization as per protocol
   derive_vars_merged(
     dataset_add = ds00,
-    by_vars = vars(STUDYID, USUBJID),
-    new_vars = vars(EOSDT = EOSDT),
+    by_vars = exprs(STUDYID, USUBJID),
+    new_vars = exprs(EOSDT = EOSDT),
     filter_add = DCDECOD != "COMPLETED"
   ) %>%
   derive_vars_dt(
     dtc = EXENDTC,
     new_vars_prefix = "EXEN",
     highest_imputation = "Y",
-    min_dates = vars(EXSTDT),
-    max_dates = vars(EOSDT),
+    min_dates = exprs(EXSTDT),
+    max_dates = exprs(EOSDT),
     date_imputation = "last",
     flag_imputation = "none"
   ) %>%
@@ -108,10 +108,10 @@ adsl00 <- dm %>%
       (EXDOSE == 0 &
         grepl("PLACEBO", EXTRT, fixed = TRUE))) &
       !is.na(EXSTDT),
-    new_vars = vars(TRTSDT = EXSTDT),
-    order = vars(EXSTDT, EXSEQ),
+    new_vars = exprs(TRTSDT = EXSTDT),
+    order = exprs(EXSTDT, EXSEQ),
     mode = "first",
-    by_vars = vars(STUDYID, USUBJID)
+    by_vars = exprs(STUDYID, USUBJID)
   ) %>%
   # treatment end
   derive_vars_merged(
@@ -120,10 +120,10 @@ adsl00 <- dm %>%
       (EXDOSE == 0 &
         grepl("PLACEBO", EXTRT, fixed = TRUE))) &
       !is.na(EXENDT),
-    new_vars = vars(TRTEDT = EXENDT),
-    order = vars(EXENDT, EXSEQ),
+    new_vars = exprs(TRTEDT = EXENDT),
+    order = exprs(EXENDT, EXSEQ),
     mode = "last",
-    by_vars = vars(STUDYID, USUBJID)
+    by_vars = exprs(STUDYID, USUBJID)
   ) %>%
   # treatment duration
   derive_var_trtdurd() %>%
