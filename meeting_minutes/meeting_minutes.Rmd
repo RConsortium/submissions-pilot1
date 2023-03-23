@@ -15,6 +15,65 @@ knitr::opts_chunk$set(echo = TRUE)
 Pilot 3 team should be able to see updated meeting minutes here on a
 weekly basis.
 
+## 17Mar2023 - Minutes by Joel Laxamana
+
+-\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*-
+
+-   Submission Pilot3 - ADaM Check In
+-   Meeting Organizer: Thomas Neitman, Joel Laxamana
+-   Participants: Joel Laxamana, Thomas Neitman, Kangjie Zhang, Ben
+    Straub, Robert Devine, Declan Hodges
+-   Summary: Discussed tasks still in progress
+-   Project Board: <https://github.com/orgs/RConsortium/projects/7>
+-   Meeting Recorded: Yes :
+    <https://drive.google.com/file/d/1u3oOl1oKUz4Gdz7WB7TLOotrOs0Tm5QL/view?usp=sharing>
+
+-\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*-
+
+1. 
+-   {admiral} v0.10 (or maybe even update CRAN snapshot and update all packages we are using.)
+
+## ACTION : Decision to update admiral - adadas locf derivation now available. We need to update renv.lock then do renv::restore(). 
+### Is everyone ok with updating CRAN snapshot and all packages? See https://github.com/RConsortium/submissions-pilot3-adam/issues/77#issuecomment-1476000593 and input your comments/responses. 
+
+2. 
+-   Pinnacle 21 report 
+
+## ACTION : Check on ADTTE & ADLBC derivation specs : Bingjun and Nicole 
+  
+  - All other dataset specs OK, per Declan (ADSL), Kaz (ADADAS), ADAE (Phani/Joel)
+  
+## ACTION : I've created git issues for all datasets, please close issue in git to formally track that the specs are ok now.
+
+  - This is the most up-to-date specs, where the define has 0 issues in Pinnacle 21 now.
+https://docs.google.com/spreadsheets/d/13T15AS69ENeHktMofEQD4QBOg_moY-mU/edit?usp=sharing&ouid=103991081896680964420&rtpof=true&sd=true
+
+    - Please use your gmail account to open this link. Direct message me in slack your gmail so that I can share the doc.
+  
+3. 
+- Joel to continue to resolve ADADAS.AVAL length, will reach out to Kaz if
+    needed.
+    - working on branch 10 to update this before PR.
+
+### Update : length now fixed and P21 issue now resolved.
+
+4. 
+- ADRG needs to be worked on. How best to collaborate 
+  - Decision - we will continue with google docs. Since this is an open source pilot study, there is nothing too confidential to worry about.  Feel free to create temporary google accounts if you don't have one, then share your gmail with me so that I can share google docs with you.  [Thanks Ben and Declan for sharing your accounts with me.  I've added you to the google doc list where you should be able to now access the meeting recordings (or at least request access) and the google docs.]
+
+## ACTION : To update ADRG, we can 
+#### 1) copy text from Pilot 1 to Pilot 3 adrg. Pilot 1 adrg : <https://github.com/RConsortium/submissions-pilot1-to-fda/blob/main/m5/datasets/rconsortiumpilot1/analysis/adam/datasets/adrg.pdf>, 
+#### 2) Take Pilot 3 proposal : <https://github.com/RConsortium/submissions-pilot3-adam/blob/main/vignettes/fda/R_Submission_Pilot_3_ADaM_FDA_Execution_Proposal_02Dec2022.pdf> and include this info into the Pilot 3 ADRG (should list out all steps for FDA to unpack the Pilot 3 project.) 
+#### 3) This is the current base ADRG directly coming from P21 : https://docs.google.com/document/d/13xMUVQgZMmXd1igdZNUQy1Pc-WxoMxL7/edit?usp=share_link&ouid=103991081896680964420&rtpof=true&sd=true We then just need to mash all of this information into one cohesive Reviewer's guide that is specific to Pilot 3.  
+#### One recommednation would be to just copy Pilot 1's ADRG and update it with the Pilot 3 proposal/project unpacking steps and information.
+
+5. 
+- Once above is up to date, we need to move over programs to esub repo, then Robert Devine can unpack and test.
+    
+#### Announcements : 
+- Thomas leaving Roche to pursue new position. Congrats to Thomas! You will be missed at Roche, but glad to know you'll still be Co-Leading/Collaborating with us in this open source Pilot 3 project.
+
+
 ## 10Mar2023 - Minutes by Joel Laxamana
 
 -\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*-
@@ -22,27 +81,30 @@ weekly basis.
 -   Submission Pilot3 - ADaM Check In
 -   Meeting Organizer: Thomas Neitman, Joel Laxamana
 -   Participants: Joel Laxamana, Kangjie Zhang, Ben Straub, Robert
-    Devine, Dadong Zhang, Declan Hodges, Nicole Jones, Lei Zhao, Bingjun Wang
--   Summary: Discussed tasks still in progress 
+    Devine, Dadong Zhang, Declan Hodges, Nicole Jones, Lei Zhao, Bingjun
+    Wang
+-   Summary: Discussed tasks still in progress
 -   Project Board: <https://github.com/orgs/RConsortium/projects/7>
--   Meeting Recorded: Yes : https://drive.google.com/file/d/1sQobfAP2YzpFAJujRhDKyCkwzdeHxk9L/view?usp=sharing 
-
+-   Meeting Recorded: Yes :
+    <https://drive.google.com/file/d/1sQobfAP2YzpFAJujRhDKyCkwzdeHxk9L/view?usp=sharing>
 
 -\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*-
 
 -   Joel has made updates to specs to help resolve our P21 issues. Only
     looking at the define alone, there are currently 300+ issues, which
-    should be resolvable as we remove all reference to datasets, codelists,
-    variables from datasets that we are not generating in Pilot 3.
+    should be resolvable as we remove all reference to datasets,
+    codelists, variables from datasets that we are not generating in
+    Pilot 3.
 
 ![](images/pilot3_meeting_minutes_define.PNG)
 
-### ACTION to Lei Zhao : Thanks to the discussion within the team, we should be able to resolve the issues directly in P21. Then Lei will : https://github.com/RConsortium/submissions-pilot3-adam/issues/61 
+### ACTION to Lei Zhao : Thanks to the discussion within the team, we should be able to resolve the issues directly in P21. Then Lei will : <https://github.com/RConsortium/submissions-pilot3-adam/issues/61>
 
-##### 1)Update define directly in P21 to resolve issues with the specs. 
+##### 1)Update define directly in P21 to resolve issues with the specs.
+
 ##### 2)Generate define.xml to validate against the ADaM .xpts
-##### 3)re-export the updated Excel sheet so team can rerun their ADaM scripts against the new specs to make sure metatools and xportr functions are calling in the specs appropriately.
 
+##### 3)re-export the updated Excel sheet so team can rerun their ADaM scripts against the new specs to make sure metatools and xportr functions are calling in the specs appropriately.
 
 -   Robert working on KM plot to PR today.
 
@@ -52,10 +114,10 @@ weekly basis.
 
 ### ACTION to Joel : Review PRs and merge accordingly.
 
--   Steven updated script for adtte.R to call on {Pilot3} and path to the ADaMs generated in our Pilot.
+-   Steven updated script for adtte.R to call on {Pilot3} and path to
+    the ADaMs generated in our Pilot.
 
 We are almost there!
-
 
 ## 02Mar2023 - Minutes by Joel Laxamana
 
