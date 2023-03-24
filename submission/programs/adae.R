@@ -108,7 +108,6 @@ adae0 <- ae %>%
     end_date = AENDT,
     out_unit = "days"
   ) %>%
-  mutate(ADURU = str_replace(ADURU, "DAYS", "DAY")) %>%
   # Treatment Emergent Analysis flag
   #----------------------------------------------------------------------------------------
   restrict_derivation(
