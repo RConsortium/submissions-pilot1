@@ -45,7 +45,7 @@ adae_spec <- metacore %>% select_dataset("ADAE") # Get the specifications for th
 
 # Get list of ADSL vars
 #----------------------------------------------------------------------------------------
-adsl_vars <- vars(
+adsl_vars <- exprs(
   TRTSDT,
   TRTEDT,
   STUDYID,
@@ -69,7 +69,7 @@ adae0 <- ae %>%
   derive_vars_merged(
     dataset_add = adsl,
     new_vars = adsl_vars,
-    by = vars(STUDYID, USUBJID)
+    by = exprs(STUDYID, USUBJID)
   ) %>%
   # Set TRTA and TRTAN from ADSL
   #----------------------------------------------------------------------------------------
@@ -94,12 +94,12 @@ adae0 <- ae %>%
   ) %>%
   # Derive analysis start & end dates
   #----------------------------------------------------------------------------------------
-  derive_vars_dtm_to_dt(vars(ASTDTM, AENDTM)) %>%
+  derive_vars_dtm_to_dt(exprs(ASTDTM, AENDTM)) %>%
   # Duration of AE
   #----------------------------------------------------------------------------------------
   derive_vars_dy(
     reference_date = TRTSDT,
-    source_vars = vars(TRTSDT, ASTDT, AENDT)
+    source_vars = exprs(TRTSDT, ASTDT, AENDT)
   ) %>%
   derive_vars_duration(
     new_var = ADURN,
@@ -124,8 +124,8 @@ adae0 <- ae %>%
   restrict_derivation(
     derivation = derive_var_extreme_flag,
     args = params(
-      by_vars = vars(USUBJID),
-      order = vars(ASTDT, AESEQ),
+      by_vars = exprs(USUBJID),
+      order = exprs(ASTDT, AESEQ),
       new_var = AOCCFL,
       mode = "first"
     ), filter = TRTEMFL == "Y"
@@ -135,8 +135,8 @@ adae0 <- ae %>%
   restrict_derivation(
     derivation = derive_var_extreme_flag,
     args = params(
-      by_vars = vars(USUBJID, AEBODSYS),
-      order = vars(ASTDT, AESEQ),
+      by_vars = exprs(USUBJID, AEBODSYS),
+      order = exprs(ASTDT, AESEQ),
       new_var = AOCCSFL,
       mode = "first"
     ), filter = TRTEMFL == "Y"
@@ -146,8 +146,8 @@ adae0 <- ae %>%
   restrict_derivation(
     derivation = derive_var_extreme_flag,
     args = params(
-      by_vars = vars(USUBJID, AEBODSYS, AEDECOD),
-      order = vars(ASTDT, AESEQ),
+      by_vars = exprs(USUBJID, AEBODSYS, AEDECOD),
+      order = exprs(ASTDT, AESEQ),
       new_var = AOCCPFL,
       mode = "first"
     ), filter = TRTEMFL == "Y"
@@ -157,8 +157,8 @@ adae0 <- ae %>%
   restrict_derivation(
     derivation = derive_var_extreme_flag,
     args = params(
-      by_vars = vars(USUBJID),
-      order = vars(ASTDT, AESEQ),
+      by_vars = exprs(USUBJID),
+      order = exprs(ASTDT, AESEQ),
       new_var = AOCC02FL,
       mode = "first"
     ), filter = TRTEMFL == "Y" & AESER == "Y"
@@ -168,8 +168,8 @@ adae0 <- ae %>%
   restrict_derivation(
     derivation = derive_var_extreme_flag,
     args = params(
-      by_vars = vars(USUBJID, AEBODSYS),
-      order = vars(ASTDT, AESEQ),
+      by_vars = exprs(USUBJID, AEBODSYS),
+      order = exprs(ASTDT, AESEQ),
       new_var = AOCC03FL,
       mode = "first"
     ), filter = TRTEMFL == "Y" & AESER == "Y"
@@ -179,8 +179,8 @@ adae0 <- ae %>%
   restrict_derivation(
     derivation = derive_var_extreme_flag,
     args = params(
-      by_vars = vars(USUBJID, AEBODSYS, AEDECOD),
-      order = vars(ASTDT, AESEQ),
+      by_vars = exprs(USUBJID, AEBODSYS, AEDECOD),
+      order = exprs(ASTDT, AESEQ),
       new_var = AOCC04FL,
       mode = "first"
     ), filter = TRTEMFL == "Y" & AESER == "Y"
@@ -201,8 +201,8 @@ adae0 <- ae %>%
   restrict_derivation(
     derivation = derive_var_extreme_flag,
     args = params(
-      by_vars = vars(USUBJID),
-      order = vars(ASTDT, AESEQ),
+      by_vars = exprs(USUBJID),
+      order = exprs(ASTDT, AESEQ),
       new_var = AOCC01FL,
       mode = "first"
     ), filter = TRTEMFL == "Y" & CQ01NAM == "DERMATOLOGIC EVENTS"
