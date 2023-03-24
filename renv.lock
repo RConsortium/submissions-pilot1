@@ -3,7 +3,7 @@
     "Version": "4.2.2",
     "Repositories": [
       {
-        "Name": "REPO_NAME",
+        "Name": "RSPM",
         "URL": "https://packagemanager.posit.co/cran/2023-03-15"
       }
     ]
@@ -1637,7 +1637,7 @@
     },
     "ps": {
       "Package": "ps",
-      "Version": "1.7.3",
+      "Version": "1.7.2",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
