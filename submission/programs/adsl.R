@@ -305,5 +305,5 @@ adsl07 %>%
   xportr_label(adsl_spec) %>% # Assigns variable label from metacore specifications
   xportr_df_label(adsl_spec) %>% # Assigns dataset label from metacore specifications
   xportr_write("submission/datasets/adsl.xpt",
-               label = "Subject-Level Analysis Dataset"
+    label = "Subject-Level Analysis Dataset"
   )
