@@ -12,6 +12,24 @@ format_sitegr1 <- function(x) {
   )
 }
 
+#' Derive subject's end of study status
+#'
+#' `format_eosstt` derives the `EOSSTT` variable, which contains subject's end of study status
+#'
+#'
+#' @inheritParams format_sitegr1
+#'
+#' @export
+format_eosstt <- function(x) {
+  case_when(
+    x %in% c("SCREEN FAILURE", "SCREENING NOT COMPLETED") ~ "NOT STARTED",
+    x == "COMPLETED" ~ "COMPLETED",
+    !x %in% c("COMPLETED", "SCREEN FAILURE", "SCREENING NOT COMPLETED")
+    & !is.na(x) ~ "DISCONTINUED",
+    TRUE ~ "ONGOING"
+  )
+}
+
 #' Derive subject's disposition reason(s)
 #'
 #' `format_dcsreas` derives the `DCSREAS` variable, which contains subjects' disposition reason(s).
