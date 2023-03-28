@@ -15,169 +15,388 @@ knitr::opts_chunk$set(echo = TRUE)
 Pilot 3 team should be able to see updated meeting minutes here on a
 weekly basis.
 
+## 24Mar2023 - Minutes by Joel Laxamana
+
+-\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*-
+
+-   Submission Pilot3 - ADaM Check In
+-   Meeting Organizer: Thomas Neitman, Joel Laxamana
+-   Participants: Joel Laxamana, Thomas Neitman, Kangjie Zhang, Ben
+    Straub, Robert Devine, Declan Hodges, Nicole Jones, Dadong Zhang, Lei Zhao
+-   Summary: Discussed tasks still in progress
+-   Project Board: <https://github.com/orgs/RConsortium/projects/7>
+-   Meeting Recorded: Yes : https://drive.google.com/file/d/1Gt7l2NOorQe43jVJ-McCaBKE_-vW_j4X/view?usp=sharing
+
+-\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*-
+
+1. Declan.
+- Updating renv.lock with most current snapshot. updating packages including admiral .10.
+  - Datasets need updates with new snapshot
+  - Joel to merge 77 to main and Declan to create new issues for ADSL, ADADAS, ADTTE
+  - ADLBC and ADAE are good to go.
+
+2. Nicole
+- Reviewing ADLBC specs and populating AVAL with correct derivation.
+- Reviewing codelist 
+
+3. Dadong
+- Reviewing ADLBC specs with Nicole.
+- Issue with max values - fix derivation issue for when subject's values are all missing NA.
+  - Will update specs on this. See #82.
+
+4. Ben
+- Will work on updating the ADRG
+
+5. Kaz
+- Summarize discrepancies on attribute and format issues for all datasets
+- Metacore issue on removing duplicate formats. all details in #87
+- These are minor issues, so long as we document in wiki we should be good.
+ 
+6. Robert
+- Issue 83 adtte specs look good.
+- Declan to add Robert to adtte issues per #77.
+
+7. Lei
+- Will work on updating the ADRG
+
+8. Thomas/Joel
+- Update R Consortium Submissions WG on Pilot 3 : https://docs.google.com/presentation/d/1-aZEZw8HAUm_T3ywXWKGNIxQP7Ez0DHgN2BaRNQZJ3k/edit?usp=sharing
+
+@channel Pilot 3 ADRG to update : https://drive.google.com/drive/folders/15Ec2FCjuiCothwdilUOlFGgPKEG78BFF?usp=share_link 
+Please let me know if you all have access to these or not.  Thanks. 
+
+
+## 17Mar2023 - Minutes by Joel Laxamana
+
+-\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*-
+
+-   Submission Pilot3 - ADaM Check In
+-   Meeting Organizer: Thomas Neitman, Joel Laxamana
+-   Participants: Joel Laxamana, Thomas Neitman, Kangjie Zhang, Ben
+    Straub, Robert Devine, Declan Hodges
+-   Summary: Discussed tasks still in progress
+-   Project Board: <https://github.com/orgs/RConsortium/projects/7>
+-   Meeting Recorded: Yes :
+    <https://drive.google.com/file/d/1u3oOl1oKUz4Gdz7WB7TLOotrOs0Tm5QL/view?usp=sharing>
+
+-\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*-
+
+1. 
+-   {admiral} v0.10 (or maybe even update CRAN snapshot and update all packages we are using.)
+
+## ACTION : Decision to update admiral - adadas locf derivation now available. We need to update renv.lock then do renv::restore(). 
+### Is everyone ok with updating CRAN snapshot and all packages? See https://github.com/RConsortium/submissions-pilot3-adam/issues/77#issuecomment-1476000593 and input your comments/responses. 
+
+2. 
+-   Pinnacle 21 report 
+
+## ACTION : Check on ADTTE & ADLBC derivation specs : Bingjun and Nicole 
+  
+  - All other dataset specs OK, per Declan (ADSL), Kaz (ADADAS), ADAE (Phani/Joel)
+  
+## ACTION : I've created git issues for all datasets, please close issue in git to formally track that the specs are ok now.
+
+  - This is the most up-to-date specs, where the define has 0 issues in Pinnacle 21 now.
+https://docs.google.com/spreadsheets/d/13T15AS69ENeHktMofEQD4QBOg_moY-mU/edit?usp=sharing&ouid=103991081896680964420&rtpof=true&sd=true
+
+    - Please use your gmail account to open this link. Direct message me in slack your gmail so that I can share the doc.
+  
+3. 
+- Joel to continue to resolve ADADAS.AVAL length, will reach out to Kaz if
+    needed.
+    - working on branch 10 to update this before PR.
+
+### Update : length now fixed and P21 issue now resolved.
+
+4. 
+- ADRG needs to be worked on. How best to collaborate 
+  - Decision - we will continue with google docs. Since this is an open source pilot study, there is nothing too confidential to worry about.  Feel free to create temporary google accounts if you don't have one, then share your gmail with me so that I can share google docs with you.  [Thanks Ben and Declan for sharing your accounts with me.  I've added you to the google doc list where you should be able to now access the meeting recordings (or at least request access) and the google docs.]
+
+## ACTION : To update ADRG, we can 
+#### 1) copy text from Pilot 1 to Pilot 3 adrg. Pilot 1 adrg : <https://github.com/RConsortium/submissions-pilot1-to-fda/blob/main/m5/datasets/rconsortiumpilot1/analysis/adam/datasets/adrg.pdf>, 
+#### 2) Take Pilot 3 proposal : <https://github.com/RConsortium/submissions-pilot3-adam/blob/main/vignettes/fda/R_Submission_Pilot_3_ADaM_FDA_Execution_Proposal_02Dec2022.pdf> and include this info into the Pilot 3 ADRG (should list out all steps for FDA to unpack the Pilot 3 project.) 
+#### 3) This is the current base ADRG directly coming from P21 : https://docs.google.com/document/d/13xMUVQgZMmXd1igdZNUQy1Pc-WxoMxL7/edit?usp=share_link&ouid=103991081896680964420&rtpof=true&sd=true We then just need to mash all of this information into one cohesive Reviewer's guide that is specific to Pilot 3.  
+#### One recommednation would be to just copy Pilot 1's ADRG and update it with the Pilot 3 proposal/project unpacking steps and information.
+
+5. 
+- Once above is up to date, we need to move over programs to esub repo, then Robert Devine can unpack and test.
+    
+#### Announcements : 
+- Thomas leaving Roche to pursue new position. Congrats to Thomas! You will be missed at Roche, but glad to know you'll still be Co-Leading/Collaborating with us in this open source Pilot 3 project.
+
+
+## 10Mar2023 - Minutes by Joel Laxamana
+
+-\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*-
+
+-   Submission Pilot3 - ADaM Check In
+-   Meeting Organizer: Thomas Neitman, Joel Laxamana
+-   Participants: Joel Laxamana, Kangjie Zhang, Ben Straub, Robert
+    Devine, Dadong Zhang, Declan Hodges, Nicole Jones, Lei Zhao, Bingjun
+    Wang
+-   Summary: Discussed tasks still in progress
+-   Project Board: <https://github.com/orgs/RConsortium/projects/7>
+-   Meeting Recorded: Yes :
+    <https://drive.google.com/file/d/1sQobfAP2YzpFAJujRhDKyCkwzdeHxk9L/view?usp=sharing>
+
+-\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*-
+
+-   Joel has made updates to specs to help resolve our P21 issues. Only
+    looking at the define alone, there are currently 300+ issues, which
+    should be resolvable as we remove all reference to datasets,
+    codelists, variables from datasets that we are not generating in
+    Pilot 3.
+
+![](images/pilot3_meeting_minutes_define.PNG)
+
+### ACTION to Lei Zhao : Thanks to the discussion within the team, we should be able to resolve the issues directly in P21. Then Lei will : <https://github.com/RConsortium/submissions-pilot3-adam/issues/61>
+
+##### 1)Update define directly in P21 to resolve issues with the specs.
+
+##### 2)Generate define.xml to validate against the ADaM .xpts
+
+##### 3)re-export the updated Excel sheet so team can rerun their ADaM scripts against the new specs to make sure metatools and xportr functions are calling in the specs appropriately.
+
+-   Robert working on KM plot to PR today.
+
+#### ACTION to Robert : call on {Pilot3} package for utility functions, path to the ADaMs generated in our Pilot, output filename with `-pilot3` extension.
+
+-   Bingun updated demog table and is in PR already.
+
+### ACTION to Joel : Review PRs and merge accordingly.
+
+-   Steven updated script for adtte.R to call on {Pilot3} and path to
+    the ADaMs generated in our Pilot.
+
+We are almost there!
+
 ## 02Mar2023 - Minutes by Joel Laxamana
--********************************************************************************************-
 
-- Submission Pilot3 - ADaM Check In
-- Meeting Organizer: Thomas Neitman, Joel Laxamana
-- Participants: Joel Laxamana, Kangjie Zhang, Ben Straub, Robert Devine, Phani Tata, Steven Haesendonckx
-- Summary: Discussed tasks still in progress and went through slides here : https://docs.google.com/presentation/d/1-aZEZw8HAUm_T3ywXWKGNIxQP7Ez0DHgN2BaRNQZJ3k/edit?usp=sharing 
-- Project Board: https://github.com/orgs/RConsortium/projects/7
-- Meeting Recorded: Yes https://drive.google.com/file/d/1LfZoTR08p7DtY71UUkr6S43LDQEPlUkf/view?usp=sharing
+-\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*-
 
--********************************************************************************************-
+-   Submission Pilot3 - ADaM Check In
+-   Meeting Organizer: Thomas Neitman, Joel Laxamana
+-   Participants: Joel Laxamana, Kangjie Zhang, Ben Straub, Robert
+    Devine, Phani Tata, Steven Haesendonckx
+-   Summary: Discussed tasks still in progress and went through slides
+    here :
+    <https://docs.google.com/presentation/d/1-aZEZw8HAUm_T3ywXWKGNIxQP7Ez0DHgN2BaRNQZJ3k/edit?usp=sharing>
+-   Project Board: <https://github.com/orgs/RConsortium/projects/7>
+-   Meeting Recorded: Yes
+    <https://drive.google.com/file/d/1LfZoTR08p7DtY71UUkr6S43LDQEPlUkf/view?usp=sharing>
 
-- Joel has made updates to labels in specs to help resolve our P21 issues. Upon individual runs of each datasets and checking the attirbutes specific to the P21 issues, these should now be resolved.
-  - all data now in main and ready for refresh of P21 run
-  - explanation for VISNUMEN should be added to P21
-  - issue with ADSL.RACEN, will share updated specs on RACEN codelist which should resolve this issue
-  - Joel sent Declan the updated specs through slack as .xlsx.
-- Joel demoed quick run in `main` using current renv and all works ok.
+-\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*-
+
+-   Joel has made updates to labels in specs to help resolve our P21
+    issues. Upon individual runs of each datasets and checking the
+    attirbutes specific to the P21 issues, these should now be resolved.
+    -   all data now in main and ready for refresh of P21 run
+    -   explanation for VISNUMEN should be added to P21
+    -   issue with ADSL.RACEN, will share updated specs on RACEN
+        codelist which should resolve this issue
+    -   Joel sent Declan the updated specs through slack as .xlsx.
+-   Joel demoed quick run in `main` using current renv and all works ok.
 
 ### ACTION : To Steven, hopefully a pull of main and renv_restore() should resolve. Keep us posted.
 
-- e-Submission packaging
-  - Cleaning up & finalizing ADaM R scripts
-  - Sourcing Pilot 3 data into the TLF programs
-  - Make sure timestamps are in place 
-  - Then bring scripts over to Pilot3 FDA repo : https://github.com/RConsortium/submissions-pilot3-adam-to-fda  
-
+-   e-Submission packaging
+    -   Cleaning up & finalizing ADaM R scripts
+    -   Sourcing Pilot 3 data into the TLF programs
+    -   Make sure timestamps are in place
+    -   Then bring scripts over to Pilot3 FDA repo :
+        <https://github.com/RConsortium/submissions-pilot3-adam-to-fda>
 
 ### ACTION : ADRG - Lei/Joel to generate from P21
-  - Joel will try to run P21. Lei to pack up .xpt and define.
 
-### ACTION : Updating specs, for those who worked on the datasets to be responsible for updating specs.  Will create issues.
+-   Joel will try to run P21. Lei to pack up .xpt and define.
 
-- Create a batch run pipeline to run our ADaMs in order then the TLFs. See targets{} package - Ben/Thomas
+### ACTION : Updating specs, for those who worked on the datasets to be responsible for updating specs. Will create issues.
+
+-   Create a batch run pipeline to run our ADaMs in order then the TLFs.
+    See targets{} package - Ben/Thomas
 
 ### ACTION : Ben Straub - Remove extra comments in adtte.R
 
-To note : admiral{} 1.0 release Mar 6 - rerun all programs and check for issues.
-
-
+To note : admiral{} 1.0 release Mar 6 - rerun all programs and check for
+issues.
 
 ## 24Feb2023 - Minutes by Joel Laxamana
--********************************************************************************************-
 
-- Submission Pilot3 - ADaM Check In
-- Meeting Organizer: Thomas Neitman, Joel Laxamana
-- Participants: Joel Laxamana, Kangjie Zhang, Nicole Jones, Ben Straub, Robert Devine, Phani Tata, Declan Hodges, Bingjun Wang
-- Summary: Discussed tasks still in progress and went over P21 issues.
-- Project Board: https://github.com/orgs/RConsortium/projects/7
-- Meeting Recorded: Yes https://drive.google.com/file/d/1jh9z9ivfBph7v-yBEiTMvBuglbEm_uI9/view?usp=sharing
+-\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*-
 
--********************************************************************************************-
+-   Submission Pilot3 - ADaM Check In
+-   Meeting Organizer: Thomas Neitman, Joel Laxamana
+-   Participants: Joel Laxamana, Kangjie Zhang, Nicole Jones, Ben
+    Straub, Robert Devine, Phani Tata, Declan Hodges, Bingjun Wang
+-   Summary: Discussed tasks still in progress and went over P21 issues.
+-   Project Board: <https://github.com/orgs/RConsortium/projects/7>
+-   Meeting Recorded: Yes
+    <https://drive.google.com/file/d/1jh9z9ivfBph7v-yBEiTMvBuglbEm_uI9/view?usp=sharing>
 
-- ADLBC now in `main`.
+-\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*-
 
-### ACTION : Nicole to add discrepancies in QC Findings with 3 date variables date vs numeric. 
+-   ADLBC now in `main`.
 
-- ADTTE first draft to main ready for merge - Thanks Bingjun, Robert and Ben
+### ACTION : Nicole to add discrepancies in QC Findings with 3 date variables date vs numeric.
+
+-   ADTTE first draft to main ready for merge - Thanks Bingjun, Robert
+    and Ben
 
 ### ACTION : Bingjun - add data format differences in QC findings
+
 ### ACTION : Robert - KM plot should run soon after adtte is in `main`
+
 ### ACTION : To all assigned tables or plot, please update all TLF programs to use capital .R extension instead of lowercase .r
+
 ### ACTION : include timestamps in TLF outputs.
 
-Thomas/Ben/Joel 
-- Run ADaMs and TLFs in correct order so that timestamps make sense, especially due to data dependencies. Suggest
-ADSL, ADAE, ADADAS, ADLBC, ADTTE
+Thomas/Ben/Joel - Run ADaMs and TLFs in correct order so that timestamps
+make sense, especially due to data dependencies. Suggest ADSL, ADAE,
+ADADAS, ADLBC, ADTTE
 
-### ACTION : For all assigned to working on datasets, please update specs with new TDF define found.  See issue #10 and look out for new issues for these actions for each dataset spec.
+### ACTION : For all assigned to working on datasets, please update specs with new TDF define found. See issue #10 and look out for new issues for these actions for each dataset spec.
 
-- Vignettes to be added down the road post-submission
-- Next meeting go through a process flow of data, TLFs in a project area going into eSUB.
-- P21 issues shared by Lei and now listed for all to review and resolve in issue #61
+-   Vignettes to be added down the road post-submission
+-   Next meeting go through a process flow of data, TLFs in a project
+    area going into eSUB.
+-   P21 issues shared by Lei and now listed for all to review and
+    resolve in issue #61
 
 ### ACTION : All please confirm the P21 issues are now resolved in #61.
 
-
-
 ## 17Feb2023 - Minutes by Joel Laxamana
--********************************************************************************************-
 
-- Submission Pilot3 - ADaM Check In
-- Meeting Organizer: Thomas Neitman, Joel Laxamana
-- Participants: Thomas Neitman, Joel Laxamana, Kangjie Zhang, Nicole Jones, Ben Straub, Robert Devine, Phani Tata, Declan Hodges
-- Summary: The meeting was conducted with each participant providing an update about their project activities and overall discussion about next steps to submission process
-- Project Board: https://github.com/orgs/RConsortium/projects/7
-- Resolution: Continue Development (Backlog:8, In Progress:6, In Review: 3, Done: 12) 
-- Meeting Recorded: Yes 
+-\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*-
 
--********************************************************************************************-
+-   Submission Pilot3 - ADaM Check In
+-   Meeting Organizer: Thomas Neitman, Joel Laxamana
+-   Participants: Thomas Neitman, Joel Laxamana, Kangjie Zhang, Nicole
+    Jones, Ben Straub, Robert Devine, Phani Tata, Declan Hodges
+-   Summary: The meeting was conducted with each participant providing
+    an update about their project activities and overall discussion
+    about next steps to submission process
+-   Project Board: <https://github.com/orgs/RConsortium/projects/7>
+-   Resolution: Continue Development (Backlog:8, In Progress:6, In
+    Review: 3, Done: 12)
+-   Meeting Recorded: Yes
+
+-\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*-
 
 Joel - Started meeting.
 
-Ben Straub - Pilot 3 website now up and running.  Need updates to authors in DESCRIPTION file to those in Pilot 3.  Follow Pilot 1 and do Vignettes for datasets, in Pilot 3, still on the table and could be valuable to public viewers of the Pilot 3 repo for convenient viewing of our work. Can help advocate R use.
+Ben Straub - Pilot 3 website now up and running. Need updates to authors
+in DESCRIPTION file to those in Pilot 3. Follow Pilot 1 and do Vignettes
+for datasets, in Pilot 3, still on the table and could be valuable to
+public viewers of the Pilot 3 repo for convenient viewing of our work.
+Can help advocate R use.
 
-Kanjie - Summarized the common issue amongst datasets. Further noted the newer specs found in the TDF repo that should be used to bring over derivations to the Pilot 3 specs/define.
+Kanjie - Summarized the common issue amongst datasets. Further noted the
+newer specs found in the TDF repo that should be used to bring over
+derivations to the Pilot 3 specs/define.
 
 ### ACTION : @all to review Issue #57.
 
 Declan - updated TLF, issue #31 now in draft PR once ADLBC is merged.
 
-Nicole - ADLBC EOT obs are now in! YES!!! Now matching with original dataset. 
+Nicole - ADLBC EOT obs are now in! YES!!! Now matching with original
+dataset.
 
-### ACTION : Nicole will update PR with new ADBLC updates.  THANKS for sticking with it, Nicole!
+### ACTION : Nicole will update PR with new ADBLC updates. THANKS for sticking with it, Nicole!
 
-Robert - working on PR #21 [ADTTE]. Close to matching with original.  Thanks to Bingjun and Steven developing ADTTE. Labels are now added. XPT seems to not be up-to-date.
+Robert - working on PR #21 [ADTTE]. Close to matching with original.
+Thanks to Bingjun and Steven developing ADTTE. Labels are now added. XPT
+seems to not be up-to-date.
 
 ### ACTION : Need ADTTE script to swith to xportr{} instead of haven{} when generating .xpt.
 
-Phani - ADAE now in main.  Great work, setting up the foundation. Will take new work to help with tables.
+Phani - ADAE now in main. Great work, setting up the foundation. Will
+take new work to help with tables.
 
-### ACTION : Assigned to Demog table program, reading Pilot 3 ADSL. https://github.com/RConsortium/submissions-pilot3-adam/issues/29#issuecomment-1436393205 
+### ACTION : Assigned to Demog table program, reading Pilot 3 ADSL. <https://github.com/RConsortium/submissions-pilot3-adam/issues/29#issuecomment-1436393205>
 
-Joel - Found more up-to-date specs, where correct derivations should be brought over to the Pilot 3 specs. Created an ADAE vignette.
+Joel - Found more up-to-date specs, where correct derivations should be
+brought over to the Pilot 3 specs. Created an ADAE vignette.
 
-### ACTION : @all please review new specs in Issue #10 to make sure we capture the correct derivations and bring them over to our current Pilot 3 specs.  Need to bring these specs into the `main/adam` branch.
+### ACTION : @all please review new specs in Issue #10 to make sure we capture the correct derivations and bring them over to our current Pilot 3 specs. Need to bring these specs into the `main/adam` branch.
 
 ### ACTION : Lei to begin submission process and check P21 issues with our current Pilot 3 specs.
 
-### ACTION : We need to begin setting up the adam-to-fda repo with our Pilot 3 info : https://github.com/RConsortium/submissions-pilot3-adam/issues/53#issuecomment-1435035929 Due end of Feb.
+### ACTION : We need to begin setting up the adam-to-fda repo with our Pilot 3 info : <https://github.com/RConsortium/submissions-pilot3-adam/issues/53#issuecomment-1435035929> Due end of Feb.
 
 Thomas Neitman - Closed meeting.
 
-Meeting Recording : https://drive.google.com/file/d/1aV7NoGPE_k58ufTGUq8NYwDOdyqGPAep/view?usp=sharing
-
+Meeting Recording :
+<https://drive.google.com/file/d/1aV7NoGPE_k58ufTGUq8NYwDOdyqGPAep/view?usp=sharing>
 
 ## 10Feb2023 - Minutes by Robert Devine
 
--********************************************************************************************-
+-\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*-
 
-- Submission Pilot3 - ADaM Check In
-- Meeting Organizer: Joel Laxamana
-- Participants: Joel Laxamana, Kangjie Zhang, Ben Straub, Steven Haesendonckx, Benjamin Wang, Robert Devine
-- Summary: The meeting was conducted with each participant providing an update about their project activities.
-- Project Board: https://github.com/orgs/RConsortium/projects/7
-- Resolution: Continue Development (Backlog:14, In Progress:4, In Review: 3, Done: 6)
-- Meeting Recorded: Yes
+-   Submission Pilot3 - ADaM Check In
+-   Meeting Organizer: Joel Laxamana
+-   Participants: Joel Laxamana, Kangjie Zhang, Ben Straub, Steven
+    Haesendonckx, Benjamin Wang, Robert Devine
+-   Summary: The meeting was conducted with each participant providing
+    an update about their project activities.
+-   Project Board: <https://github.com/orgs/RConsortium/projects/7>
+-   Resolution: Continue Development (Backlog:14, In Progress:4, In
+    Review: 3, Done: 6)
+-   Meeting Recorded: Yes
 
--********************************************************************************************-
+-\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*-
 
-- Joel Laxamana - Greetings and Meeting Setup. 
+-   Joel Laxamana - Greetings and Meeting Setup.
 
-- Robert Devine - Discussion of recent progress around Issue #5 (ADTTE) and requested to advance the issue from 'In Progress' to 'In Review'. Next Check In follow up with Issue Assignees. Noted participation in the CDISC {admiral} Hackathon (In Progress) with work on ADTTE and other ADaM datasets. Work concurrently on Issue #32.
+-   Robert Devine - Discussion of recent progress around Issue #5
+    (ADTTE) and requested to advance the issue from 'In Progress' to 'In
+    Review'. Next Check In follow up with Issue Assignees. Noted
+    participation in the CDISC {admiral} Hackathon (In Progress) with
+    work on ADTTE and other ADaM datasets. Work concurrently on Issue
+    #32.
 
-- Ben Straub - Discussion of focus around PR (Pull Request) => main in reference to the Pilot3 repository
-  - Issue #59: Create vignettes for Datasets like Pilot1 did for Tables
-  - Issue #58: List out team in Description File
-  - Issue #57: Common Issues facing Datasets
-  - Issue #55: Establish Rotating Minute Takers Going forward
+-   Ben Straub - Discussion of focus around PR (Pull Request) =\> main
+    in reference to the Pilot3 repository
 
-- Kangjie Zhang - Discussion of the define updates, common issue across datasets, the CDISC {admiral} Hackathon, code quality team awareness, alignment of specs to {admiral} Hackathon. {Thomas Neitmann} has posted the updated spec file in the {admiral} Hackathon Slack channel which was linked during the Check In to Pilot3. The updated spec was posted February 8, 2023 in Slack #admiral_hackathon.
+    -   Issue #59: Create vignettes for Datasets like Pilot1 did for
+        Tables
+    -   Issue #58: List out team in Description File
+    -   Issue #57: Common Issues facing Datasets
+    -   Issue #55: Establish Rotating Minute Takers Going forward
 
-- Joel Laxamana - Discussion of recent progress around ADAE dataset which is now 'In Review'. Requested {Steve Haesendonckx} to review the ADAE dataset which was linked in GitHub by {Ben Straub}.
+-   Kangjie Zhang - Discussion of the define updates, common issue
+    across datasets, the CDISC {admiral} Hackathon, code quality team
+    awareness, alignment of specs to {admiral} Hackathon. {Thomas
+    Neitmann} has posted the updated spec file in the {admiral}
+    Hackathon Slack channel which was linked during the Check In to
+    Pilot3. The updated spec was posted February 8, 2023 in Slack
+    #admiral_hackathon.
 
-- Steve Haesendonckx - Discussion of the alternative submission proposal and the R Consortium / R Infrastructure
-  - requests to continue alignment with previous R Submission Pilots. The Pilot3 Team indicated interest to possibly revisit the proposal as a Pilot[3.5] at a later date. Noted possible data format differences in ADTTE across the pilots. Accepted request to review the ADAE dataset. Worked with {Nicole Jones} on ADLBC dataset that is 'In Review'.
-  
-- Benjamin Wang -  Discussion about Issue#5 ADTTE contribution and PR with a request for Comment and Review.
-  - Initiated availability to further contribute with additional task assignments. Responded to {Ben Straub} that Issue #29 (Table - Demographics and Baseline Characteristics) would be of interest for assignment in the Project3 GitHub.
+-   Joel Laxamana - Discussion of recent progress around ADAE dataset
+    which is now 'In Review'. Requested {Steve Haesendonckx} to review
+    the ADAE dataset which was linked in GitHub by {Ben Straub}.
 
-- Joel Laxamana - Farewell and Meeting Adjourns
+-   Steve Haesendonckx - Discussion of the alternative submission
+    proposal and the R Consortium / R Infrastructure
 
-Meeting Recording : https://drive.google.com/file/d/1YyQOTIpoLNA0IJCQ34-9aTEA9Pn62X-Q/view
+    -   requests to continue alignment with previous R Submission
+        Pilots. The Pilot3 Team indicated interest to possibly revisit
+        the proposal as a Pilot[3.5] at a later date. Noted possible
+        data format differences in ADTTE across the pilots. Accepted
+        request to review the ADAE dataset. Worked with {Nicole Jones}
+        on ADLBC dataset that is 'In Review'.
+
+-   Benjamin Wang - Discussion about Issue#5 ADTTE contribution and PR
+    with a request for Comment and Review.
+
+    -   Initiated availability to further contribute with additional
+        task assignments. Responded to {Ben Straub} that Issue #29
+        (Table - Demographics and Baseline Characteristics) would be of
+        interest for assignment in the Project3 GitHub.
+
+-   Joel Laxamana - Farewell and Meeting Adjourns
+
+Meeting Recording :
+<https://drive.google.com/file/d/1YyQOTIpoLNA0IJCQ34-9aTEA9Pn62X-Q/view>
 
 ## 03Feb2023 - Minutes by Joel Laxamana
 
@@ -311,7 +530,7 @@ Meeting Recording :
 5.  Ben S.
 
 -   Project board set-up :
-    https://github.com/orgs/RConsortium/projects/7
+    <https://github.com/orgs/RConsortium/projects/7>
 
 ### ACTION : ALL REVIEW meeting recording below to see Ben's demo on project board (10:22)
 
@@ -374,8 +593,8 @@ Meeting recording :
 3.  Nicole
 
 -   ADLBC compare to original dataset. Looks good, but missing \>=50
-    records vs original dataset. 
-    
+    records vs original dataset.
+
 ### ACTION : Steven, Nicole and Dadong to review spec derivations to see if these are where discrepancies are.
 
 4.  Steven
@@ -391,8 +610,8 @@ Meeting recording :
 -   Rerun primary table as used with ADADAS, made updates to table
     script only due to updated R version and package versions, nothing
     else. Upon generation, due to discrepancies found in ADADAS with the
-    original dataset, the results show minor differences. 
-    
+    original dataset, the results show minor differences.
+
 ### ACTION :Kaz to document these differences in a doc. Same doc where ADSL differences are captured.
 
 -   ADSL codelist can use metatool functions rather than writing
@@ -417,8 +636,8 @@ Meeting recording :
 8.  AOB
 
 -   CDISC working group proposing on using DATASETS.JSON for FDA
-    submission instead of .XPT 
-    
+    submission instead of .XPT
+
 ### ACTION : bring this question to R Consortium group meeting.
 
 Meeting adjourned.
@@ -547,8 +766,6 @@ everyone. We'll pick it up again next year! \~Thomas and Joel
 
 ### SEE YOU ALL NEXT YEAR.
 
-### VIDEO RECORDNG: <https://drive.google.com/file/d/1oMtFbZQFuwptsWcf1fYGqo2lurtiIdL-/view>
-
 ### ACTION to Joel - Create deadlines on `main` Read.me file so that everyone has transparency on work that needs to be done at a certain time. Maybe create a Kanban board on the issues.
 
 ## 09Dec2022 - Minutes by Joel Laxamana
@@ -662,8 +879,6 @@ everyone. We'll pick it up again next year! \~Thomas and Joel
 ![](images/TDF_define_LB.VISITNUM_incorrect.PNG)
 
 ### HAPPY HOLIDAYS TO ALL TAKING EARLY BREAK FOR THE EOY! WILL SEE YOU NEXT YEAR.
-
-### VIDEO RECORDING : <https://drive.google.com/file/d/1-IVypxR7Mnco7mUV6Qmh-r37f2KK3JYM/view>
 
 ## 02Dec2022 - Minutes by Joel Laxamana
 
