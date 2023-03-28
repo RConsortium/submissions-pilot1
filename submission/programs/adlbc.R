@@ -100,12 +100,6 @@ adlb01 <- adlb00 %>%
 # Dates -------------------------------------------------------------------
 
 adlb02 <- adlb01 %>%
-  derive_vars_dtm(
-    new_vars_prefix = "A",
-    dtc = LBDTC,
-    highest_imputation = "s",
-    ignore_seconds_flag = T
-  ) %>%
   derive_vars_dt(
     new_vars_prefix = "A",
     dtc = LBDTC,
