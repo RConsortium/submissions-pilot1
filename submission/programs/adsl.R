@@ -304,8 +304,8 @@ adsl07 %>%
   xportr_length(adsl_spec) %>% # Assigns SAS length from a variable level metadata
   xportr_label(adsl_spec) %>% # Assigns variable label from metacore specifications
   xportr_df_label(adsl_spec) %>% # Assigns dataset label from metacore specifications
-  xportr_format(adsl_spec$var_spec %>% 
-                  mutate_at(c("format"), ~ replace_na(., "")), "ADSL") %>%
+  xportr_format(adsl_spec$var_spec %>%
+    mutate_at(c("format"), ~ replace_na(., "")), "ADSL") %>%
   xportr_write("submission/datasets/adsl.xpt",
     label = "Subject-Level Analysis Dataset"
   )
