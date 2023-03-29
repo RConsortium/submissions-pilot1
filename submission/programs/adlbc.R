@@ -105,7 +105,7 @@ adlb02 <- adlb01 %>%
     dtc = LBDTC,
     highest_imputation = "n"
   ) %>%
-  derive_vars_dy(reference_date = TRTSDT, source_vars = vars(ADT))
+  derive_vars_dy(reference_date = TRTSDT, source_vars = exprs(ADT))
 
 
 
@@ -135,7 +135,7 @@ adlb04 <- adlb03 %>%
 adlb05 <- adlb04 %>%
   mutate(ABLFL = LBBLFL) %>%
   derive_var_base(
-    by_vars = vars(STUDYID, USUBJID, PARAMCD),
+    by_vars = exprs(STUDYID, USUBJID, PARAMCD),
     source_var = AVAL,
     new_var = BASE
   ) %>%
@@ -222,7 +222,7 @@ adlb08 <- adlb07 %>%
   ) %>%
   # derive_var_anrind() %>%
   derive_var_base(
-    by_vars = vars(STUDYID, USUBJID, PARAMCD),
+    by_vars = exprs(STUDYID, USUBJID, PARAMCD),
     source_var = ANRIND,
     new_var = BNRIND
   ) %>% # Low and High values are repeating
@@ -235,7 +235,7 @@ adlb09 <- adlb08 %>%
   filter((VISITNUM >= 4 & VISITNUM <= 12) & !grepl("UN", VISIT)) %>%
   group_by(USUBJID, PARAMCD) %>%
   mutate(
-    maxALBTRVAL =ifelse(!is.na(ALBTRVAL),max(ALBTRVAL, na.rm = T), ALBTRVAL), 
+    maxALBTRVAL = max(ALBTRVAL, na.rm = T),
     ANL01FL = ifelse(maxALBTRVAL == ALBTRVAL, "Y", "")
   ) %>%
   arrange(desc(ANL01FL)) %>%
