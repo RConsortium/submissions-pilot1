@@ -27,8 +27,7 @@ library(dplyr)
 library(ggplot2)
 library(cowplot)
 library(visR)
-
-# Proprietary Package, please refer to the appendix of the ADRG to install
+devtools::load_all()
 library(pilot3)
 
 
@@ -64,7 +63,7 @@ ggplot2::theme_set(theme_bw())
 
 pdf.options(reset = TRUE, onefile = FALSE)
 
-pdf(file.path(path$output, "tlf-kmplot-pilot3.pdf"))
+pdf(file.path("output/", "tlf-kmplot-pilot3.pdf"))
 
 km <- visR::visr(surv_mod,
   y_label = "Probability of event\n",
