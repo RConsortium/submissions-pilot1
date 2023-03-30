@@ -71,7 +71,6 @@ ex_dt <- ex %>%
     dtc = EXENDTC,
     new_vars_prefix = "EXEN",
     highest_imputation = "Y",
-    min_dates = exprs(EXSTDT),
     max_dates = exprs(EOSDT),
     date_imputation = "last",
     flag_imputation = "none"
