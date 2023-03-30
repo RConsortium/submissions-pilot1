@@ -19,10 +19,12 @@ dm <- haven::read_xpt(file.path("sdtm", "dm.xpt"))
 qs <- haven::read_xpt(file.path("sdtm", "qs.xpt"))
 adsl <- haven::read_xpt(file.path("submission", "datasets", "adsl.xpt"))
 
+dm <- convert_blanks_to_na(dm)
 qs <- convert_blanks_to_na(qs)
+adsl <- convert_blanks_to_na(adsl)
 
 
-## placeholder for origin=predecessor, use metatool::build_from_derived()
+## origin=predecessor, use metatool::build_from_derived()
 metacore <- spec_to_metacore("adam/TDF_ADaM - Pilot 3 Team updated.xlsx", where_sep_sheet = FALSE)
 # Get the specifications for the dataset we are currently building
 adadas_spec <- metacore %>%
@@ -76,10 +78,9 @@ actot_expected_obsv <- tibble::tribble(
   "ACTOT", 24, "Week 24"
 )
 
-adas_locf <- derive_locf_records_(
+adas_locf <- derive_locf_records(
   data = adas2,
   dataset_expected_obs = actot_expected_obsv,
-  # by_vars = exprs(STUDYID, USUBJID, PARAMCD),
   by_vars = exprs(
     STUDYID, SITEID, SITEGR1, USUBJID, TRTSDT, TRTEDT,
     TRTP, TRTPN, AGE, AGEGR1, AGEGR1N, RACE, RACEN, SEX,
@@ -88,8 +89,6 @@ adas_locf <- derive_locf_records_(
   order = exprs(AVISITN, AVISIT),
   keep_vars = exprs(VISIT, VISITNUM, ADY, ADT, PARAM, PARAMN, QSSEQ)
 )
-# ADT/ADY/.. to be populated for LOCF records
-# issue raised for admiral::derive_locf_records
 
 ## derive AWRANGE/AWTARGET/AWTDIFF/AWLO/AWHI/AWU
 aw_lookup <- tribble(
@@ -149,11 +148,6 @@ adas5 %>%
   drop_unspec_vars(adadas_spec) %>% # only keep vars from define
   order_cols(adadas_spec) %>% # order columns based on define
   set_variable_labels(adadas_spec) %>% # apply variable labels based on define
-  # xportr_type(adadas_spec, "ADADAS") %>%
-  # xportr_length(adadas_spec, "ADADAS") %>%
-  # unresolved issue in xportr_length due to:
-  # https://github.com/tidyverse/haven/issues/699
-  # no difference found by diffdf after commenting out xportr_length()
   xportr_format(adadas_spec$var_spec %>%
     mutate_at(c("format"), ~ replace_na(., "")), "ADADAS") %>%
   xportr_write("submission/datasets/adadas.xpt",
