@@ -15,6 +15,57 @@ knitr::opts_chunk$set(echo = TRUE)
 Pilot 3 team should be able to see updated meeting minutes here on a
 weekly basis.
 
+## 24Mar2023 - Minutes by Joel Laxamana
+
+-\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*-
+
+-   Submission Pilot3 - ADaM Check In
+-   Meeting Organizer: Thomas Neitman, Joel Laxamana
+-   Participants: Joel Laxamana, Thomas Neitman, Kangjie Zhang, Ben
+    Straub, Robert Devine, Declan Hodges, Nicole Jones, Dadong Zhang, Lei Zhao
+-   Summary: Discussed tasks still in progress
+-   Project Board: <https://github.com/orgs/RConsortium/projects/7>
+-   Meeting Recorded: Yes : https://drive.google.com/file/d/1Gt7l2NOorQe43jVJ-McCaBKE_-vW_j4X/view?usp=sharing
+
+-\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*-
+
+1. Declan.
+- Updating renv.lock with most current snapshot. updating packages including admiral .10.
+  - Datasets need updates with new snapshot
+  - Joel to merge 77 to main and Declan to create new issues for ADSL, ADADAS, ADTTE
+  - ADLBC and ADAE are good to go.
+
+2. Nicole
+- Reviewing ADLBC specs and populating AVAL with correct derivation.
+- Reviewing codelist 
+
+3. Dadong
+- Reviewing ADLBC specs with Nicole.
+- Issue with max values - fix derivation issue for when subject's values are all missing NA.
+  - Will update specs on this. See #82.
+
+4. Ben
+- Will work on updating the ADRG
+
+5. Kaz
+- Summarize discrepancies on attribute and format issues for all datasets
+- Metacore issue on removing duplicate formats. all details in #87
+- These are minor issues, so long as we document in wiki we should be good.
+ 
+6. Robert
+- Issue 83 adtte specs look good.
+- Declan to add Robert to adtte issues per #77.
+
+7. Lei
+- Will work on updating the ADRG
+
+8. Thomas/Joel
+- Update R Consortium Submissions WG on Pilot 3 : https://docs.google.com/presentation/d/1-aZEZw8HAUm_T3ywXWKGNIxQP7Ez0DHgN2BaRNQZJ3k/edit?usp=sharing
+
+@channel Pilot 3 ADRG to update : https://drive.google.com/drive/folders/15Ec2FCjuiCothwdilUOlFGgPKEG78BFF?usp=share_link 
+Please let me know if you all have access to these or not.  Thanks. 
+
+
 ## 17Mar2023 - Minutes by Joel Laxamana
 
 -\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*-
@@ -715,8 +766,6 @@ everyone. We'll pick it up again next year! \~Thomas and Joel
 
 ### SEE YOU ALL NEXT YEAR.
 
-### VIDEO RECORDNG: <https://drive.google.com/file/d/1oMtFbZQFuwptsWcf1fYGqo2lurtiIdL-/view>
-
 ### ACTION to Joel - Create deadlines on `main` Read.me file so that everyone has transparency on work that needs to be done at a certain time. Maybe create a Kanban board on the issues.
 
 ## 09Dec2022 - Minutes by Joel Laxamana
@@ -830,8 +879,6 @@ everyone. We'll pick it up again next year! \~Thomas and Joel
 ![](images/TDF_define_LB.VISITNUM_incorrect.PNG)
 
 ### HAPPY HOLIDAYS TO ALL TAKING EARLY BREAK FOR THE EOY! WILL SEE YOU NEXT YEAR.
-
-### VIDEO RECORDING : <https://drive.google.com/file/d/1-IVypxR7Mnco7mUV6Qmh-r37f2KK3JYM/view>
 
 ## 02Dec2022 - Minutes by Joel Laxamana
 
