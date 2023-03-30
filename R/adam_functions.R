@@ -24,8 +24,8 @@ format_eosstt <- function(x) {
   case_when(
     x %in% c("SCREEN FAILURE", "SCREENING NOT COMPLETED") ~ "NOT STARTED",
     x == "COMPLETED" ~ "COMPLETED",
-    !x %in% c("COMPLETED", "SCREEN FAILURE", "SCREENING NOT COMPLETED")
-    & !is.na(x) ~ "DISCONTINUED",
+    !x %in% c("COMPLETED", "SCREEN FAILURE", "SCREENING NOT COMPLETED") &
+      !is.na(x) ~ "DISCONTINUED",
     TRUE ~ "ONGOING"
   )
 }

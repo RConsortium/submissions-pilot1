@@ -216,7 +216,7 @@ adsl04 <- adsl03 %>%
     source_var = DSDECOD,
     cat_fun = format_dcsreas, # could not include dsterm in formatting logic
     filter_add = !is.na(USUBJID),
-  ) %>% 
+  ) %>%
   mutate(DCSREAS = ifelse(DSTERM == "PROTOCOL ENTRY CRITERIA NOT MET", "I/E Not Met", DCSREAS))
 
 # Baseline variables ------------------------------------------------------
