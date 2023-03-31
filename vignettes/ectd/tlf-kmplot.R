@@ -89,7 +89,7 @@ title <- cowplot::ggdraw() +
 
 caption <- cowplot::ggdraw() +
   cowplot::draw_label(
-    paste0("\nProgram: tlf_kmplot.Rmd [", Sys.time(), "]"),
+    paste0("\nProgram: tlf_kmplot.R [", Sys.time(), "]"),
     fontfamily = "sans",
     size = 10
   )
