@@ -235,7 +235,7 @@ adlb09 <- adlb08 %>%
   filter((VISITNUM >= 4 & VISITNUM <= 12) & !grepl("UN", VISIT)) %>%
   group_by(USUBJID, PARAMCD) %>%
   mutate(
-    maxALBTRVAL = ifelse(!is.na(ALBTRVAL),max(ALBTRVAL, na.rm = T), ALBTRVAL),
+    maxALBTRVAL = ifelse(!is.na(ALBTRVAL), max(ALBTRVAL, na.rm = T), ALBTRVAL),
     ANL01FL = ifelse(maxALBTRVAL == ALBTRVAL, "Y", "")
   ) %>%
   arrange(desc(ANL01FL)) %>%
