@@ -241,7 +241,7 @@ adlb09 <- adlb08 %>%
   arrange(desc(ANL01FL)) %>%
   select(USUBJID, PARAMCD, LBSEQ, ANL01FL) %>%
   slice(1) %>%
-  full_join(adlb08, by = c("USUBJID", "PARAMCD", "LBSEQ"))
+  full_join(adlb08, by = c("USUBJID", "PARAMCD", "LBSEQ"), multiple = "all")
 
 # Treatment Vars ------------------------------------------------------------
 
