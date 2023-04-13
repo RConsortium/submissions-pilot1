@@ -4,7 +4,7 @@
 #' modification History:
 #' Dadong Zhang, 17DEC2022
 #' Nicole Jones, 12Jan2023
-#' Nicole Jones, 02Feb2023
+#' Nicole Jones, 13Apr2023
 ###########################################################################
 
 # Set up ------------------------------------------------------------------
@@ -195,7 +195,7 @@ adlb07 <- adlb06 %>%
   group_by(USUBJID, PARAMCD) %>%
   mutate(AENTMTFL_1 = ifelse(max(AVISITN, na.rm = T) == AVISITN, "Y", "")) %>%
   select(USUBJID, PARAMCD, AENTMTFL_1, LBSEQ) %>%
-  full_join(adlb06, by = c("USUBJID", "PARAMCD", "LBSEQ")) %>%
+  full_join(adlb06, by = c("USUBJID", "PARAMCD", "LBSEQ"), multiple = "all") %>%
   mutate(AENTMTFL = ifelse(AENTMTFL == "Y", AENTMTFL, AENTMTFL_1)) %>%
   select(-AENTMTFL_1) %>%
   rbind(eot2) %>%
