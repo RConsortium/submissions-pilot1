@@ -71,7 +71,6 @@ ex_dt <- ex %>%
     dtc = EXENDTC,
     new_vars_prefix = "EXEN",
     highest_imputation = "Y",
-    min_dates = exprs(EXSTDT),
     max_dates = exprs(EOSDT),
     date_imputation = "last",
     flag_imputation = "none"
@@ -202,18 +201,21 @@ adsl03 <- adsl02 %>%
 adsl04 <- adsl03 %>%
   left_join(ds00, by = c("STUDYID", "USUBJID")) %>%
   select(-DSDECOD) %>%
-  derive_var_disposition_status(
-    dataset_ds = ds00,
+  derive_var_merged_cat(
+    dataset_add = ds00,
+    by_vars = exprs(STUDYID, USUBJID),
     new_var = EOSSTT,
-    status_var = DSDECOD, # this variable is removed after reformat
-    filter_ds = !is.na(USUBJID)
+    source_var = DSDECOD,
+    cat_fun = format_eosstt,
+    filter_add = !is.na(USUBJID),
   ) %>%
-  derive_vars_disposition_reason(
-    dataset_ds = ds00,
+  derive_var_merged_cat(
+    dataset_add = ds00,
+    by_vars = exprs(STUDYID, USUBJID),
     new_var = DCSREAS,
-    reason_var = DSDECOD,
-    filter_ds = !is.na(USUBJID),
-    format_new_vars = format_dcsreas # could not include dsterm in formatting logic
+    source_var = DSDECOD,
+    cat_fun = format_dcsreas, # could not include dsterm in formatting logic
+    filter_add = !is.na(USUBJID),
   ) %>%
   mutate(DCSREAS = ifelse(DSTERM == "PROTOCOL ENTRY CRITERIA NOT MET", "I/E Not Met", DCSREAS))
 
