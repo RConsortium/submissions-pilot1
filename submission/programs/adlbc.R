@@ -33,11 +33,6 @@ supplb <- convert_blanks_to_na(read_xpt(file.path("sdtm", "supplb.xpt")))
 # Read and convert NA for ADaM DATASET
 ## Subject-Level Analysis
 adsl <- convert_blanks_to_na(read_xpt(file.path("submission", "datasets", "adsl.xpt")))
-## Analysis Dataset Lab Blood Chemistry
-prodc <- convert_blanks_to_na(read_xpt(file.path("adam", "adlbc.xpt")))
-
-# Variables for programming
-toprogram <- setdiff(colnames(prodc), c(colnames(lb), unique(supplb[["QNAM"]])))
 
 # create labels
 metacore <- spec_to_metacore("adam/TDF_ADaM - Pilot 3 Team updated.xlsx", where_sep_sheet = FALSE)
