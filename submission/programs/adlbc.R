@@ -4,7 +4,7 @@
 #' modification History:
 #' Dadong Zhang, 17DEC2022
 #' Nicole Jones, 12Jan2023
-#' Nicole Jones, 02Feb2023
+#' Nicole Jones, 13Apr2023
 ###########################################################################
 
 # Set up ------------------------------------------------------------------
@@ -33,14 +33,9 @@ supplb <- convert_blanks_to_na(read_xpt(file.path("sdtm", "supplb.xpt")))
 # Read and convert NA for ADaM DATASET
 ## Subject-Level Analysis
 adsl <- convert_blanks_to_na(read_xpt(file.path("submission", "datasets", "adsl.xpt")))
-## Analysis Dataset Lab Blood Chemistry
-prodc <- convert_blanks_to_na(read_xpt(file.path("adam", "adlbc.xpt")))
-
-# Variables for programming
-toprogram <- setdiff(colnames(prodc), c(colnames(lb), unique(supplb[["QNAM"]])))
 
 # create labels
-metacore <- spec_to_metacore("adam/TDF_ADaM - Pilot 3 Team updated.xlsx", where_sep_sheet = FALSE)
+metacore <- spec_to_metacore("adam/TDF_ADaM - Pilot 3 Team updated.xlsx", where_sep_sheet = FALSE, quiet = T)
 
 adlbc_spec <- metacore %>%
   select_dataset("ADLBC")
@@ -100,12 +95,6 @@ adlb01 <- adlb00 %>%
 # Dates -------------------------------------------------------------------
 
 adlb02 <- adlb01 %>%
-  derive_vars_dtm(
-    new_vars_prefix = "A",
-    dtc = LBDTC,
-    highest_imputation = "s",
-    ignore_seconds_flag = T
-  ) %>%
   derive_vars_dt(
     new_vars_prefix = "A",
     dtc = LBDTC,
@@ -201,7 +190,7 @@ adlb07 <- adlb06 %>%
   group_by(USUBJID, PARAMCD) %>%
   mutate(AENTMTFL_1 = ifelse(max(AVISITN, na.rm = T) == AVISITN, "Y", "")) %>%
   select(USUBJID, PARAMCD, AENTMTFL_1, LBSEQ) %>%
-  full_join(adlb06, by = c("USUBJID", "PARAMCD", "LBSEQ")) %>%
+  full_join(adlb06, by = c("USUBJID", "PARAMCD", "LBSEQ"), multiple = "all") %>%
   mutate(AENTMTFL = ifelse(AENTMTFL == "Y", AENTMTFL, AENTMTFL_1)) %>%
   select(-AENTMTFL_1) %>%
   rbind(eot2) %>%
@@ -241,13 +230,13 @@ adlb09 <- adlb08 %>%
   filter((VISITNUM >= 4 & VISITNUM <= 12) & !grepl("UN", VISIT)) %>%
   group_by(USUBJID, PARAMCD) %>%
   mutate(
-    maxALBTRVAL = max(ALBTRVAL, na.rm = T),
+    maxALBTRVAL = ifelse(!is.na(ALBTRVAL), max(ALBTRVAL, na.rm = T), ALBTRVAL),
     ANL01FL = ifelse(maxALBTRVAL == ALBTRVAL, "Y", "")
   ) %>%
   arrange(desc(ANL01FL)) %>%
   select(USUBJID, PARAMCD, LBSEQ, ANL01FL) %>%
   slice(1) %>%
-  full_join(adlb08, by = c("USUBJID", "PARAMCD", "LBSEQ"))
+  full_join(adlb08, by = c("USUBJID", "PARAMCD", "LBSEQ"), multiple = "all")
 
 # Treatment Vars ------------------------------------------------------------
 
