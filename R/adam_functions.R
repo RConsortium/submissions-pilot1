@@ -49,3 +49,20 @@ format_dcsreas <- function(x) {
     x == "LACK OF EFFICACY" ~ "Lack of Efficacy"
   )
 }
+
+#' Round the value based on SAS rounding convention
+#'
+#' `round_sas` rounds the values in its first argument to the specified number
+#' of decimal places (default 0) (align SAS rounding convention)
+#'
+#' @inheritParams round_sas
+#'
+#' @export
+round_sas <- function(x, digits = 0) {
+  # x is the value to be rounded
+  # digits is the precision of the rounding
+  scale <- 10^digits
+  y <- trunc(x * scale + sign(x) * 0.5) / scale
+  # Return the rounded number
+  return(y)
+}

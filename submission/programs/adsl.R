@@ -129,7 +129,7 @@ adsl00 <- dm %>%
   # dosing
   left_join(ex_dose, by = c("STUDYID", "USUBJID")) %>%
   select(-cnt) %>%
-  mutate(AVGDD = round(CUMDOSE / TRTDURD, digits = 1))
+  mutate(AVGDD = round_sas(CUMDOSE / TRTDURD, digits = 1))
 
 # Demographic grouping ----------------------------------------------------
 # distinct(adsl_prod[which(adsl_prod$SITEGR1 == "900"), c("SITEID", "SITEGR1")])
@@ -224,11 +224,11 @@ adsl04 <- adsl03 %>%
 
 vs00 <- vs %>%
   filter((VSTESTCD == "HEIGHT" & VISITNUM == 1) | (VSTESTCD == "WEIGHT" & VISITNUM == 3)) %>%
-  mutate(AVAL = round(VSSTRESN, digits = 1)) %>%
+  mutate(AVAL = round_sas(VSSTRESN, digits = 1)) %>%
   select(STUDYID, USUBJID, VSTESTCD, AVAL) %>%
   pivot_wider(names_from = VSTESTCD, values_from = AVAL, names_glue = "{VSTESTCD}BL") %>%
   mutate(
-    BMIBL = round(WEIGHTBL / (HEIGHTBL / 100)^2, digits = 1)
+    BMIBL = round_sas(WEIGHTBL / (HEIGHTBL / 100)^2, digits = 1)
   ) %>%
   create_cat_var(adsl_spec, BMIBL, BMIBLGR1)
 
@@ -257,7 +257,7 @@ visnumen <- sv %>%
   group_by(STUDYID, USUBJID) %>%
   slice(n()) %>%
   ungroup() %>%
-  mutate(VISNUMEN = ifelse(round(VISITNUM, digits = 0) == 13, 12, round(VISITNUM, digits = 0))) %>%
+  mutate(VISNUMEN = ifelse(round_sas(VISITNUM, digits = 0) == 13, 12, round_sas(VISITNUM, digits = 0))) %>%
   select(STUDYID, USUBJID, VISNUMEN)
 
 disonsdt <- mh %>%
@@ -280,7 +280,7 @@ adsl06 <- adsl05 %>%
     add_one = TRUE
   ) %>%
   mutate(
-    DURDIS = round(DURDIS, digits = 1)
+    DURDIS = round_sas(DURDIS, digits = 1)
   ) %>%
   create_cat_var(adsl_spec, DURDIS, DURDSGR1) %>%
   derive_vars_dt(
