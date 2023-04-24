@@ -276,11 +276,11 @@ adsl06 <- adsl05 %>%
     new_var = DURDIS,
     start_date = DISONSDT,
     end_date = VISIT1DT,
-    out_unit = "months",
+    out_unit = "days",
     add_one = TRUE
   ) %>%
   mutate(
-    DURDIS = round_sas(DURDIS, digits = 1)
+    DURDIS = round_sas(DURDIS/(365.25/12), digits = 1)
   ) %>%
   create_cat_var(adsl_spec, DURDIS, DURDSGR1) %>%
   derive_vars_dt(
