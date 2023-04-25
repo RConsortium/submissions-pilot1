@@ -279,8 +279,14 @@ adsl06 <- adsl05 %>%
     out_unit = "days",
     add_one = TRUE
   ) %>%
+  # derive_vars_duration(..., out_unit = "months") is not used here because
+  # it calculates months based on date internals, while the original CDISC
+  # adsl.DURDIS was derived assuming each month has the same number of days,
+  # i.e., 365.25/12=30.4375.
+  # Feature requested: https://github.com/pharmaverse/admiral/issues/1875
+  # Workaround: derive days first and then convert it to months
   mutate(
-    DURDIS = round_sas(DURDIS/(365.25/12), digits = 1)
+    DURDIS = round_sas(DURDIS / (365.25 / 12), digits = 1)
   ) %>%
   create_cat_var(adsl_spec, DURDIS, DURDSGR1) %>%
   derive_vars_dt(
