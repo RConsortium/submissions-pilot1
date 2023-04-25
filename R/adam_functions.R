@@ -56,7 +56,7 @@ format_dcsreas <- function(x) {
 #' of decimal places (default 0) (align SAS rounding convention)
 #'
 #' @param x a numeric vector.
-#' @param digits integer indicating the number of decimal places (round) or 
+#' @param digits integer indicating the number of decimal places (round) or
 #' significant digits to be used.
 #'
 #' @export
