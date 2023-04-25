@@ -6,6 +6,11 @@
 \usage{
 round_sas(x, digits = 0)
 }
+\arguments{
+\item{x}{a numeric vector.}
+
+\item{digits}{integer indicating the number of decimal places (round) or significant digits (signif) to be used.}
+}
 \description{
 \code{round_sas} rounds the values in its first argument to the specified number
 of decimal places (default 0) (align SAS rounding convention)
