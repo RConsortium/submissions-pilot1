@@ -15,11 +15,59 @@ knitr::opts_chunk$set(echo = TRUE)
 Pilot 3 team should be able to see updated meeting minutes here on a
 weekly basis.
 
+
+## 28Apr2023 - Minutes by Joel Laxamana
+-\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*-
+
+-   Submission Pilot3 - ADaM Check In
+-   Meeting Organizer: Joel Laxamana
+-   Summary: Discussed tasks still in progress
+-   Project Board: <https://github.com/orgs/RConsortium/projects/7>
+-   Meeting Recorded: Yes : 
+
+-   New Pilot 3 package repo (for utility functions to be placed) : https://github.com/RConsortium/submissions-pilot3-utilities
+-   P21 Free Community version : https://www.pinnacle21.com/downloads 
+
+-\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*-
+
+1. Kangjie
+  - Reviewed define.xml for ADAE$ADURU.  The unit 'DAYS' is in place and should be good to move forward.
+  - ADSL$DURDIS update. Aligning with SAS conventions.
+  - QC findings Wiki updated to remove these rounding discrepancy issues.
+  - Supporting SDTM datasets in Pilot 3 package to run through P21 community. Link to recent P21 community version above. 
+
+2. Ben
+  - Also interested in working with Kaz to run SDTM datasets through P21 community. In addition, these datasets may also help with Xportr enhancements
+  - Furthermore, will borrow Pilot 3 datasets to help with Xportr updates.
+  - Will review ADRG
+  - Supporting the separation of utility functions in another package repo (link above).
+
+3. Declan
+  - Reviewed and approved Kaz's PR for ADSL$DURDIS update.
+  - Will be presenting at Phuse to share more Pilot 3 awareness.
+  - Can help support Ben with creating Pilot 3 package repo (link above).
+
+4. Lei
+  - Continue to Review ADRG
+  - Posed the question on steps to finalize ADRG
+    - suggested that everyone be empowered to resolve or accept updates edits made by other team members per their experience and as they see fit, that meet their submission requirements.  Any more complex questions I'm happy to jump in and resolve.
+
+5. Phani
+  - ADRG review
+  - Can also help support Kaz with SDTM P21 run.
+
+6. Joel
+  - ADaM datasets to run in P21 community.
+  - add all team members as collaborators to the new utility repo.
+  - Resolve ADRG questions.
+  - Will Tag Robert to help with unpackaging testing.
+
+
 ## 20Apr2023 - Minutes by Joel Laxamana
 -\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*-
 
 -   Submission Pilot3 - ADaM Check In
--   Meeting Organizer: Thomas Neitman, Joel Laxamana
+-   Meeting Organizer: Joel Laxamana
 -   Summary: Discussed tasks still in progress
 -   Project Board: <https://github.com/orgs/RConsortium/projects/7>
 -   Meeting Recorded: Yes : https://drive.google.com/file/d/1gCcvsIli9QPBLZBsEaUQqPmtn6U-a0pR/view?usp=sharing
@@ -51,7 +99,7 @@ No Meeting today. Individual updates via Slack.
 -\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*-
 
 -   Submission Pilot3 - ADaM Check In
--   Meeting Organizer: Thomas Neitman, Joel Laxamana
+-   Meeting Organizer: Joel Laxamana
 -   Summary: Discussed Pilot 3 project set-up and proposal to R Consortium
 -   Project Board: <https://github.com/orgs/RConsortium/projects/7>
 -   Meeting Recorded: Yes : https://drive.google.com/file/d/1jvTWLtbLCa3_QbeWwtk88lt9rX3BfI_M/view?usp=sharing 
