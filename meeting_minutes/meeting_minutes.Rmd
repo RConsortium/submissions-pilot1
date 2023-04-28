@@ -776,8 +776,6 @@ Meeting recording :
 
 Meeting adjourned.
 
-Meeting recording :
-<https://drive.google.com/file/d/1OH12R8zkuGEz39AQ4DkhNUq9DIZmG3WD/view>
 
 ## 06Jan2023 - Minutes by Joel Laxamana
 
