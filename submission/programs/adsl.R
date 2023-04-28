@@ -129,7 +129,7 @@ adsl00 <- dm %>%
   # dosing
   left_join(ex_dose, by = c("STUDYID", "USUBJID")) %>%
   select(-cnt) %>%
-  mutate(AVGDD = round(CUMDOSE / TRTDURD, digits = 1))
+  mutate(AVGDD = round_sas(CUMDOSE / TRTDURD, digits = 1))
 
 # Demographic grouping ----------------------------------------------------
 # distinct(adsl_prod[which(adsl_prod$SITEGR1 == "900"), c("SITEID", "SITEGR1")])
@@ -224,11 +224,11 @@ adsl04 <- adsl03 %>%
 
 vs00 <- vs %>%
   filter((VSTESTCD == "HEIGHT" & VISITNUM == 1) | (VSTESTCD == "WEIGHT" & VISITNUM == 3)) %>%
-  mutate(AVAL = round(VSSTRESN, digits = 1)) %>%
+  mutate(AVAL = round_sas(VSSTRESN, digits = 1)) %>%
   select(STUDYID, USUBJID, VSTESTCD, AVAL) %>%
   pivot_wider(names_from = VSTESTCD, values_from = AVAL, names_glue = "{VSTESTCD}BL") %>%
   mutate(
-    BMIBL = round(WEIGHTBL / (HEIGHTBL / 100)^2, digits = 1)
+    BMIBL = round_sas(WEIGHTBL / (HEIGHTBL / 100)^2, digits = 1)
   ) %>%
   create_cat_var(adsl_spec, BMIBL, BMIBLGR1)
 
@@ -257,7 +257,7 @@ visnumen <- sv %>%
   group_by(STUDYID, USUBJID) %>%
   slice(n()) %>%
   ungroup() %>%
-  mutate(VISNUMEN = ifelse(round(VISITNUM, digits = 0) == 13, 12, round(VISITNUM, digits = 0))) %>%
+  mutate(VISNUMEN = ifelse(round_sas(VISITNUM, digits = 0) == 13, 12, round_sas(VISITNUM, digits = 0))) %>%
   select(STUDYID, USUBJID, VISNUMEN)
 
 disonsdt <- mh %>%
@@ -276,11 +276,17 @@ adsl06 <- adsl05 %>%
     new_var = DURDIS,
     start_date = DISONSDT,
     end_date = VISIT1DT,
-    out_unit = "months",
+    out_unit = "days",
     add_one = TRUE
   ) %>%
+  # derive_vars_duration(..., out_unit = "months") is not used here because
+  # it calculates months based on date internals, while the original CDISC
+  # adsl.DURDIS was derived assuming each month has the same number of days,
+  # i.e., 365.25/12=30.4375.
+  # Feature requested: https://github.com/pharmaverse/admiral/issues/1875
+  # Workaround: derive days first and then convert it to months
   mutate(
-    DURDIS = round(DURDIS, digits = 1)
+    DURDIS = round_sas(DURDIS / (365.25 / 12), digits = 1)
   ) %>%
   create_cat_var(adsl_spec, DURDIS, DURDSGR1) %>%
   derive_vars_dt(
