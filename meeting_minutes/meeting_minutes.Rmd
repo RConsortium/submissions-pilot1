@@ -23,7 +23,7 @@ weekly basis.
 -   Meeting Organizer: Joel Laxamana
 -   Summary: Discussed tasks still in progress
 -   Project Board: <https://github.com/orgs/RConsortium/projects/7>
--   Meeting Recorded: Yes : 
+-   Meeting Recorded: Yes : https://drive.google.com/file/d/1ApLsg52brtVxt6UuAxcu3rzFpCDk8Y0j/view?usp=sharing
 
 -   New Pilot 3 package repo (for utility functions to be placed) : https://github.com/RConsortium/submissions-pilot3-utilities
 -   P21 Free Community version : https://www.pinnacle21.com/downloads 
