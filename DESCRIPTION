@@ -1,0 +1,55 @@
+Package: pilot3
+Type: Package
+Title: R Consortium R Submission Pilot 3
+Version: 0.1.1
+Authors@R: c(
+       person("Joel", "Laxamana-Roche", , email = "laxamana.joel@gene.com", role = c("aut", "cre")),
+       person("Thomas", "Neitmann-Roche", role = c("aut")),
+       person("Phanikumar", "Tata-Syneos", role = c("aut")),
+       person("Robert", "Devine-J&J", role = c("aut")),
+       person("Steven", "Haesendonckx-J&J", role = c("aut")),
+       person("Rikimaru", "Nishimura-J&J", role = c("aut")),
+       person("Yutong", "Liu-Moderna", role = c("aut")),
+       person("Lei", "Zhao-Roche", role = c("aut")),
+       person("Nicole", "Jones-Merck", role = c("aut")),
+       person("Benjamin", "Wang-Merck", role = c("aut")),
+       person("Ryan", "Johnson-Posit", role = c("aut")),
+       person("Kangjie", "Zhang-Bayer", role = c("aut")),
+       person("Dadong", "Zhang-Illumina", role = c("aut")),
+       person("Benjamin", "Straub-GSK", role = c("aut")),
+       person("Declan", "Hodges-GSK", role = c("aut"))
+       )
+Description: R Consortium R Submission Pilot 3. 
+Depends: R (>= 3.6.0)
+License: GPL (>= 3)
+Imports:
+    admiraldev,
+    dplyr,
+    emmeans,
+    glue,
+    stringr,
+    tibble,
+    tidyr
+Suggests:
+    envsetup,
+    config,
+    cowplot,
+    devtools,
+    fs,
+    ggplot2,
+    haven,
+    testthat,
+    knitr,
+    pharmaRTF,
+    r2rtf,
+    rtables,
+    rmarkdown,
+    rprojroot,
+    sessioninfo,
+    Tplyr,
+    pkglite,
+    visR
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)  
+RoxygenNote: 7.2.3
