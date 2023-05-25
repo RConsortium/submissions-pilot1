@@ -3,7 +3,7 @@
     "Version": "4.2.3",
     "Repositories": [
       {
-        "Name": "RSPM",
+        "Name": "CRAN",
         "URL": "https://packagemanager.posit.co/cran/2023-03-15"
       }
     ]
@@ -1639,12 +1639,12 @@
       "Package": "ps",
       "Version": "1.7.2",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Requirements": [
         "R",
         "utils"
       ],
-      "Hash": "ebaacc87f539b1100e285e9e5d6496ad"
+      "Hash": "68dd03d98a5efd1eb3012436de45ba83"
     },
     "purrr": {
       "Package": "purrr",
