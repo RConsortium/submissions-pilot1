@@ -23,14 +23,14 @@ library(xportr)
 # https://pharmaverse.github.io/admiral/articles/admiral.html#handling-of-missing-values
 
 
-dm <- convert_blanks_to_na(read_xpt(file.path("sdtm", "dm.xpt")))
-ds <- convert_blanks_to_na(read_xpt(file.path("sdtm", "ds.xpt")))
-ex <- convert_blanks_to_na(read_xpt(file.path("sdtm", "ex.xpt")))
-qs <- convert_blanks_to_na(read_xpt(file.path("sdtm", "qs.xpt")))
-sv <- convert_blanks_to_na(read_xpt(file.path("sdtm", "sv.xpt")))
-vs <- convert_blanks_to_na(read_xpt(file.path("sdtm", "vs.xpt")))
-sc <- convert_blanks_to_na(read_xpt(file.path("sdtm", "sc.xpt")))
-mh <- convert_blanks_to_na(read_xpt(file.path("sdtm", "mh.xpt")))
+dm <- convert_blanks_to_na(read_xpt(file.path("submission", "sdtm", "dm.xpt")))
+ds <- convert_blanks_to_na(read_xpt(file.path("submission", "sdtm", "ds.xpt")))
+ex <- convert_blanks_to_na(read_xpt(file.path("submission", "sdtm", "ex.xpt")))
+qs <- convert_blanks_to_na(read_xpt(file.path("submission", "sdtm", "qs.xpt")))
+sv <- convert_blanks_to_na(read_xpt(file.path("submission", "sdtm", "sv.xpt")))
+vs <- convert_blanks_to_na(read_xpt(file.path("submission", "sdtm", "vs.xpt")))
+sc <- convert_blanks_to_na(read_xpt(file.path("submission", "sdtm", "sc.xpt")))
+mh <- convert_blanks_to_na(read_xpt(file.path("submission", "sdtm", "mh.xpt")))
 
 ## placeholder for origin=predecessor, use metatool::build_from_derived()
 metacore <- spec_to_metacore("adam/TDF_ADaM - Pilot 3 Team updated.xlsx", where_sep_sheet = FALSE)
@@ -314,6 +314,6 @@ adsl07 %>%
   xportr_df_label(adsl_spec) %>% # Assigns dataset label from metacore specifications
   xportr_format(adsl_spec$var_spec %>%
     mutate_at(c("format"), ~ replace_na(., "")), "ADSL") %>%
-  xportr_write("submission/datasets/adsl.xpt",
+  xportr_write("submission/adam/adsl.xpt",
     label = "Subject-Level Analysis Dataset"
   )

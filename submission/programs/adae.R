@@ -17,13 +17,13 @@ library(haven)
 
 # read in AE
 # ----------
-ae <- read_xpt(file.path("sdtm", "ae.xpt"))
-suppae <- read_xpt(file.path("sdtm", "suppae.xpt"))
+ae <- read_xpt(file.path("submission/sdtm", "ae.xpt"))
+suppae <- read_xpt(file.path("submission/sdtm", "suppae.xpt"))
 
 
 # read in ADSL
 # ------------
-adsl <- read_xpt(file.path("submission", "datasets", "adsl.xpt"))
+adsl <- read_xpt(file.path("submission", "adam", "adsl.xpt"))
 
 
 # When SAS datasets are imported into R using haven::read_sas(), missing
@@ -238,6 +238,6 @@ adae <- ADAE %>%
 # Export to xpt
 #----------------------------------------------------------------------------------------
 adae %>%
-  xportr_write("submission/datasets/adae.xpt",
+  xportr_write("submission/adam/adae.xpt",
     label = "Adverse Events Analysis Dataset"
   )
