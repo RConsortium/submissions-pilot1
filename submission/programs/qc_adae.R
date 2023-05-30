@@ -11,10 +11,8 @@ library(diffdf)
 
 # QC/Check against original TDF ADAE dataset
 # -------------------------------------------#
-adae <- read_xpt(file.path("submission", "adam", "adae.xpt")) %>%
-  convert_blanks_to_na()
-adae_orig <- read_xpt(file.path("adam", "adae.xpt")) %>%
-  convert_blanks_to_na()
+adae <- read_xpt(file.path("submission", "adam", "adae.xpt"))
+adae_orig <- read_xpt(file.path("adam", "adae.xpt"))
 
 # Compare
 #---------#
