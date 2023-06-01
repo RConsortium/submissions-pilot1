@@ -25,14 +25,14 @@ library(stringr)
 
 # Read and convert NA for SDTM DATASET
 ## Laboratory Tests Results (LB)
-lb <- convert_blanks_to_na(read_xpt(file.path("sdtm", "lb.xpt")))
+lb <- convert_blanks_to_na(read_xpt(file.path("submission/sdtm", "lb.xpt")))
 ## Supplemental Qualifiers for LB (SUPPLB)
-supplb <- convert_blanks_to_na(read_xpt(file.path("sdtm", "supplb.xpt")))
+supplb <- convert_blanks_to_na(read_xpt(file.path("submission/sdtm", "supplb.xpt")))
 
 
 # Read and convert NA for ADaM DATASET
 ## Subject-Level Analysis
-adsl <- convert_blanks_to_na(read_xpt(file.path("submission", "datasets", "adsl.xpt")))
+adsl <- convert_blanks_to_na(read_xpt(file.path("submission", "adam", "adsl.xpt")))
 
 # create labels
 metacore <- spec_to_metacore("adam/TDF_ADaM - Pilot 3 Team updated.xlsx", where_sep_sheet = FALSE, quiet = T)
@@ -252,6 +252,6 @@ adlbc <- adlb09 %>%
   set_variable_labels(adlbc_spec) %>%
   xportr_format(adlbc_spec$var_spec %>%
     mutate_at(c("format"), ~ replace_na(., "")), "ADLBC") %>%
-  xportr_write("submission/datasets/adlbc.xpt",
+  xportr_write("submission/adam/adlbc.xpt",
     label = "Analysis Dataset Lab Blood Chemistry"
   )

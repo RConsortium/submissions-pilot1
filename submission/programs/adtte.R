@@ -18,9 +18,9 @@ library(xportr)
 
 # read source -------------------------------------------------------------
 
-adsl <- read_xpt(file.path("submission", "datasets", "adsl.xpt"))
-adae <- read_xpt(file.path("submission", "datasets", "adae.xpt"))
-ds <- convert_blanks_to_na(read_xpt(file.path("sdtm", "ds.xpt")))
+adsl <- read_xpt(file.path("submission", "adam", "adsl.xpt"))
+adae <- read_xpt(file.path("submission", "adam", "adae.xpt"))
+ds <- convert_blanks_to_na(read_xpt(file.path("submission/sdtm", "ds.xpt")))
 
 
 ## placeholder for origin=predecessor, use metatool::build_from_derived()
@@ -122,6 +122,6 @@ adtte <- adtte_pre %>%
   # no difference found by diffdf after commenting out xportr_length()
   xportr_format(adtte_spec$var_spec %>%
     mutate_at(c("format"), ~ replace_na(., "")), "ADTTE") %>%
-  xportr_write("submission/datasets/adtte.xpt",
+  xportr_write("submission/adam/adtte.xpt",
     label = "AE Time To 1st Derm. Event Analysis"
   )

@@ -15,9 +15,9 @@ library(stringr)
 library(xportr)
 library(pilot3)
 
-dm <- haven::read_xpt(file.path("sdtm", "dm.xpt"))
-qs <- haven::read_xpt(file.path("sdtm", "qs.xpt"))
-adsl <- haven::read_xpt(file.path("submission", "datasets", "adsl.xpt"))
+dm <- haven::read_xpt(file.path("submission/sdtm", "dm.xpt"))
+qs <- haven::read_xpt(file.path("submission/sdtm", "qs.xpt"))
+adsl <- haven::read_xpt(file.path("submission", "adam", "adsl.xpt"))
 
 dm <- convert_blanks_to_na(dm)
 qs <- convert_blanks_to_na(qs)
@@ -150,6 +150,6 @@ adas5 %>%
   set_variable_labels(adadas_spec) %>% # apply variable labels based on define
   xportr_format(adadas_spec$var_spec %>%
     mutate_at(c("format"), ~ replace_na(., "")), "ADADAS") %>%
-  xportr_write("submission/datasets/adadas.xpt",
+  xportr_write("submission/adam/adadas.xpt",
     label = "ADAS-COG Analysis Dataset"
   )
