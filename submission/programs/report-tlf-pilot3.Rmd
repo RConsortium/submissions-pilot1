@@ -14,7 +14,7 @@ Note : In Pilot 3, following the same approach as Pilot1, different open-source 
 #### Table 14-2.01
 #### Summary of Demographic and Baseline Characteristics
 
-```{r demog, echo=FALSE, message=FALSE, comment=NA}
+```{r demog, out.width = "40%", out.height = "400px", echo=FALSE, message=FALSE, comment=NA}
 setwd("/cloud/project") 
 source("/cloud/project/submission/programs/tlf-demographic.R")
 print(tbl)
