@@ -1,3 +1,15 @@
+# Note to Reviewer
+# To rerun the code below, please refer ADRG appendix.
+# After required package are installed.
+# The path variable needs to be defined by using example code below
+#
+# nolint start
+# path <- list(
+#   sdtm = "path/to/esub/tabulations/sdtm",   # Modify path to the sdtm location
+#   adam = "path/to/esub/analysis/adam",      # Modify path to the adam location
+# )
+# nolint end
+
 ###########################################################################
 #' developers : Phani Tata/Joel Laxamana
 #' date: 07FEB2023
@@ -17,13 +29,13 @@ library(haven)
 
 # read in AE
 # ----------
-ae <- read_xpt(file.path("submission/sdtm", "ae.xpt"))
-suppae <- read_xpt(file.path("submission/sdtm", "suppae.xpt"))
+ae <- read_xpt(file.path(path$sdtm, "ae.xpt"))
+suppae <- read_xpt(file.path(path$sdtm, "suppae.xpt"))
 
 
 # read in ADSL
 # ------------
-adsl <- read_xpt(file.path("submission", "adam", "adsl.xpt"))
+adsl <- read_xpt(file.path(path$adam, "adsl.xpt"))
 
 
 # When SAS datasets are imported into R using haven::read_sas(), missing
@@ -39,7 +51,7 @@ adsl <- convert_blanks_to_na(adsl)
 # Read in specifications from define
 #----------------------------------------------------------------------------------------
 ## placeholder for origin=predecessor, use metatool::build_from_derived()
-metacore <- spec_to_metacore("adam/ADaM - Pilot 3.xlsx", where_sep_sheet = FALSE, quiet = T)
+metacore <- spec_to_metacore(file.path(path$adam, "ADaM - Pilot 3.xlsx"), where_sep_sheet = FALSE, quiet = T)
 adae_spec <- metacore %>% select_dataset("ADAE") # Get the specifications for the dataset we are currently building
 
 
@@ -238,6 +250,6 @@ adae <- ADAE %>%
 # Export to xpt
 #----------------------------------------------------------------------------------------
 adae %>%
-  xportr_write("submission/adam/adae.xpt",
+  xportr_write(file.path(path$adam, "adae.xpt"),
     label = "Adverse Events Analysis Dataset"
   )
