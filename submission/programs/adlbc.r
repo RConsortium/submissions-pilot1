@@ -47,7 +47,7 @@ supplb <- convert_blanks_to_na(read_xpt(file.path(path$sdtm, "supplb.xpt")))
 adsl <- convert_blanks_to_na(read_xpt(file.path(path$adam, "adsl.xpt")))
 
 # create labels
-metacore <- spec_to_metacore(file.path(path$adam, "ADaM - Pilot 3.xlsx"), where_sep_sheet = FALSE, quiet = T)
+metacore <- spec_to_metacore(file.path(path$adam, "ADaM - Pilot 3.xlsx"), where_sep_sheet = FALSE, quiet = TRUE)
 
 adlbc_spec <- metacore %>%
   select_dataset("ADLBC")
@@ -200,7 +200,7 @@ eot2 <- adlb06 %>%
 adlb07 <- adlb06 %>%
   filter(VISITNUM <= 12 & AVISITN > 0 & AVISITN != 99 & !grepl("UN", VISIT)) %>%
   group_by(USUBJID, PARAMCD) %>%
-  mutate(AENTMTFL_1 = ifelse(max(AVISITN, na.rm = T) == AVISITN, "Y", "")) %>%
+  mutate(AENTMTFL_1 = ifelse(max(AVISITN, na.rm = TRUE) == AVISITN, "Y", "")) %>%
   select(USUBJID, PARAMCD, AENTMTFL_1, LBSEQ) %>%
   full_join(adlb06, by = c("USUBJID", "PARAMCD", "LBSEQ"), multiple = "all") %>%
   mutate(AENTMTFL = ifelse(AENTMTFL == "Y", AENTMTFL, AENTMTFL_1)) %>%
@@ -242,7 +242,7 @@ adlb09 <- adlb08 %>%
   filter((VISITNUM >= 4 & VISITNUM <= 12) & !grepl("UN", VISIT)) %>%
   group_by(USUBJID, PARAMCD) %>%
   mutate(
-    maxALBTRVAL = ifelse(!is.na(ALBTRVAL), max(ALBTRVAL, na.rm = T), ALBTRVAL),
+    maxALBTRVAL = ifelse(!is.na(ALBTRVAL), max(ALBTRVAL, na.rm = TRUE), ALBTRVAL),
     ANL01FL = ifelse(maxALBTRVAL == ALBTRVAL, "Y", "")
   ) %>%
   arrange(desc(ANL01FL)) %>%

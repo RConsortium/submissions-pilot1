@@ -46,7 +46,7 @@ adadas_pred <- build_from_derived(adadas_spec,
   ds_list = list("ADSL" = adsl, "QS" = qs, "DM" = dm)
 )
 
-## ADT/ADY
+# ADT and ADY
 adas1 <- adadas_pred %>%
   derive_vars_merged(
     dataset_add = qs,

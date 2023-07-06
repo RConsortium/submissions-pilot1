@@ -144,8 +144,6 @@ adsl00 <- dm %>%
   mutate(AVGDD = round_sas(CUMDOSE / TRTDURD, digits = 1))
 
 # Demographic grouping ----------------------------------------------------
-# distinct(adsl_prod[which(adsl_prod$SITEGR1 == "900"), c("SITEID", "SITEGR1")])
-
 adsl01 <- adsl00 %>%
   create_cat_var(adsl_spec, AGE, AGEGR1, AGEGR1N) %>%
   create_var_from_codelist(adsl_spec, RACE, RACEN) %>%
