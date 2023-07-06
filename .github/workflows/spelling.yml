@@ -1,5 +1,5 @@
 ---
-name: Spelling
+name: Check Spelling
 
 on:
   workflow_dispatch:
