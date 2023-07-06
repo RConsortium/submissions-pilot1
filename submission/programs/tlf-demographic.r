@@ -6,7 +6,7 @@
 # nolint start
 # path <- list(
 #   adam = "path/to/esub/analysis/adam",      # Modify path to the adam location
-#   output = "path/to/esub/analysis/output",  # Modify path to the adam location
+#   output = "path/to/esub/analysis/output",  # Modify path to the output location
 # )
 # nolint end
 
