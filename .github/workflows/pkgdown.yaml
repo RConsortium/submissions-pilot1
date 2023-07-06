@@ -4,7 +4,7 @@ on:
     inputs:
       r-version:
         description: 'The version of R to use'
-        default: '4.0'
+        default: '4.2'
         required: false
         type: string
       skip-multiversion-docs:

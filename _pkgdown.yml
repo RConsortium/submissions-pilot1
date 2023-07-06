@@ -22,13 +22,14 @@ navbar:
       text: Deliverables
       menu:
       - text: Summary of Demographic and Baseline Characteristics
-        href: articles/tlf-demographic.html
+        href: articles/conf_phuse_sde_london.html
     conferences:
       text: Conferences
       menu:
-      - text: PHUSE-SDE London
-        href: articles/conf-phuse_sde_london.html
+      - text: PHUSE SDE London
+        href: articles/conf_phuse_sde_london.html
     feedback:
       text: Feedback from FDA
       menu:
       - text: thing1
+        href: articles/conf_phuse_sde_london.html
