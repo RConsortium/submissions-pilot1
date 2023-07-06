@@ -1,0 +1,15 @@
+---
+title: "PHUSE SDE London"
+output:
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_depth: '2'
+    toc_float: true
+---
+
+```{r, out.width=1000}
+
+knitr::include_url("https://phuse.s3.eu-central-1.amazonaws.com/Archive/2023/SDE/EU/London/PRE_London09.pdf", height = "1000px")
+
+```

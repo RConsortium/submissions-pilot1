@@ -4,7 +4,7 @@ on:
     inputs:
       r-version:
         description: 'The version of R to use'
-        default: '4.0'
+        default: '4.2'
         required: false
         type: string
       skip-multiversion-docs:
@@ -69,7 +69,7 @@ jobs:
             fi
             echo ${var}
           }
-          R_VERSION=$(normalize ${{ inputs.r-version }} 4.0)
+          R_VERSION=$(normalize ${{ inputs.r-version }} 4.2)
           DOCS_LANDING_PAGE=$(normalize ${{ inputs.multiversion-docs-landing-page }} main)
           echo "R_VERSION=$R_VERSION" >> $GITHUB_OUTPUT
           echo "DOCS_LANDING_PAGE=$DOCS_LANDING_PAGE" >> $GITHUB_OUTPUT
