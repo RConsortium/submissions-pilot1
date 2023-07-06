@@ -20,9 +20,9 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: windows-latest, r: '4.2', repos: 'https://cran.microsoft.com/snapshot/2022-12-14/'}
-          - {os: macOS-latest, r: '4.2', repos: 'https://cran.microsoft.com/snapshot/2022-12-14/'}
-          - {os: ubuntu-20.04, r: '4.2', repos: 'https://cran.microsoft.com/snapshot/2022-12-14/'}
+          - {os: windows-latest, r: '4.2', repos: 'https://packagemanager.posit.co/cran/2023-03-15/'}
+          - {os: macOS-latest, r: '4.2', repos: 'https://packagemanager.posit.co/cran/2023-03-15/'}
+          - {os: ubuntu-20.04, r: '4.2', repos: 'https://packagemanager.posit.co/cran/2023-03-15/'}
 
     env:
       REPOS: ${{ matrix.config.repos }}
