@@ -1,5 +1,5 @@
 ---
-name: Spelling
+name: Check Spelling
 
 on:
   workflow_dispatch:
@@ -14,12 +14,11 @@ on:
     branches:
       - main
       - devel
-      - pre-release
   pull_request:
     branches:
       - main
       - devel
-      - pre-release
+
 
 concurrency:
   group: spelling-${{ github.event.pull_request.number || github.ref }}
