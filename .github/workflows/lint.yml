@@ -112,6 +112,7 @@ jobs:
 
       - name: Lint
         run: |
+          install.packages("lintr")
           exclusions_list <- NULL
           if (!identical("${{ inputs.lint-all-files }}", "true")) {
             changed_files <- jsonlite::fromJSON('${{ steps.files.outputs.added_modified }}')
