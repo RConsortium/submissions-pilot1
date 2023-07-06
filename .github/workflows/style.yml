@@ -1,5 +1,5 @@
 ---
-name: Style
+name: Check Code Style
 
 on:
   workflow_dispatch:
@@ -21,7 +21,7 @@ on:
 
 
 concurrency:
-  group: spelling-${{ github.event.pull_request.number || github.ref }}
+  group: style-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
