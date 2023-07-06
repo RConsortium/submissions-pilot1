@@ -21,8 +21,28 @@ navbar:
     articles:
       text: Deliverables
       menu:
+      - text: -------
+      - text: "Displays"
       - text: Summary of Demographic and Baseline Characteristics
-        href: articles/conf_phuse_sde_london.html
+        href: articles/tlf-demographic.html
+      - text: Efficacy Tables
+        href: articles/tlf-efficacy.html
+      - text: Kaplan-Meier Plot for Time to First Dermatologic Event
+        href: articles/tlf-kmplot.html
+      - text: ADAS Cog Change from Baseline to Week 24 - LOCF
+        href: articles/tlf-primary.html
+      - text: -------
+      - text: "Datasets"
+      - text: ADSL - 
+        href: articles/tlf-demographic.html
+      - text: ADAE
+        href: articles/tlf-efficacy.html
+      - text: ADLBC
+        href: articles/tlf-kmplot.html
+      - text: ADTTE
+        href: articles/tlf-primary.html
+      - text: ADADAS
+        href: articles/tlf-primary.html
     conferences:
       text: Conferences
       menu:

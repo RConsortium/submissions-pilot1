@@ -1,7 +1,3 @@
-<!-- badges: start -->
-
-[![R-CMD-check](https://github.com/RConsortium/submissions-pilot1/workflows/R-CMD-check/badge.svg)](https://rconsortium.github.io/submissions-pilot1/)
-<!-- badges: end -->
 
 ## Overview
 
@@ -15,6 +11,8 @@ The [working group website](https://rconsortium.github.io/submissions-wg/).
 
 The [RConsortium/submissions-pilot3-adam](https://github.com/RConsortium/submissions-pilot3-adam) repo demonstrates an approach to organize internal developed R function ADaM generation program using an R package. 
 
+A Utility package was created to help file organization and reproducibility.  The package can be found [here](https://github.com/RConsortium/submissions-pilot3-utilities) and is **NOT** on CRAN.  
+
 ## FDA Response 
 
  - To be added when available
@@ -24,9 +22,11 @@ The [RConsortium/submissions-pilot3-adam](https://github.com/RConsortium/submiss
 The project is developed and tested in the environment below:
 
 - OS: Ubuntu 20.04
-- R version: R4.2.2
-- Snapshot date: 2022-12-14
-- Snapshot repository: https://cran.microsoft.com/snapshot/2022-11-01
+- R version: R4.2.3
+- Snapshot date: 2023-03-15
+- Snapshot repository: https://packagemanager.posit.co/cran/2023-03-15
+
+A [`renv.lock`](https://github.com/RConsortium/submissions-pilot3-adam/blob/main/renv.lock) file was used to help developers work in the same environments. You can find out more out `{renv}` on their homepage.  
 
 ## Folder Structure 
 
@@ -40,13 +40,17 @@ of the  [R for Clinical Study Reports and Submission](https://r4csr.org/index.ht
 
 ### R function and Analysis Scripts 
 
-In short, the project is organized as an R package. 
+In short, the project is loosely organized as an R package. 
 
 - `pilot3.Rproj`: RStudio project file used to open RStudio project.
 - `DESCRIPTION`: Metadata for a package including authors, license, dependency etc.
 - `vignettes/`: Analysis scripts using RMarkdown.
-- `R/`: Project specific R functions.
-- `man/`: Manual of project specific R functions. 
+- `adam`
+- `submission/adam:` 
+- `submission/output:` 
+- `submission/programs:`
+- `submission/sdtm:`
+
 
 ### Datasets
 
