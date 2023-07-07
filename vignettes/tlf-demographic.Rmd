@@ -92,7 +92,7 @@ tbl
 
 ```{r}
 # Output .out file
-#tbl %>%
+# tbl %>%
 #  toString() %>%
 #  writeLines(con = file.path(path$output, "tlf-demographic.out"))
 ```

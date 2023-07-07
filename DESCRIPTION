@@ -1,7 +1,7 @@
 Package: pilot3
 Type: Package
 Title: R Consortium R Submission Pilot 3
-Version: 0.1.1
+Version: 3.3.3
 Authors@R: c(
        person("Joel", "Laxamana-Roche", , email = "laxamana.joel@gene.com", role = c("aut", "cre")),
        person("Thomas", "Neitmann-Roche", role = c("aut")),

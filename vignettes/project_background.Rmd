@@ -1,0 +1,32 @@
+---
+title: "Project Background"
+output:
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_depth: '2'
+    toc_float: true
+---
+
+All submission materials and communications from this pilot are publicly available, 
+with the aim of providing a working example for future R language based FDA submissions.
+
+### The Team
+
+The Pilot 3 team met weekly over the course of 2022 and 2023 comprising of individuals across the Pharma Industry. We used slack and GitHub to communicate on blockers and ideas in between meetings.
+
+We would report back monthly to the R Submission Core Team on progress and blockers.
+The [Submissions Working group website](https://rconsortium.github.io/submissions-wg/) houses some additional discussion and supporting documentation on Pilots 1, 2, 3 and now 4!
+
+We kept minutes and recordings of our meetings, which can be found here: ['STAND-UP' MINUTES](https://github.com/RConsortium/submissions-pilot3-adam/blob/main/meeting_minutes/meeting_minutes.pdf)
+
+### The Scope
+
+The team landed on developing five ADaM datasets in R with a focus on using the R package `{admiral}`. These five ADaMs supported the already developed Pilot 1 TLFs that were delivered to the FDA in 2021. A Cover Letter and ADRG were also created as part of this submission.
+
+### The Results 
+
+Please take a look at the Deliverable Tabs to see our Cover Letter to the FDA, TLFS, ADaMs and ADRG. All done in R!
+
+
+
