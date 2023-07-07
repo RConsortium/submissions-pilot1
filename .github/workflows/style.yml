@@ -1,5 +1,5 @@
 ---
-name: Check Spelling
+name: Check Code Style
 
 on:
   workflow_dispatch:
@@ -21,12 +21,12 @@ on:
 
 
 concurrency:
-  group: spelling-${{ github.event.pull_request.number || github.ref }}
+  group: style-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
   roxygen:
-    name: Spellcheck
+    name: Style
     runs-on: ubuntu-20.04
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -79,15 +79,18 @@ jobs:
           
       - name: Install Dependencies
         run: |
-          if (!requireNamespace("spelling", quietly = TRUE)) {
-            install.packages("spelling")
+          if (!requireNamespace("styler", quietly = TRUE)) {
+            install.packages("styler")
           }
         shell: Rscript {0}
-
-      - name: Run Spellcheck
+      
+      - name: Run styler 🖼️
         run: |
-          (spell_errors <- spelling::spell_check_package())
-          if (nrow(spell_errors) > 0L) {
-            quit(save = "no", status = 1, runLast = FALSE)
+          detect <- styler::style_pkg(dry = "on")
+          if (TRUE %in% detect$changed) {
+          problems <- subset(detect$file, detect$changed == T)
+          cat(paste("Styling errors found in", length(problems), "files\n"))
+          cat("Please run `styler::style_pkg()` to fix the style\n")
+          quit(status = 1)
           }
         shell: Rscript {0}

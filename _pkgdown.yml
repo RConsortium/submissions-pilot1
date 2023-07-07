@@ -1,3 +1,71 @@
-destination: docs
+url: https://rconsortium.github.io/submissions-pilot3-adam
+
 template:
-  package: pilot3
+  bootstrap: 5
+  params:
+    bootswatch: superhero
+search:
+  exclude: ["news/index.html"]
+news:
+  cran_dates: true
+
+navbar:
+  structure:
+    left: [project, articles, conferences, feedback]
+    right: [slack, github]
+  components:
+    slack:
+      icon: fa-slack
+      href: https://pharmaverse.slack.com/archives/C030EB2M4GM
+      aria-label: slack
+    github:
+      icon: fa-github
+      href: https://github.com/RConsortium/submissions-pilot3-adam
+      aria-label: github
+    project:
+      text: Project Background/Setup
+      menu: 
+      - text: Project Background
+        href: articles/project_background.html
+      - text: Project Setup
+        href: articles/project_setup.html
+    articles:
+      text: Deliverables
+      menu:
+      - text: -------
+      - text: "Cover Letter"
+        href: articles/tlf-demographic.html
+      - text: -------
+      - text: "Displays"
+      - text: Summary of Demographic and Baseline Characteristics
+        href: articles/tlf-demographic.html
+      - text: Efficacy Tables
+        href: articles/tlf-efficacy.html
+      - text: Kaplan-Meier Plot for Time to First Dermatologic Event
+        href: articles/tlf-kmplot.html
+      - text: ADAS Cog Change from Baseline to Week 24 - LOCF
+        href: articles/tlf-primary.html
+      - text: -------
+      - text: "Datasets and ADRG"
+      - text: ADSL - Subject Level Analysis 
+        href: articles/adam-adsl.html
+      - text: ADAE - Adverse Event Analysis
+        href: articles/tlf-efficacy.html
+      - text: ADLBC - Laboratory Results Chemistry Analysis 
+        href: articles/tlf-kmplot.html
+      - text: ADTTE - AE Time to 1st Derm. Event Analysis
+        href: articles/tlf-primary.html
+      - text: ADADAS - ADS-COG Analysis
+        href: articles/tlf-primary.html
+      - text: ADRG - Analysis Data Reviewer's Guide
+        href: articles/tlf-demographic.html
+    conferences:
+      text: Conferences
+      menu:
+      - text: PHUSE SDE London
+        href: articles/conf_phuse_sde_london.html
+    feedback:
+      text: Feedback from FDA
+      menu:
+      - text: Feedback
+        href: articles/conf_phuse_sde_london.html

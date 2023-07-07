@@ -74,7 +74,7 @@ ggplot2::theme_set(theme_bw())
 
 pdf.options(reset = TRUE, onefile = FALSE)
 
-pdf(file.path(path$output, "tlf-kmplot.pdf"))
+# pdf(file.path(path$output, "tlf-kmplot.pdf"))
 
 km <- visR::visr(surv_mod,
   y_label = "Probability of event\n",

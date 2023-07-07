@@ -1,0 +1,37 @@
+---
+title: "ADADAS - ADAS Cog Analysis"
+output:
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_depth: '2'
+    toc_float: true
+---
+
+```{r, echo = FALSE, message = FALSE}
+library(admiraldev)
+library(haven)
+library(readxl)
+library(dplyr)
+```
+
+
+The ADSL dataset code can be found [here](https://github.com/RConsortium/submissions-pilot3-adam/blob/main/submission/programs/adsl.r) 
+
+## Specification File
+
+```{r, echo = FALSE}
+adadas_spec <- read_xlsx("../submission/adam/ADaM - Pilot 3.xlsx", sheet = 3) %>%
+  filter(Dataset == "ADADAS")
+dataset_vignette(adadas_spec)
+```
+## Dataset
+
+```{r, echo = FALSE}
+adadas <- read_xpt("../submission/adam/adadas.xpt")
+dataset_vignette(adadas)
+```
+
+## QC Findings and Et Cetera
+
+The original ADSL was done in SAS and a quick QC was done.  The code for the comparison between the R and SAS generated datasets can be found [here](https://github.com/RConsortium/submissions-pilot3-adam/blob/main/submission/programs/qc_adsl.r)
