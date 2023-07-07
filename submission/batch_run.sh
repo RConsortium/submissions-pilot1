@@ -1,17 +1,17 @@
 #!/bin/bash
 
-Rscript submission/programs/adsl.R
-Rscript submission/programs/qc_adsl.R
-Rscript submission/programs/adae.R
-Rscript submission/programs/qc_adae.R
-Rscript submission/programs/adlbc.R
-Rscript submission/programs/qc_adlbc.R
-Rscript submission/programs/adadas.R
-Rscript submission/programs/qc_adadas.R
-Rscript submission/programs/adtte.R
-Rscript submission/programs/qc_adtte.R
+Rscript submission/programs/adsl.r
+Rscript submission/programs/qc_adsl.r
+Rscript submission/programs/adae.r
+Rscript submission/programs/qc_adae.r
+Rscript submission/programs/adlbc.r
+Rscript submission/programs/qc_adlbc.r
+Rscript submission/programs/adadas.r
+Rscript submission/programs/qc_adadas.r
+Rscript submission/programs/adtte.r
+Rscript submission/programs/qc_adtte.r
 
-Rscript submission/programs/tlf-demographic.R
-Rscript submission/programs/tlf-efficacy.R
-Rscript submission/programs/tlf-primary.R
-Rscript submission/programs/tlf-kmplot.R
+Rscript submission/programs/tlf-demographic.r
+Rscript submission/programs/tlf-efficacy.r
+Rscript submission/programs/tlf-primary.r
+Rscript submission/programs/tlf-kmplot.r
