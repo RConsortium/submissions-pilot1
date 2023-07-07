@@ -1,5 +1,7 @@
 #!/bin/bash
 
+Rscript submission/programs/path.r
+
 Rscript submission/programs/adsl.r
 Rscript submission/programs/qc_adsl.r
 Rscript submission/programs/adae.r
