@@ -1,5 +1,4 @@
-
-## Overview
+# Overview
 
 The objectives of the **R Consortium R Submission Pilot 3** Project are:  
 
