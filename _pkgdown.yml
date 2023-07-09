@@ -50,13 +50,13 @@ navbar:
       - text: ADSL - Subject Level Analysis 
         href: articles/adam-adsl.html
       - text: ADAE - Adverse Event Analysis
-        href: articles/tlf-efficacy.html
+        href: articles/adam-adae.html
       - text: ADLBC - Laboratory Results Chemistry Analysis 
-        href: articles/tlf-kmplot.html
+        href: articles/adam-adlbc.html
       - text: ADTTE - AE Time to 1st Derm. Event Analysis
-        href: articles/tlf-primary.html
+        href: articles/adam-adtte.html
       - text: ADADAS - ADS-COG Analysis
-        href: articles/tlf-primary.html
+        href: articles/adam-adadas.html
       - text: ADRG - Analysis Data Reviewer's Guide
         href: articles/adrg.html
     conferences:
