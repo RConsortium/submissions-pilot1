@@ -15,7 +15,7 @@ library(readxl)
 library(dplyr)
 ```
 
-The ADSL dataset code can be found [here](https://github.com/RConsortium/submissions-pilot3-adam/blob/main/submission/programs/adsl.r) 
+The ADSL dataset code can be found [here](https://github.com/RConsortium/submissions-pilot3-adam/blob/main/submission/programs/adadas.r) 
 
 ## Specification File
 
