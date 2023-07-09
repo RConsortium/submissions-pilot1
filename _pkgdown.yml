@@ -56,7 +56,7 @@ navbar:
       - text: ADTTE - AE Time to 1st Derm. Event Analysis
         href: articles/adam-adtte.html
       - text: ADADAS - ADS-COG Analysis
-        href: articles/adam-adadas.html
+        href: articles/adam-adsl.html
       - text: ADRG - Analysis Data Reviewer's Guide
         href: articles/adrg.html
     conferences:
