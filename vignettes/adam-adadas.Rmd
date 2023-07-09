@@ -15,17 +15,22 @@ library(readxl)
 library(dplyr)
 ```
 
-
 The ADSL dataset code can be found [here](https://github.com/RConsortium/submissions-pilot3-adam/blob/main/submission/programs/adsl.r) 
 
 ## Specification File
+
+This was the specification file used to help generate the ADaM.
+
 
 ```{r, echo = FALSE}
 adadas_spec <- read_xlsx("../submission/adam/ADaM - Pilot 3.xlsx", sheet = 3) %>%
   filter(Dataset == "ADADAS")
 dataset_vignette(adadas_spec)
 ```
+
 ## Dataset
+
+R-generated ADaM
 
 ```{r, echo = FALSE}
 adadas <- read_xpt("../submission/adam/adadas.xpt")
@@ -35,3 +40,6 @@ dataset_vignette(adadas)
 ## QC Findings and Et Cetera
 
 The original ADSL was done in SAS and a quick QC was done.  The code for the comparison between the R and SAS generated datasets can be found [here](https://github.com/RConsortium/submissions-pilot3-adam/blob/main/submission/programs/qc_adsl.r)
+
+Differences around the SAS and R generated dataset can be found [here](https://github.com/RConsortium/submissions-pilot3-adam/wiki/QC-Findings#adadas) 
+

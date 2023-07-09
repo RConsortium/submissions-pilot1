@@ -8,25 +8,28 @@ output:
     toc_float: true
 ---
 
-All submission materials and communications from this pilot are publicly available, 
-with the aim of providing a working example for future R language based FDA submissions.
+Below we discuss the scope of the project and how we worked as a team.  All submission materials and communications from this pilot are publicly available, with the aim of providing a working example for future R language based FDA submissions.
+
+### The Scope
+
+The team landed on developing five ADaM datasets in R with a focus on using the R package `{admiral}`. These five ADaMs supported the already developed [Submission Pilot 1](https://rconsortium.github.io/submissions-pilot1/) TLFs that were delivered to the FDA in 2021. A Cover Letter and ADRG were also created as part of this submission.
+
+The submission package is small and makes use of a modernized version of the [CDISC Pilot data](https://www.pharmasug.org/cd/papers/CD/CD04.pdf). The CDSIC Pilot was developed to demonstrate that the CDSIC standards met the requirements of FDA Reviewers. The R-based Pilots are more interested in the delivery process and use of R. Therefore, it was decided that only a subset of the [CDISC Pilot data](https://www.pharmasug.org/cd/papers/CD/CD04.pdf) was needed to accomplish our goals.  
+
 
 ### The Team
 
-The Pilot 3 team met weekly over the course of 2022 and 2023 comprising of individuals across the Pharma Industry. We used slack and GitHub to communicate on blockers and ideas in between meetings.
+The Pilot 3 team met weekly over the course of 2022 and 2023 comprising of individuals across the Pharma Industry. We used [pharmaverse slack](https://pharmaverse.slack.com/archives/C03J2MD2SLC) and [GitHub](https://github.com/RConsortium/submissions-pilot3-adam) to communicate on blockers and ideas in between meetings.
 
 We would report back monthly to the R Submission Core Team on progress and blockers.
 The [Submissions Working group website](https://rconsortium.github.io/submissions-wg/) houses some additional discussion and supporting documentation on Pilots 1, 2, 3 and now 4!
 
 We kept minutes and recordings of our meetings, which can be found here: ['STAND-UP' MINUTES](https://github.com/RConsortium/submissions-pilot3-adam/blob/main/meeting_minutes/meeting_minutes.pdf)
 
-### The Scope
-
-The team landed on developing five ADaM datasets in R with a focus on using the R package `{admiral}`. These five ADaMs supported the already developed Pilot 1 TLFs that were delivered to the FDA in 2021. A Cover Letter and ADRG were also created as part of this submission.
 
 ### The Results 
 
-Please take a look at the Deliverable Tabs to see our Cover Letter to the FDA, TLFS, ADaMs and ADRG. All done in R!
+Please take a look at the Deliverable Tab to see our Cover Letter to the FDA, TLFs, ADaMs and a R-based ADRG. All done in R!
 
 
 
