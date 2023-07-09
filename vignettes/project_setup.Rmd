@@ -15,7 +15,7 @@ In this section, we will quickly cover the environment, setup of the project, fo
 As we were a large team, it was decided for us all to use the same version of R packages needed for the creation of the TLFs and ADaMs. We also felt that this **snapshot** of packages used in our submission would more closely mimic a typical setup at a company delivering a R-based submission.
 
 We made use of the `{renv}` R package to help us generate a [`renv.lock`](https://github.com/RConsortium/submissions-pilot3-adam/blob/main/renv.lock) file
- to help developers configure their environments to be identical. We encourage readers to check out `{renv}` to find out more out more on this package. 
+ to help developers configure their environments to be identical. The  [`renv.lock`](https://github.com/RConsortium/submissions-pilot3-adam/blob/main/renv.lock) has all primary and dependency packages versions that were installed in our environments.  We encourage readers to check out `{renv}` package to find out more.
 
 A synopsis of our environment:
 
@@ -23,30 +23,29 @@ A synopsis of our environment:
 - R version: R 4.2.3
 - Snapshot date: 2023-03-15
 - Snapshot repository: https://packagemanager.posit.co/cran/2023-03-15
-- Package Version: [`renv.lock`](https://github.com/RConsortium/submissions-pilot3-adam/blob/main/renv.lock
+- Package Versions: [`renv.lock`](https://github.com/RConsortium/submissions-pilot3-adam/blob/main/renv.lock)
 
 ## GitHub Repositories
 
-We make use of several GitHub Repositories to store our work.
+We make use of several GitHub Repositories to store and collaborate for our work.
 
 ### Core Analysis Repository 
 
 The website you are viewing is built on top of this Repository, which is where 95% percent of Pilot 3 work was done. The source code can be found on  [RConsortium/submissions-pilot3-adam](https://github.com/RConsortium/submissions-pilot3-adam). Below we discuss some of the key folders where our analysis was done as well as some files that we found useful for locking in our environments and keeping things reproducible.  
 
-- `adam/`: Original ADaM Pilot data created in SAS
-- `submission/adam:` R created ADaM datasets
-- `submission/output:` R created TLFs
-- `submission/programs:` Production and QC programs for ADaMS and 
-- `submission/sdtm:`Original ADaM Pilot data created in SAS
-- `output/`: TLFs output 
-- `.Rprofile`: Project startup file to setup running environment,
-- `_envsetup.yml`: Helps to configure the location paths for programs and data
-- `renv.lock`: Locks in the versions of R packages and R
+- `adam/`: Original CDISC ADaM Pilot data created in SAS used for comparison
+- `submission/adam:` R generated ADaM datasets
+- `submission/output:` R generated TLFs
+- `submission/programs:` Production and QC programs for ADaMS 
+- `submission/sdtm:`Original CDISC SDTM Pilot data created in SAS
+- `.Rprofile`: Project startup file to set up environment,
+- `_envsetup.yml`: Configures the location paths for programs and data
+- `renv.lock`: Locks in the versions of R packages and version of R
 - `vignettes/`: Markdown files that render TLFs and Datasets for Website
 
 ### Utility Package Repository
 
-Originally, the Pilot 3 Core Analysis Repository was an R package, but this quickly got messy and it was decided to split out the custom helper functions for the TLFs and Datasets to a separate R package. 
+Originally, the Pilot 3 Core Analysis Repository was a R package, but this quickly got messy and it was decided to split out the custom helper functions for the TLFs and Datasets to a separate R package. 
 
 The source code for our Utility R package can be found [here](https://github.com/RConsortium/submissions-pilot3-utilities). Please note that this is not a CRAN package and is loaded in from `renv.lock` file via GitHub.
 

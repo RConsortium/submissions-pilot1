@@ -3,7 +3,7 @@ url: https://rconsortium.github.io/submissions-pilot3-adam
 template:
   bootstrap: 5
   params:
-    bootswatch: superhero
+    bootswatch: flatly
 search:
   exclude: ["news/index.html"]
 news:
@@ -34,7 +34,7 @@ navbar:
       menu:
       - text: -------
       - text: "Cover Letter"
-        href: articles/tlf-demographic.html
+        href: articles/cover-letter.html
       - text: -------
       - text: "Displays"
       - text: Summary of Demographic and Baseline Characteristics
@@ -58,7 +58,7 @@ navbar:
       - text: ADADAS - ADS-COG Analysis
         href: articles/tlf-primary.html
       - text: ADRG - Analysis Data Reviewer's Guide
-        href: articles/tlf-demographic.html
+        href: articles/adrg.html
     conferences:
       text: Conferences
       menu:

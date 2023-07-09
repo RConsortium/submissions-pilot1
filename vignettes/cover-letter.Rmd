@@ -1,0 +1,12 @@
+---
+title: "Cover Letter"
+output:
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_depth: '2'
+    toc_float: true
+---
+
+
+![Cover Letter](pdf/cover-letter.pdf){width=700px height=1100px}
