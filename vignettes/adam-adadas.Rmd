@@ -10,6 +10,7 @@ output:
 
 ```{r, echo = FALSE, message = FALSE}
 library(admiraldev)
+library(DT)
 library(haven)
 library(readxl)
 library(dplyr)
