@@ -1,3 +1,8 @@
+# pilot1wrappers 0.1.2
+
+* Change repo source to Posit Package Manager
+* Change running R version to R4.1.3
+
 # pilot1wrappers 0.1.1
 
 * Address reviewer comments for `tlf-efficacy.Rmd` and `tlf-primary`.

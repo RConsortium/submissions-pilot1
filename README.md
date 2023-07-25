@@ -32,7 +32,7 @@ repo demonstrates the eCTD submission package based on the [RConsortium/submissi
 The project is developed and tested in the environment below:
 
 - OS: Ubuntu 20.04
-- R version: R4.1.2
+- R version: R4.1.3
 - Snapshot date: 2021-08-31
 - Snapshot repository: https://mran.microsoft.com/snapshot/2021-08-31
 
