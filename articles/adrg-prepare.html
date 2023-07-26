@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,23 +33,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pilot1wrappers</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.2</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -84,7 +80,7 @@
 
       
 
-      </header><script src="adrg-prepare_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Submission Program Preparation</h1>
@@ -98,140 +94,143 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Initiate start-up file</span>
-<span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="fu">rprojroot</span><span class="fu">::</span><span class="fu"><a href="https://rprojroot.r-lib.org//reference/find_root.html">find_root</a></span><span class="op">(</span><span class="st">"DESCRIPTION"</span><span class="op">)</span>, <span class="st">"inst/startup.R"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Initiate start-up file</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu">rprojroot</span><span class="fu">::</span><span class="fu"><a href="https://rprojroot.r-lib.org/reference/find_root.html" class="external-link">find_root</a></span><span class="op">(</span><span class="st">"DESCRIPTION"</span><span class="op">)</span>, <span class="st">"inst/startup.R"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html">opts_chunk</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>echo <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://merck.github.io/pkglite/">pkglite</a></span><span class="op">)</span></code></pre></div>
-<div id="pack-proprietary-r-analysis-package" class="section level1">
-<h1 class="hasAnchor">
-<a href="#pack-proprietary-r-analysis-package" class="anchor"></a>Pack Proprietary R Analysis Package</h1>
-<p>Using <code>pkglite</code> to pack proprietary R package and saved into <code>ectd/r0pkg.txt</code>.</p>
+<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html" class="external-link">opts_chunk</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>echo <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://merck.github.io/pkglite/" class="external-link">pkglite</a></span><span class="op">)</span></span></code></pre></div>
+<div class="section level2">
+<h2 id="pack-proprietary-r-analysis-package">Pack Proprietary R Analysis Package<a class="anchor" aria-label="anchor" href="#pack-proprietary-r-analysis-package"></a>
+</h2>
+<p>Using <code>pkglite</code> to pack proprietary R package and saved
+into <code>ectd/r0pkg.txt</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">path</span><span class="op">$</span><span class="va">home</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://merck.github.io/pkglite/reference/collate.html">collate</a></span><span class="op">(</span><span class="fu"><a href="https://merck.github.io/pkglite/reference/file_ectd.html">file_ectd</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="https://merck.github.io/pkglite/reference/file_auto.html">file_auto</a></span><span class="op">(</span><span class="st">"inst"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://merck.github.io/pkglite/reference/prune.html">prune</a></span><span class="op">(</span><span class="st">"R/zzz.R"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://merck.github.io/pkglite/reference/pack.html">pack</a></span><span class="op">(</span>output <span class="op">=</span> <span class="st">"ectd/r0pkg.txt"</span><span class="op">)</span></code></pre></div>
-<pre><code>## </code></pre>
-<pre><code>## ── Packing into pkglite file ───────────────────────────────────────────────────</code></pre>
-<pre><code>## ── Reading package: pilot1wrappers ─────────────────────────────────────────────</code></pre>
-<pre><code>## Reading .Rbuildignore</code></pre>
-<pre><code>## Reading DESCRIPTION</code></pre>
-<pre><code>## Reading NAMESPACE</code></pre>
-<pre><code>## Reading NEWS.md</code></pre>
-<pre><code>## Reading README.md</code></pre>
-<pre><code>## Reading R/eff_models.R</code></pre>
-<pre><code>## Reading R/fmt.R</code></pre>
-<pre><code>## Reading R/helpers.R</code></pre>
-<pre><code>## Reading R/package.R</code></pre>
-<pre><code>## Reading R/Tplyr_helpers.R</code></pre>
-<pre><code>## Reading man/efficacy_models.Rd</code></pre>
-<pre><code>## Reading man/fmt_ci.Rd</code></pre>
-<pre><code>## Reading man/fmt_est.Rd</code></pre>
-<pre><code>## Reading man/fmt_num.Rd</code></pre>
-<pre><code>## Reading man/fmt_pval.Rd</code></pre>
-<pre><code>## Reading man/nest_rowlabels.Rd</code></pre>
-<pre><code>## Reading man/num_fmt.Rd</code></pre>
-<pre><code>## Reading man/pad_row.Rd</code></pre>
-<pre><code>## Reading man/pilot1wrappers-package.Rd</code></pre>
-<pre><code>## Reading inst/pkgdown/assets/readme.txt</code></pre>
-<pre><code>## Reading inst/pkgdown/templates/readme.txt</code></pre>
-<pre><code>## Reading inst/startup.R</code></pre>
-<pre><code>## Writing to: 'ectd/r0pkg.txt'</code></pre>
+<code class="sourceCode R"><span><span class="va">path</span><span class="op">$</span><span class="va">home</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://merck.github.io/pkglite/reference/collate.html" class="external-link">collate</a></span><span class="op">(</span><span class="fu"><a href="https://merck.github.io/pkglite/reference/file_ectd.html" class="external-link">file_ectd</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="https://merck.github.io/pkglite/reference/file_auto.html" class="external-link">file_auto</a></span><span class="op">(</span><span class="st">"inst"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://merck.github.io/pkglite/reference/prune.html" class="external-link">prune</a></span><span class="op">(</span><span class="st">"R/zzz.R"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://merck.github.io/pkglite/reference/pack.html" class="external-link">pack</a></span><span class="op">(</span>output <span class="op">=</span> <span class="st">"ectd/r0pkg.txt"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">-- </span><span style="font-weight: bold;">Packing into pkglite file </span><span style="color: #00BBBB;">---------------------------------------------------</span></span></span>
+<span><span class="co">## -- Reading package: <span style="color: #0000BB;">pilot1wrappers</span> ---------------------------------------------</span></span>
+<span><span class="co">## Reading <span style="color: #00BB00;">".Rbuildignore"</span></span></span>
+<span><span class="co">## Reading <span style="color: #00BB00;">"DESCRIPTION"</span></span></span>
+<span><span class="co">## Reading <span style="color: #00BB00;">"NAMESPACE"</span></span></span>
+<span><span class="co">## Reading <span style="color: #00BB00;">"NEWS.md"</span></span></span>
+<span><span class="co">## Reading <span style="color: #00BB00;">"README.md"</span></span></span>
+<span><span class="co">## Reading <span style="color: #00BB00;">"R/eff_models.R"</span></span></span>
+<span><span class="co">## Reading <span style="color: #00BB00;">"R/fmt.R"</span></span></span>
+<span><span class="co">## Reading <span style="color: #00BB00;">"R/helpers.R"</span></span></span>
+<span><span class="co">## Reading <span style="color: #00BB00;">"R/package.R"</span></span></span>
+<span><span class="co">## Reading <span style="color: #00BB00;">"R/Tplyr_helpers.R"</span></span></span>
+<span><span class="co">## Reading <span style="color: #00BB00;">"man/efficacy_models.Rd"</span></span></span>
+<span><span class="co">## Reading <span style="color: #00BB00;">"man/fmt_ci.Rd"</span></span></span>
+<span><span class="co">## Reading <span style="color: #00BB00;">"man/fmt_est.Rd"</span></span></span>
+<span><span class="co">## Reading <span style="color: #00BB00;">"man/fmt_num.Rd"</span></span></span>
+<span><span class="co">## Reading <span style="color: #00BB00;">"man/fmt_pval.Rd"</span></span></span>
+<span><span class="co">## Reading <span style="color: #00BB00;">"man/nest_rowlabels.Rd"</span></span></span>
+<span><span class="co">## Reading <span style="color: #00BB00;">"man/num_fmt.Rd"</span></span></span>
+<span><span class="co">## Reading <span style="color: #00BB00;">"man/pad_row.Rd"</span></span></span>
+<span><span class="co">## Reading <span style="color: #00BB00;">"man/pilot1wrappers-package.Rd"</span></span></span>
+<span><span class="co">## Reading <span style="color: #00BB00;">"inst/pkgdown/assets/readme.txt"</span></span></span>
+<span><span class="co">## Reading <span style="color: #00BB00;">"inst/pkgdown/templates/readme.txt"</span></span></span>
+<span><span class="co">## Reading <span style="color: #00BB00;">"inst/startup.R"</span></span></span>
+<span><span class="co">## Writing to: <span style="color: #0000BB;">"ectd/r0pkg.txt"</span></span></span></code></pre>
 </div>
-<div id="prepare-submission-analysis-progam" class="section level1">
-<h1 class="hasAnchor">
-<a href="#prepare-submission-analysis-progam" class="anchor"></a>Prepare Submission Analysis Progam</h1>
-<p>Transfer Rmarkdown file to <code>txt</code> files and saved in <code>ectd</code> folder.</p>
+<div class="section level2">
+<h2 id="prepare-submission-analysis-progam">Prepare Submission Analysis Progam<a class="anchor" aria-label="anchor" href="#prepare-submission-analysis-progam"></a>
+</h2>
+<p>Transfer Rmarkdown file to <code>txt</code> files and saved in
+<code>ectd</code> folder.</p>
 <ul>
-<li>(optional) Review and remove unecessary information. For example:</li>
+<li>(optional) Review and remove unecessary information. For
+example:</li>
 </ul>
-<pre><code><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">knitr::include_graphics("pdf/tlf-efficacy.pdf")</a></code></pre>
+<pre><code><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="st">"pdf/tlf-efficacy.pdf"</span><span class="op">)</span></span></code></pre>
 <ul>
 <li>(optional) Add header to help reviewer rerun code. For example:</li>
 </ul>
-<pre><code># Note to Reviewer 
-# To rerun the code below, please refer ADRG appendix.
-# After required package are installed. 
-# The path variable needs to be defined by using example code below
-#
-# path = list(adam = "path/to/esub/analysis/adam/datasets")     # Modify path to the actual location
-# path$output = "."                                             # Output saved in current folder</code></pre>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit.html">purl</a></span><span class="op">(</span><span class="st">"tlf-demographic.Rmd"</span>, output <span class="op">=</span> <span class="st">"ectd/tlf-demographic.r"</span><span class="op">)</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit.html">purl</a></span><span class="op">(</span><span class="st">"tlf-efficacy.Rmd"</span>,    output <span class="op">=</span> <span class="st">"ectd/tlf-efficacy.r"</span><span class="op">)</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit.html">purl</a></span><span class="op">(</span><span class="st">"tlf-kmplot.Rmd"</span>, output <span class="op">=</span> <span class="st">"ectd/tlf-kmplot.r"</span><span class="op">)</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit.html">purl</a></span><span class="op">(</span><span class="st">"tlf-primary.Rmd"</span>, output <span class="op">=</span> <span class="st">"ectd/tlf-primary.r"</span><span class="op">)</span></code></pre></div>
-<div id="list-r-package-for-analysis" class="section level2">
-<h2 class="hasAnchor">
-<a href="#list-r-package-for-analysis" class="anchor"></a>List R package for analysis</h2>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">pkg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"pkglite"</span>,<span class="st">"haven"</span>, <span class="st">"dplyr"</span>, <span class="st">"tidyr"</span>, <span class="st">"emmeans"</span>, <span class="st">"r2rtf"</span>,<span class="st">"rtables"</span>, 
-         <span class="st">"ggplot2"</span>, <span class="st">"cowplot"</span>, <span class="st">"visR"</span>,
-         <span class="st">"Tplyr"</span>, <span class="st">"pharmaRTF"</span>, <span class="st">"huxtable"</span>, <span class="st">"stringr"</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/utils/available.packages.html">available.packages</a></span><span class="op">(</span>contriburl <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/contrib.url.html">contrib.url</a></span><span class="op">(</span><span class="va">repos</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">Package</span> <span class="op">%in%</span> <span class="va">pkg</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Package</span>, <span class="va">Version</span>, <span class="va">Repository</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">Package</span><span class="op">)</span></code></pre></div>
-<pre><code>##             Package Version
-## cowplot     cowplot   1.1.1
-## dplyr         dplyr   1.0.7
-## emmeans     emmeans   1.6.3
-## ggplot2     ggplot2   3.3.5
-## haven         haven   2.4.3
-## huxtable   huxtable   5.4.0
-## pharmaRTF pharmaRTF   0.1.3
-## pkglite     pkglite   0.2.0
-## r2rtf         r2rtf   0.3.0
-## rtables     rtables   0.3.8
-## stringr     stringr   1.4.0
-## tidyr         tidyr   1.1.3
-## Tplyr         Tplyr   0.4.1
-## visR           visR   0.2.0
-##                                                           Repository
-## cowplot   https://mran.microsoft.com/snapshot/2021-08-31/src/contrib
-## dplyr     https://mran.microsoft.com/snapshot/2021-08-31/src/contrib
-## emmeans   https://mran.microsoft.com/snapshot/2021-08-31/src/contrib
-## ggplot2   https://mran.microsoft.com/snapshot/2021-08-31/src/contrib
-## haven     https://mran.microsoft.com/snapshot/2021-08-31/src/contrib
-## huxtable  https://mran.microsoft.com/snapshot/2021-08-31/src/contrib
-## pharmaRTF https://mran.microsoft.com/snapshot/2021-08-31/src/contrib
-## pkglite   https://mran.microsoft.com/snapshot/2021-08-31/src/contrib
-## r2rtf     https://mran.microsoft.com/snapshot/2021-08-31/src/contrib
-## rtables   https://mran.microsoft.com/snapshot/2021-08-31/src/contrib
-## stringr   https://mran.microsoft.com/snapshot/2021-08-31/src/contrib
-## tidyr     https://mran.microsoft.com/snapshot/2021-08-31/src/contrib
-## Tplyr     https://mran.microsoft.com/snapshot/2021-08-31/src/contrib
-## visR      https://mran.microsoft.com/snapshot/2021-08-31/src/contrib</code></pre>
+<pre><code><span><span class="co"># Note to Reviewer </span></span>
+<span><span class="co"># To rerun the code below, please refer ADRG appendix.</span></span>
+<span><span class="co"># After required package are installed. </span></span>
+<span><span class="co"># The path variable needs to be defined by using example code below</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># path = list(adam = "path/to/esub/analysis/adam/datasets")     # Modify path to the actual location</span></span>
+<span><span class="co"># path$output = "."                                             # Output saved in current folder</span></span></code></pre>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit.html" class="external-link">purl</a></span><span class="op">(</span><span class="st">"tlf-demographic.Rmd"</span>, output <span class="op">=</span> <span class="st">"ectd/tlf-demographic.r"</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit.html" class="external-link">purl</a></span><span class="op">(</span><span class="st">"tlf-efficacy.Rmd"</span>,    output <span class="op">=</span> <span class="st">"ectd/tlf-efficacy.r"</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit.html" class="external-link">purl</a></span><span class="op">(</span><span class="st">"tlf-kmplot.Rmd"</span>, output <span class="op">=</span> <span class="st">"ectd/tlf-kmplot.r"</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit.html" class="external-link">purl</a></span><span class="op">(</span><span class="st">"tlf-primary.Rmd"</span>, output <span class="op">=</span> <span class="st">"ectd/tlf-primary.r"</span><span class="op">)</span></span></code></pre></div>
+<div class="section level3">
+<h3 id="list-r-package-for-analysis">List R package for analysis<a class="anchor" aria-label="anchor" href="#list-r-package-for-analysis"></a>
+</h3>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">pkg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"pkglite"</span>,<span class="st">"haven"</span>, <span class="st">"dplyr"</span>, <span class="st">"tidyr"</span>, <span class="st">"emmeans"</span>, <span class="st">"r2rtf"</span>,<span class="st">"rtables"</span>, </span>
+<span>         <span class="st">"ggplot2"</span>, <span class="st">"cowplot"</span>, <span class="st">"visR"</span>,</span>
+<span>         <span class="st">"Tplyr"</span>, <span class="st">"pharmaRTF"</span>, <span class="st">"huxtable"</span>, <span class="st">"stringr"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/available.packages.html" class="external-link">available.packages</a></span><span class="op">(</span>contriburl <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/contrib.url.html" class="external-link">contrib.url</a></span><span class="op">(</span><span class="va">repos</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">Package</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">pkg</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">Package</span>, <span class="va">Version</span>, <span class="va">Repository</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">Package</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##             Package Version</span></span>
+<span><span class="co">## Tplyr         Tplyr   0.4.1</span></span>
+<span><span class="co">## cowplot     cowplot   1.1.1</span></span>
+<span><span class="co">## dplyr         dplyr   1.0.7</span></span>
+<span><span class="co">## emmeans     emmeans   1.6.3</span></span>
+<span><span class="co">## ggplot2     ggplot2   3.3.5</span></span>
+<span><span class="co">## haven         haven   2.4.3</span></span>
+<span><span class="co">## huxtable   huxtable   5.4.0</span></span>
+<span><span class="co">## pharmaRTF pharmaRTF   0.1.3</span></span>
+<span><span class="co">## pkglite     pkglite   0.2.0</span></span>
+<span><span class="co">## r2rtf         r2rtf   0.3.0</span></span>
+<span><span class="co">## rtables     rtables   0.3.8</span></span>
+<span><span class="co">## stringr     stringr   1.4.0</span></span>
+<span><span class="co">## tidyr         tidyr   1.1.3</span></span>
+<span><span class="co">## visR           visR   0.2.0</span></span>
+<span><span class="co">##                                                            Repository</span></span>
+<span><span class="co">## Tplyr     https://packagemanager.posit.co/cran/2021-08-31/src/contrib</span></span>
+<span><span class="co">## cowplot   https://packagemanager.posit.co/cran/2021-08-31/src/contrib</span></span>
+<span><span class="co">## dplyr     https://packagemanager.posit.co/cran/2021-08-31/src/contrib</span></span>
+<span><span class="co">## emmeans   https://packagemanager.posit.co/cran/2021-08-31/src/contrib</span></span>
+<span><span class="co">## ggplot2   https://packagemanager.posit.co/cran/2021-08-31/src/contrib</span></span>
+<span><span class="co">## haven     https://packagemanager.posit.co/cran/2021-08-31/src/contrib</span></span>
+<span><span class="co">## huxtable  https://packagemanager.posit.co/cran/2021-08-31/src/contrib</span></span>
+<span><span class="co">## pharmaRTF https://packagemanager.posit.co/cran/2021-08-31/src/contrib</span></span>
+<span><span class="co">## pkglite   https://packagemanager.posit.co/cran/2021-08-31/src/contrib</span></span>
+<span><span class="co">## r2rtf     https://packagemanager.posit.co/cran/2021-08-31/src/contrib</span></span>
+<span><span class="co">## rtables   https://packagemanager.posit.co/cran/2021-08-31/src/contrib</span></span>
+<span><span class="co">## stringr   https://packagemanager.posit.co/cran/2021-08-31/src/contrib</span></span>
+<span><span class="co">## tidyr     https://packagemanager.posit.co/cran/2021-08-31/src/contrib</span></span>
+<span><span class="co">## visR      https://packagemanager.posit.co/cran/2021-08-31/src/contrib</span></span></code></pre>
 <p>Proprietary Package</p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span><span class="op">~</span> <span class="va">Package</span>, <span class="op">~</span> <span class="va">Version</span>, 
-        <span class="st">"pilot1wrappers"</span>, <span class="st">"0.1.1"</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 1 × 2
-##   Package        Version
-##   &lt;chr&gt;          &lt;chr&gt;  
-## 1 pilot1wrappers 0.1.1</code></pre>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span><span class="op">~</span> <span class="va">Package</span>, <span class="op">~</span> <span class="va">Version</span>, </span>
+<span>        <span class="st">"pilot1wrappers"</span>, <span class="st">"0.1.1"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 1 × 2</span></span></span>
+<span><span class="co">##   Package        Version</span></span>
+<span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">1</span> pilot1wrappers 0.1.1</span></span></code></pre>
 </div>
 </div>
-<div id="dry-run" class="section level1">
-<h1 class="hasAnchor">
-<a href="#dry-run" class="anchor"></a>Dry run</h1>
+<div class="section level2">
+<h2 id="dry-run">Dry run<a class="anchor" aria-label="anchor" href="#dry-run"></a>
+</h2>
 <ul>
-<li>Install <code>pilot1wrappers</code> from <code>ectd/r0pkg.txt</code>.</li>
+<li>Install <code>pilot1wrappers</code> from
+<code>ectd/r0pkg.txt</code>.</li>
 </ul>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">pkglite</span><span class="fu">::</span><span class="fu"><a href="https://merck.github.io/pkglite/reference/unpack.html">unpack</a></span><span class="op">(</span>input <span class="op">=</span> <span class="st">"ectd/r0pkg.txt"</span>, output <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span><span class="op">(</span><span class="op">)</span>, install <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">pkglite</span><span class="fu">::</span><span class="fu"><a href="https://merck.github.io/pkglite/reference/unpack.html" class="external-link">unpack</a></span><span class="op">(</span>input <span class="op">=</span> <span class="st">"ectd/r0pkg.txt"</span>, output <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, install <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>Rerun other analysis scripts in <code>ectd</code>.</li>
 </ul>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op">(</span><span class="st">"ectd"</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "r0pkg.txt"         "tlf-demographic.r" "tlf-efficacy.r"   
-## [4] "tlf-kmplot.r"      "tlf-primary.r"</code></pre>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="st">"ectd"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "r0pkg.txt"         "tlf-demographic.r" "tlf-efficacy.r"   </span></span>
+<span><span class="co">## [4] "tlf-kmplot.r"      "tlf-primary.r"</span></span></code></pre>
 </div>
   </div>
 
@@ -246,11 +245,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Yilong Zhang, Ning Leng, Mike Stackhouse, Peikun Wu, Heng Wang, Eli Miller.</p>
+  <p></p>
+<p>Developed by Yilong Zhang, Ning Leng, Mike Stackhouse, Peikun Wu, Heng Wang, Eli Miller.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -258,6 +259,8 @@
 
   
 
+
+  
 
   </body>
 </html>
