@@ -4,10 +4,8 @@
 # The path variable needs to be defined by using example code below
 #
 # nolint start
-# path <- list(
-#   sdtm = "path/to/esub/tabulations/sdtm",   # Modify path to the sdtm location
-#   adam = "path/to/esub/analysis/adam"       # Modify path to the adam location
-# )
+#   sdtm_path = "path/to/esub/tabulations/sdtm",   # Modify path to the sdtm location
+#   adam_path = "path/to/esub/analysis/adam"       # Modify path to the adam location
 # nolint end
 
 ###########################################################################
@@ -35,19 +33,22 @@ library(stringr)
 # as NA values. Further details can be obtained via the following link:
 # https://pharmaverse.github.io/admiral/articles/admiral.html#handling-of-missing-values
 
+sdtm_path <- "./submission/sdtm/"
+adam_path <- "./submission/adam/"
+
 # Read and convert NA for SDTM DATASET
 ## Laboratory Tests Results (LB)
-lb <- convert_blanks_to_na(read_xpt(file.path(path$sdtm, "lb.xpt")))
+lb <- convert_blanks_to_na(read_xpt(file.path(sdtm_path, "lb.xpt")))
 ## Supplemental Qualifiers for LB (SUPPLB)
-supplb <- convert_blanks_to_na(read_xpt(file.path(path$sdtm, "supplb.xpt")))
+supplb <- convert_blanks_to_na(read_xpt(file.path(sdtm_path, "supplb.xpt")))
 
 
 # Read and convert NA for ADaM DATASET
 ## Subject-Level Analysis
-adsl <- convert_blanks_to_na(read_xpt(file.path(path$adam, "adsl.xpt")))
+adsl <- convert_blanks_to_na(read_xpt(file.path(adam_path, "adsl.xpt")))
 
 # create labels
-metacore <- spec_to_metacore(file.path(path$adam, "ADaM - Pilot 3.xlsx"), where_sep_sheet = FALSE, quiet = TRUE)
+metacore <- spec_to_metacore(file.path(adam_path, "ADaM - Pilot 3.xlsx"), where_sep_sheet = FALSE, quiet = TRUE)
 
 adlbc_spec <- metacore %>%
   select_dataset("ADLBC")
@@ -264,6 +265,6 @@ adlbc <- adlb09 %>%
   set_variable_labels(adlbc_spec) %>%
   xportr_format(adlbc_spec$var_spec %>%
     mutate_at(c("format"), ~ replace_na(., "")), "ADLBC") %>%
-  xportr_write(file.path(path$adam, "adlbc.xpt"),
+  xportr_write(file.path(adam_path, "adlbc.xpt"),
     label = "Analysis Dataset Lab Blood Chemistry"
   )

@@ -21,10 +21,13 @@ library(pilot3)
 ## ------------------------------------------------------------------------------------------------------------------------------
 options(huxtable.add_colnames = FALSE)
 
+sdtm_path <- "./submission/sdtm/"
+adam_path <- "./submission/adam/"
+output <- "./submission/output/"
 
 ## ------------------------------------------------------------------------------------------------------------------------------
-adas <- haven::read_xpt(file.path(path$adam, "adadas.xpt"))
-adsl <- haven::read_xpt(file.path(path$adam, "adsl.xpt"))
+adas <- haven::read_xpt(file.path(adam_path, "adadas.xpt"))
+adsl <- haven::read_xpt(file.path(adam_path, "adsl.xpt"))
 
 
 ## ------------------------------------------------------------------------------------------------------------------------------
@@ -150,4 +153,4 @@ doc <- rtf_doc(ht) %>%
   )
 
 # Write out the RTF
-write_rtf(doc, file = file.path(path$output, "tlf-primary-pilot3.rtf"))
+write_rtf(doc, file = file.path(output, "tlf-primary-pilot3.rtf"))

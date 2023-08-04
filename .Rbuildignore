@@ -19,7 +19,6 @@
 ^pilot3.*\.tgz$
 ^.lintr$
 ^sdtm$
-^_envsetup.yml$
 ^meeting_minutes$
 ^.lycheeignore
 ^qc$

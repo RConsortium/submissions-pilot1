@@ -39,7 +39,6 @@ The website you are viewing is built on top of this Repository, which is where 9
 - `submission/programs:` Production and QC programs for ADaMS 
 - `submission/sdtm:`Original CDISC SDTM Pilot data created in SAS
 - `.Rprofile`: Project startup file to set up environment,
-- `_envsetup.yml`: Configures the location paths for programs and data
 - `renv.lock`: Locks in the versions of R packages and version of R
 - `vignettes/`: Markdown files that render TLFs and Datasets for Website
 

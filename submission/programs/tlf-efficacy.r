@@ -32,8 +32,12 @@ library(pilot3)
 
 
 ## ------------------------------------------------------------------------------------------------------------------------------
-adsl <- read_xpt(file.path(path$adam, "adsl.xpt"))
-adlb <- read_xpt(file.path(path$adam, "adlbc.xpt"))
+sdtm_path <- "./submission/sdtm/"
+adam_path <- "./submission/adam/"
+output <- "./submission/output/"
+
+adsl <- read_xpt(file.path(adam_path, "adsl.xpt"))
+adlb <- read_xpt(file.path(adam_path, "adlbc.xpt"))
 
 
 ## ------------------------------------------------------------------------------------------------------------------------------
@@ -186,4 +190,4 @@ tbl_3 <- apr0ancova3 %>%
 tbl <- list(tbl_1, tbl_2, tbl_3)
 tbl %>%
   rtf_encode() %>%
-  write_rtf(file.path(path$output, "tlf-efficacy-pilot3.rtf"))
+  write_rtf(file.path(output, "tlf-efficacy-pilot3.rtf"))
