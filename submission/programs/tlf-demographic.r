@@ -29,11 +29,14 @@ library(rtables)
 
 
 ## ------------------------------------------------------------------------------------------------------------------------------
-sdtm_path <- "./submission/sdtm/"
-adam_path <- "./submission/adam/"
-output <- "./submission/output/"
+path <- list(
+  sdtm = "./submission/sdtm",   # Modify path to the sdtm location
+  adam = "./submission/adam",    # Modify path to the adam location
+  output = "./submission/output/" # Modify path to the outptput location
+)
 
-adsl <- read_xpt(file.path(adam_path, "adsl.xpt"))
+
+adsl <- read_xpt(file.path(path$adam, "adsl.xpt"))
 adsl_labels <- var_labels(adsl)
 
 
@@ -87,4 +90,4 @@ tbl
 # Output .out file
 tbl %>%
   toString() %>%
-  writeLines(con = file.path(output, "tlf-demographic-pilot3.out"))
+  writeLines(con = file.path(path$output, "tlf-demographic-pilot3.out"))

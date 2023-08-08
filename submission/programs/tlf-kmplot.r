@@ -33,12 +33,15 @@ library(pilot3)
 
 
 ## ------------------------------------------------------------------------------------------------------------------------------
-sdtm_path <- "./submission/sdtm/"
-adam_path <- "./submission/adam/"
-output <- "./submission/output/"
+path <- list(
+  sdtm = "./submission/sdtm",   # Modify path to the sdtm location
+  adam = "./submission/adam",    # Modify path to the adam location
+  output = "./submission/output/" # Modify path to the outptput location
+)
 
-adsl <- read_xpt(file.path(adam_path, "adsl.xpt"))
-adtte <- read_xpt(file.path(adam_path, "adtte.xpt"))
+
+adsl <- read_xpt(file.path(path$adam, "adsl.xpt"))
+adtte <- read_xpt(file.path(path$adam, "adtte.xpt"))
 
 
 ## ------------------------------------------------------------------------------------------------------------------------------
@@ -68,7 +71,7 @@ ggplot2::theme_set(theme_bw())
 
 pdf.options(reset = TRUE, onefile = FALSE)
 
-pdf(file.path(output, "tlf-kmplot-pilot3.pdf"))
+pdf(file.path(path$output, "tlf-kmplot-pilot3.pdf"))
 
 km <- visR::visr(surv_mod,
   y_label = "Probability of event\n",

@@ -5,8 +5,9 @@
 #
 # nolint start
 # path <- list(
-#   adam = "path/to/esub/analysis/adam",      # Modify path to the adam location
-#   output = "path/to/esub/analysis/output"   # Modify path to the output location
+#  sdtm = "path/to/esub/tabulations/sdtm",   # Modify path to the sdtm location
+#  adam = "path/to/esub/analysis/adam",    # Modify path to the adam location
+#  output = "path/to/esub/.../output"    # Modify path to the output location
 # )
 # nolint end
 
@@ -21,13 +22,16 @@ library(pilot3)
 ## ------------------------------------------------------------------------------------------------------------------------------
 options(huxtable.add_colnames = FALSE)
 
-sdtm_path <- "./submission/sdtm/"
-adam_path <- "./submission/adam/"
-output <- "./submission/output/"
+path <- list(
+  sdtm = "./submission/sdtm",   # Modify path to the sdtm location
+  adam = "./submission/adam",    # Modify path to the adam location
+  output = "./submission/output/" # Modify path to the outptput location
+)
+
 
 ## ------------------------------------------------------------------------------------------------------------------------------
-adas <- haven::read_xpt(file.path(adam_path, "adadas.xpt"))
-adsl <- haven::read_xpt(file.path(adam_path, "adsl.xpt"))
+adas <- haven::read_xpt(file.path(path$adam, "adadas.xpt"))
+adsl <- haven::read_xpt(file.path(path$adam, "adsl.xpt"))
 
 
 ## ------------------------------------------------------------------------------------------------------------------------------
@@ -153,4 +157,4 @@ doc <- rtf_doc(ht) %>%
   )
 
 # Write out the RTF
-write_rtf(doc, file = file.path(output, "tlf-primary-pilot3.rtf"))
+write_rtf(doc, file = file.path(path$output, "tlf-primary-pilot3.rtf"))

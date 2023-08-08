@@ -4,8 +4,10 @@
 # The path variable needs to be defined by using example code below
 #
 # nolint start
-#   sdtm_path = "path/to/esub/tabulations/sdtm",   # Modify path to the sdtm location
-#   adam_path = "path/to/esub/analysis/adam"       # Modify path to the adam location
+# path <- list(
+# sdtm = "path/to/esub/tabulations/sdtm", # Modify path to the sdtm location
+# adam = "path/to/esub/analysis/adam"     # Modify path to the adam location
+# )
 # nolint end
 
 ###########################################################################
@@ -33,20 +35,22 @@ library(janitor)
 # as NA values. Further details can be obtained via the following link:
 # https://pharmaverse.github.io/admiral/articles/admiral.html#handling-of-missing-values
 
-sdtm_path <- "./submission/sdtm/"
-adam_path <- "./submission/adam/"
+path <- list(
+  sdtm = "./submission/sdtm",   # Modify path to the sdtm location
+  adam = "./submission/adam"    # Modify path to the adam location
+)
 
-dm <- convert_blanks_to_na(read_xpt(file.path(sdtm_path, "dm.xpt")))
-ds <- convert_blanks_to_na(read_xpt(file.path(sdtm_path, "ds.xpt")))
-ex <- convert_blanks_to_na(read_xpt(file.path(sdtm_path, "ex.xpt")))
-qs <- convert_blanks_to_na(read_xpt(file.path(sdtm_path, "qs.xpt")))
-sv <- convert_blanks_to_na(read_xpt(file.path(sdtm_path, "sv.xpt")))
-vs <- convert_blanks_to_na(read_xpt(file.path(sdtm_path, "vs.xpt")))
-sc <- convert_blanks_to_na(read_xpt(file.path(sdtm_path, "sc.xpt")))
-mh <- convert_blanks_to_na(read_xpt(file.path(sdtm_path, "mh.xpt")))
+dm <- convert_blanks_to_na(read_xpt(file.path(path$sdtm, "dm.xpt")))
+ds <- convert_blanks_to_na(read_xpt(file.path(path$sdtm, "ds.xpt")))
+ex <- convert_blanks_to_na(read_xpt(file.path(path$sdtm, "ex.xpt")))
+qs <- convert_blanks_to_na(read_xpt(file.path(path$sdtm, "qs.xpt")))
+sv <- convert_blanks_to_na(read_xpt(file.path(path$sdtm, "sv.xpt")))
+vs <- convert_blanks_to_na(read_xpt(file.path(path$sdtm, "vs.xpt")))
+sc <- convert_blanks_to_na(read_xpt(file.path(path$sdtm, "sc.xpt")))
+mh <- convert_blanks_to_na(read_xpt(file.path(path$sdtm, "mh.xpt")))
 
 ## placeholder for origin=predecessor, use metatool::build_from_derived()
-metacore <- spec_to_metacore(file.path(adam_path, "ADaM - Pilot 3.xlsx"), where_sep_sheet = FALSE)
+metacore <- spec_to_metacore(file.path(path$adam, "ADaM - Pilot 3.xlsx"), where_sep_sheet = FALSE)
 # Get the specifications for the dataset we are currently building
 adsl_spec <- metacore %>%
   select_dataset("ADSL")
@@ -325,6 +329,6 @@ adsl07 %>%
   xportr_df_label(adsl_spec) %>% # Assigns dataset label from metacore specifications
   xportr_format(adsl_spec$var_spec %>%
     mutate_at(c("format"), ~ replace_na(., "")), "ADSL") %>%
-  xportr_write(file.path(adam_path, "adsl.xpt"),
+  xportr_write(file.path(path$adam, "adsl.xpt"),
     label = "Subject-Level Analysis Dataset"
   )

@@ -4,8 +4,10 @@
 # The path variable needs to be defined by using example code below
 #
 # nolint start
-#   sdtm_path = "path/to/esub/tabulations/sdtm",   # Modify path to the sdtm location
-#   adam_path = "path/to/esub/analysis/adam"       # Modify path to the adam location
+# path <- list(
+# sdtm = "path/to/esub/tabulations/sdtm", # Modify path to the sdtm location
+# adam = "path/to/esub/analysis/adam"     # Modify path to the adam location
+# )
 # nolint end
 
 ###########################################################################
@@ -25,12 +27,14 @@ library(stringr)
 library(xportr)
 library(pilot3)
 
-sdtm_path <- "./submission/sdtm/"
-adam_path <- "./submission/adam/"
+path <- list(
+  sdtm = "./submission/sdtm",   # Modify path to the sdtm location
+  adam = "./submission/adam"    # Modify path to the adam location
+)
 
-dm <- haven::read_xpt(file.path(sdtm_path, "dm.xpt"))
-qs <- haven::read_xpt(file.path(sdtm_path, "qs.xpt"))
-adsl <- haven::read_xpt(file.path(adam_path, "adsl.xpt"))
+dm <- haven::read_xpt(file.path(path$sdtm, "dm.xpt"))
+qs <- haven::read_xpt(file.path(path$sdtm, "qs.xpt"))
+adsl <- haven::read_xpt(file.path(path$adam, "adsl.xpt"))
 
 dm <- convert_blanks_to_na(dm)
 qs <- convert_blanks_to_na(qs)
@@ -38,7 +42,7 @@ adsl <- convert_blanks_to_na(adsl)
 
 
 ## origin=predecessor, use metatool::build_from_derived()
-metacore <- spec_to_metacore(file.path(adam_path, "ADaM - Pilot 3.xlsx"), where_sep_sheet = FALSE)
+metacore <- spec_to_metacore(file.path(path$adam, "ADaM - Pilot 3.xlsx"), where_sep_sheet = FALSE)
 # Get the specifications for the dataset we are currently building
 adadas_spec <- metacore %>%
   select_dataset("ADADAS")
@@ -163,6 +167,6 @@ adas5 %>%
   set_variable_labels(adadas_spec) %>% # apply variable labels based on define
   xportr_format(adadas_spec$var_spec %>%
     mutate_at(c("format"), ~ replace_na(., "")), "ADADAS") %>%
-  xportr_write(file.path(adam_path, "adadas.xpt"),
+  xportr_write(file.path(path$adam, "adadas.xpt"),
     label = "ADAS-COG Analysis Dataset"
   )

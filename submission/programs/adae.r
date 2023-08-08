@@ -4,8 +4,10 @@
 # The path variable needs to be defined by using example code below
 #
 # nolint start
-#   sdtm_path = "path/to/esub/tabulations/sdtm",   # Modify path to the sdtm location
-#   adam_path = "path/to/esub/analysis/adam"       # Modify path to the adam location
+# path <- list(
+# sdtm = "path/to/esub/tabulations/sdtm", # Modify path to the sdtm location
+# adam = "path/to/esub/analysis/adam"     # Modify path to the adam location
+# )
 # nolint end
 
 ###########################################################################
@@ -25,18 +27,20 @@ library(metacore)
 library(metatools)
 library(haven)
 
-sdtm_path <- "./submission/sdtm/"
-adam_path <- "./submission/adam/"
+path <- list(
+  sdtm = "./submission/sdtm",   # Modify path to the sdtm location
+  adam = "./submission/adam"    # Modify path to the adam location
+)
 
 # read in AE
 # ----------
-ae <- read_xpt(file.path(sdtm_path, "ae.xpt"))
-suppae <- read_xpt(file.path(sdtm_path, "suppae.xpt"))
+ae <- read_xpt(file.path(path$sdtm, "ae.xpt"))
+suppae <- read_xpt(file.path(path$sdtm, "suppae.xpt"))
 
 
 # read in ADSL
 # ------------
-adsl <- read_xpt(file.path(adam_path, "adsl.xpt"))
+adsl <- read_xpt(file.path(path$adam, "adsl.xpt"))
 
 
 # When SAS datasets are imported into R using haven::read_sas(), missing
@@ -52,7 +56,7 @@ adsl <- convert_blanks_to_na(adsl)
 # Read in specifications from define
 #----------------------------------------------------------------------------------------
 ## placeholder for origin=predecessor, use metatool::build_from_derived()
-metacore <- spec_to_metacore(file.path(adam_path, "ADaM - Pilot 3.xlsx"), where_sep_sheet = FALSE, quiet = TRUE)
+metacore <- spec_to_metacore(file.path(path$adam, "ADaM - Pilot 3.xlsx"), where_sep_sheet = FALSE, quiet = TRUE)
 adae_spec <- metacore %>% select_dataset("ADAE") # Get the specifications for the dataset we are currently building
 
 
@@ -251,6 +255,6 @@ adae <- adae %>%
 # Export to xpt
 #----------------------------------------------------------------------------------------
 adae %>%
-  xportr_write(file.path(adam_path, "adae.xpt"),
+  xportr_write(file.path(path$adam, "adae.xpt"),
     label = "Adverse Events Analysis Dataset"
   )
