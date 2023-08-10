@@ -11,4 +11,3 @@ path <- list(
   adam = "./submission/adam",    # Modify path to the adam location
   output = "./submission/output"    # Modify path to the output location
 )
-
