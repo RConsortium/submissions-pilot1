@@ -30,9 +30,9 @@ Imports:
     stringr,
     tibble,
     tidyr
+    pilot3
 Suggests:
     DT,
-    envsetup,
     config,
     cowplot,
     devtools,
