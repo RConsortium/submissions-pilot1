@@ -27,11 +27,6 @@ library(metacore)
 library(metatools)
 library(haven)
 
-path <- list(
-  sdtm = "./submission/sdtm",   # Modify path to the sdtm location
-  adam = "./submission/adam"    # Modify path to the adam location
-)
-
 # read in AE
 # ----------
 ae <- read_xpt(file.path(path$sdtm, "ae.xpt"))

@@ -32,13 +32,6 @@ library(pilot3)
 
 
 ## ------------------------------------------------------------------------------------------------------------------------------
-path <- list(
-  sdtm = "./submission/sdtm",   # Modify path to the sdtm location
-  adam = "./submission/adam",    # Modify path to the adam location
-  output = "./submission/output/" # Modify path to the outptput location
-)
-
-
 adsl <- read_xpt(file.path(path$adam, "adsl.xpt"))
 adlb <- read_xpt(file.path(path$adam, "adlbc.xpt"))
 

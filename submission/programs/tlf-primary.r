@@ -22,13 +22,6 @@ library(pilot3)
 ## ------------------------------------------------------------------------------------------------------------------------------
 options(huxtable.add_colnames = FALSE)
 
-path <- list(
-  sdtm = "./submission/sdtm",   # Modify path to the sdtm location
-  adam = "./submission/adam",    # Modify path to the adam location
-  output = "./submission/output/" # Modify path to the outptput location
-)
-
-
 ## ------------------------------------------------------------------------------------------------------------------------------
 adas <- haven::read_xpt(file.path(path$adam, "adadas.xpt"))
 adsl <- haven::read_xpt(file.path(path$adam, "adsl.xpt"))

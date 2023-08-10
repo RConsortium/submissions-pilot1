@@ -27,11 +27,6 @@ library(stringr)
 library(xportr)
 library(pilot3)
 
-path <- list(
-  sdtm = "./submission/sdtm",   # Modify path to the sdtm location
-  adam = "./submission/adam"    # Modify path to the adam location
-)
-
 dm <- haven::read_xpt(file.path(path$sdtm, "dm.xpt"))
 qs <- haven::read_xpt(file.path(path$sdtm, "qs.xpt"))
 adsl <- haven::read_xpt(file.path(path$adam, "adsl.xpt"))

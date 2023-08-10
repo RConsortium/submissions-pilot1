@@ -28,11 +28,6 @@ library(pilot3)
 library(xportr)
 
 # read source -------------------------------------------------------------
-path <- list(
-  sdtm = "./submission/sdtm",   # Modify path to the sdtm location
-  adam = "./submission/adam"    # Modify path to the adam location
-)
-
 
 adsl <- read_xpt(file.path(path$adam, "adsl.xpt"))
 adae <- read_xpt(file.path(path$adam, "adae.xpt"))

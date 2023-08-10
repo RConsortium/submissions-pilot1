@@ -35,11 +35,6 @@ library(stringr)
 # as NA values. Further details can be obtained via the following link:
 # https://pharmaverse.github.io/admiral/articles/admiral.html#handling-of-missing-values
 
-path <- list(
-  sdtm = "./submission/sdtm",   # Modify path to the sdtm location
-  adam = "./submission/adam"    # Modify path to the adam location
-)
-
 # Read and convert NA for SDTM DATASET
 ## Laboratory Tests Results (LB)
 lb <- convert_blanks_to_na(read_xpt(file.path(path$sdtm, "lb.xpt")))
