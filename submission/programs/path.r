@@ -5,7 +5,7 @@
 #'      07July2023 laxamanaj : update path
 #'
 ###########################################################################
-
+#!/usr/bin/env Rscript
 path <- list(
   sdtm = "./submission/sdtm",   # Modify path to the sdtm location
   adam = "./submission/adam",    # Modify path to the adam location
