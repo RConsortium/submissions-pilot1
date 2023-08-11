@@ -8,12 +8,14 @@ output:
     toc_float: true
 ---
 
-```{r, message = FALSE}
+The Pilot 1 Team generated the below output using R and it was delivered to the FDA. You can find the source code that generated this output [here](https://github.com/RConsortium/submissions-pilot1/blob/main/vignettes/tlf-efficacy.Rmd) and a deeper dive of the process [here](https://rconsortium.github.io/submissions-pilot1/articles/tlf-efficacy.html).  We delivered the identical output with the R generated ADaM.
+
+```{r, message = FALSE, echo = FALSE}
 # Initiate start-up file
 source(file.path(rprojroot::find_root("DESCRIPTION"), "inst/startup.R"))
 ```
 
-```{r}
+```{r, message = FALSE, echo = FALSE}
 # Working directory requires write permission
 if (file.access(".", 2) != 0) {
   warning(
@@ -23,7 +25,7 @@ if (file.access(".", 2) != 0) {
 }
 ```
 
-```{r setup, message=FALSE}
+```{r, message = FALSE, echo = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
 # CRAN package, please using install.packages() to install
@@ -36,16 +38,12 @@ library(emmeans)
 library(pilot1wrappers)
 ```
 
-## Step 1: Read in data
-
-```{r}
+```{r, message = FALSE, echo = FALSE}
 adsl <- read_xpt(file.path(path$adam, "adsl.xpt"))
 adlb <- read_xpt(file.path(path$adam, "adlbc.xpt"))
 ```
 
-## Step 2: ANCOVA analysis
-
-```{r}
+```{r, message = FALSE, echo = FALSE}
 itt <- adsl[adsl[["ITTFL"]] == "Y", c("STUDYID", "USUBJID")]
 
 adlb1 <- adlb %>%
@@ -101,7 +99,7 @@ apr0ancova1 <- merge(t10, t11) %>%
 apr0ancova1
 ```
 
-```{r}
+```{r, message = FALSE, echo = FALSE}
 t2 <- data.frame(pairs(t12))
 
 ## Treatment Comparison
@@ -120,7 +118,7 @@ apr0ancova2 <- t2 %>%
 apr0ancova2
 ```
 
-```{r}
+```{r, message = FALSE, echo = FALSE}
 ### Calculate root mean square and save data in output folder
 apr0ancova3 <- data.frame(rmse = paste0(
   "Root Mean Squared Error of Change = ",
@@ -130,8 +128,7 @@ apr0ancova3 <- data.frame(rmse = paste0(
 apr0ancova3
 ```
 
-## Step 3: Define table format
-```{r}
+```{r, message = FALSE, echo = FALSE}
 tbl_1 <- apr0ancova1 %>%
   rtf_title(
     title = "ANCOVA of Change from Baseline at Week 20"
@@ -162,7 +159,7 @@ tbl_1 <- apr0ancova1 %>%
   )
 ```
 
-```{r}
+```{r, message = FALSE, echo = FALSE}
 tbl_2 <- apr0ancova2 %>%
   rtf_colheader(
     colheader = "Pairwise Comparison | Difference in LS Mean (95% CI){^b} | p-Value",
@@ -176,7 +173,7 @@ tbl_2 <- apr0ancova2 %>%
   )
 ```
 
-```{r}
+```{r, message = FALSE, echo = FALSE}
 tbl_3 <- apr0ancova3 %>%
   rtf_body(
     as_colheader = FALSE,
@@ -184,14 +181,11 @@ tbl_3 <- apr0ancova3 %>%
   )
 ```
 
-
-## Step 4: Output
-
-```{r}
+```{r, message = FALSE, echo = FALSE}
 tbl <- list(tbl_1, tbl_2, tbl_3)
-tbl %>%
-  rtf_encode() %>%
-  write_rtf(file.path(path$output, "tlf-efficacy.rtf"))
+# tbl %>%
+#  rtf_encode() %>%
+#  write_rtf(file.path(path$output, "tlf-efficacy.rtf"))
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}

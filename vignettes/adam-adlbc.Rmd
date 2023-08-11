@@ -1,0 +1,44 @@
+---
+title: "ADLBC - Laboratory Results Chemistry Analysis "
+output:
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_depth: '2'
+    toc_float: true
+---
+
+```{r, echo = FALSE, message = FALSE}
+library(admiraldev)
+library(haven)
+library(readxl)
+library(dplyr)
+```
+
+
+The ADLBC dataset code can be found [here](https://github.com/RConsortium/submissions-pilot3-adam/blob/main/submission/programs/adlbc.r)
+
+## Specification File
+
+This was the specification file used to help generate the ADaM.
+
+```{r, echo = FALSE}
+adlbc_spec <- read_xlsx("../submission/adam/ADaM - Pilot 3.xlsx", sheet = 3) %>%
+  filter(Dataset == "ADLBC")
+dataset_vignette(adlbc_spec)
+```
+
+## Dataset
+
+R-generated ADaM
+
+```{r, echo = FALSE}
+adlbc <- read_xpt("../submission/adam/adlbc.xpt")
+dataset_vignette(adlbc_spec)
+```
+
+## QC Findings and Et Cetera
+
+The original ADLBC was done in SAS and a quick QC was done.  The code for the comparison between the R and SAS generated datasets can be found [here](https://github.com/RConsortium/submissions-pilot3-adam/blob/main/submission/programs/qc_adlbc.r)
+
+Differences around the SAS and R generated dataset can be found [here](https://github.com/RConsortium/submissions-pilot3-adam/wiki/QC-Findings#adlbc) 

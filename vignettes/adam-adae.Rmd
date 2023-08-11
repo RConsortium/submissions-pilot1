@@ -1,0 +1,46 @@
+---
+title: "ADAE - Adverse Event Analysis"
+output:
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_depth: '2'
+    toc_float: true
+---
+
+```{r, echo = FALSE, message = FALSE}
+library(admiraldev)
+library(haven)
+library(readxl)
+library(dplyr)
+```
+
+
+The ADSL dataset code can be found [here](https://github.com/RConsortium/submissions-pilot3-adam/blob/main/submission/programs/adae.r)
+
+## Specification File
+
+This was the specification file used to help generate the ADaM.
+
+```{r, echo = FALSE}
+adae_spec <- read_xlsx("../submission/adam/ADaM - Pilot 3.xlsx", sheet = 3) %>%
+  filter(Dataset == "ADAE")
+dataset_vignette(adae_spec)
+```
+
+## Dataset
+
+R-generated ADaM
+
+
+```{r, echo = FALSE}
+adae <- read_xpt("../submission/adam/adae.xpt")
+dataset_vignette(adae)
+```
+
+## QC Findings and Et Cetera
+
+The original ADAE was done in SAS and a quick QC was done.  The code for the comparison between the R and SAS generated datasets can be found [here](https://github.com/RConsortium/submissions-pilot3-adam/blob/main/submission/programs/qc_adae.r)
+
+Differences around the SAS and R generated dataset can be found [here](https://github.com/RConsortium/submissions-pilot3-adam/wiki/QC-Findings#adae) 
+
