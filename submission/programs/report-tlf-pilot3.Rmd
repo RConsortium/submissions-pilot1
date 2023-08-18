@@ -4,19 +4,29 @@ author: "Pilot 3 Team"
 date: "`r Sys.Date()`"
 output: 
   pdf_document:
-    latex_engine: xelatex
+    latex_engine: pdflatex
+header-includes:
+- \usepackage{pdfpages}
 ---
 
 Note : In Pilot 3, following the same approach as Pilot1, different open-source packages were used when generating each of the 4 analysis outputs to test wider use case scenarios. The outputs were formatted differently intentionally to cover different company specific formatting choices.
 
 \newpage
 
+```{r path, echo=FALSE}
+path <- list(
+  sdtm = "./submission/sdtm",   # Modify path to the sdtm location
+  adam = "./submission/adam",    # Modify path to the adam location
+  output = "./submission/output"    # Modify path to the output location
+)
+```
+
 #### Table 14-2.01
 #### Summary of Demographic and Baseline Characteristics
 
 ```{r demog, out.width = "40%", out.height = "400px", echo=FALSE, message=FALSE, comment=NA}
 setwd("/cloud/project") 
-source("/cloud/project/submission/programs/tlf-demographic.R")
+source("/cloud/project/submission/programs/tlf-demographic.r")
 print(tbl)
 ```
 
@@ -26,9 +36,11 @@ print(tbl)
 #### Primary Endpoint Analysis: ADAS Cog (11) - Change from Baseline to Week 24 - LOCF
 
 ```{r primary, echo=FALSE, message=FALSE, comment=NA}
-setwd("/cloud/project")
-source("/cloud/project/submission/programs/tlf-primary.R")
+# setwd("/cloud/project")
+# source("/cloud/project/submission/programs/tlf-primary.r")
 ```
+
+\includepdf[pages=-, pagecommand={}, scale = 0.95]{/cloud/project/submission/output/tlf-primary-pilot3.rtf.pdf}
 
 \newpage
 
@@ -36,10 +48,12 @@ source("/cloud/project/submission/programs/tlf-primary.R")
 #### Primary Endpoint Analysis: Glucose (mmol/L) - Summary at Week 20 - LOCF
 
 ```{r efficacy, echo=FALSE, message=FALSE, comment=NA}
-setwd("/cloud/project")
-source("/cloud/project/submission/programs/tlf-efficacy.R")
-print(tbl)
+# setwd("/cloud/project")
+# source("/cloud/project/submission/programs/tlf-efficacy.r")
+# print(tbl)
 ```
+
+\includepdf[pages=-, pagecommand={}, scale = 0.95]{/cloud/project/submission/output/tlf-efficacy-pilot3.rtf.pdf}
 
 \newpage
 
@@ -49,7 +63,7 @@ print(tbl)
 \
 ```{r plot, echo=FALSE, message=FALSE, comment=NA}
 setwd("/cloud/project")
-source("/cloud/project/submission/programs/tlf-kmplot.R")
+source("/cloud/project/submission/programs/tlf-kmplot.r")
 print(km)
 ```
 
