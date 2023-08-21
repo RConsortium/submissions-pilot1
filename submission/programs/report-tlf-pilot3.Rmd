@@ -40,7 +40,10 @@ print(tbl)
 # source("/cloud/project/submission/programs/tlf-primary.r")
 ```
 
-\includepdf[pages=-, pagecommand={}, scale = 0.95]{/cloud/project/submission/output/tlf-primary-pilot3.rtf.pdf}
+\hfill\break\hfill\break\hfill\break\includegraphics[page=1]{/cloud/project/submission/output/tlf-primary-pilot3.rtf.pdf}
+\
+\
+\hfill\break\hfill\break\hfill\break\includegraphics[page=2]{/cloud/project/submission/output/tlf-primary-pilot3.rtf.pdf}
 
 \newpage
 
@@ -53,7 +56,7 @@ print(tbl)
 # print(tbl)
 ```
 
-\includepdf[pages=-, pagecommand={}, scale = 0.95]{/cloud/project/submission/output/tlf-efficacy-pilot3.rtf.pdf}
+\includegraphics[page=1]{/cloud/project/submission/output/tlf-efficacy-pilot3.rtf.pdf}
 
 \newpage
 
@@ -61,7 +64,7 @@ print(tbl)
 #### Time to Dermatologic Event by Treatment Group
 \
 \
-```{r plot, echo=FALSE, message=FALSE, comment=NA}
+```{r plot, echo=FALSE, message=FALSE, comment=NA, fig.align="center",out.width="100%"}
 setwd("/cloud/project")
 source("/cloud/project/submission/programs/tlf-kmplot.r")
 print(km)
