@@ -1,0 +1,73 @@
+---
+title: "R Consortium R Submission Pilot 3 - Summary Tables and Figures"
+author: "Pilot 3 Team"
+date: "`r Sys.Date()`"
+output: 
+  pdf_document:
+    latex_engine: pdflatex
+header-includes:
+- \usepackage{pdfpages}
+---
+
+Note : In Pilot 3, following the same approach as Pilot1, different open-source packages were used when generating each of the 4 analysis outputs to test wider use case scenarios. The outputs were formatted differently intentionally to cover different company specific formatting choices.
+
+\newpage
+
+```{r path, echo=FALSE}
+path <- list(
+  sdtm = "./submission/sdtm",   # Modify path to the sdtm location
+  adam = "./submission/adam",    # Modify path to the adam location
+  output = "./submission/output"    # Modify path to the output location
+)
+```
+
+#### Table 14-2.01
+#### Summary of Demographic and Baseline Characteristics
+
+```{r demog, out.width = "40%", out.height = "400px", echo=FALSE, message=FALSE, comment=NA}
+setwd("/cloud/project") 
+source("/cloud/project/submission/programs/tlf-demographic.r")
+print(tbl)
+```
+
+\newpage
+
+#### Table 14-3.01
+#### Primary Endpoint Analysis: ADAS Cog (11) - Change from Baseline to Week 24 - LOCF
+
+```{r primary, echo=FALSE, message=FALSE, comment=NA}
+# setwd("/cloud/project")
+# source("/cloud/project/submission/programs/tlf-primary.r")
+```
+
+\hfill\break\hfill\break\hfill\break\includegraphics[page=1]{/cloud/project/submission/output/tlf-primary-pilot3.rtf.pdf}
+\
+\
+\hfill\break\hfill\break\hfill\break\includegraphics[page=2]{/cloud/project/submission/output/tlf-primary-pilot3.rtf.pdf}
+
+\newpage
+
+#### Table 14-3.02
+#### Primary Endpoint Analysis: Glucose (mmol/L) - Summary at Week 20 - LOCF
+
+```{r efficacy, echo=FALSE, message=FALSE, comment=NA}
+# setwd("/cloud/project")
+# source("/cloud/project/submission/programs/tlf-efficacy.r")
+# print(tbl)
+```
+
+\includegraphics[page=1]{/cloud/project/submission/output/tlf-efficacy-pilot3.rtf.pdf}
+
+\newpage
+
+#### Figure 14-1
+#### Time to Dermatologic Event by Treatment Group
+\
+\
+```{r plot, echo=FALSE, message=FALSE, comment=NA, fig.align="center",out.width="100%"}
+setwd("/cloud/project")
+source("/cloud/project/submission/programs/tlf-kmplot.r")
+print(km)
+```
+
+
