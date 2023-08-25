@@ -39,11 +39,13 @@ print(tbl)
 # setwd("/cloud/project")
 # source("/cloud/project/submission/programs/tlf-primary.r")
 ```
+<center>
 
 \hfill\break\hfill\break\hfill\break\includegraphics[page=1]{/cloud/project/submission/output/tlf-primary-pilot3.rtf.pdf}
 \
 \
 
+<\center>
 
 \newpage
 
