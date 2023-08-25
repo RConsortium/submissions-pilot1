@@ -43,7 +43,7 @@ print(tbl)
 \hfill\break\hfill\break\hfill\break\includegraphics[page=1]{/cloud/project/submission/output/tlf-primary-pilot3.rtf.pdf}
 \
 \
-\hfill\break\hfill\break\hfill\break\includegraphics[page=2]{/cloud/project/submission/output/tlf-primary-pilot3.rtf.pdf}
+
 
 \newpage
 
