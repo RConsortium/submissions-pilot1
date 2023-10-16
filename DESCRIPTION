@@ -30,7 +30,7 @@ Imports:
     stringr,
     tibble,
     tidyr,
-    pilot3
+    pilot3utils
 Suggests:
     DT,
     config,
