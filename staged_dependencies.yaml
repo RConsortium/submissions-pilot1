@@ -1,0 +1,10 @@
+---
+upstream_repos:
+- repo: RConsortium/submissions-pilot3-utilities
+  host: https://github.com
+
+downstream_repos:
+
+current_repo:
+  repo: submissions-pilot3-adam
+  host: https://github.com
