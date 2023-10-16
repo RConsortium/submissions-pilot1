@@ -3075,6 +3075,12 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "c42bfcec3fa6a0cce17ce1f8bc684f88"
-    }
+    },
+    "pilot3": {
+      "Package": "pilot3",
+      "Version": "0.0.1",
+      "Source": "GitHub",
+      "Repository": "RConsortium/submissions-pilot3-utilities"
+  }
   }
 }
