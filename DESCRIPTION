@@ -29,7 +29,7 @@ Imports:
     glue,
     stringr,
     tibble,
-    tidyr
+    tidyr,
     pilot3
 Suggests:
     DT,
