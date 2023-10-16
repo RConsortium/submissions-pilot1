@@ -3077,10 +3077,26 @@
       "Hash": "c42bfcec3fa6a0cce17ce1f8bc684f88"
     },
     "pilot3": {
-      "Package": "pilot3",
-      "Version": "0.0.1",
-      "Source": "GitHub",
-      "Repository": "RConsortium/submissions-pilot3-utilities"
-  }
+  "Package": "pilot3",
+  "Version": "0.0.1",
+  "Source": "GitHub",
+  "RemoteType": "github",
+  "RemoteHost": "api.github.com",
+  "RemoteUsername": "RConsortium",
+  "RemoteRepo": "submissions-pilot3-utilities",
+  "RemoteRef": "main",
+  "RemoteSha": "694a207aca7e419513ffe16f6f5873526da1bdcb",
+  "Requirements": [
+    "R",
+    "admiraldev",
+    "dplyr",
+    "emmeans",
+    "glue",
+    "stringr",
+    "tibble",
+    "tidyr"
+  ],
+  "Hash": "5f45bb5b7e40deded8044673361babbf"
+}
   }
 }
