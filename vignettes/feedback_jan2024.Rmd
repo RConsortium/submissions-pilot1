@@ -10,7 +10,7 @@ output:
 
 # Overview
 
-The R Consoritum Submissions Working Group meets monthly to discuss progress on
+The [R Consortium Submissions Working Group](https://rconsortium.github.io/submissions-wg/) meets monthly to discuss progress on
 the various pilots being submitted to the FDA as well as receive feedback from the FDA reviewers. Pilot 3 was submitted in October 2023 and has started to receive feedback from the reviewers.
 
 The following is a summary of the January 2024 meeting that pertains to the Pilot 3 Submission
