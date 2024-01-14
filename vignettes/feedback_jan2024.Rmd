@@ -1,0 +1,85 @@
+---
+title: "Feedback: January 2024"
+output:
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_depth: '2'
+    toc_float: true
+---
+
+# Overview
+
+The R Consoritum Submissions Working Group meets monthly to discuss progress on
+the various pilots being submitted to the FDA as well as receive feedback from the FDA reviewers. Pilot 3 was submitted in October 2023 and has started to receive feedback from the reviewers.
+
+The following is a summary of the January 2024 meeting that pertains to the Pilot 3 Submission
+
+* The FDA Review indicated that using the R generated ADaM data sets in Pilot3, the reviewers were able to replicate the results of the  four analyses used in Pilot 1. The FDA Reviewer (Hye Soo) did identify (so far) several issues and presented observations and questions for response from the Pilot3 Team. 
+
+* Items [1] through [3] are Actionable. Items [4] and [5] are
+Non-Actionable.
+
+## Item 1
+
+* FDA Reviewer observed no statistical analysis plan (SAP) was 
+included with the Pilot3 submission. 
+
+**Action Item:** Confirm with FDA Reviewers that the SAP should be 
+             included if a re-submission is requested. Given 
+             Question 1(b) inclusion of the SAP may provide 
+             clarity regarding correctness.
+   
+## Item 2
+
+* The Primary output in Pilot 3 was different from the Pilot 1 
+   result due to the QC findings. QC findings in the ADRG include 
+   all of the discrepancies between the original ADaM datasets.
+   
+**Action Item:** Respond to FDA Review Question #1: How did you know 
+                this was an issue from the CDISC ADADAS (Pilot1) 
+                and how did you correct them?
+ FDA Reviewer shared an example using USUBJID 01-705-1292                
+                Question 1(a): Why was LOCF required when there was no
+                missing data in the QS?
+   
+**Observation:** FDA Reviewer (Hye Soo) noted in the primary results 
+                (i)slight difference in rounding and (ii)quite different 
+                p-values. [Appears to be due to QC Findings discrepancies.]
+**Action Item:** Respond to FDA Review Question 1(b): Which primary analysis 
+                output is correct?  Hye Soo noted lack of clarity regarding 
+                determination of correctness due to unavailable SAP.                
+                
+## Item 3
+
+* FDA Review also presented an observation noting that in the 
+  Pilot3 Summary Tables and Figures Report you noted that 
+   different open-source packages    were used when generating 
+   each of the 4 analysis outputs to test wider use case 
+   scenarios. However, the R packages and scripts seem identical
+   to Pilot1. 
+   
+**Action Item:** Respond to FDA Review Question #2: 
+                What exactly has changed?
+                *This was discussed at the R Consortium WG and
+                Ning responded to the question by stating the 
+                language used in the Pilot3 submission was 
+                carried over from Pilot1 to Pilot3. The Pilot3 
+                response should confirm Ning's response to Hye Soo.
+
+## Item 4
+
+Moderator Observation: Quality Control (Non-Actionable)
+   Should we have a standard or checklist for tracking differences between 
+   Pilot1 and Pilot3 and Pilot(n).
+   
+**Action Item:** Recommend or suggest a checklist for comparison to a 
+                single-point-of-truth as a Quality Factor.
+
+## Item 5 
+WG Team Observation (Non-Actionable)
+   The idea of using AI tools to check consistency was mentioned by Ning
+   
+**Action Item:**  Review applicable AI Tools for application integration to 
+                address inconsistencies, for example, Copy & Paste 
+                differences which were noted by FDA Reviewer Paul

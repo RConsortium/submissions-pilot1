@@ -4,9 +4,11 @@ Title: R Consortium R Submission Pilot 3
 Version: 3.3.3
 Authors@R: c(
        person("Joel", "Laxamana-Roche", , email = "laxamana.joel@gene.com", role = c("aut", "cre")),
+       person("Robert", "Devine-J&J", role = c("aut")),
+       person("Benjamin", "Straub-GSK", role = c("aut")),
+       person("Kangjie", "Zhang-Bayer", role = c("aut")),
        person("Thomas", "Neitmann-Roche", role = c("aut")),
        person("Phanikumar", "Tata-Syneos", role = c("aut")),
-       person("Robert", "Devine-J&J", role = c("aut")),
        person("Steven", "Haesendonckx-J&J", role = c("aut")),
        person("Rikimaru", "Nishimura-J&J", role = c("aut")),
        person("Yutong", "Liu-Moderna", role = c("aut")),
@@ -14,9 +16,7 @@ Authors@R: c(
        person("Nicole", "Jones-Merck", role = c("aut")),
        person("Benjamin", "Wang-Merck", role = c("aut")),
        person("Ryan", "Johnson-Posit", role = c("aut")),
-       person("Kangjie", "Zhang-Bayer", role = c("aut")),
        person("Dadong", "Zhang-Illumina", role = c("aut")),
-       person("Benjamin", "Straub-GSK", role = c("aut")),
        person("Declan", "Hodges-GSK", role = c("aut"))
        )
 Description: R Consortium R Submission Pilot 3. 

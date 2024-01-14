@@ -67,5 +67,5 @@ navbar:
     feedback:
       text: Feedback from FDA
       menu:
-      - text: Feedback
-        href: articles/conf_phuse_sde_london.html
+      - text: Feedback from January 2024 Meeting
+        href: articles/feedback_jan2024.html
