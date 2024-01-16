@@ -82,82 +82,94 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-
+<div class="section level1">
+<div class="page-header"><h1 id="r-submission-pilot-1">R Submission Pilot 1<a class="anchor" aria-label="anchor" href="#r-submission-pilot-1"></a>
+</h1></div>
+<!-- badges: start -->
 
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p>The objective of the R Consortium R submission Pilot 1 Project is to test the concept that a R-language based submission package can meet the needs and the expectations of the FDA reviewers, including assessing code review and analyses reproducibility. All submission materials and communications from this pilot are publicly available, with the aim of providing a working example for future R language based FDA submissions. This is a FDA-industry collaboration through the non-profit organization R consortium.</p>
+<p>The objective of the R Consortium R submission pilot 1 project is to test the concept that an R language based submission package can meet the needs and the expectations of the FDA reviewers, including assessing code review and analyses reproducibility. All submission materials and communications from this pilot are publicly available, with the aim of providing a working example for future R language based FDA submissions. This is a FDA-industry collaboration through the non-profit organization R Consortium.</p>
 <p>The <a href="https://rconsortium.github.io/submissions-wg/" class="external-link">working group website</a>.</p>
-<p>The <a href="https://github.com/RConsortium/submissions-pilot1" class="external-link">RConsortium/submissions-pilot1</a> repo demonstrates an approach to organize internal developed R function and table, listing, figure generation program using an R package.</p>
+<p>The <a href="https://github.com/RConsortium/submissions-pilot1" class="external-link">RConsortium/submissions-pilot1</a> repo demonstrates an approach to organize internal developed R functions and tables, listings, and figures (TLFs) generation programs using an R package.</p>
 <p>The <a href="https://github.com/RConsortium/submissions-pilot1-to-fda" class="external-link">RConsortium/submissions-pilot1-to-fda</a> repo demonstrates the eCTD submission package based on the <a href="https://github.com/RConsortium/submissions-pilot1" class="external-link">RConsortium/submissions-pilot1</a> repo.</p>
 </div>
 <div class="section level2">
-<h2 id="fda-response">FDA Response<a class="anchor" aria-label="anchor" href="#fda-response"></a>
+<h2 id="fda-response">FDA response<a class="anchor" aria-label="anchor" href="#fda-response"></a>
 </h2>
 <ul>
-<li>Initial submission
+<li>Initial submission (2021-11-22)
 <ul>
-<li>version: <a href="https://github.com/RConsortium/submissions-pilot1/releases/tag/v0.1.0" class="external-link">v0.1.0</a>
+<li>Version: <a href="https://github.com/RConsortium/submissions-pilot1/releases/tag/v0.1.0" class="external-link">v0.1.0</a>
 </li>
-<li><a href="https://github.com/RConsortium/submissions-pilot1/blob/main/vignettes/fda/fda-response-2021-11-22.pdf" class="external-link">FDA statistical review and evaluation</a></li>
+<li>
+<a href="https://github.com/RConsortium/submissions-pilot1/blob/main/vignettes/fda/fda-response-2021-11-22.pdf" class="external-link">FDA statistical review and evaluation</a> (2021-12-03)</li>
+</ul>
+</li>
+<li>Updated submission (2022-02-11)
+<ul>
+<li>Version: <a href="https://github.com/RConsortium/submissions-pilot1/releases/tag/v0.1.1" class="external-link">v0.1.1</a>
+</li>
+<li>
+<a href="https://github.com/RConsortium/submissions-wg/blob/main/_Documents/Summary_R_Pilot_Submission2.pdf" class="external-link">FDA statistical review and evaluation</a> (2022-03-14)</li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section level2">
-<h2 id="running-environment">Running Environment<a class="anchor" aria-label="anchor" href="#running-environment"></a>
+<h2 id="running-environment">Running environment<a class="anchor" aria-label="anchor" href="#running-environment"></a>
 </h2>
 <p>The project is developed and tested in the environment below:</p>
 <ul>
 <li>OS: Ubuntu 20.04</li>
-<li>R version: R4.1.3</li>
-<li>Snapshot date: 2021-08-31</li>
-<li>Snapshot repository: <a href="https://mran.microsoft.com/snapshot/2021-08-31" class="external-link uri">https://mran.microsoft.com/snapshot/2021-08-31</a>
+<li>R version: R 4.1.3</li>
+<li>CRAN snapshot date: 2021-08-31</li>
+<li>CRAN snapshot repository: <a href="https://mran.microsoft.com/snapshot/2021-08-31" class="external-link uri">https://mran.microsoft.com/snapshot/2021-08-31</a>
 </li>
 </ul>
 </div>
 <div class="section level2">
-<h2 id="folder-structure">Folder Structure<a class="anchor" aria-label="anchor" href="#folder-structure"></a>
+<h2 id="folder-structure">Folder structure<a class="anchor" aria-label="anchor" href="#folder-structure"></a>
 </h2>
 <p>The work in this repo is organized as an R package following the concepts discussed in:</p>
 <ul>
 <li><a href="https://peerj.com/preprints/3192/" class="external-link">Marwick, B., Boettiger, C., &amp; Mullen, L. (2018). Packaging data analytical work reproducibly using R (and friends). The American Statistician, 72(1), 80-88.</a></li>
 <li><a href="https://www.pharmasug.org/proceedings/2021/AD/PharmaSUG-2021-AD-079.pdf" class="external-link">Wu, P., Palukuru, U. P., Luo, Y., Nepal, S., &amp; Zhang, Y. (2021) Analysis and reporting in regulated clinical trial environment using R. PharmaSUG 2021</a></li>
 </ul>
-<p>More details related to organize a clinical project and submission package can be found in Chapter 10-15 of the <a href="https://r4csr.org/index.html" class="external-link">R for Clinical Study Reports and Submission</a> book.</p>
+<p>More details related to organize a clinical project and submission package can be found in Chapter 10–15 of the <a href="https://r4csr.org/" class="external-link">R for Clinical Study Reports and Submission</a> book.</p>
 <div class="section level3">
-<h3 id="r-function-and-analysis-scripts">R function and Analysis Scripts<a class="anchor" aria-label="anchor" href="#r-function-and-analysis-scripts"></a>
+<h3 id="r-functions-and-analysis-scripts">R functions and analysis scripts<a class="anchor" aria-label="anchor" href="#r-functions-and-analysis-scripts"></a>
 </h3>
 <p>In short, the project is organized as an R package.</p>
 <ul>
 <li>
-<code>pilot1wrappers.Rproj</code>: RStudio project file used to open RStudio project.</li>
+<code>pilot1wrappers.Rproj</code>: RStudio project file used to open the project.</li>
 <li>
-<code>DESCRIPTION</code>: Metadata for a package including authors, license, dependency etc.</li>
+<code>DESCRIPTION</code>: Metadata for a package including authors, license, dependency, etc.</li>
 <li>
-<code>vignettes/</code>: Analysis scripts using Rmarkdown.</li>
+<code>vignettes/</code>: Analysis scripts using R Markdown.</li>
 <li>
-<code>R/</code>: Project specific R functions.</li>
+<code>R/</code>: Project-specific R functions.</li>
 <li>
-<code>man/</code>: Manual of project specific R functions.</li>
+<code>man/</code>: Manual of project-specific R functions.</li>
 </ul>
 </div>
 <div class="section level3">
 <h3 id="datasets">Datasets<a class="anchor" aria-label="anchor" href="#datasets"></a>
 </h3>
-<p>The source dataset is in <code>adam\</code> folder. The original data is from <a href="https://github.com/phuse-org/phuse-scripts/blob/master/data/adam/TDF_ADaM_v1.0.zip" class="external-link">the PHUSE Github Repository</a></p>
+<p>The source dataset is in the <code>adam/</code> folder. The original data is from the <a href="https://github.com/phuse-org/phuse-scripts/blob/master/data/adam/TDF_ADaM_v1.0.zip" class="external-link">PHUSE Github repository</a>.</p>
 </div>
 <div class="section level3">
-<h3 id="startup-file">Startup file<a class="anchor" aria-label="anchor" href="#startup-file"></a>
+<h3 id="startup-files">Startup files<a class="anchor" aria-label="anchor" href="#startup-files"></a>
 </h3>
 <ul>
 <li>
-<code>.Rprofile</code>: Project startup file to setup running environment including R version, repository, folder path etc.
-<ul>
-<li>We further use <code>inst/startup.R</code> and <code>R/zzz.R</code> to allow the startup file is executed while running. <code><a href="https://devtools.r-lib.org/reference/load_all.html" class="external-link">devtools::load_all()</a></code> and RStudio build panel.</li>
-</ul>
-</li>
+<code>inst/startup.R</code>: The primary startup file. It configures the running environment, including R version, package repository, folder paths, and other parameters.</li>
+<li>
+<code>.Rprofile</code>: An entry point file ensuring <code>inst/startup.R</code> execution during development, such as opening the project in RStudio, using <code><a href="https://devtools.r-lib.org/reference/load_all.html" class="external-link">devtools::load_all()</a></code>, or using RStudio build panel features.</li>
+<li>
+<code>R/zzz.R</code>: Another entry point file, triggering <code>inst/startup.R</code> during package loading via <code><a href="https://rdrr.io/r/base/library.html" class="external-link">library()</a></code>.</li>
 </ul>
 </div>
 <div class="section level3">
@@ -165,16 +177,16 @@
 </h3>
 <ul>
 <li>
-<code>output\</code>: TLFs output generated by Rmarkdown files in <code>vignettes\</code> folder.</li>
+<code>output/</code>: TLF outputs generated by R Markdown files in the <code>vignettes/</code> folder.</li>
 </ul>
 </div>
 <div class="section level3">
 <h3 id="reproducibility">Reproducibility<a class="anchor" aria-label="anchor" href="#reproducibility"></a>
 </h3>
-<p>The original code is prepared and executed on Ubuntu 20.04.3 LTS. We use <code>renv</code> to ensure reproducibility for R version and R package version.</p>
+<p>The original code is prepared and executed on Ubuntu 20.04.3 LTS. We use renv to ensure reproducibility for R version and R package versions.</p>
 <ul>
 <li>
-<code>renv.lock</code> and <code>renv\</code> folder: R package management using <code>renv</code> package. (<a href="https://rstudio.github.io/renv/articles/renv.html" class="external-link">Introduction</a>)</li>
+<code>renv.lock</code> and <code>renv/</code> folder: R package management using the renv package. (<a href="https://rstudio.github.io/renv/articles/renv.html" class="external-link">Introduction</a>)</li>
 </ul>
 </div>
 <div class="section level3">
@@ -186,7 +198,7 @@
 </ul>
 </div>
 </div>
-
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
