@@ -1,81 +1,96 @@
-<!-- badges: start -->
+# R Submission Pilot 1
 
+<!-- badges: start -->
 [![R-CMD-check](https://github.com/RConsortium/submissions-pilot1/workflows/R-CMD-check/badge.svg)](https://rconsortium.github.io/submissions-pilot1/)
 <!-- badges: end -->
 
 ## Overview
 
-The objective of the R Consortium R submission Pilot 1 Project is to 
-test the concept that a R-language based submission package can meet 
-the needs and the expectations of the FDA reviewers, 
-including assessing code review and analyses reproducibility. 
-All submission materials and communications from this pilot are publicly available, 
+The objective of the R Consortium R submission pilot 1 project is to
+test the concept that an R language based submission package can meet
+the needs and the expectations of the FDA reviewers,
+including assessing code review and analyses reproducibility.
+All submission materials and communications from this pilot are publicly available,
 with the aim of providing a working example for future R language based FDA submissions.
-This is a FDA-industry collaboration through the non-profit organization R consortium.
+This is a FDA-industry collaboration through the non-profit organization R Consortium.
 
 The [working group website](https://rconsortium.github.io/submissions-wg/).
 
-The [RConsortium/submissions-pilot1](https://github.com/RConsortium/submissions-pilot1) repo demonstrates an approach to organize internal developed R function and 
-table, listing, figure generation program using an R package. 
+The [RConsortium/submissions-pilot1](https://github.com/RConsortium/submissions-pilot1)
+repo demonstrates an approach to organize internal developed R functions and
+tables, listings, and figures (TLFs) generation programs using an R package.
 
 The [RConsortium/submissions-pilot1-to-fda](https://github.com/RConsortium/submissions-pilot1-to-fda)
-repo demonstrates the eCTD submission package based on the [RConsortium/submissions-pilot1](https://github.com/RConsortium/submissions-pilot1) repo.  
+repo demonstrates the eCTD submission package based on the
+[RConsortium/submissions-pilot1](https://github.com/RConsortium/submissions-pilot1) repo.
 
-## FDA Response 
+## FDA response
 
-- Initial submission
-  + version: [v0.1.0](https://github.com/RConsortium/submissions-pilot1/releases/tag/v0.1.0) 
-  + [FDA statistical review and evaluation](https://github.com/RConsortium/submissions-pilot1/blob/main/vignettes/fda/fda-response-2021-11-22.pdf)
-  
-## Running Environment 
+- Initial submission (2021-11-22)
+  - Version: [v0.1.0](https://github.com/RConsortium/submissions-pilot1/releases/tag/v0.1.0)
+  - [FDA statistical review and evaluation](https://github.com/RConsortium/submissions-pilot1/blob/main/vignettes/fda/fda-response-2021-11-22.pdf) (2021-12-03)
+- Updated submission (2022-02-11)
+  - Version: [v0.1.1](https://github.com/RConsortium/submissions-pilot1/releases/tag/v0.1.1)
+  - [FDA statistical review and evaluation](https://github.com/RConsortium/submissions-wg/blob/main/_Documents/Summary_R_Pilot_Submission2.pdf) (2022-03-14)
+
+## Running environment
 
 The project is developed and tested in the environment below:
 
 - OS: Ubuntu 20.04
-- R version: R4.1.3
-- Snapshot date: 2021-08-31
-- Snapshot repository: https://mran.microsoft.com/snapshot/2021-08-31
+- R version: R 4.1.3
+- CRAN snapshot date: 2021-08-31
+- CRAN snapshot repository: <https://mran.microsoft.com/snapshot/2021-08-31>
 
-## Folder Structure 
+## Folder structure
 
 The work in this repo is organized as an R package following the concepts discussed in:
 
 - [Marwick, B., Boettiger, C., & Mullen, L. (2018). Packaging data analytical work reproducibly using R (and friends). The American Statistician, 72(1), 80-88.](https://peerj.com/preprints/3192/)
 - [Wu, P., Palukuru, U. P., Luo, Y., Nepal, S., & Zhang, Y. (2021) Analysis and reporting in regulated clinical trial environment using R. PharmaSUG 2021](https://www.pharmasug.org/proceedings/2021/AD/PharmaSUG-2021-AD-079.pdf)
 
-More details related to organize a clinical project and submission package can be found in Chapter 10-15
-of the  [R for Clinical Study Reports and Submission](https://r4csr.org/index.html) book.
+More details related to organize a clinical project and submission package can
+be found in Chapter 10--15 of the
+[R for Clinical Study Reports and Submission](https://r4csr.org/) book.
 
-### R function and Analysis Scripts 
+### R functions and analysis scripts
 
-In short, the project is organized as an R package. 
+In short, the project is organized as an R package.
 
-- `pilot1wrappers.Rproj`: RStudio project file used to open RStudio project.
-- `DESCRIPTION`: Metadata for a package including authors, license, dependency etc.
-- `vignettes/`: Analysis scripts using Rmarkdown.
-- `R/`: Project specific R functions.
-- `man/`: Manual of project specific R functions. 
+- `pilot1wrappers.Rproj`: RStudio project file used to open the project.
+- `DESCRIPTION`: Metadata for a package including authors, license, dependency, etc.
+- `vignettes/`: Analysis scripts using R Markdown.
+- `R/`: Project-specific R functions.
+- `man/`: Manual of project-specific R functions.
 
 ### Datasets
 
-The source dataset is in `adam\` folder. The original data is from [the PHUSE Github Repository](https://github.com/phuse-org/phuse-scripts/blob/master/data/adam/TDF_ADaM_v1.0.zip)
+The source dataset is in the `adam/` folder. The original data is from the
+[PHUSE Github repository](https://github.com/phuse-org/phuse-scripts/blob/master/data/adam/TDF_ADaM_v1.0.zip).
 
-### Startup file 
-- `.Rprofile`: Project startup file to setup running environment including R version, repository, folder path etc. 
-  - We further use `inst/startup.R` and `R/zzz.R` to allow the startup file is executed while running. `devtools::load_all()` and RStudio build panel. 
-  
-### Results 
+### Startup files
 
-- `output\`: TLFs output generated by Rmarkdown files in `vignettes\` folder. 
+- `inst/startup.R`: The primary startup file.
+  It configures the running environment, including R version,
+  package repository, folder paths, and other parameters.
+- `.Rprofile`: An entry point file ensuring `inst/startup.R` execution
+  during development, such as opening the project in RStudio,
+  using `devtools::load_all()`, or using RStudio build panel features.
+- `R/zzz.R`: Another entry point file, triggering `inst/startup.R`
+  during package loading via `library()`.
+
+### Results
+
+- `output/`: TLF outputs generated by R Markdown files in the `vignettes/` folder.
 
 ### Reproducibility
 
 The original code is prepared and executed on Ubuntu 20.04.3 LTS.
-We use `renv` to ensure reproducibility for R version and R package version. 
+We use renv to ensure reproducibility for R version and R package versions.
 
-- `renv.lock` and `renv\` folder: R package management using `renv` package. ([Introduction](https://rstudio.github.io/renv/articles/renv.html))
+- `renv.lock` and `renv/` folder: R package management using the renv package.
+  ([Introduction](https://rstudio.github.io/renv/articles/renv.html))
 
 ### Utilities
 
 - `_pkgdown.yml`: [pkgdown](https://pkgdown.r-lib.org/articles/pkgdown.html) configuration file.
-
